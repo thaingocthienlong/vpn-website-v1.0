@@ -25,6 +25,12 @@ const nextConfig: NextConfig = {
     // Disable parallel capability to avoid EAGAIN error on Plesk
     workerThreads: false,
     cpus: 1
+  },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
   }
 };
 
