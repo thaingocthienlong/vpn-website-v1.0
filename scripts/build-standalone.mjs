@@ -39,15 +39,32 @@ try {
     fs.rmdirSync(nestedDir); // Xóa thư mục rỗng 'new'
   }
 
-  // --- BƯỚC 3.2: XOÁ NODE_MODULES RÁC (WINDOWS BINDINGS) ---
-  // CỰC KỲ QUAN TRỌNG: Các thư viện Prisma và LibSQL lõi C++ được build trên Windows
-  // Nếu copy lên Linux (Plesk) sẽ gây lỗi "503 Service Unavailable" ngay lập tức!
-  // Vì thế, ta phải xoá node_modules ở trên máy này, để đem lên Server cài bản Linux.
+  // --- BƯỚC 3.2: TẠO MÔI TRƯỜNG LINUX TẠI ĐỊA PHƯƠNG ---
+  // CỰC KỲ QUAN TRỌNG: Máy chủ Plesk (Linux) báo lỗi "Resource temporarily unavailable"
+  // khi cố chạy lệnh 'npm install' do giới hạn RAM/Process của Shared Hosting.
+  // GIẢI PHÁP: Tải và cài đặt trước thư viện Linux ngay trên máy Windows!
   const standaloneNodeModules = path.join(standaloneDir, 'node_modules');
   if (fs.existsSync(standaloneNodeModules)) {
-    console.log("  > Đang xoá Windows node_modules để tránh lỗi 503 trên Cloud Linux...");
+    console.log("  > Đang xoá Windows node_modules cũ...");
     fs.rmSync(standaloneNodeModules, { recursive: true, force: true });
   }
+
+  console.log("  > Đang tải core C++ (Linux x64) cho Prisma/LibSQL, vui lòng chờ khoảng 1-2 phút...");
+  execSync('npm install --omit=dev --os=linux --cpu=x64 --no-audit --no-fund', { cwd: standaloneDir, stdio: 'inherit' });
+
+  // Copy thư mục prisma trước khi generate
+  const prismaDest = path.join(standaloneDir, 'prisma');
+  if (!fs.existsSync(prismaDest)) fs.mkdirSync(prismaDest, { recursive: true });
+  
+  const devDbPath = path.join(rootDir, 'prisma', 'dev.db');
+  if (fs.existsSync(devDbPath)) fs.copyFileSync(devDbPath, path.join(prismaDest, 'dev.db'));
+  
+  const schemaPath = path.join(rootDir, 'prisma', 'schema.prisma');
+  if (fs.existsSync(schemaPath)) fs.copyFileSync(schemaPath, path.join(prismaDest, 'schema.prisma'));
+
+  // Generate database engine cho Linux
+  console.log("  > Đang Build Database Engine cho Linux host...");
+  execSync('npx prisma generate', { cwd: standaloneDir, stdio: 'inherit' });
 
   // --- BƯỚC 3.3: COPY FILE TĨNH & DATABASE ---
   const copyDir = (src, dest) => {
@@ -68,26 +85,17 @@ try {
 
   const staticSrc = path.join(rootDir, '.next', 'static');
   if (fs.existsSync(staticSrc)) {
-    const staticDest = path.join(standaloneDir, '.next', 'static');
+  const staticDest = path.join(standaloneDir, '.next', 'static');
     copyDir(staticSrc, staticDest);
   }
 
-  const prismaDest = path.join(standaloneDir, 'prisma');
-  if (!fs.existsSync(prismaDest)) fs.mkdirSync(prismaDest, { recursive: true });
-  const devDbPath = path.join(rootDir, 'prisma', 'dev.db');
-  if (fs.existsSync(devDbPath)) fs.copyFileSync(devDbPath, path.join(prismaDest, 'dev.db'));
-  const schemaPath = path.join(rootDir, 'prisma', 'schema.prisma');
-  if (fs.existsSync(schemaPath)) fs.copyFileSync(schemaPath, path.join(prismaDest, 'schema.prisma'));
-
   console.log("\n[4/4] 🟢 ĐÓNG GÓI HOÀN TẤT!");
   console.log("-------------------------------------------------");
-  console.log("HƯỚNG DẪN UPLOAD LÊN PLESK (ĐÃ KHẮC PHỤC LỖI 503 NATIVE BINDINGS):");
+  console.log("HƯỚNG DẪN UPLOAD LÊN PLESK (ĐÃ TRÁNH MỌI LỖI TÀI NGUYÊN/NATIVE BINDINGS):");
   console.log("1. Mở thư mục '.next/standalone' trên máy tính của bạn.");
   console.log("2. Bôi đen tất cả, nén thành file app.zip.");
-  console.log("3. Upload app.zip lên File Manager thả vào gốc thư mục /vpn-app và Giải nén.");
-  console.log("4. Quan trọng: Mở Plesk > Node.js > Run Script: gõ 'npm install --omit=dev' để cài thư viện Core C++ cho Linux.");
-  console.log("5. Mở Plesk > Node.js > Run Script: gõ 'npx prisma generate' để Build Database Engine.");
-  console.log("6. Bấm Restart App.");
+  console.log("3. Upload app.zip lên File Manager thả vào gốc thư mục /vpn-app và CÓ ĐÈ LÊN MỌI THỨ CŨ.");
+  console.log("4. Quan trọng: Mở Plesk > Node.js và BẤM RESTART APP là Xong (Không cần gõ bất cứ dòng lệnh NPM nào nữa)!");
   console.log("-------------------------------------------------");
 
 } catch (error) {

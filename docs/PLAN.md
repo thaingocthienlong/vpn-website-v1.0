@@ -40,13 +40,11 @@ Tài liệu này hướng dẫn chi tiết từng nút bấm trên giao diện *
 3. Cuộn xuống phần **Environment Variables**, bấm nút **Specify** (Thêm biến) và copy các biến từ file `.env.production` cũ vào. Phải chắc chắn có:
    - `NODE_ENV`: `production`
    - `DATABASE_URL`: `file:./prisma/dev.db`
-4. Cài đặt thư viện Hệ điều hành Linux ngay trên Plesk:
-   - Kéo lên trên, nhấn nút **Run Script**, gõ chính xác: `plesk-install` rồi bấm Run. Đợi máy chủ tải thư viện (khoảng 1 phút).
-   - Nhấn nút **Run Script** lần 2, gõ chính xác: `plesk-standalone-prisma` rồi bấm Run. Đợi máy chủ build Database Engine (khoảng vài giây).
 
 ---
 
 ## 🚀 BƯỚC 4: KHỞI ĐỘNG VÀ KIỂM TRA
 
-1. Kéo lên góc trên bảng Node.js, bấm vào nút **Restart App** (Nút có hình mũi tên vòng cung).
-2. Xong! Mở web `https://vienphuongnam.com.vn/` để xem website hoạt động siêu mượt. Mọi bế tắc về RAM/CPU/OS và xung đột máy chủ/Windows đã được vượt qua hoàn toàn!
+1. Quá trình tạo file `app.zip` ở BƯỚC 1 ĐÃ TỰ ĐỘNG biên dịch lõi C++ của Linux (tránh mọi lỗi 503 và lỗi cạn kiệt tài nguyên của Hosting).
+2. Kéo lên góc trên bảng Node.js, bấm vào nút **Restart App** (Nút có hình mũi tên vòng cung).
+3. Xong! Mở web `https://vienphuongnam.com.vn/` để xem website hoạt động siêu mượt. Mọi bế tắc về RAM/CPU/OS và xung đột máy chủ/Windows đã được vượt qua hoàn toàn!
