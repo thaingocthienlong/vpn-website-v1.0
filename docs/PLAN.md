@@ -41,8 +41,8 @@ Tài liệu này hướng dẫn chi tiết từng nút bấm trên giao diện *
    - `NODE_ENV`: `production`
    - `DATABASE_URL`: `file:./prisma/dev.db`
 4. Cài đặt thư viện Hệ điều hành Linux ngay trên Plesk:
-   - Kéo lên trên, nhấn nút **Run Script**, gõ chính xác: `npm install --omit=dev` rồi bấm Run. Đợi chạy xong.
-   - Nhấn nút **Run Script** lần 2, gõ chính xác: `npx prisma generate` rồi bấm Run. Đợi chạy xong.
+   - Kéo lên trên, nhấn nút **Run Script**, gõ chính xác: `plesk-install` rồi bấm Run. Đợi máy chủ tải thư viện (khoảng 1 phút).
+   - Nhấn nút **Run Script** lần 2, gõ chính xác: `plesk-standalone-prisma` rồi bấm Run. Đợi máy chủ build Database Engine (khoảng vài giây).
 
 ---
 
@@ -50,4 +50,3 @@ Tài liệu này hướng dẫn chi tiết từng nút bấm trên giao diện *
 
 1. Kéo lên góc trên bảng Node.js, bấm vào nút **Restart App** (Nút có hình mũi tên vòng cung).
 2. Xong! Mở web `https://vienphuongnam.com.vn/` để xem website hoạt động siêu mượt. Mọi bế tắc về RAM/CPU/OS và xung đột máy chủ/Windows đã được vượt qua hoàn toàn!
-
