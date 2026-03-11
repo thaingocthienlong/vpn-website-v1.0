@@ -9,7 +9,7 @@
     "start": "next start",
     "lint": "eslint",
     "plesk-install": "npm install --omit=dev",
-    "plesk-build": "npx prisma generate && npx prisma db push && npm run build"
+    "plesk-build": "./node_modules/.bin/prisma generate && ./node_modules/.bin/prisma db push && ./node_modules/.bin/next build"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^11.0.1",
