@@ -1,0 +1,88 @@
+{
+    "meta": {
+        "created_at": "2026-02-09T11:28:00+07:00",
+        "updated_at": "2026-02-09T11:28:00+07:00",
+        "scope": "project"
+    },
+    "communication": {
+        "tone": "friendly",
+        "personality": "senior_dev",
+        "language": "vietnamese"
+    },
+    "technical": {
+        "detail_level": "full_technical",
+        "autonomy": "balanced",
+        "quality": "production"
+    },
+    "working_style": {
+        "pace": "careful",
+        "feedback": "direct"
+    },
+    "custom_rules": [
+        {
+            "id": "RULE-001",
+            "rule": "ALWAYS read all relevant project documents before executing ANY task",
+            "applies_to": [
+                "planning",
+                "implementation",
+                "code",
+                "design",
+                "task_list"
+            ],
+            "documents": [
+                "documents/project-documents/new-project/FEATURES_SPEC.md",
+                "documents/project-documents/new-project/UI_DESIGN.md",
+                "documents/project-documents/new-project/API_DESIGN.md",
+                "documents/project-documents/new-project/DATABASE_DESIGN.md",
+                "documents/project-documents/new-project/COMPONENT_LIBRARY.md",
+                "documents/project-documents/new-project/UX_FLOW.md"
+            ],
+            "priority": "critical"
+        },
+        {
+            "id": "RULE-002",
+            "rule": "After completing ANY request, provide a cross-check report comparing implementation against documents",
+            "report_format": {
+                "sections": [
+                    "completed_items",
+                    "changes_from_spec",
+                    "modifications_made",
+                    "errors_found",
+                    "pending_items",
+                    "deviations_with_reasons"
+                ]
+            },
+            "priority": "critical"
+        },
+        {
+            "id": "RULE-003",
+            "rule": "When creating development plans, implementation plans, or task lists, MUST reference specific document sections",
+            "priority": "high"
+        }
+    ],
+    "mandatory_behaviors": {
+        "pre_execution": {
+            "description": "Before starting ANY work, AI MUST:",
+            "steps": [
+                "1. Identify relevant documents for the task",
+                "2. Read and understand the specifications",
+                "3. Plan implementation according to documents",
+                "4. Execute following the specifications exactly"
+            ]
+        },
+        "post_execution": {
+            "description": "After completing ANY request, AI MUST provide:",
+            "report_template": {
+                "title": "📋 Document Cross-Check Report",
+                "sections": {
+                    "completed": "✅ Hoàn thành (theo đúng spec)",
+                    "changed": "🔄 Thay đổi (so với spec ban đầu)",
+                    "modified": "✏️ Chỉnh sửa (điều chỉnh trong quá trình)",
+                    "errors": "❌ Lỗi (cần sửa)",
+                    "pending": "⏳ Chưa hoàn thành",
+                    "deviations": "⚠️ Khác biệt (và lý do)"
+                }
+            }
+        }
+    }
+}

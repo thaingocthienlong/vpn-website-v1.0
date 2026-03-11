@@ -1,0 +1,145 @@
+{
+    "updated_at": "2026-02-18T23:20:00+07:00",
+    "working_on": {
+        "feature": "Organizational Structure",
+        "current_plan_path": "docs/PLAN-ORG-STRUCTURE.md",
+        "current_phase": "verification",
+        "phase_status": "completed",
+        "next_phase": "audit",
+        "task": "Implement UI and Verify. Completed.",
+        "status": "completed"
+    },
+    "phase_progress": {
+        "phase-01": {
+            "name": "Project Setup",
+            "status": "completed",
+            "progress": "100%"
+        },
+        "phase-02": {
+            "name": "UI Foundation",
+            "status": "completed",
+            "progress": "100%"
+        },
+        "phase-03": {
+            "name": "Public API",
+            "status": "completed",
+            "progress": "100%"
+        },
+        "phase-04": {
+            "name": "Homepage Sections",
+            "status": "completed",
+            "progress": "100%",
+            "notes": "All 10 sections implemented & Verified. UI Gap fixed."
+        },
+        "phase-05": {
+            "name": "Content Pages",
+            "status": "in_progress",
+            "progress": "85%",
+            "notes": "Completed: PG-06 (Org Structure), News pages (full polish), Course pages (quick polish), Service pages (quick polish). Pending: About, Contact."
+        },
+        "phase-06": {
+            "name": "Admin Panel",
+            "status": "in_progress",
+            "progress": "75%",
+            "notes": "CKEditor 5 integration done. Full CRUD for Posts, Courses, Staff, Partners, Pages, Media, Contacts. Locale-separate images & SEO. Audit in progress."
+        },
+        "phase-07": {
+            "name": "Integrations",
+            "status": "pending",
+            "progress": "0%"
+        },
+        "phase-08": {
+            "name": "Polish & Deploy",
+            "status": "in_progress",
+            "progress": "20%",
+            "notes": "QA Orchestration passed. Responsive fixes applied."
+        }
+    },
+    "recent_changes": [
+        {
+            "timestamp": "2026-02-18T23:15:00+07:00",
+            "type": "feature",
+            "description": "Implemented Organizational Structure page and Staff migration.",
+            "files": [
+                "src/app/[locale]/gioi-thieu/co-cau-to-chuc/page.tsx",
+                "src/components/cards/StaffCard.tsx",
+                "scripts/migrate-staff.mjs",
+                "docs/PLAN-ORG-STRUCTURE.md"
+            ]
+        },
+        {
+            "timestamp": "2026-02-18T14:45:00+07:00",
+            "type": "fix",
+            "description": "Fixed Partner logos displaying in grayscale. Removed grayscale CSS classes.",
+            "files": [
+                "src/components/cards/PartnerLogo.tsx"
+            ]
+        },
+        {
+            "timestamp": "2026-02-18T14:00:00+07:00",
+            "type": "audit",
+            "description": "Started Admin Panel CRUD Audit. Created debug scripts for Partner deletion.",
+            "files": [
+                "docs/PLAN-ADMIN-CRUD.md",
+                "scripts/debug-delete.mjs",
+                "src/app/api/admin/partners/[id]/route.ts"
+            ]
+        },
+        {
+            "timestamp": "2026-02-16T13:40:00+07:00",
+            "type": "fix",
+            "description": "Fixed excessive white gap on homepage by removing `pt-24` from main container. Sticky header handles spacing.",
+            "files": [
+                "src/app/page.tsx",
+                "src/app/layout.tsx"
+            ]
+        }
+    ],
+    "decisions_made": [
+        {
+            "decision": "Use backend migration script for Staff images",
+            "reason": "Images were available in local backup (`old/httpdocs`), allowing direct upload to Cloudinary without scraping active site (which had DNS issues)."
+        },
+        {
+            "decision": "Group Staff by Department in UI",
+            "reason": "Matches the organizational hierarchical view required for 'Cơ cấu tổ chức'."
+        },
+        {
+            "decision": "Display Partner logos in full color",
+            "reason": "User feedback indicated that grayscale logos looked 'disabled'. Full color is more vibrant and respectful to partners."
+        }
+    ],
+    "pending_tasks": [
+        {
+            "task": "Verify Admin CRUD (Partner Deletion)",
+            "priority": "high",
+            "phase": "06"
+        },
+        {
+            "task": "Manual verification of Homepage Responsive Fix",
+            "priority": "medium",
+            "phase": "08"
+        },
+        {
+            "task": "Static pages (About detail, Contact) UI/UX polish",
+            "priority": "medium",
+            "phase": "05"
+        }
+    ],
+    "errors_encountered": [
+        {
+            "error": "Cloudinary Upload Failed: DNS resolution error for vienphuongnam.edu.vn",
+            "solution": "Switched to using local backup files in `old/httpdocs/uploads`.",
+            "resolved": true
+        }
+    ],
+    "documents": {
+        "must_read_before_coding": [
+            "documents/project-documents/new-project/FEATURES_SPEC.md",
+            "documents/project-documents/new-project/UI_DESIGN.md",
+            "documents/project-documents/new-project/API_DESIGN.md",
+            "documents/project-documents/new-project/DATABASE_DESIGN.md",
+            "documents/project-documents/new-project/COMPONENT_LIBRARY.md"
+        ]
+    }
+}

@@ -1,0 +1,413 @@
+// SISRD Website Database Schema
+// Version: 3.0 based on DATABASE_DESIGN.md
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+// ==================== ENUMS (as strings for SQLite) ====================
+// Note: SQLite doesn't support enums natively. Use String with validation at app level.
+// UserRole: SUPER_ADMIN, CONTENT_EDITOR, COURSE_MANAGER
+// CategoryType: POST, COURSE, ADMISSION
+// PostType: ORIGINAL, REPOST
+// CourseType: ADMISSION, SHORT_COURSE, STUDY_ABROAD
+// RegistrationStatus: NEW, CONTACTED, ENROLLED, CANCELLED
+// ContactStatus: NEW, READ, REPLIED
+// ConfigType: STRING, JSON, BOOLEAN, NUMBER
+// Locale: VI, EN
+// EntityType: COURSE, SERVICE
+
+// ==================== MODELS ====================
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String
+  name      String
+  role      String   @default("CONTENT_EDITOR") // UserRole enum
+  avatar    String?
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  posts   Post[]
+  pages   Page[]
+  courses Course[]
+  media   Media[]
+
+  @@map("users")
+}
+
+model Category {
+  id          String   @id @default(uuid())
+  name        String
+  name_en     String?
+  slug        String   @unique
+  type        String   // CategoryType: POST, COURSE, ADMISSION
+  description String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  posts   Post[]
+  courses Course[]
+
+  @@map("categories")
+}
+
+model Tag {
+  id        String    @id @default(uuid())
+  name      String    @unique
+  slug      String    @unique
+  createdAt DateTime  @default(now())
+  posts     PostTag[]
+
+  @@map("tags")
+}
+
+model Post {
+  id              String    @id @default(uuid())
+  title           String
+  title_en        String?
+  slug            String    @unique
+  excerpt         String?
+  excerpt_en      String?
+  content         String    // @db.Text equivalent - CKEditor HTML
+  content_en      String?
+  featuredImageId    String?
+  featuredImageId_en String?
+  categoryId         String
+  authorId           String
+  type               String    @default("ORIGINAL") // PostType: ORIGINAL, REPOST
+  sourceUrl          String?
+  isFeatured         Boolean   @default(false)
+  isPublished        Boolean   @default(false)
+  publishedAt        DateTime?
+  viewCount          Int       @default(0)
+  sortOrder          Int       @default(0)
+  metaTitle          String?
+  metaTitle_en       String?
+  metaDescription    String?
+  metaDescription_en String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  featuredImage    Media?    @relation("PostFeaturedImage", fields: [featuredImageId], references: [id])
+  featuredImage_en Media?    @relation("PostFeaturedImageEn", fields: [featuredImageId_en], references: [id])
+  category         Category  @relation(fields: [categoryId], references: [id])
+  author           User      @relation(fields: [authorId], references: [id])
+  tags             PostTag[]
+
+  @@map("posts")
+}
+
+model PostTag {
+  postId String
+  tagId  String
+
+  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+
+  @@id([postId, tagId])
+  @@map("post_tags")
+}
+
+model Page {
+  id              String   @id @default(uuid())
+  title           String
+  title_en        String?
+  slug            String   @unique
+  content         String   // CKEditor HTML
+  content_en      String?
+  featuredImageId    String?
+  featuredImageId_en String?
+  template           String   @default("default")
+  authorId           String
+  isPublished        Boolean  @default(false)
+  sortOrder          Int      @default(0)
+  metaTitle          String?
+  metaTitle_en       String?
+  metaDescription    String?
+  metaDescription_en String?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  featuredImage    Media? @relation("PageFeaturedImage", fields: [featuredImageId], references: [id])
+  featuredImage_en Media? @relation("PageFeaturedImageEn", fields: [featuredImageId_en], references: [id])
+  author           User   @relation(fields: [authorId], references: [id])
+
+  @@map("pages")
+}
+
+model Department {
+  id          String   @id @default(uuid())
+  name        String
+  name_en     String?
+  slug        String   @unique
+  description String?
+  sortOrder   Int      @default(0)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  staff Staff[]
+
+  @@map("departments")
+}
+
+model StaffType {
+  id         String   @id @default(uuid())
+  name       String
+  name_en    String?
+  level      Int      // 1 = Highest (Viện trưởng)
+  isAdvisory Boolean  @default(false)
+  sortOrder  Int      @default(0)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  staff Staff[]
+
+  @@map("staff_types")
+}
+
+model Staff {
+  id           String   @id @default(uuid())
+  name         String
+  name_en      String?
+  title        String?  // Học vị, chức danh
+  title_en     String?
+  bio          String?  // CKEditor HTML
+  bio_en       String?
+  avatarId     String?
+  avatarId_en  String?
+  email        String?
+  phone        String?
+  staffTypeId  String
+  departmentId String?
+  sortOrder    Int      @default(0)
+  isActive     Boolean  @default(true)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  avatar     Media?      @relation("StaffAvatar", fields: [avatarId], references: [id])
+  avatar_en  Media?      @relation("StaffAvatarEn", fields: [avatarId_en], references: [id])
+  staffType  StaffType   @relation(fields: [staffTypeId], references: [id])
+  department Department? @relation(fields: [departmentId], references: [id])
+
+  @@map("staff")
+}
+
+model Partner {
+  id             String   @id @default(uuid())
+  name           String
+  name_en        String?
+  logoId         String?
+  logoId_en      String?
+  website        String?
+  description    String?
+  description_en String?
+  sortOrder      Int      @default(0)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  logo      Media?          @relation("PartnerLogo", fields: [logoId], references: [id])
+  logo_en   Media?          @relation("PartnerLogoEn", fields: [logoId_en], references: [id])
+  courses CoursePartner[]
+
+  @@map("partners")
+}
+
+model Course {
+  id                 String    @id @default(uuid())
+  title              String
+  title_en           String?
+  slug               String    @unique
+  excerpt            String?   // CKEditor - Giới thiệu ngắn
+  excerpt_en         String?
+  featuredImageId    String?
+  featuredImageId_en String?
+  categoryId         String?
+  type               String    // CourseType: ADMISSION, SHORT_COURSE, STUDY_ABROAD
+  authorId           String
+  isFeatured         Boolean   @default(false)
+  isPublished        Boolean   @default(false)
+  publishedAt        DateTime?
+  isRegistrationOpen Boolean   @default(true)
+  viewCount          Int       @default(0)
+  sortOrder          Int       @default(0)
+  metaTitle          String?
+  metaTitle_en       String?
+  metaDescription    String?
+  metaDescription_en String?
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+
+  featuredImage    Media?          @relation("CourseFeaturedImage", fields: [featuredImageId], references: [id])
+  featuredImage_en Media?          @relation("CourseFeaturedImageEn", fields: [featuredImageId_en], references: [id])
+  category      Category?       @relation(fields: [categoryId], references: [id])
+  author        User            @relation(fields: [authorId], references: [id])
+  partners      CoursePartner[]
+  registrations Registration[]
+  contacts      ContactForm[]
+  // Note: ContentSection uses entityType + entityId pattern instead of direct FK
+
+  @@map("courses")
+}
+
+model CoursePartner {
+  courseId  String
+  partnerId String
+
+  course  Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  partner Partner @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+
+  @@id([courseId, partnerId])
+  @@map("course_partners")
+}
+
+// ==================== CONTENT SECTIONS (Dynamic) ====================
+
+model ContentSection {
+  id         String   @id @default(uuid())
+  entityType String   // EntityType: COURSE, SERVICE
+  entityId   String
+  sectionKey String   // e.g. "gioi-thieu", "muc-tieu"
+  title      String
+  title_en   String?
+  content    String   // CKEditor HTML
+  content_en String?
+  sortOrder  Int      @default(0)
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  @@unique([entityType, entityId, sectionKey])
+  @@index([entityType, entityId])
+  @@map("content_sections")
+}
+
+model Registration {
+  id           String   @id @default(uuid())
+  fullName     String
+  email        String
+  phone        String
+  organization String?
+  position     String?
+  courseId     String
+  message      String?
+  status       String   @default("NEW") // RegistrationStatus: NEW, CONTACTED, ENROLLED, CANCELLED
+  source       String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  course Course @relation(fields: [courseId], references: [id])
+
+  @@map("registrations")
+}
+
+model ContactForm {
+  id        String   @id @default(uuid())
+  fullName  String
+  email     String
+  phone     String
+  subject   String?
+  message   String
+  courseId  String?
+  status    String   @default("NEW") // ContactStatus: NEW, READ, REPLIED
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  course Course? @relation(fields: [courseId], references: [id])
+
+  @@map("contact_forms")
+}
+
+model Media {
+  id           String   @id @default(uuid())
+  publicId     String?  @unique
+  filename     String
+  format       String?
+  resourceType String?
+  url          String
+  secureUrl    String?
+  mimeType     String?
+  size         Int
+  width        Int?
+  height       Int?
+  alt          String?
+  alt_en       String?
+  uploadedById String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  uploadedBy   User      @relation(fields: [uploadedById], references: [id])
+  postImages      Post[]    @relation("PostFeaturedImage")
+  postImagesEn    Post[]    @relation("PostFeaturedImageEn")
+  pageImages      Page[]    @relation("PageFeaturedImage")
+  pageImagesEn    Page[]    @relation("PageFeaturedImageEn")
+  courseImages    Course[]  @relation("CourseFeaturedImage")
+  courseImagesEn  Course[]  @relation("CourseFeaturedImageEn")
+  staffAvatars    Staff[]   @relation("StaffAvatar")
+  staffAvatarsEn  Staff[]   @relation("StaffAvatarEn")
+  partnerLogos    Partner[] @relation("PartnerLogo")
+  partnerLogosEn  Partner[] @relation("PartnerLogoEn")
+
+  @@map("media")
+}
+
+model Configuration {
+  id          String   @id @default(uuid())
+  key         String   @unique
+  value       String   // JSON for complex values
+  type        String   @default("STRING") // ConfigType: STRING, JSON, BOOLEAN, NUMBER
+  group       String   @default("general")
+  description String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@map("configurations")
+}
+
+model HomepageSection {
+  id          String   @id @default(uuid())
+  sectionKey  String   // hero, reviews, partners, services, video, training, news, gallery, cta, contact
+  locale      String   // Locale: VI, EN
+  title       String?
+  title_en    String?
+  subtitle    String?
+  subtitle_en String?
+  isEnabled   Boolean  @default(true)
+  sortOrder   Int      @default(0)
+  config      String?  // JSON config
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([sectionKey, locale])
+  @@map("homepage_sections")
+}
+
+model MenuItem {
+  id        String   @id @default(uuid())
+  label     String
+  label_en  String?
+  url       String
+  locale    String   // Locale: VI, EN
+  parentId  String?
+  icon      String?
+  target    String   @default("_self")
+  sortOrder Int      @default(0)
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  parent   MenuItem?  @relation("MenuHierarchy", fields: [parentId], references: [id])
+  children MenuItem[] @relation("MenuHierarchy")
+
+  @@map("menu_items")
+}

@@ -1,0 +1,346 @@
+{
+    "meta": {
+        "schema_version": "1.1.0",
+        "awf_version": "4.0.2",
+        "last_updated": "2026-02-18T23:20:00+07:00"
+    },
+    "project": {
+        "name": "SISRD Website",
+        "display_name": "Viện Phát triển nguồn lực xã hội Phương Nam",
+        "type": "corporate_website",
+        "status": "in_development",
+        "description": "Corporate website with multi-language support, dynamic content sections, modern CMS"
+    },
+    "tech_stack": {
+        "frontend": {
+            "framework": "Next.js 16.1.6",
+            "ui": "React 18+",
+            "styling": "TailwindCSS v4",
+            "fonts": "next/font (Exo + Roboto Mono)",
+            "icons": "lucide-react",
+            "design_system": "Claymorphism + Blue-Cyan gradient"
+        },
+        "backend": {
+            "runtime": "Next.js API Routes",
+            "database": "SQLite (local) / PostgreSQL (prod)",
+            "orm": "Prisma 7.3.0 + @prisma/adapter-libsql",
+            "auth": "Clerk"
+        },
+        "utilities": [
+            "zod",
+            "clsx",
+            "tailwind-merge",
+            "@radix-ui/react-slot",
+            "date-fns"
+        ]
+    },
+    "design_system": {
+        "colors": {
+            "primary": "#4D94FF (Blue 500)",
+            "accent": "#06B6D4 (Cyan 500)",
+            "background": "#F8FAFC",
+            "foreground": "#0F172A"
+        },
+        "fonts": {
+            "heading": "Exo",
+            "body": "Roboto Mono"
+        },
+        "styles": [
+            "Claymorphism cards",
+            "Blue-Cyan gradients",
+            "Subtle shadows",
+            "Slate color palette for text"
+        ],
+        "ui_rules": [
+            "No emoji icons - use Lucide SVG",
+            "cursor-pointer on all clickable elements",
+            "slate- for text, not gray-",
+            "bg-white/80 or higher for glass cards",
+            "GraduationCap icon for course placeholders",
+            "Ensure bright text on dark backgrounds (use !text-white if needed to override base styles)"
+        ]
+    },
+    "database_schema": {
+        "summary": "18+ entities for content management, user auth, site configuration, and i18n",
+        "tables": [
+            "users",
+            "categories",
+            "tags",
+            "posts",
+            "post_tags",
+            "pages",
+            "departments",
+            "staff_types",
+            "staff",
+            "partners",
+            "courses",
+            "course_partners",
+            "content_sections",
+            "registrations",
+            "contact_forms",
+            "media",
+            "configurations",
+            "homepage_sections",
+            "menu_items"
+        ],
+        "relationships_explained": "Posts belong to categories and users. Courses have dynamic ContentSections (polymorphic). Staff belong to departments and staff types.",
+        "i18n_pattern": {
+            "approach": "Column-level _en suffix for locale-specific fields",
+            "locale_fields": {
+                "Post": [
+                    "title_en",
+                    "excerpt_en",
+                    "content_en",
+                    "featuredImageId_en",
+                    "metaTitle_en",
+                    "metaDescription_en"
+                ],
+                "Page": [
+                    "title_en",
+                    "content_en",
+                    "featuredImageId_en",
+                    "metaTitle_en",
+                    "metaDescription_en"
+                ],
+                "Course": [
+                    "title_en",
+                    "excerpt_en",
+                    "content_en",
+                    "featuredImageId_en",
+                    "metaTitle_en",
+                    "metaDescription_en"
+                ],
+                "Staff": [
+                    "name_en",
+                    "title_en",
+                    "bio_en",
+                    "avatarId_en"
+                ],
+                "Partner": [
+                    "name_en",
+                    "description_en",
+                    "logoId_en"
+                ],
+                "ContentSection": [
+                    "title_en",
+                    "content_en"
+                ]
+            },
+            "media_relations": "Each _en image FK has its own Media relation (e.g. PostFeaturedImageEn, StaffAvatarEn)"
+        }
+    },
+    "api_endpoints": [
+        {
+            "path": "/api/homepage/sections",
+            "method": "GET",
+            "explained": "Fetch enabled homepage sections"
+        },
+        {
+            "path": "/api/posts",
+            "method": "GET",
+            "explained": "List published posts with pagination/filtering/search"
+        },
+        {
+            "path": "/api/posts/[slug]",
+            "method": "GET",
+            "explained": "Get single post by slug with view count increment"
+        },
+        {
+            "path": "/api/categories",
+            "method": "GET",
+            "explained": "List categories with post counts"
+        },
+        {
+            "path": "/api/courses",
+            "method": "GET",
+            "explained": "List published courses with type filtering"
+        },
+        {
+            "path": "/api/courses/[slug]",
+            "method": "GET",
+            "explained": "Get single course with dynamic content sections"
+        },
+        {
+            "path": "/api/staff",
+            "method": "GET",
+            "explained": "List active staff by department"
+        },
+        {
+            "path": "/api/partners",
+            "method": "GET",
+            "explained": "List active partners"
+        },
+        {
+            "path": "/api/menu",
+            "method": "GET",
+            "explained": "Get navigation menu with nested children"
+        },
+        {
+            "path": "/api/services",
+            "method": "GET",
+            "explained": "Get service pages by predefined slugs"
+        },
+        {
+            "path": "/api/registration",
+            "method": "POST",
+            "explained": "Submit course registration form"
+        },
+        {
+            "path": "/api/contact",
+            "method": "POST",
+            "explained": "Submit contact form"
+        }
+    ],
+    "components": {
+        "ui_primitives": [
+            "Button (asChild, cta uses blue-cyan gradient, ghost variant fix for dark bg)",
+            "ClayCard",
+            "Badge (primary/secondary/accent variants)",
+            "Input",
+            "Select",
+            "Textarea",
+            "Modal",
+            "Skeleton"
+        ],
+        "layout": [
+            "Container",
+            "Header (with dropdown navigation)",
+            "Navbar (default menu items)",
+            "Footer"
+        ],
+        "sections": [
+            "SectionWrapper",
+            "SectionHeader (deprecated, replaced by direct h2)",
+            "HeroSection",
+            "PartnersSection",
+            "ServicesSection",
+            "TrainingSection",
+            "NewsSection",
+            "ReviewsSection",
+            "VideosSection",
+            "GallerySection (8 masonry, 2x4 grid, lightbox)",
+            "CTASection",
+            "ContactSection (form + info cards + map)"
+        ],
+        "cards": [
+            "NewsCard (full clickable, claymorphism)",
+            "CourseCard (claymorphism, GraduationCap placeholder)",
+            "ServiceCard",
+            "PartnerLogo",
+            "ReviewCard"
+        ],
+        "news": [
+            "NewsCard (full clickable, Lucide icons)",
+            "NewsList (Star/Inbox icons, 3-col grid)",
+            "NewsSidebar (functional search, gradient categories)",
+            "NewsPagination",
+            "NewsDetail"
+        ],
+        "courses": [
+            "CourseCard (claymorphism, GraduationCap icon)",
+            "Course listing grid (4-col with filters)",
+            "Course detail with TOC sidebar + scroll-spy",
+            "Related courses section"
+        ]
+    },
+    "homepage_sections": {
+        "order": [
+            "1. Hero",
+            "2. Reviews",
+            "3. Partners",
+            "4. Services",
+            "5. Videos",
+            "6. Training",
+            "7. News",
+            "8. Gallery",
+            "9. CTA",
+            "10. Contact"
+        ],
+        "status": "All 10 sections implemented"
+    },
+    "routes": {
+        "public": [
+            "/ - Homepage with all 10 sections",
+            "/tin-tuc - News listing (completed with UI polish)",
+            "/tin-tuc/[category] - Category listing",
+            "/tin-tuc/[category]/[slug] - Post detail",
+            "/gioi-thieu/co-cau-to-chuc - Org Structure",
+            "/dao-tao - Course listing (polished)",
+            "/dao-tao/[slug] - Course detail with TOC",
+            "/dao-tao/dang-ky - Course registration",
+            "/dich-vu - Services listing",
+            "/dich-vu/[slug] - Service detail",
+            "/lien-he - Contact page (pending)",
+            "/gioi-thieu - About page (pending)"
+        ]
+    },
+    "features": {
+        "completed": [
+            "Project setup with Next.js 16 + TypeScript",
+            "Database schema (18+ Prisma models)",
+            "UI Foundation (8 primitives + 4 layout)",
+            "Public API (12 endpoints)",
+            "Homepage sections (10 sections + 5 cards)",
+            "DEVELOPMENT_PLAN with mandatory pre-read requirements",
+            "Organizational Structure Page (PG-06) with 4 department groups",
+            "News pages with full UI/UX polish (claymorphism, sidebar, search)",
+            "Course pages with quick UI/UX polish (cursor-pointer, claymorphism)",
+            "Service pages with quick UI/UX polish",
+            "Text contrast fixes on dark backgrounds (Videos, Footer, CTAs)",
+            "Admin Panel: CKEditor 5 Integration (Full/Mini variants, Image Upload, Media Embed)",
+            "Admin CMS: Full CRUD for Posts, Courses, Staff, Partners, Pages, Media, Contacts",
+            "Locale-separate featured images & SEO (Post, Course, Staff, Partner) with admin UI per locale",
+            "Media scan route updated for _en FK fields (prevents false unused detection)",
+            "QA & Maintenance: Comprehensive QA Sweep + Scripts overhaul",
+            "UI Fix: Homepage Header-Hero Gap resolved"
+        ],
+        "pending": [
+            "About, Contact pages polish",
+            "AI Chatbot integration",
+            "Deploy to production"
+        ]
+    },
+    "gotchas": [
+        "Prisma 7+ requires @prisma/adapter-libsql for SQLite",
+        "TailwindCSS v4 uses @import 'tailwindcss' - Google Fonts must use next/font instead of @import url()",
+        "TailwindCSS v4 layer specificity: base styles (h1-h6) must be wrapped in @layer base to allow utility overrides",
+        "ZodError uses .issues not .errors (Zod v3+)",
+        "Fields with _en suffix are for English i18n content",
+        "ContentSection uses entityType + entityId pattern for polymorphic relations",
+        "Button asChild prop requires @radix-ui/react-slot",
+        "Gallery grid must be 2x4 (grid-cols-2 md:grid-cols-4) per UI_DESIGN.md §9",
+        "Homepage section order must follow UI_DESIGN.md §9 exactly",
+        "NewsCard must wrap entire article in Link for full clickability",
+        "Use Lucide icons (not emojis) per UI/UX pro-max workflow",
+        "Featured badge and Star icon use blue color (not amber) per user preference",
+        "Course pages use GraduationCap icon as placeholder for missing thumbnails",
+        "Ghost button variant text color (slate-700) overrides text-white utility on dark backgrounds due to same-layer specificity - use !text-white !bg-transparent",
+        "Locale-specific images use separate FK columns (featuredImageId_en, avatarId_en, logoId_en) with own Media relations — admin UI switches fields based on URL locale param",
+        "Media scan route must check BOTH vi and _en FK fields to avoid falsely flagging EN images as unused",
+        "Admin edit pages at /admin/[locale]/... show locale-specific fields (name_en, content_en, avatar_en etc.) when locale=en, shared fields (isActive, sortOrder etc.) only in vi mode",
+        "Sticky Header requires 0 padding on <main> top to avoid whitespace gaps"
+    ],
+    "documents": {
+        "base_path": "documents/project-documents/new-project/",
+        "design_docs": {
+            "FEATURES_SPEC": "FEATURES_SPEC.md - Feature requirements",
+            "DATABASE_DESIGN": "DATABASE_DESIGN.md - Entity definitions",
+            "API_DESIGN": "API_DESIGN.md - Endpoint specs",
+            "UI_DESIGN": "UI_DESIGN.md - Design system & colors",
+            "COMPONENT_LIBRARY": "COMPONENT_LIBRARY.md - Component props",
+            "UX_FLOW": "UX_FLOW.md - User journeys"
+        },
+        "plan": "plans/DEVELOPMENT_PLAN.md",
+        "schema": "prisma/schema.prisma",
+        "news_module": "plans/260209-1750-news-events/"
+    },
+    "mandatory_rules": {
+        "before_coding": "ALWAYS read Pre-Read Documents listed in DEVELOPMENT_PLAN.md for each phase",
+        "color_palette": "Use Blue-Cyan (#4D94FF → #06B6D4) as specified in UI_DESIGN.md",
+        "homepage_order": "Follow section order in UI_DESIGN.md §9 exactly",
+        "ui_icons": "Use Lucide icons (never emojis) per UI/UX pro-max workflow",
+        "text_colors": "Use slate- palette (not gray-) for text consistency",
+        "interactive_elements": "Always add cursor-pointer to clickable cards and buttons",
+        "contrast_check": "Ensure white text on dark backgrounds is not overridden by base styles"
+    }
+}

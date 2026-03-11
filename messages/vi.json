@@ -1,0 +1,214 @@
+{
+  "OrgStructure": {
+    "metaTitle": "Cơ cấu tổ chức - Viện Phương Nam",
+    "metaDescription": "Cơ cấu tổ chức của Viện Phương Nam"
+  },
+  "AdvisoryBoard": {
+    "metaTitle": "Hội đồng Cố vấn Khoa học - Viện Phương Nam",
+    "metaDescription": "Hội đồng Cố vấn Khoa học của Viện Phương Nam"
+  },
+  "nav": {
+    "home": "Trang chủ",
+    "about": "Giới thiệu",
+    "about_vision": "Tầm nhìn & Sứ mệnh",
+    "about_structure": "Cơ cấu tổ chức",
+    "about_advisory": "Hội đồng cố vấn",
+    "about_partners": "Đối tác",
+    "training": "Đào tạo",
+    "training_programs": "Chương trình đào tạo",
+    "training_admission": "Tuyển sinh",
+    "training_short": "Khóa ngắn hạn",
+    "training_abroad": "Du học",
+    "services": "Dịch vụ",
+    "news": "Tin tức",
+    "contact": "Liên hệ",
+    "cta": "Đăng ký tư vấn"
+  },
+  "footer": {
+    "quickLinks": "Liên kết nhanh",
+    "contact": "Liên hệ",
+    "copyright": "© {year} Viện Phương Nam. Bảo lưu mọi quyền.",
+    "description": "Viện Phát triển nguồn lực xã hội Phương Nam — Nghiên cứu khoa học, chuyển giao công nghệ, đào tạo và phát triển nguồn nhân lực chất lượng cao.",
+    "orgName": "Viện Phương Nam",
+    "address": "Địa chỉ",
+    "phone": "Điện thoại",
+    "email": "Email",
+    "followUs": "Theo dõi"
+  },
+  "common": {
+    "readMore": "Đọc thêm",
+    "viewAll": "Xem tất cả",
+    "viewDetails": "Xem chi tiết",
+    "loading": "Đang tải...",
+    "error": "Đã xảy ra lỗi",
+    "search": "Tìm kiếm",
+    "back": "Quay lại",
+    "close": "Đóng",
+    "submit": "Gửi",
+    "cancel": "Hủy",
+    "save": "Lưu",
+    "delete": "Xóa",
+    "edit": "Sửa",
+    "create": "Tạo mới",
+    "noResults": "Không tìm thấy kết quả",
+    "featured": "Nổi bật",
+    "published": "Đã xuất bản",
+    "draft": "Bản nháp",
+    "active": "Đang hoạt động",
+    "all": "Tất cả",
+    "learnMore": "Tìm hiểu thêm",
+    "sendMessage": "Gửi tin nhắn",
+    "sending": "Đang gửi...",
+    "open": "Mở",
+    "noImage": "Không có ảnh",
+    "updateSoon": "Thông tin sẽ được cập nhật sớm."
+  },
+  "home": {
+    "hero": {
+      "title": "Viện Phát triển Nguồn lực Xã hội Phương Nam",
+      "subtitle": "Nghiên cứu • Đào tạo • Chuyển giao KHCN",
+      "cta": "Khám phá"
+    },
+    "sections": {
+      "training": "Chương trình Đào tạo",
+      "news": "Tin tức & Sự kiện",
+      "partners": "Đối tác",
+      "services": "Dịch vụ",
+      "contact": "Liên hệ"
+    }
+  },
+  "about": {
+    "title": "Giới thiệu",
+    "hero": {
+      "badge": "Giới thiệu",
+      "title": "Viện Phát triển Nguồn lực",
+      "titleHighlight": "Xã hội Phương Nam",
+      "description": "Chúng tôi là đơn vị hàng đầu trong lĩnh vực nghiên cứu khoa học, chuyển giao công nghệ và phát triển nguồn nhân lực chất lượng cao cho xã hội."
+    },
+    "stats": {
+      "students": "Học viên",
+      "experience": "Năm kinh nghiệm",
+      "projects": "Dự án hoàn thành",
+      "courses": "Khóa đào tạo"
+    },
+    "timeline": {
+      "title": "Hành trình phát triển",
+      "description": "Từ khi thành lập đến nay, chúng tôi luôn kiên trì với sứ mệnh phát triển nguồn lực xã hội."
+    },
+    "cta": {
+      "title": "Hợp tác cùng chúng tôi",
+      "description": "Chúng tôi luôn tìm kiếm cơ hội hợp tác với các tổ chức trong và ngoài nước trong lĩnh vực nghiên cứu khoa học, đào tạo và chuyển giao công nghệ.",
+      "button": "Liên hệ ngay"
+    },
+    "visionMission": {
+      "title": "Tầm nhìn & Sứ mệnh",
+      "vision": "Tầm nhìn",
+      "visionText": "Trở thành đơn vị hàng đầu trong lĩnh vực nghiên cứu khoa học, chuyển giao công nghệ và phát triển nguồn nhân lực chất lượng cao tại Việt Nam và Đông Nam Á.",
+      "mission": "Sứ mệnh",
+      "missionText": "Đóng góp vào sự phát triển bền vững của xã hội thông qua cung cấp giải pháp đào tạo nguồn nhân lực chất lượng cao, nghiên cứu khoa học và chuyển giao công nghệ.",
+      "coreValues": "Giá trị cốt lõi",
+      "integrity": "Liêm chính",
+      "integrityDesc": "Hoạt động minh bạch, đạo đức và có trách nhiệm với xã hội.",
+      "quality": "Chất lượng",
+      "qualityDesc": "Không ngừng nâng cao chất lượng đào tạo và nghiên cứu để đạt tiêu chuẩn cao nhất.",
+      "innovation": "Đổi mới",
+      "innovationDesc": "Ứng dụng công nghệ mới và tư duy sáng tạo trong mọi hoạt động.",
+      "learnMore": "Tìm hiểu thêm"
+    },
+    "structure": {
+      "title": "Cơ cấu tổ chức",
+      "description": "Đội ngũ chuyên gia giàu kinh nghiệm tận tâm trong nghiên cứu, đào tạo và phát triển."
+    },
+    "advisory": {
+      "title": "Hội đồng cố vấn",
+      "description": "Hội đồng cố vấn gồm các chuyên gia uy tín cung cấp định hướng chiến lược cho Viện."
+    },
+    "partners": {
+      "title": "Đối tác",
+      "description": "Chúng tôi hợp tác với các tổ chức hàng đầu trong và ngoài nước trong lĩnh vực nghiên cứu khoa học, đào tạo và chuyển giao công nghệ."
+    }
+  },
+  "services": {
+    "title": "Dịch vụ",
+    "description": "Viện Phương Nam cung cấp dịch vụ toàn diện trong nghiên cứu khoa học, chuyển giao công nghệ, kiểm định an toàn và quản lý chất lượng."
+  },
+  "training": {
+    "title": "Chương trình Đào tạo",
+    "description": "Khám phá các chương trình đào tạo về an toàn lao động, quản lý chất lượng và phát triển chuyên môn.",
+    "types": {
+      "all": "Tất cả",
+      "ADMISSION": "Tuyển sinh",
+      "SHORT_COURSE": "Khóa ngắn hạn",
+      "STUDY_ABROAD": "Du học"
+    }
+  },
+  "course": {
+    "register": "Đăng ký",
+    "registerNow": "Đăng ký ngay",
+    "registrationOpen": "Đang nhận đăng ký",
+    "registrationClosed": "Đã đóng đăng ký",
+    "relatedCourses": "Khóa học liên quan",
+    "tableOfContents": "Mục lục",
+    "types": {
+      "ADMISSION": "Tuyển sinh",
+      "SHORT_COURSE": "Khóa ngắn hạn",
+      "STUDY_ABROAD": "Du học"
+    }
+  },
+  "news": {
+    "title": "Tin tức & Sự kiện",
+    "description": "Cập nhật tin tức, sự kiện và hoạt động mới nhất từ Viện Phương Nam.",
+    "latest": "Tin mới nhất",
+    "relatedPosts": "Bài viết liên quan",
+    "categories": "Danh mục",
+    "publishedAt": "Ngày đăng",
+    "noArticles": "Không tìm thấy bài viết."
+  },
+  "contact": {
+    "title": "Liên hệ với chúng tôi",
+    "description": "Liên hệ với chúng tôi để được tư vấn về dịch vụ, khóa học hoặc cơ hội hợp tác.",
+    "info": {
+      "title": "Thông tin liên hệ",
+      "address": "Địa chỉ",
+      "phone": "Điện thoại",
+      "email": "Email",
+      "workingHours": "Giờ làm việc",
+      "workingHoursValue": "Thứ Hai - Thứ Sáu: 8:00 - 17:30"
+    },
+    "form": {
+      "name": "Họ và tên",
+      "namePlaceholder": "Nhập họ và tên",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "phone": "Số điện thoại",
+      "phonePlaceholder": "Nhập số điện thoại",
+      "subject": "Chủ đề",
+      "subjectPlaceholder": "Chọn chủ đề",
+      "message": "Nội dung tin nhắn",
+      "messagePlaceholder": "Nội dung...",
+      "submit": "Gửi tin nhắn",
+      "submitting": "Đang gửi...",
+      "success": "Gửi tin nhắn thành công!",
+      "successDesc": "Chúng tôi sẽ phản hồi trong vòng 24 giờ làm việc.",
+      "sendAnother": "Gửi tin nhắn khác",
+      "error": "Có lỗi xảy ra. Vui lòng thử lại."
+    },
+    "subjects": {
+      "service": "Tư vấn dịch vụ",
+      "course": "Đăng ký khóa học",
+      "cooperation": "Hợp tác kinh doanh",
+      "other": "Khác"
+    }
+  },
+  "staff": {
+    "title": "Đội ngũ",
+    "leaders": "Ban lãnh đạo",
+    "advisory": "Hội đồng cố vấn",
+    "experts": "Chuyên gia"
+  },
+  "lang": {
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "switchTo": "Chuyển sang"
+  }
+}

@@ -1,0 +1,295 @@
+{
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "about_vision": "Vision & Mission",
+    "about_structure": "Organizational Structure",
+    "about_advisory": "Advisory Board",
+    "about_partners": "Partners",
+    "training": "Training",
+    "training_programs": "Training Programs",
+    "training_admission": "Admissions",
+    "training_short": "Short Courses",
+    "training_abroad": "Study Abroad",
+    "services": "Services",
+    "news": "News",
+    "contact": "Contact",
+    "cta": "Register"
+  },
+  "footer": {
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "copyright": "© {year} SISRD. All rights reserved.",
+    "description": "Southern Institute for Social Resources Development — Scientific research, technology transfer, training and high-quality human resources development.",
+    "orgName": "SISRD",
+    "address": "Address",
+    "phone": "Phone",
+    "email": "Email",
+    "followUs": "Follow Us"
+  },
+  "common": {
+    "readMore": "Read More",
+    "viewAll": "View All",
+    "viewDetails": "View Details",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "search": "Search",
+    "back": "Go Back",
+    "close": "Close",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "noResults": "No results found",
+    "featured": "Featured",
+    "published": "Published",
+    "draft": "Draft",
+    "active": "Active",
+    "all": "All",
+    "learnMore": "Learn More",
+    "sendMessage": "Send Message",
+    "sending": "Sending...",
+    "open": "Open",
+    "noImage": "No Image",
+    "updateSoon": "Information will be updated soon."
+  },
+  "home": {
+    "hero": {
+      "title": "Southern Institute for Social Resources Development",
+      "subtitle": "Research • Training • Technology Transfer",
+      "cta": "Explore"
+    },
+    "sections": {
+      "training": "Training Programs",
+      "news": "News & Events",
+      "partners": "Partners",
+      "services": "Services",
+      "contact": "Contact"
+    }
+  },
+  "about": {
+    "title": "About Us",
+    "hero": {
+      "badge": "About Us",
+      "title": "Southern Institute for Social",
+      "titleHighlight": "Resources Development",
+      "description": "We are a leading institution in scientific research, technology transfer, and high-quality human resources development for society."
+    },
+    "stats": {
+      "students": "Students",
+      "experience": "Years of Experience",
+      "projects": "Completed Projects",
+      "courses": "Training Courses"
+    },
+    "timeline": {
+      "title": "Development Journey",
+      "description": "From establishment to the present, we have been committed to the mission of developing social resources."
+    },
+    "cta": {
+      "title": "Partner with Us",
+      "description": "We are always looking for cooperation opportunities with domestic and international organizations in the fields of scientific research, training, and technology transfer.",
+      "button": "Contact Us"
+    },
+    "visionMission": {
+      "title": "Vision & Mission",
+      "vision": "Vision",
+      "visionText": "To become a leading institution in scientific research, technology transfer, and high-quality human resources development in Vietnam and Southeast Asia.",
+      "mission": "Mission",
+      "missionText": "Contributing to the sustainable development of society by providing high-quality human resources training, scientific research, and technology transfer solutions.",
+      "coreValues": "Core Values",
+      "integrity": "Integrity",
+      "integrityDesc": "Operating with transparency, ethics, and social responsibility.",
+      "quality": "Quality",
+      "qualityDesc": "Continuously improving training quality and research to meet the highest standards.",
+      "innovation": "Innovation",
+      "innovationDesc": "Applying new technologies and creative thinking in all activities.",
+      "learnMore": "Learn More About Us"
+    },
+    "structure": {
+      "title": "Organizational Structure",
+      "description": "Our team of experienced professionals dedicated to excellence in research, training, and development."
+    },
+    "advisory": {
+      "title": "Advisory Board",
+      "description": "Our advisory board consists of distinguished experts and professionals providing strategic guidance for the institute."
+    },
+    "partners": {
+      "title": "Our Partners",
+      "description": "We collaborate with leading organizations domestically and internationally in scientific research, training, and technology transfer."
+    }
+  },
+  "services": {
+    "title": "Our Services",
+    "description": "SISRD provides comprehensive services in scientific research, technology transfer, safety inspection, and quality management.",
+    "allServices": "All Services",
+    "workingProcess": "Working Process",
+    "contactConsultation": "Contact for Consultation",
+    "sendInquiry": "Send Consultation Request",
+    "otherServices": "Other Services",
+    "ourTeam": "Our team of experts is ready to assist you",
+    "notFound": "Service not found",
+    "viewAll": "View all services"
+  },
+  "training": {
+    "title": "Training Programs",
+    "description": "Explore our comprehensive training programs in occupational safety, quality management, and professional development.",
+    "types": {
+      "all": "All",
+      "ADMISSION": "Admissions",
+      "SHORT_COURSE": "Short Courses",
+      "STUDY_ABROAD": "Study Abroad"
+    }
+  },
+  "course": {
+    "register": "Register",
+    "registerNow": "Register Now",
+    "registrationOpen": "Registration Open",
+    "registrationClosed": "Registration Closed",
+    "relatedCourses": "Related Courses",
+    "tableOfContents": "Table of Contents",
+    "types": {
+      "ADMISSION": "Admissions",
+      "SHORT_COURSE": "Short Courses",
+      "STUDY_ABROAD": "Study Abroad"
+    }
+  },
+  "news": {
+    "title": "News & Events",
+    "description": "Stay updated with the latest news, events, and activities from SISRD.",
+    "latest": "Latest News",
+    "relatedPosts": "Related Articles",
+    "categories": "Categories",
+    "publishedAt": "Published on",
+    "noArticles": "No articles found.",
+    "search": "Search",
+    "searchPlaceholder": "Enter keyword...",
+    "allPosts": "All articles",
+    "recentPosts": "Recent Posts",
+    "mostViewed": "Most Viewed",
+    "views": "views",
+    "featuredPosts": "Featured Posts",
+    "latestPosts": "Latest Posts",
+    "noPosts": "No articles yet",
+    "noPostsDesc": "There are no articles in this category yet.",
+    "categoryNotFound": "Category not found",
+    "backToNews": "Back to News",
+    "articlesIn": "All articles in category",
+    "author": "Author",
+    "share": "Share",
+    "linkCopied": "Link copied!",
+    "previous": "Previous",
+    "next": "Next"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Get in touch with us for inquiries about our services, courses, or cooperation opportunities.",
+    "info": {
+      "title": "Contact Information",
+      "address": "Address",
+      "phone": "Phone",
+      "email": "Email",
+      "workingHours": "Working Hours",
+      "workingHoursValue": "Monday - Friday: 8:00 AM - 5:30 PM"
+    },
+    "form": {
+      "name": "Full Name",
+      "namePlaceholder": "Your full name",
+      "email": "Email",
+      "emailPlaceholder": "email@example.com",
+      "phone": "Phone",
+      "phonePlaceholder": "Your phone number",
+      "subject": "Subject",
+      "subjectPlaceholder": "Select subject",
+      "message": "Message",
+      "messagePlaceholder": "Your message...",
+      "submit": "Send Message",
+      "submitting": "Sending...",
+      "success": "Message Sent Successfully!",
+      "successDesc": "We will respond within 24 working hours.",
+      "sendAnother": "Send Another Message",
+      "error": "Something went wrong. Please try again."
+    },
+    "subjects": {
+      "service": "Service Inquiry",
+      "course": "Course Registration",
+      "cooperation": "Business Cooperation",
+      "other": "Other"
+    }
+  },
+  "registration": {
+    "title": "Course",
+    "titleHighlight": "Registration",
+    "subtitle": "Complete 3 simple steps to register for a training course",
+    "steps": {
+      "personalInfo": "Personal Info",
+      "courseSelection": "Select Course",
+      "confirmation": "Confirmation"
+    },
+    "form": {
+      "fullName": "Full Name",
+      "fullNamePlaceholder": "John Doe",
+      "fullNameError": "Please enter your full name (minimum 2 characters)",
+      "email": "Email",
+      "emailError": "Please enter a valid email address",
+      "phone": "Phone Number",
+      "phoneError": "Please enter a valid phone number",
+      "company": "Company/Organization",
+      "companyPlaceholder": "Company name (optional)",
+      "course": "Course",
+      "selectCourse": "-- Select a course --",
+      "courseError": "Please select a course",
+      "schedule": "Schedule",
+      "scheduleError": "Please select a schedule",
+      "notes": "Notes",
+      "notesPlaceholder": "Special requests, questions...",
+      "atInstitute": "At Institute",
+      "online": "Online"
+    },
+    "confirm": {
+      "title": "Confirm Information",
+      "name": "Name:",
+      "email": "Email:",
+      "phone": "Phone:",
+      "company": "Company:",
+      "course": "Course:",
+      "schedule": "Schedule:",
+      "terms": "I agree to the",
+      "termsOfService": "terms of service",
+      "and": "and",
+      "privacyPolicy": "privacy policy",
+      "ofInstitute": "of the Institute.",
+      "termsError": "Please agree to the terms to continue"
+    },
+    "success": {
+      "title": "Registration Successful!",
+      "message": "Thank you for registering. We will contact you to confirm within 24 hours.",
+      "viewOtherCourses": "View other courses",
+      "backToHome": "Back to homepage"
+    },
+    "nav": {
+      "back": "Back",
+      "cancel": "Cancel",
+      "continue": "Continue",
+      "complete": "Complete Registration",
+      "processing": "Processing..."
+    }
+  },
+  "breadcrumb": {
+    "home": "Home",
+    "news": "News",
+    "loading": "Loading..."
+  },
+  "staff": {
+    "title": "Our Team",
+    "leaders": "Leadership",
+    "advisory": "Advisory Board",
+    "experts": "Experts"
+  },
+  "lang": {
+    "vi": "Tiếng Việt",
+    "en": "English",
+    "switchTo": "Switch to"
+  }
+}

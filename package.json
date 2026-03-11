@@ -1,0 +1,51 @@
+{
+  "name": "new",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "mcp:chrome": "node scripts/mcp-chrome.js",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint"
+  },
+  "dependencies": {
+    "@ckeditor/ckeditor5-react": "^11.0.1",
+    "@clerk/nextjs": "^6.37.3",
+    "@libsql/client": "^0.17.0",
+    "@prisma/adapter-libsql": "^7.3.0",
+    "@prisma/client": "^7.3.0",
+    "@radix-ui/react-slot": "^1.2.4",
+    "ckeditor5": "^47.5.0",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "date-fns": "^4.1.0",
+    "framer-motion": "^12.35.0",
+    "lightswind": "^3.1.21",
+    "lucide-react": "^0.563.0",
+    "next": "16.1.6",
+    "next-cloudinary": "^6.17.5",
+    "next-intl": "^4.8.2",
+    "nodemailer": "^8.0.1",
+    "prisma": "^7.3.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tailwind-merge": "^3.4.0",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/nodemailer": "^7.0.9",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "chrome-devtools-mcp": "^0.17.0",
+    "cloudinary": "^2.9.0",
+    "dotenv": "^17.3.1",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "sharp": "^0.34.5",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
