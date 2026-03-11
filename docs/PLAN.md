@@ -1,51 +1,52 @@
-# Performance Diagnosis & Orchestration Plan
+# 🚀 Hướng Dẫn Deploy File Toàn Tập (Không Dùng Lệnh Gõ Tay)
 
-## 1. Problem Definition (Diagnostic)
-
-**Problem:** The application experiences extremely slow overall loading times and high redirect times.
-**Goal:** Identify root drivers for these bottlenecks (specifically the redirect loop/delays and TTFB) and recommend/implement robust fixes.
-
-## 2. Process Flow Decomposition (MECE)
-
-To systematically diagnose the slow loading and redirects, we break down the Next.js request lifecycle:
-
-- **Branch A: Routing & Middleware (Prioritized due to "high redirect time")**
-  - Next.js `middleware.ts` execution (Auth checks, i18n locale redirects).
-  - High risk: Database calls or complex synchronous logic blocking the middleware.
-- **Branch B: Server Processing & Data Fetching (Prioritized due to "slow loading")**
-  - Server Components (`page.tsx`, `layout.tsx`) data dependencies.
-  - High risk: Waterfall requests, missing caching, unoptimized ORM queries.
-- **Branch C: Client Rendering & Asset Delivery**
-  - Hydration, heavy client-side JavaScript (`"use client"` abuse).
-  - High risk: Large bundle sizes, unoptimized images blocking LCP.
-
-## 3. Prioritization & Day 1 Hypotheses
-
-Based on the symptoms, we will apply the *80/20 rule* to focus on **Branch A** and **Branch B**.
-
-**Day 1 Hypotheses:**
-
-1. The `middleware.ts` (or i18n routing layer) is performing blocking operations (e.g., checking session in the DB on every request), causing the high redirect times.
-2. The main landing page is executing sequential (waterfall) data fetches instead of parallel fetching, causing slow Initial Server Response.
-
-## 4. Multi-Agent Orchestration (Phase 2)
-
-Upon your approval of this plan, we will orchestrate the following agents in parallel to test our hypotheses and implement fixes:
-
-1. **`performance-optimizer`**:
-   - Analyze middleware execution time.
-   - Profile the request lifecycle and bundle constraints.
-2. **`backend-specialist`**:
-   - Deep dive into `middleware.ts`, `i18n` configurations, and routing logic.
-   - Inspect Server Component data fetching (Prisma/fetch caching).
-3. **`test-engineer`**:
-   - Run verification scripts on the proposed fixes.
-   - Ensure the application still functions correctly without breaking auth or routing.
-
-## 5. Communication & Next Steps
-
-We will synthesize the findings from all agents and present a clear "Answer First" recommendation (Pyramid Principle), focusing on the highest impact changes to resolve the redirect and loading delays.
+Tài liệu này hướng dẫn chi tiết từng nút bấm trên giao diện **MATBAO Plesk** để chạy Website Next.js một cách an toàn nhất, tránh hoàn toàn lỗi đầy ổ cứng và lỗi SSH.
 
 ---
-**Approval Checkpoint:**
-Does this diagnostic plan and agent orchestration strategy look good to you? Once approved, I will deploy the 3 agents in parallel to execute the analysis and implement the optimizations.
+
+## 🏁 BƯỚC 1: BUILD ỨNG DỤNG TRÊN MÁY TÍNH CÁ NHÂN
+*(Mục đích: Vì giới hạn máy chủ Plesk rất khắt khe, không cho phép cấp phát RAM và tạo nhiều process (nproc/ulimit) nên chúng ta bắt buộc phải build app thành gói hoàn chỉnh tại máy của bạn.)*
+
+> **Làm việc trên máy tính (Local) của anh:**
+1. Trở lại thư mục code dự án trên máy.
+2. Mở Terminal / PowerShell.
+3. Gõ lệnh: **`npm run build-standalone`**
+4. Kịch bản tự động sẽ sinh ra thư mục `.next/standalone` chứa toàn bộ ứng dụng siêu nhẹ. Nó cũng đã tự copy file cấu hình và cơ sở dữ liệu (dev.db) vào đó.
+
+---
+
+## 📦 BƯỚC 2: NÉN FILE ZIP VÀ UPLOAD LÊN CÁP QUANG
+*(Mục đích: Đóng gói và đẩy thành quả lên Server)*
+
+1. Vào thư mục dự án trên máy của anh, tìm đường dẫn: `new/.next/standalone`.
+2. Truy cập VÀO BÊN TRONG thư mục `standalone` đó.
+3. Bôi đen toàn bộ (Ctrl+A) tất cả các file hiển thị (bao gồm `.next`, `public`, `server.js`, `node_modules`, v.v.).
+4. Click chuột phải, chọn nén thành 1 file **`app.zip`**.
+5. Đăng nhập vào Plesk → File Manager → vào ngay thư mục **`/vpn-app`** (thư mục root chứa code của website).
+6. Upload file `app.zip` lên đó. Xong bấm chuột phải chọn **Extract** (Giải nén). Ghi đè toàn bộ nếu nó hỏi.
+
+---
+
+## ⚙️ BƯỚC 3: CẤU HÌNH NODE.JS & BIẾN MÔI TRƯỜNG TRÊN PLESK
+*(Mục đích: Báo cho Plesk biết cách chạy file `server.js` độc lập)*
+
+1. Trở ra màn hình chính, nhấp vào tiện ích **Node.js** trên domain.
+2. Thiết lập đúng y chang thế này:
+   - **Application Root:** `/vpn-app`
+   - **Document Root:** `/vpn-app/public` (Nó lấy thư mục `public` giải nén từ zip)
+   - **Application Startup File:** `server.js` (Lấy file `server.js` giải nén từ zip)
+   - **Application Environment:** `production`
+3. Cuộn xuống phần **Environment Variables**, bấm nút **Specify** (Thêm biến) và nhập các biến:
+   - `NODE_ENV`: `production`
+   - `DATABASE_URL`: `file:./prisma/dev.db`
+   - Các biến của Clerk, SMTP, Cloudinary (Copy từ file `new/.env.production` lúc nãy).
+
+---
+
+## 🚀 BƯỚC 4: KHỞI ĐỘNG VÀ KIỂM TRA
+
+*(Tuyệt đối KHÔNG BẤM nút NPM Install hay Run Scripts nào nữa, vì gói Standalone đã tích hợp đầy đủ mọi thứ rồi!)*
+
+1. Kéo lên góc trên bảng Node.js, bấm vào nút **Restart App** (Nút có hình mũi tên vòng cung).
+2. Mở tab trình duyệt mới và truy cập `https://vienphuongnam.com.vn/` để xem website hoạt động siêu mượt. Mọi bế tắc về RAM/CPU/OS giới hạn trên Plesk đã được vượt qua hoàn toàn!
+

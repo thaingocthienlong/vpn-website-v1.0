@@ -10,7 +10,8 @@
     "lint": "eslint",
     "plesk-install": "npm install --omit=dev",
     "plesk-db-push": "./node_modules/.bin/prisma db push",
-    "plesk-build": "./node_modules/.bin/prisma generate && rm -rf .next && NODE_OPTIONS=\"--max-old-space-size=512\" NEXT_TELEMETRY_DISABLED=1 ./node_modules/.bin/next build"
+    "plesk-build": "./node_modules/.bin/prisma generate && rm -rf .next && NODE_OPTIONS=\"--max-old-space-size=512\" NEXT_TELEMETRY_DISABLED=1 ./node_modules/.bin/next build",
+    "build-standalone": "node scripts/build-standalone.mjs"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^11.0.1",
