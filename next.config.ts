@@ -21,6 +21,11 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  experimental: {
+    // Disable parallel capability to avoid EAGAIN error on Plesk
+    workerThreads: false,
+    cpus: 1
+  }
 };
 
 export default withNextIntl(nextConfig);
