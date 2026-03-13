@@ -1,6 +1,7 @@
 import { prisma } from "@/lib/prisma";
 import type { Locale } from "@/i18n/config";
 import { optimizeCloudinaryUrl, ImageSizes } from "@/lib/cloudinary";
+import { unstable_cache } from "next/cache";
 
 type CourseType = "ADMISSION" | "SHORT_COURSE" | "STUDY_ABROAD";
 
@@ -265,5 +266,54 @@ export async function getRelatedCourses(type: string, excludeSlug: string, local
         console.error("Error fetching related courses via service:", error);
         return [];
     }
+}
+
+/**
+ * Service to fetch homepage layout sections directly from the database for SSR
+ * Utilizes unstable_cache to memoize the result.
+ */
+export async function getHomepageSections(locale: Locale = 'vi') {
+    const fetchSections = unstable_cache(
+        async () => {
+            try {
+                const sections = await prisma.homepageSection.findMany({
+                    where: {
+                        locale: 'vi',
+                        isEnabled: true,
+                    },
+                    orderBy: { sortOrder: "asc" },
+                });
+
+                return sections.map((sec) => {
+                    let configObj = {};
+                    try {
+                        if (sec.config && sec.config.trim() !== "") {
+                            configObj = JSON.parse(sec.config);
+                        }
+                    } catch (error) {
+                        console.error(`Invalid JSON config for section ${sec.sectionKey}`, error);
+                    }
+                    
+                    const title = locale === 'en' ? (sec.title_en || sec.title) : sec.title;
+                    const subtitle = locale === 'en' ? (sec.subtitle_en || sec.subtitle) : sec.subtitle;
+
+                    return {
+                        id: sec.id,
+                        sectionKey: sec.sectionKey,
+                        title,
+                        subtitle,
+                        ...configObj,
+                    };
+                });
+            } catch (error) {
+                console.error("Error fetching homepage sections:", error);
+                return [];
+            }
+        },
+        [`homepage_sections_${locale}`],
+        { revalidate: 3600, tags: ["homepage_sections", locale] }
+    );
+
+    return fetchSections();
 }
 
