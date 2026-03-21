@@ -75,7 +75,7 @@ export function NewsCard({ post, variant = "default", locale = "vi" }: NewsCardP
                             e.stopPropagation();
                             window.location.href = `${newsBasePath}/${post.category.slug}`;
                         }}
-                        className="inline-flex items-center w-fit px-3 py-1 mb-3 text-xs font-medium text-blue-700 bg-blue-50 rounded-full hover:bg-blue-500/30 border border-blue-500/30 transition-colors cursor-pointer"
+                        className="inline-flex items-center w-fit px-3 py-1 mb-3 text-xs font-medium text-blue-600 bg-blue-50 rounded-full hover:bg-blue-500/30 border border-blue-500/30 transition-colors cursor-pointer"
                     >
                         {post.category.name}
                     </span>

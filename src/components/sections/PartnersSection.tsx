@@ -1,6 +1,6 @@
 "use client";
 
-import { SectionWrapper } from "./SectionWrapper";
+import { SectionWrapper, type SectionWrapperProps } from "./SectionWrapper";
 import { SectionHeader } from "./SectionHeader";
 import { PartnerLogo } from "@/components/cards";
 import GlowingCards, { GlowingCard } from "@/components/lightswind/glowing-cards";
@@ -22,22 +22,23 @@ interface Partner {
 interface PartnersSectionProps {
     partners?: Partner[];
     title?: string;
-    subtitle?: string;
+    background?: SectionWrapperProps["background"];
+    textColor?: SectionWrapperProps["textColor"];
+    backdropBlur?: SectionWrapperProps["backdropBlur"];
 }
 
 export function PartnersSection({
     partners = [],
     title,
-    subtitle,
+    background,
+    textColor,
+    backdropBlur,
 }: PartnersSectionProps) {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
 
     const resolvedTitle = title || (isEn ? "Strategic Partners" : "Đối Tác Chiến Lược");
-    const resolvedSubtitle = subtitle || (isEn
-        ? "We are proud to partner with leading education and business organizations"
-        : "Chúng tôi tự hào hợp tác với các tổ chức giáo dục và doanh nghiệp hàng đầu");
 
     if (partners.length === 0) {
         return null;
@@ -52,11 +53,10 @@ export function PartnersSection({
     const useSingleRow = partners.length < 4;
 
     return (
-        <SectionWrapper>
+        <SectionWrapper background={background || "transparent"} textColor={textColor} backdropBlur={backdropBlur} padding="md" className="border-t border-slate-100">
             <ScrollReveal>
                 <SectionHeader
                     title={resolvedTitle}
-                    subtitle={resolvedSubtitle}
                     centered
                 />
             </ScrollReveal>

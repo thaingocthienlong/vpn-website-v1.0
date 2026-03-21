@@ -175,7 +175,11 @@
 
 /* Animated Gradient Border Button Property and Animation */
 /* @property MUST be defined at the global scope, not inside a rule */
-
+@property --border-angle {
+  syntax: "<angle>";
+  inherits: true;
+  initial-value: 0turn;
+}
 
 @keyframes bg-spin {
   to {

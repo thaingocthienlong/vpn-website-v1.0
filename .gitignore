@@ -51,8 +51,4 @@ dev.db
 
 # Temp logs
 *.txt
-/tmp
-/plans
-/solving-plans
-/documents
-/reports
+

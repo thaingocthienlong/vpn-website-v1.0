@@ -12,7 +12,14 @@
     "plesk-db-push": "./node_modules/.bin/prisma db push",
     "plesk-build": "./node_modules/.bin/prisma generate && rm -rf .next && NODE_OPTIONS=\"--max-old-space-size=512\" NEXT_TELEMETRY_DISABLED=1 ./node_modules/.bin/next build",
     "build-standalone": "node scripts/build-standalone.mjs",
-    "plesk-standalone-prisma": "prisma generate"
+    "plesk-standalone-prisma": "prisma generate",
+    "migrate:dry-run": "ts-node --project scripts/migrate-sql/tsconfig.json scripts/migrate-sql/migrate-sql.ts --sql ../vie61786_vi_hl_cr.sql --dry-run",
+    "migrate": "ts-node --project scripts/migrate-sql/tsconfig.json scripts/migrate-sql/migrate-sql.ts --sql ../vie61786_vi_hl_cr.sql",
+    "migrate:resume": "ts-node --project scripts/migrate-sql/tsconfig.json scripts/migrate-sql/migrate-sql.ts --sql ../vie61786_vi_hl_cr.sql --resume",
+    "verify:db": "ts-node --project scripts/tsconfig.json scripts/verify-database.ts",
+    "migrate:json": "ts-node --project scripts/tsconfig.json scripts/migrate-from-json.ts",
+    "migrate:json:dry-run": "ts-node --project scripts/tsconfig.json scripts/migrate-from-json.ts --dry-run",
+    "migrate:json:wipe": "ts-node --project scripts/tsconfig.json scripts/migrate-from-json.ts --wipe"
   },
   "dependencies": {
     "@ckeditor/ckeditor5-react": "^11.0.1",
@@ -32,6 +39,7 @@
     "date-fns": "^4.1.0",
     "dotenv": "^17.3.1",
     "framer-motion": "^12.35.0",
+    "gsap": "^3.14.2",
     "lightswind": "^3.1.21",
     "lucide-react": "^0.563.0",
     "next": "16.1.6",
@@ -47,10 +55,13 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
     "@types/nodemailer": "^7.0.9",
+    "bcryptjs": "^3.0.3",
     "chrome-devtools-mcp": "^0.17.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "ts-node": "^10.9.2"
   }
 }

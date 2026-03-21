@@ -72,7 +72,7 @@ export default function CourseContent({ sections, toc }: CourseContentProps) {
                                 key={item.key}
                                 onClick={() => scrollToSection(item.key)}
                                 className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors cursor-pointer ${activeSection === item.key
-                                    ? "bg-blue-50 text-blue-700 font-medium"
+                                    ? "bg-blue-50 text-blue-600 font-medium"
                                     : "text-slate-600 hover:bg-slate-50"
                                     }`}
                             >

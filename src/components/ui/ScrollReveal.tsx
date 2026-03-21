@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode, createElement } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 interface ScrollRevealProps {
     children: ReactNode;
@@ -8,6 +8,7 @@ interface ScrollRevealProps {
     threshold?: number;
     className?: string;
     as?: string;
+    repeat?: boolean;
 }
 
 export function ScrollReveal({
@@ -16,6 +17,7 @@ export function ScrollReveal({
     threshold = 0.12,
     className = "",
     as = "div",
+    repeat = true,
 }: ScrollRevealProps) {
     const ref = useRef<HTMLDivElement>(null);
 
@@ -33,7 +35,11 @@ export function ScrollReveal({
                 entries.forEach((entry) => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add("visible");
-                        observer.unobserve(entry.target);
+                        if (!repeat) {
+                            observer.unobserve(entry.target);
+                        }
+                    } else if (repeat) {
+                        entry.target.classList.remove("visible");
                     }
                 });
             },
@@ -45,16 +51,18 @@ export function ScrollReveal({
         return () => {
             observer.unobserve(el);
         };
-    }, [threshold]);
+    }, [threshold, repeat]);
 
-    return createElement(
-        as,
-        {
-            ref,
-            className: `reveal ${className}`,
-            ...(delay ? { "data-delay": delay } : {}),
-        },
-        children
+    const Component = as as React.ElementType;
+
+    return (
+        <Component
+            ref={ref}
+            className={`reveal ${className}`}
+            {...(delay ? { "data-delay": delay } : {})}
+        >
+            {children}
+        </Component>
     );
 }
 

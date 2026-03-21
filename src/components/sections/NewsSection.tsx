@@ -1,6 +1,6 @@
 "use client";
 
-import { SectionWrapper } from "./SectionWrapper";
+import { SectionWrapper, type SectionWrapperProps } from "./SectionWrapper";
 import { SectionHeader } from "./SectionHeader";
 import { NewsCard } from "@/components/cards";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -28,32 +28,32 @@ interface Post {
 interface NewsSectionProps {
     posts?: Post[];
     title?: string;
-    subtitle?: string;
+    background?: SectionWrapperProps["background"];
+    textColor?: SectionWrapperProps["textColor"];
+    backdropBlur?: SectionWrapperProps["backdropBlur"];
 }
 
 export function NewsSection({
     posts = [],
     title,
-    subtitle,
+    background,
+    textColor,
+    backdropBlur,
 }: NewsSectionProps) {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
 
     const resolvedTitle = title || (isEn ? "News & Events" : "Tin Tức & Sự Kiện");
-    const resolvedSubtitle = subtitle || (isEn
-        ? "Latest updates on training and institutional activities"
-        : "Cập nhật những thông tin mới nhất về đào tạo và hoạt động của Viện");
 
     // Show max 4 posts
     const displayPosts = posts.slice(0, 4);
 
     return (
-        <SectionWrapper>
+        <SectionWrapper background={background || "frosted-white"} textColor={textColor} backdropBlur={backdropBlur}>
             <ScrollReveal>
                 <SectionHeader
                     title={resolvedTitle}
-                    subtitle={resolvedSubtitle}
                     centered
                 />
             </ScrollReveal>

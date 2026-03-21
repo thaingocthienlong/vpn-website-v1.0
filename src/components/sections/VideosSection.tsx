@@ -1,16 +1,17 @@
 "use client";
 
-import { SectionWrapper } from "./SectionWrapper";
-import { Play, ChevronLeft, ChevronRight } from "lucide-react";
-import { useState, useCallback } from "react";
+import { SectionWrapper, type SectionWrapperProps } from "./SectionWrapper";
+import { Play, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { useState, useCallback, useEffect } from "react";
 import { usePathname } from "next/navigation";
 import { detectLocaleFromPath } from "@/lib/routes";
 import { motion, AnimatePresence } from "framer-motion";
 
+
 interface Video {
     id: string;
     title: string;
-    thumbnailUrl: string;
+    thumbnailUrl?: string | null;
     videoUrl: string;
 }
 
@@ -18,37 +19,10 @@ interface VideosSectionProps {
     videos?: Video[];
     title?: string;
     subtitle?: string;
+    background?: SectionWrapperProps["background"];
+    textColor?: SectionWrapperProps["textColor"];
+    backdropBlur?: SectionWrapperProps["backdropBlur"];
 }
-
-const viVideos: Video[] = [
-    {
-        id: "1",
-        title: "Giới thiệu Viện SISRD",
-        thumbnailUrl: "/images/video-thumbnail-1.jpg",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-    {
-        id: "2",
-        title: "Chương trình đào tạo",
-        thumbnailUrl: "/images/video-thumbnail-2.jpg",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-];
-
-const enVideos: Video[] = [
-    {
-        id: "1",
-        title: "About SISRD",
-        thumbnailUrl: "/images/video-thumbnail-1.jpg",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-    {
-        id: "2",
-        title: "Training Programs",
-        thumbnailUrl: "/images/video-thumbnail-2.jpg",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-];
 
 // Compute slide position styles based on offset from center
 function getSlideStyle(offset: number) {
@@ -95,50 +69,66 @@ export function VideosSection({
     videos,
     title,
     subtitle,
+    background,
+    textColor,
+    backdropBlur,
 }: VideosSectionProps) {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
 
-    const resolvedVideos = videos || (isEn ? enVideos : viVideos);
+    const resolvedVideos = videos || [];
     const resolvedTitle = title || (isEn ? "Introduction Videos" : "Video Giới Thiệu");
     const resolvedSubtitle = subtitle || (isEn
         ? "Learn more about us through our introduction videos"
         : "Tìm hiểu thêm về chúng tôi qua các video giới thiệu");
 
     const [activeIndex, setActiveIndex] = useState(0);
-    const [playingId, setPlayingId] = useState<string | null>(null);
+    const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
     const total = resolvedVideos.length;
 
     const goNext = useCallback(() => {
-        setPlayingId(null);
         setActiveIndex((prev) => (prev + 1) % total);
     }, [total]);
 
     const goPrev = useCallback(() => {
-        setPlayingId(null);
         setActiveIndex((prev) => (prev - 1 + total) % total);
     }, [total]);
 
     const selectSlide = useCallback((index: number) => {
         if (index === activeIndex) return;
-        setPlayingId(null);
         setActiveIndex(index);
     }, [activeIndex]);
 
-    const handlePlayMain = useCallback((videoId: string) => {
-        setPlayingId(playingId === videoId ? null : videoId);
-    }, [playingId]);
+    const handlePlayMain = useCallback((index: number) => {
+        setLightboxIndex(index);
+    }, []);
+
+    const closeLightbox = () => setLightboxIndex(null);
+
+    // Prevent scrolling when lightbox is open
+    useEffect(() => {
+        if (lightboxIndex !== null) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [lightboxIndex]);
+
+    if (resolvedVideos.length === 0) return null;
 
     return (
-        <SectionWrapper>
+        <SectionWrapper background={background || "slate"} textColor={textColor} backdropBlur={backdropBlur}>
             <div className="text-center mb-10">
-                <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-4 leading-tight text-slate-800">
+                <h2 className="font-heading text-3xl lg:text-4xl font-bold mb-4 leading-tight">
                     {resolvedTitle}
                 </h2>
                 {resolvedSubtitle && (
-                    <p className="text-lg max-w-2xl mx-auto leading-relaxed text-slate-800">
+                    <p className="text-lg max-w-2xl mx-auto leading-relaxed opacity-90">
                         {resolvedSubtitle}
                     </p>
                 )}
@@ -206,41 +196,39 @@ export function VideosSection({
                                         }`}
                                     onClick={() =>
                                         isMain
-                                            ? handlePlayMain(video.id)
+                                            ? handlePlayMain(index)
                                             : selectSlide(index)
                                     }
                                 >
-                                    {/* Playing iframe (main only) */}
-                                    {isMain && playingId === video.id ? (
-                                        <iframe
-                                            src={`${video.videoUrl}?autoplay=1`}
-                                            title={video.title}
-                                            className="w-full h-full"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
-                                        />
-                                    ) : (
-                                        <>
-                                            {/* Thumbnail bg */}
-                                            <div className="absolute inset-0 bg-gradient-to-br from-slate-700 to-slate-900 flex items-center justify-center">
+                                    {/* Thumbnail bg */}
+                                    <div className="absolute inset-0 bg-linear-to-br from-slate-700 to-slate-900">
+                                        {video.thumbnailUrl ? (
+                                            <img
+                                                src={video.thumbnailUrl}
+                                                alt={video.title}
+                                                className="w-full h-full object-cover"
+                                                loading="lazy"
+                                            />
+                                        ) : (
+                                            <div className="w-full h-full flex items-center justify-center">
                                                 <span className="text-white/40 text-sm font-medium">{video.title}</span>
                                             </div>
+                                        )}
+                                    </div>
 
-                                            {/* Play button — main only */}
-                                            {isMain && (
-                                                <div className="absolute inset-0 flex items-center justify-center">
-                                                    <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
-                                                        <Play className="w-7 h-7 text-slate-800 ml-1" />
-                                                    </div>
-                                                </div>
-                                            )}
-
-                                            {/* Title overlay */}
-                                            <div className="absolute bottom-0 inset-x-0 p-3 bg-gradient-to-t from-black/60 to-transparent">
-                                                <p className="text-white text-sm font-medium truncate">{video.title}</p>
+                                    {/* Play button — main only */}
+                                    {isMain && (
+                                        <div className="absolute inset-0 flex items-center justify-center">
+                                            <div className="w-16 h-16 rounded-full bg-white/90 flex items-center justify-center shadow-lg hover:scale-110 transition-transform">
+                                                <Play className="w-7 h-7 text-slate-800 ml-1" />
                                             </div>
-                                        </>
+                                        </div>
                                     )}
+
+                                    {/* Title overlay */}
+                                    <div className="absolute bottom-0 inset-x-0 p-3 bg-linear-to-t from-black/60 to-transparent">
+                                        <p className="text-white text-sm font-medium truncate">{video.title}</p>
+                                    </div>
                                 </div>
                             </motion.div>
                         );
@@ -248,7 +236,40 @@ export function VideosSection({
                 </AnimatePresence>
             </div>
 
+            {/* Full-screen Lightbox */}
+            {lightboxIndex !== null && (
+                <div
+                    className="fixed inset-0 z-50 bg-black/95 flex items-center justify-center backdrop-blur-sm"
+                    onClick={closeLightbox}
+                >
+                    <button
+                        className="absolute top-4 right-4 sm:top-6 sm:right-6 p-2 text-white/70 hover:text-white hover:bg-white/10 rounded-full transition-colors z-50"
+                        onClick={closeLightbox}
+                        aria-label="Close lightbox"
+                    >
+                        <X className="w-8 h-8" />
+                    </button>
 
+                    <div 
+                        className="relative w-[95%] max-w-6xl aspect-video rounded-xl overflow-hidden shadow-2xl bg-black"
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        <iframe
+                            src={`${resolvedVideos[lightboxIndex].videoUrl}?autoplay=1`}
+                            title={resolvedVideos[lightboxIndex].title}
+                            className="w-full h-full border-0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                        />
+                    </div>
+                    
+                    <div className="absolute bottom-6 sm:bottom-10 left-0 right-0 text-center pointer-events-none">
+                        <h3 className="text-white text-lg font-medium drop-shadow-md">
+                            {resolvedVideos[lightboxIndex].title}
+                        </h3>
+                    </div>
+                </div>
+            )}
         </SectionWrapper>
     );
 }

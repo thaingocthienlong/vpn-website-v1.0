@@ -1,6 +1,7 @@
 // Custom server entry point for Phusion Passenger (Plesk hosting)
 // This file is used by Plesk's Node.js extension to start the Next.js app
 
+// eslint-disable-next-line @typescript-eslint/no-require-imports
 const { createServer } = require('http');
 const { parse } = require('url');
 const path = require('path');

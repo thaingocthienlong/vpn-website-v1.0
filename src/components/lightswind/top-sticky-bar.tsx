@@ -43,8 +43,8 @@ export default function TopStickyBar({
         // We explicitly construct the classes for each state. 
         // Notice we REMOVED `transition-all` and `duration-500` because Framer Motion handles it now.
         isScrolled
-          ? "top-3 w-[96%] max-w-7xl rounded-2xl md:rounded-[2rem] bg-[#f1f1f1]/50 backdrop-blur-2xl border border-zinc-200/80 shadow-[0_8px_30px_rgb(0,0,0,0.08)] text-slate-800"
-          : "top-0 w-full rounded-none bg-[#f1f1f1]/80 backdrop-blur-xl border-b border-zinc-200/50 shadow-none text-slate-800",
+          ? "top-3 w-[96%] max-w-7xl rounded-2xl md:rounded-[2rem] bg-white/80 backdrop-blur-2xl border border-gray-200 shadow-sm text-sky-900"
+          : "top-0 w-full rounded-none bg-white/80 backdrop-blur-xl border-b border-gray-200 shadow-none text-sky-900",
         className
       )}
     >

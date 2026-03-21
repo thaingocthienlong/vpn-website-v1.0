@@ -1,6 +1,6 @@
 "use client";
 
-import { SectionWrapper } from "./SectionWrapper";
+import { SectionWrapper, type SectionWrapperProps } from "./SectionWrapper";
 import { SectionHeader } from "./SectionHeader";
 import { Button, Input, Textarea } from "@/components/ui";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -11,7 +11,9 @@ import { detectLocaleFromPath } from "@/lib/routes";
 
 interface ContactSectionProps {
     title?: string;
-    subtitle?: string;
+    background?: SectionWrapperProps["background"];
+    textColor?: SectionWrapperProps["textColor"];
+    backdropBlur?: SectionWrapperProps["backdropBlur"];
     address?: string;
     phone?: string;
     email?: string;
@@ -20,7 +22,9 @@ interface ContactSectionProps {
 
 export function ContactSection({
     title,
-    subtitle,
+    background,
+    textColor,
+    backdropBlur,
     address = "123 Đường ABC, Quận 1, TP.HCM",
     phone = "028 1234 5678",
     email = "info@sisrd.edu.vn",
@@ -33,9 +37,6 @@ export function ContactSection({
     const [submitted, setSubmitted] = useState(false);
 
     const resolvedTitle = title || (isEn ? "Contact Us" : "Liên Hệ Với Chúng Tôi");
-    const resolvedSubtitle = subtitle || (isEn
-        ? "Leave your information and we'll contact you as soon as possible"
-        : "Hãy để lại thông tin, chúng tôi sẽ liên hệ tư vấn trong thời gian sớm nhất");
     const resolvedHours = hours || (isEn
         ? "Mon - Fri: 8:00 AM - 5:00 PM"
         : "Thứ 2 - Thứ 6: 8:00 - 17:00");
@@ -59,11 +60,10 @@ export function ContactSection({
     ];
 
     return (
-        <SectionWrapper>
+        <SectionWrapper background={background || "transparent"} textColor={textColor} backdropBlur={backdropBlur}>
             <ScrollReveal>
                 <SectionHeader
                     title={resolvedTitle}
-                    subtitle={resolvedSubtitle}
                     centered
                 />
             </ScrollReveal>
@@ -80,7 +80,7 @@ export function ContactSection({
                                 <h3 className="font-heading text-xl font-semibold mb-2">
                                     {isEn ? "Thank you!" : "Cảm ơn bạn!"}
                                 </h3>
-                                <p className="text-slate-800">
+                                <p className="opacity-80">
                                     {isEn
                                         ? "We've received your message and will get back to you soon."
                                         : "Chúng tôi đã nhận được tin nhắn và sẽ liên hệ lại sớm nhất."}
@@ -137,13 +137,13 @@ export function ContactSection({
                                     <item.icon className="w-6 h-6 text-primary" />
                                 </div>
                                 <div>
-                                    <p className="text-sm text-slate-500 mb-1">{item.label}</p>
+                                    <p className="text-sm opacity-70 mb-1">{item.label}</p>
                                     {item.href ? (
-                                        <a href={item.href} className="font-medium text-slate-800 hover:text-primary transition-colors">
+                                        <a href={item.href} className="font-medium hover:text-primary transition-colors">
                                             {item.value}
                                         </a>
                                     ) : (
-                                        <p className="font-medium text-slate-800">{item.value}</p>
+                                        <p className="font-medium">{item.value}</p>
                                     )}
                                 </div>
                             </div>
@@ -151,7 +151,7 @@ export function ContactSection({
 
                         {/* Map placeholder */}
                         <div className="aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                            <span className="text-slate-500">Google Maps</span>
+                            <span className="opacity-70">Google Maps</span>
                         </div>
                     </div>
                 </ScrollReveal>

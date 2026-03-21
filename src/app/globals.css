@@ -11,9 +11,9 @@
 /* ---- DESIGN TOKENS ---- */
 :root {
   /* Primary palette */
-  --primary: #2563EB;
+  --primary: #3B82F6;
   --primary-light: #60A5FA;
-  --primary-dark: #2563EB;
+  --primary-dark: #3B82F6;
   --primary-50: #EFF6FF;
 
   /* CTA / Accent */
@@ -73,7 +73,7 @@
 @theme inline {
   --color-background: #F1F1F1;
   --color-foreground: #1E293B;
-  --color-primary: #2563EB;
+  --color-primary: #3B82F6;
   --color-primary-foreground: #FFFFFF;
   --color-secondary: #F1F5F9;
   --color-accent: #F97316;

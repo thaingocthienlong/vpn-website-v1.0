@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 import { cn } from "../../lib/utils";
 
 interface BentoCardData {
@@ -35,19 +36,9 @@ export const BentoGrid = ({
     >
       {cards.map((card, index) => {
         const Icon = card.icon;
-        return (
-          <div
-            key={index}
-            className={cn(
-              "relative overflow-hidden rounded-2xl p-5 flex flex-col justify-end",
-              "h-full min-h-[15rem]",
-              "transition-all duration-300 ease-out",
-              "border border-black/10 dark:border-white/10",
-              "text-black dark:text-white",
-              "group",
-              card.className
-            )}
-          >
+
+        const InnerContent = (
+          <>
             {card.background && (
               <div className="absolute inset-0 z-0">{card.background}</div>
             )}
@@ -80,6 +71,44 @@ export const BentoGrid = ({
 
             {/* Card overlay (e.g. BorderBeam) — direct child of card for correct positioning */}
             {card.overlay}
+          </>
+        );
+
+        const cardClasses = cn(
+          "relative overflow-hidden rounded-2xl p-5 flex flex-col justify-end",
+          "h-full min-h-[15rem]",
+          "transition-all duration-300 ease-out",
+          "border border-black/10 dark:border-white/10",
+          "text-black dark:text-white",
+          "group block",
+          card.className
+        );
+
+        if (card.href) {
+          const isExternal = card.href.startsWith("http");
+          if (isExternal) {
+            return (
+              <a 
+                key={index}
+                href={card.href} 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className={cardClasses}
+              >
+                {InnerContent}
+              </a>
+            );
+          }
+          return (
+            <Link key={index} href={card.href} className={cardClasses}>
+              {InnerContent}
+            </Link>
+          );
+        }
+
+        return (
+          <div key={index} className={cardClasses}>
+            {InnerContent}
           </div>
         );
       })}

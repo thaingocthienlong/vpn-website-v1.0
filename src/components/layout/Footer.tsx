@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { Container } from "./Container";
 import {
@@ -50,51 +51,92 @@ const enQuickLinks = [
 
 const Footer: React.FC<FooterProps> = ({
     logo = "/logo.png",
-    contactInfo = {
-        phone: "1900 1234",
-        email: "info@vienphuongnam.com",
-        address: "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
-    },
-    socialLinks = {
-        facebook: "https://facebook.com",
-        youtube: "https://youtube.com",
-        linkedin: "https://linkedin.com",
-    },
-    quickLinks,
-    copyright,
-    description,
+    contactInfo: initialContactInfo,
+    socialLinks: initialSocialLinks,
+    quickLinks: initialQuickLinks,
+    copyright: initialCopyright,
+    description: initialDescription,
 }) => {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
 
-    const resolvedQuickLinks = quickLinks || (isEn ? enQuickLinks : viQuickLinks);
-    const resolvedDescription = description || (isEn
+    const [contactInfo, setContactInfo] = useState(initialContactInfo || {
+        phone: "1900 1234",
+        email: "info@vienphuongnam.com",
+        address: "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
+    });
+    const [socialLinks, setSocialLinks] = useState(initialSocialLinks || {
+        facebook: "https://facebook.com",
+        youtube: "https://youtube.com",
+        linkedin: "https://linkedin.com",
+    });
+    const [quickLinks, setQuickLinks] = useState(initialQuickLinks || (isEn ? enQuickLinks : viQuickLinks));
+    const [description, setDescription] = useState(initialDescription || (isEn
         ? "Southern Institute for Social Resources Development — Scientific research, technology transfer, training and high-quality human resources development."
         : "Viện Phát triển nguồn lực xã hội Phương Nam — Nghiên cứu khoa học, chuyển giao công nghệ, đào tạo và phát triển nguồn nhân lực chất lượng cao."
-    );
-    const resolvedCopyright = copyright || `© ${new Date().getFullYear()} ${isEn ? "SISRD. All rights reserved." : "Viện Phương Nam. Tất cả quyền được bảo lưu."}`;
+    ));
+    const [copyright, setCopyright] = useState(initialCopyright || `© ${new Date().getFullYear()} ${isEn ? "SISRD. All rights reserved." : "Viện Phương Nam. Tất cả quyền được bảo lưu."}`);
+
+    useEffect(() => {
+        const fetchFooterData = async () => {
+            if (initialContactInfo && initialSocialLinks && initialQuickLinks) return;
+            try {
+                const res = await fetch(`/api/layout`);
+                if (!res.ok) return;
+                const config = await res.json();
+                
+                // Populate contactInfo
+                if (!initialContactInfo) {
+                    setContactInfo({
+                        phone: config.footer?.phone || "1900 1234",
+                        email: config.footer?.email || "info@vienphuongnam.com",
+                        address: config.footer?.address || "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
+                    });
+                }
+                
+                // Populate socialLinks
+                if (!initialSocialLinks) {
+                    setSocialLinks({
+                        facebook: config.footer?.facebook || "https://facebook.com",
+                        youtube: config.footer?.youtube || "https://youtube.com",
+                        linkedin: config.footer?.linkedin || "https://linkedin.com",
+                    });
+                }
+                
+                // In the future, if quickLinks or description are needed from layout DB config, add them here.
+            } catch (error) {
+                console.error("Failed to fetch footer data:", error);
+            }
+        };
+        fetchFooterData();
+    }, [initialContactInfo, initialSocialLinks, initialQuickLinks, initialDescription, initialCopyright]);
+
+    const resolvedQuickLinks = quickLinks;
+    const resolvedDescription = description;
+    const resolvedCopyright = copyright;
     const orgName = isEn ? "SISRD" : "Viện Phương Nam";
     const linksTitle = isEn ? "Quick Links" : "Liên kết";
     const contactTitle = isEn ? "Contact" : "Liên hệ";
     const homeUrl = isEn ? "/en" : "/";
 
+
     return (
-        <footer className="bg-slate-900 text-slate-300">
+        <footer className="bg-sky-50/50 text-slate-600 border-t border-sky-100">
             {/* Main Footer */}
             <Container className="py-16">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
                     {/* Column 1: Logo & Description */}
                     <div className="lg:col-span-2">
                         <Link href={homeUrl} className="flex items-center gap-3 mb-6">
-                            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-[0_4px_15px_rgba(0,38,255,0.46)]">
+                            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-[0_4px_15px_rgba(0,38,255,0.15)] outline outline-slate-200">
                                 <span className="text-[#0D2B6B] font-bold text-xl">S</span>
                             </div>
-                            <span className="font-heading font-bold text-xl text-white">
+                            <span className="font-heading font-bold text-xl text-inherit">
                                 {orgName}
                             </span>
                         </Link>
-                        <p className="text-slate-400 text-sm leading-relaxed mb-6">
+                        <p className="opacity-80 text-sm leading-relaxed mb-6">
                             {resolvedDescription}
                         </p>
                         {/* Social Links */}
@@ -104,7 +146,7 @@ const Footer: React.FC<FooterProps> = ({
                                     href={socialLinks.facebook}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="p-2 rounded-full bg-slate-800 hover:bg-primary transition-colors border border-slate-700 text-slate-400 hover:text-white"
+                                    className="p-2 rounded-full bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 text-slate-500 hover:text-white transition-all shadow-sm"
                                     aria-label="Facebook"
                                 >
                                     <Facebook className="h-5 w-5" />
@@ -115,7 +157,7 @@ const Footer: React.FC<FooterProps> = ({
                                     href={socialLinks.youtube}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="p-2 rounded-full bg-slate-800 hover:bg-red-600 transition-colors border border-slate-700 text-slate-400 hover:text-white"
+                                    className="p-2 rounded-full bg-white hover:bg-red-600 border border-slate-200 hover:border-red-600 text-slate-500 hover:text-white transition-all shadow-sm"
                                     aria-label="Youtube"
                                 >
                                     <Youtube className="h-5 w-5" />
@@ -126,7 +168,7 @@ const Footer: React.FC<FooterProps> = ({
                                     href={socialLinks.linkedin}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="p-2 rounded-full bg-slate-800 hover:bg-blue-700 transition-colors border border-slate-700 text-slate-400 hover:text-white"
+                                    className="p-2 rounded-full bg-white hover:bg-blue-500 border border-slate-200 hover:border-blue-500 text-slate-500 hover:text-white transition-all shadow-sm"
                                     aria-label="LinkedIn"
                                 >
                                     <Linkedin className="h-5 w-5" />
@@ -137,15 +179,15 @@ const Footer: React.FC<FooterProps> = ({
 
                     {/* Column 2: Quick Links */}
                     <div>
-                        <h3 className="font-heading font-bold text-lg mb-6 text-white">{linksTitle}</h3>
+                        <h3 className="font-heading font-bold text-lg mb-6">{linksTitle}</h3>
                         <ul className="space-y-3">
                             {resolvedQuickLinks.map((link, idx) => (
                                 <li key={idx}>
                                     <Link
                                         href={link.url}
-                                        className="flex items-center text-slate-400 hover:text-white transition-colors group"
+                                        className="flex items-center opacity-80 hover:opacity-100 hover:text-sky-500 transition-colors group"
                                     >
-                                        <ChevronRight className="h-4 w-4 mr-2 text-slate-600 group-hover:text-white transition-colors" />
+                                        <ChevronRight className="h-4 w-4 mr-2 opacity-50 group-hover:opacity-100 group-hover:text-sky-500 transition-colors" />
                                         {link.label}
                                     </Link>
                                 </li>
@@ -155,28 +197,28 @@ const Footer: React.FC<FooterProps> = ({
 
                     {/* Column 3: Contact Info */}
                     <div>
-                        <h3 className="font-heading font-bold text-lg mb-6 text-white">{contactTitle}</h3>
+                        <h3 className="font-heading font-bold text-lg mb-6">{contactTitle}</h3>
                         <ul className="space-y-4">
                             <li>
                                 <a
                                     href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
-                                    className="flex items-start text-slate-400 hover:text-white transition-colors"
+                                    className="flex items-start opacity-80 hover:opacity-100 hover:text-sky-500 transition-colors"
                                 >
-                                    <Phone className="h-5 w-5 mr-3 mt-0.5 text-blue-500 shrink-0" />
+                                    <Phone className="h-5 w-5 mr-3 mt-0.5 text-sky-500 shrink-0" />
                                     <span>{contactInfo.phone}</span>
                                 </a>
                             </li>
                             <li>
                                 <a
                                     href={`mailto:${contactInfo.email}`}
-                                    className="flex items-start text-slate-400 hover:text-white transition-colors"
+                                    className="flex items-start opacity-80 hover:opacity-100 hover:text-sky-500 transition-colors"
                                 >
-                                    <Mail className="h-5 w-5 mr-3 mt-0.5 text-blue-500 shrink-0" />
+                                    <Mail className="h-5 w-5 mr-3 mt-0.5 text-sky-500 shrink-0" />
                                     <span>{contactInfo.email}</span>
                                 </a>
                             </li>
-                            <li className="flex items-start text-slate-400">
-                                <MapPin className="h-5 w-5 mr-3 mt-0.5 text-blue-500 shrink-0" />
+                            <li className="flex items-start opacity-80">
+                                <MapPin className="h-5 w-5 mr-3 mt-0.5 text-sky-500 shrink-0" />
                                 <span>{contactInfo.address}</span>
                             </li>
                         </ul>
@@ -185,15 +227,15 @@ const Footer: React.FC<FooterProps> = ({
             </Container>
 
             {/* Bottom Bar */}
-            <div className="border-t border-slate-800">
+            <div className="border-t border-sky-100/50">
                 <Container className="py-6">
-                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-slate-500">
+                    <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm opacity-80">
                         <p>{resolvedCopyright}</p>
                         <div className="flex items-center gap-6">
-                            <Link href={isEn ? "/en/privacy-policy" : "/chinh-sach-bao-mat"} className="hover:text-white transition-colors">
+                            <Link href={isEn ? "/en/privacy-policy" : "/chinh-sach-bao-mat"} className="hover:text-sky-500 transition-colors">
                                 {isEn ? "Privacy Policy" : "Chính sách bảo mật"}
                             </Link>
-                            <Link href={isEn ? "/en/terms" : "/dieu-khoan-su-dung"} className="hover:text-white transition-colors">
+                            <Link href={isEn ? "/en/terms" : "/dieu-khoan-su-dung"} className="hover:text-sky-500 transition-colors">
                                 {isEn ? "Terms of Service" : "Điều khoản sử dụng"}
                             </Link>
                         </div>

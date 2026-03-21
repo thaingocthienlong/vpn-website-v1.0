@@ -1,6 +1,6 @@
 "use client";
 
-import { SectionWrapper } from "./SectionWrapper";
+import { SectionWrapper, type SectionWrapperProps } from "./SectionWrapper";
 import { SectionHeader } from "./SectionHeader";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { useState } from "react";
@@ -19,7 +19,9 @@ interface GalleryImage {
 interface GallerySectionProps {
     images?: GalleryImage[];
     title?: string;
-    subtitle?: string;
+    background?: SectionWrapperProps["background"];
+    textColor?: SectionWrapperProps["textColor"];
+    backdropBlur?: SectionWrapperProps["backdropBlur"];
 }
 
 const viImages: GalleryImage[] = [
@@ -58,7 +60,9 @@ const bentoPatterns = [
 export function GallerySection({
     images,
     title,
-    subtitle,
+    background,
+    textColor,
+    backdropBlur,
 }: GallerySectionProps) {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
@@ -67,9 +71,6 @@ export function GallerySection({
 
     const resolvedImages = images || (isEn ? enImages : viImages);
     const resolvedTitle = title || (isEn ? "Photo Gallery" : "Thư Viện Ảnh");
-    const resolvedSubtitle = subtitle || (isEn
-        ? "Memorable moments from our training activities"
-        : "Những khoảnh khắc đáng nhớ trong các hoạt động đào tạo");
 
     const openLightbox = (index: number) => setLightboxIndex(index);
     const closeLightbox = () => setLightboxIndex(null);
@@ -104,11 +105,10 @@ export function GallerySection({
     }));
 
     return (
-        <SectionWrapper>
+        <SectionWrapper background={background || "slate"} textColor={textColor} backdropBlur={backdropBlur}>
             <ScrollReveal>
                 <SectionHeader
                     title={resolvedTitle}
-                    subtitle={resolvedSubtitle}
                     centered
                 />
             </ScrollReveal>

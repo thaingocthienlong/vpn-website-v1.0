@@ -62,7 +62,7 @@ export function CourseCard({
 
     return (
         <Link href={href} className="group block h-full cursor-pointer">
-            <article className="relative rounded-2xl overflow-hidden h-full transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl shadow-md">
+            <article className="relative rounded-xl overflow-hidden h-full transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-lg shadow-sm border border-slate-100 bg-white">
 
                 {/* Image container — aspect-video fits most course banners */}
                 <div className="relative w-full aspect-video">

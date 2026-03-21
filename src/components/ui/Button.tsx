@@ -46,7 +46,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             ghost:
                 "text-slate-700 hover:bg-slate-100",
             text:
-                "bg-transparent text-blue-600 hover:text-blue-700 hover:underline focus:ring-blue-500 p-0 min-h-0",
+                "bg-transparent text-blue-500 hover:text-blue-600 hover:underline focus:ring-blue-400 p-0 min-h-0",
         };
 
         const sizes = {

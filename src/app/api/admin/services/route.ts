@@ -3,31 +3,21 @@ import prisma from "@/lib/prisma";
 import { requireAdmin, jsonSuccess, jsonError } from "@/lib/admin-auth";
 
 /**
- * GET /api/admin/services - List all service pages
+ * GET /api/admin/services - List all services
  */
 export async function GET(request: NextRequest) {
     const authResult = await requireAdmin();
     if ("error" in authResult) return authResult.error;
 
-    const searchParams = request.nextUrl.searchParams;
-    const search = searchParams.get("search") || "";
-
-    const where: Record<string, unknown> = { template: "service" };
-    if (search) where.title = { contains: search };
-
-    const services = await prisma.page.findMany({
-        where,
+    const services = await prisma.service.findMany({
         orderBy: { sortOrder: "asc" },
-        include: {
-            featuredImage: { select: { id: true, url: true, alt: true } },
-        },
     });
 
     return jsonSuccess(services);
 }
 
 /**
- * POST /api/admin/services - Create a new service page
+ * POST /api/admin/services - Create service
  */
 export async function POST(request: NextRequest) {
     const authResult = await requireAdmin();
@@ -35,31 +25,25 @@ export async function POST(request: NextRequest) {
 
     try {
         const body = await request.json();
-        const {
-            title, title_en, slug, content, content_en, isPublished = false, sortOrder = 0,
-            metaTitle, metaDescription,
-        } = body;
+        const { title, title_en, slug, excerpt, excerpt_en, thumbnailUrl, sortOrder = 0, isActive = true } = body;
 
-        if (!title || !slug) {
-            return jsonError("Title and slug are required", 422);
-        }
+        if (!title) return jsonError("Title is required", 422);
+        if (!slug) return jsonError("Slug is required", 422);
 
-        const existing = await prisma.page.findUnique({ where: { slug } });
+        // Check if slug exists
+        const existing = await prisma.service.findUnique({ where: { slug } });
         if (existing) return jsonError("Slug already exists", 409);
 
-        const service = await prisma.page.create({
+        const service = await prisma.service.create({
             data: {
                 title,
                 title_en: title_en || null,
                 slug,
-                content: content || "",
-                content_en: content_en || null,
-                template: "service",
-                isPublished,
+                excerpt: excerpt || null,
+                excerpt_en: excerpt_en || null,
+                thumbnailUrl: thumbnailUrl || null,
                 sortOrder,
-                metaTitle: metaTitle || null,
-                metaDescription: metaDescription || null,
-                authorId: authResult.userId,
+                isActive,
             },
         });
 

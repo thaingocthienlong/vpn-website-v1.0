@@ -1,50 +1,47 @@
-# 🚀 Hướng Dẫn Deploy File Toàn Tập (Không Dùng Lệnh Gõ Tay)
+# UI/UX Redesign Plan (Project, Sections, Components, Header, Footer)
 
-Tài liệu này hướng dẫn chi tiết từng nút bấm trên giao diện **MATBAO Plesk** để chạy Website Next.js một cách an toàn nhất, tránh hoàn toàn lỗi đầy ổ cứng và lỗi SSH.
+## Task Description
+Orchestrate a comprehensive redesign of the website's background system and overarching layout features (header, footer, sections, components) based on the latest `ui-ux-pro-max` analysis. The goal is to align with the "Enterprise Gateway / Micro-interactions" system using a vibrant, trust-building light palette (`sky-50` base).
 
----
+## Proposed Changes
 
-## 🏁 BƯỚC 1: BUILD ỨNG DỤNG TRÊN MÁY TÍNH CÁ NHÂN
-*(Mục đích: Vì giới hạn máy chủ Plesk rất khắt khe không cho phép cấp phát RAM và tạo nhiều process, ta bắt buộc phải build app thành gói hoàn chỉnh tại máy của bạn.)*
+### 1. Global Project Background (`app/layout.tsx` & `ModernBackground.tsx`)
+- Modify `ModernBackground.tsx` to use the official style palette: change the base from `bg-slate-50` to `#F0F9FF` (`bg-sky-50`).
+- Adjust the glowing pseudo-gradients to use `bg-sky-300/20` and `bg-orange-300/10` to bridge the Primary (Sky) and CTA (Orange) color tokens. 
 
-> **Làm việc trên máy tính (Local) của anh:**
+### 2. Header Redesign
+- Ensure the header uses a glassmorphic `bg-white/80` with a subtle `border-b border-gray-200` to separate it clearly from the `sky-50` background.
+- Adjust logo or nav links to use `#0C4A6E` (`sky-900`) text for maximum contrast on light backgrounds.
+- Remove any dark mode specific overrides (`dark:bg-slate-900`) since the strategy explicitly marks dark mode as an anti-pattern.
 
-1. Trở lại thư mục code dự án trên máy.
-2. Mở Terminal / PowerShell.
-3. Gõ lệnh: **`npm run build-standalone`**
-4. Kịch bản tự động sẽ sinh ra thư mục `.next/standalone` chuẩn mượt. Bước này ĐÃ TỰ XOÁ bỏ thư viện `node_modules` của Windows để tránh xung đột mã máy (Native Bindings) khi đưa lên nền tảng Linux của Server.
+### 3. Footer Redesign
+- Change the footer background to `bg-sky-100` or a very light `bg-slate-50` with `border-t border-sky-200`.
+- Update text colors to `sky-900` for headings and `slate-500` for muted generic text links.
+- Add `hover:text-sky-500` micro-interactions (`transition-colors duration-200`) on footer links.
 
----
+### 4. Component Redesign (Cards & Containers)
+- Target component files (e.g., Course content cards, CTAs, Modals).
+- Ensure all interactive cards have `bg-white`, a `border-gray-200` (or `border-sky-100`), `shadow-sm`, and `md` (12px) border radius.
+- Implement `cursor-pointer` and `hover:shadow-md` or `hover:border-sky-300` providing tactile feedback without heavy scale animations.
+- Ensure CTA buttons use the designated `#F97316` (`bg-orange-500`) with white text, and secondary buttons use `#0EA5E9` (`bg-sky-500`).
 
-## 📦 BƯỚC 2: NÉN FILE ZIP VÀ UPLOAD LÊN MÁY CHỦ
-*(Mục đích: Đóng gói và đẩy thành quả lên Server)*
+### 5. Section Backgrounds (Alternating Pattern)
+- Adjust the `<section>` wrappers in Homepage / Pages.
+- Strategy: Alternate between `bg-transparent` (letting the ModernBackground show through) and solid `bg-white` (for reading-heavy data) to create visual rhythm.
 
-1. Vào thư mục dự án trên máy của anh, tìm đường dẫn: `new/.next/standalone`.
-2. Truy cập VÀO BÊN TRONG thư mục `standalone` đó.
-3. Bôi đen toàn bộ (Ctrl+A) tất cả các file hiển thị (bao gồm `public`, `.next`, `prisma`, `package.json`, `server.js`, v.v.).
-4. Click chuột phải, chọn nén thành 1 file **`app.zip`**.
-5. Đăng nhập vào Plesk → File Manager → vào ngay thư mục **`/vpn-app`** (thư mục root chứa code của website).
-6. Upload file `app.zip` lên đó. Xong bấm chuột phải chọn **Extract** (Giải nén). Ghi đè toàn bộ nếu nó hỏi.
+## Verification Plan
 
----
+### Automated Tests
+- Run `npm run lint` to catch React hook/syntax errors.
+- Run typechecks via `npx tsc --noEmit` if necessary.
 
-## ⚙️ BƯỚC 3: CÀI ĐẶT THƯ VIỆN & CẤU HÌNH NODE.JS
-*(Mục đích: Báo cho Plesk biết cách chạy file `server.js` độc lập & Cài gói mã máy chuẩn C++ của Linux)*
+### Manual Verification
+- Render the site in `npm run dev`.
+- Verify the header and footer correctly sit against the new background.
+- Verify that card borders (gray-200) are fully visible in light mode.
+- Verify that `prefers-reduced-motion` and contrast accessibility requirements (Sky-900 on Sky-50) meet the 4.5:1 ratio constraint.
 
-1. Trở ra màn hình chính, nhấp vào tiện ích **Node.js** trên domain.
-2. Thiết lập đúng y chang thế này:
-   - **Application Root:** `/vpn-app`
-   - **Document Root:** `/vpn-app/public`
-   - **Application Startup File:** `server.js`
-   - **Application Environment:** `production`
-3. Cuộn xuống phần **Environment Variables**, bấm nút **Specify** (Thêm biến) và copy các biến từ file `.env.production` cũ vào. Phải chắc chắn có:
-   - `NODE_ENV`: `production`
-   - `DATABASE_URL`: `file:./prisma/dev.db`
-
----
-
-## 🚀 BƯỚC 4: KHỞI ĐỘNG VÀ KIỂM TRA
-
-1. Quá trình tạo file `app.zip` ở BƯỚC 1 ĐÃ TỰ ĐỘNG biên dịch lõi C++ của Linux (tránh mọi lỗi 503 và lỗi cạn kiệt tài nguyên của Hosting).
-2. Kéo lên góc trên bảng Node.js, bấm vào nút **Restart App** (Nút có hình mũi tên vòng cung).
-3. Xong! Mở web `https://vienphuongnam.com.vn/` để xem website hoạt động siêu mượt. Mọi bế tắc về RAM/CPU/OS và xung đột máy chủ/Windows đã được vượt qua hoàn toàn!
+## Orchestration Phase 2 Mapping
+- **`frontend-specialist`**: Handles the UI layout, Tailwind CSS sweeping changes across sections/components, and implements the `MASTER.md` styles.
+- **`seo-specialist`** (or SEO review): Verifies that background/contrast changes do not harm lighthouse accessibility metrics or disrupt `<main>` tags.
+- **`test-engineer`**: Runs compilation, linting, and visual spot checks across responsive widths (375px, 768px, 1024px).

@@ -93,7 +93,7 @@ export function NewsDetail({ post, relatedPosts = [], locale = "vi" }: NewsDetai
             <header className="space-y-4">
                 <Link
                     href={`${newsBasePath}/${post.category.slug}`}
-                    className="inline-flex items-center px-4 py-1.5 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-500/30 rounded-full hover:bg-blue-500/30 transition-colors"
+                    className="inline-flex items-center px-4 py-1.5 text-sm font-medium text-blue-600 bg-blue-50 border border-blue-500/30 rounded-full hover:bg-blue-500/30 transition-colors"
                 >
                     {post.category.name}
                 </Link>

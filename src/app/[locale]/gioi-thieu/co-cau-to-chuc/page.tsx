@@ -16,8 +16,8 @@ export default async function OrgStructurePage({ params: { locale } }: { params:
     const staffList = await prisma.staff.findMany({
         where: {
             isActive: true,
-            staffType: {
-                name: { in: ['Ban Lãnh Đạo Viện', 'Cán Bộ Quản Lý', 'Chuyên viên'] }
+            department: {
+                slug: { not: 'ban-co-van' }
             }
         },
         include: {

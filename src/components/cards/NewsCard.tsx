@@ -45,7 +45,7 @@ export function NewsCard({
 
     return (
         <Link href={href} className="group block h-full cursor-pointer">
-            <article className="bg-white rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full overflow-hidden flex flex-col border border-slate-100">
+            <article className="bg-white rounded-xl shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 h-full overflow-hidden flex flex-col border border-slate-100">
                 {/* Image */}
                 <div className="relative aspect-[16/10] overflow-hidden">
                     {featuredImage ? (

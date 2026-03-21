@@ -223,56 +223,60 @@
     "titleHighlight": "Registration",
     "subtitle": "Complete 3 simple steps to register for a training course",
     "steps": {
-      "personalInfo": "Personal Info",
-      "courseSelection": "Select Course",
-      "confirmation": "Confirmation"
+      "personal": "Personal Info",
+      "course": "Select Course",
+      "confirm": "Confirmation"
     },
-    "form": {
+    "fields": {
       "fullName": "Full Name",
-      "fullNamePlaceholder": "John Doe",
-      "fullNameError": "Please enter your full name (minimum 2 characters)",
       "email": "Email",
-      "emailError": "Please enter a valid email address",
       "phone": "Phone Number",
-      "phoneError": "Please enter a valid phone number",
       "company": "Company/Organization",
-      "companyPlaceholder": "Company name (optional)",
-      "course": "Course",
-      "selectCourse": "-- Select a course --",
-      "courseError": "Please select a course",
-      "schedule": "Schedule",
-      "scheduleError": "Please select a schedule",
-      "notes": "Notes",
-      "notesPlaceholder": "Special requests, questions...",
-      "atInstitute": "At Institute",
-      "online": "Online"
+      "position": "Job Position",
+      "courseType": "Course Category",
+      "courseName": "Course Name",
+      "studyFormat": "Study Format",
+      "note": "Notes"
     },
-    "confirm": {
-      "title": "Confirm Information",
-      "name": "Name:",
-      "email": "Email:",
-      "phone": "Phone:",
-      "company": "Company:",
-      "course": "Course:",
-      "schedule": "Schedule:",
-      "terms": "I agree to the",
-      "termsOfService": "terms of service",
+    "placeholders": {
+      "fullName": "John Doe",
+      "email": "email@example.com",
+      "phone": "Your phone number",
+      "company": "Company name (optional)",
+      "position": "e.g., Manager, Engineer...",
+      "courseName": "Enter course name",
+      "note": "Special requests, questions..."
+    },
+    "select": {
+      "courseType": "-- Select a category --",
+      "studyFormat": "-- Select study format --"
+    },
+    "errors": {
+      "fullName": "Please enter your full name (minimum 2 characters)",
+      "email": "Please enter a valid email address",
+      "phone": "Please enter a valid phone number",
+      "courseType": "Please select a course category",
+      "courseName": "Please specify the course name",
+      "agreeTerms": "Please agree to the terms to continue"
+    },
+    "terms": {
+      "agree": "I agree to the",
+      "service": "terms of service",
       "and": "and",
-      "privacyPolicy": "privacy policy",
-      "ofInstitute": "of the Institute.",
-      "termsError": "Please agree to the terms to continue"
+      "privacy": "privacy policy",
+      "ofInstitute": "of the Institute."
     },
     "success": {
       "title": "Registration Successful!",
       "message": "Thank you for registering. We will contact you to confirm within 24 hours.",
-      "viewOtherCourses": "View other courses",
-      "backToHome": "Back to homepage"
+      "viewCourses": "View other courses",
+      "backHome": "Back to homepage"
     },
     "nav": {
       "back": "Back",
       "cancel": "Cancel",
       "continue": "Continue",
-      "complete": "Complete Registration",
+      "submit": "Complete Registration",
       "processing": "Processing..."
     }
   },

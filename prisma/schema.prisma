@@ -1,6 +1,3 @@
-// SISRD Website Database Schema
-// Version: 3.0 based on DATABASE_DESIGN.md
-
 generator client {
   provider      = "prisma-client-js"
   binaryTargets = ["native", "debian-openssl-3.0.x", "debian-openssl-1.1.x", "linux-musl", "linux-musl-openssl-3.0.x"]
@@ -10,35 +7,20 @@ datasource db {
   provider = "sqlite"
 }
 
-// ==================== ENUMS (as strings for SQLite) ====================
-// Note: SQLite doesn't support enums natively. Use String with validation at app level.
-// UserRole: SUPER_ADMIN, CONTENT_EDITOR, COURSE_MANAGER
-// CategoryType: POST, COURSE, ADMISSION
-// PostType: ORIGINAL, REPOST
-// CourseType: ADMISSION, SHORT_COURSE, STUDY_ABROAD
-// RegistrationStatus: NEW, CONTACTED, ENROLLED, CANCELLED
-// ContactStatus: NEW, READ, REPLIED
-// ConfigType: STRING, JSON, BOOLEAN, NUMBER
-// Locale: VI, EN
-// EntityType: COURSE, SERVICE
-
-// ==================== MODELS ====================
-
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
   password  String
   name      String
-  role      String   @default("CONTENT_EDITOR") // UserRole enum
+  role      String   @default("CONTENT_EDITOR")
   avatar    String?
   isActive  Boolean  @default(true)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  posts   Post[]
-  pages   Page[]
-  courses Course[]
-  media   Media[]
+  courses   Course[]
+  media     Media[]
+  pages     Page[]
+  posts     Post[]
 
   @@map("users")
 }
@@ -48,15 +30,14 @@ model Category {
   name        String
   name_en     String?
   slug        String   @unique
-  type        String   // CategoryType: POST, COURSE, ADMISSION
+  type        String
   description String?
   sortOrder   Int      @default(0)
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
-  posts   Post[]
-  courses Course[]
+  courses     Course[]
+  posts       Post[]
 
   @@map("categories")
 }
@@ -72,19 +53,19 @@ model Tag {
 }
 
 model Post {
-  id              String    @id @default(uuid())
-  title           String
-  title_en        String?
-  slug            String    @unique
-  excerpt         String?
-  excerpt_en      String?
-  content         String    // @db.Text equivalent - CKEditor HTML
-  content_en      String?
+  id                 String    @id @default(uuid())
+  title              String
+  title_en           String?
+  slug               String    @unique
+  excerpt            String?
+  excerpt_en         String?
+  content            String
+  content_en         String?
   featuredImageId    String?
   featuredImageId_en String?
   categoryId         String
   authorId           String
-  type               String    @default("ORIGINAL") // PostType: ORIGINAL, REPOST
+  type               String    @default("ORIGINAL")
   sourceUrl          String?
   isFeatured         Boolean   @default(false)
   isPublished        Boolean   @default(false)
@@ -97,12 +78,11 @@ model Post {
   metaDescription_en String?
   createdAt          DateTime  @default(now())
   updatedAt          DateTime  @updatedAt
-
-  featuredImage    Media?    @relation("PostFeaturedImage", fields: [featuredImageId], references: [id])
-  featuredImage_en Media?    @relation("PostFeaturedImageEn", fields: [featuredImageId_en], references: [id])
-  category         Category  @relation(fields: [categoryId], references: [id])
-  author           User      @relation(fields: [authorId], references: [id])
-  tags             PostTag[]
+  tags               PostTag[]
+  author             User      @relation(fields: [authorId], references: [id])
+  category           Category  @relation(fields: [categoryId], references: [id])
+  featuredImage_en   Media?    @relation("PostFeaturedImageEn", fields: [featuredImageId_en], references: [id])
+  featuredImage      Media?    @relation("PostFeaturedImage", fields: [featuredImageId], references: [id])
 
   @@map("posts")
 }
@@ -110,21 +90,20 @@ model Post {
 model PostTag {
   postId String
   tagId  String
-
-  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
-  tag  Tag  @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  tag    Tag    @relation(fields: [tagId], references: [id], onDelete: Cascade)
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   @@id([postId, tagId])
   @@map("post_tags")
 }
 
 model Page {
-  id              String   @id @default(uuid())
-  title           String
-  title_en        String?
-  slug            String   @unique
-  content         String   // CKEditor HTML
-  content_en      String?
+  id                 String   @id @default(uuid())
+  title              String
+  title_en           String?
+  slug               String   @unique
+  content            String
+  content_en         String?
   featuredImageId    String?
   featuredImageId_en String?
   template           String   @default("default")
@@ -137,10 +116,9 @@ model Page {
   metaDescription_en String?
   createdAt          DateTime @default(now())
   updatedAt          DateTime @updatedAt
-
-  featuredImage    Media? @relation("PageFeaturedImage", fields: [featuredImageId], references: [id])
-  featuredImage_en Media? @relation("PageFeaturedImageEn", fields: [featuredImageId_en], references: [id])
-  author           User   @relation(fields: [authorId], references: [id])
+  author             User     @relation(fields: [authorId], references: [id])
+  featuredImage_en   Media?   @relation("PageFeaturedImageEn", fields: [featuredImageId_en], references: [id])
+  featuredImage      Media?   @relation("PageFeaturedImage", fields: [featuredImageId], references: [id])
 
   @@map("pages")
 }
@@ -155,8 +133,7 @@ model Department {
   isActive    Boolean  @default(true)
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
-
-  staff Staff[]
+  staff       Staff[]
 
   @@map("departments")
 }
@@ -165,24 +142,23 @@ model StaffType {
   id         String   @id @default(uuid())
   name       String
   name_en    String?
-  level      Int      // 1 = Highest (Viện trưởng)
+  level      Int
   isAdvisory Boolean  @default(false)
   sortOrder  Int      @default(0)
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-
-  staff Staff[]
+  staff      Staff[]
 
   @@map("staff_types")
 }
 
 model Staff {
-  id           String   @id @default(uuid())
+  id           String      @id @default(uuid())
   name         String
   name_en      String?
-  title        String?  // Học vị, chức danh
+  title        String?
   title_en     String?
-  bio          String?  // CKEditor HTML
+  bio          String?
   bio_en       String?
   avatarId     String?
   avatarId_en  String?
@@ -190,21 +166,20 @@ model Staff {
   phone        String?
   staffTypeId  String
   departmentId String?
-  sortOrder    Int      @default(0)
-  isActive     Boolean  @default(true)
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  avatar     Media?      @relation("StaffAvatar", fields: [avatarId], references: [id])
-  avatar_en  Media?      @relation("StaffAvatarEn", fields: [avatarId_en], references: [id])
-  staffType  StaffType   @relation(fields: [staffTypeId], references: [id])
-  department Department? @relation(fields: [departmentId], references: [id])
+  sortOrder    Int         @default(0)
+  isActive     Boolean     @default(true)
+  createdAt    DateTime    @default(now())
+  updatedAt    DateTime    @updatedAt
+  department   Department? @relation(fields: [departmentId], references: [id])
+  staffType    StaffType   @relation(fields: [staffTypeId], references: [id])
+  avatar_en    Media?      @relation("StaffAvatarEn", fields: [avatarId_en], references: [id])
+  avatar       Media?      @relation("StaffAvatar", fields: [avatarId], references: [id])
 
   @@map("staff")
 }
 
 model Partner {
-  id             String   @id @default(uuid())
+  id             String          @id @default(uuid())
   name           String
   name_en        String?
   logoId         String?
@@ -212,51 +187,48 @@ model Partner {
   website        String?
   description    String?
   description_en String?
-  sortOrder      Int      @default(0)
-  isActive       Boolean  @default(true)
-  createdAt      DateTime @default(now())
-  updatedAt      DateTime @updatedAt
-
-  logo      Media?          @relation("PartnerLogo", fields: [logoId], references: [id])
-  logo_en   Media?          @relation("PartnerLogoEn", fields: [logoId_en], references: [id])
-  courses CoursePartner[]
+  sortOrder      Int             @default(0)
+  isActive       Boolean         @default(true)
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  courses        CoursePartner[]
+  logo_en        Media?          @relation("PartnerLogoEn", fields: [logoId_en], references: [id])
+  logo           Media?          @relation("PartnerLogo", fields: [logoId], references: [id])
 
   @@map("partners")
 }
 
 model Course {
-  id                 String    @id @default(uuid())
+  id                 String          @id @default(uuid())
   title              String
   title_en           String?
-  slug               String    @unique
-  excerpt            String?   // CKEditor - Giới thiệu ngắn
+  slug               String          @unique
+  excerpt            String?
   excerpt_en         String?
   featuredImageId    String?
   featuredImageId_en String?
   categoryId         String?
-  type               String    // CourseType: ADMISSION, SHORT_COURSE, STUDY_ABROAD
+  type               String
   authorId           String
-  isFeatured         Boolean   @default(false)
-  isPublished        Boolean   @default(false)
+  isFeatured         Boolean         @default(false)
+  isPublished        Boolean         @default(false)
   publishedAt        DateTime?
-  isRegistrationOpen Boolean   @default(true)
-  viewCount          Int       @default(0)
-  sortOrder          Int       @default(0)
+  isRegistrationOpen Boolean         @default(true)
+  viewCount          Int             @default(0)
+  sortOrder          Int             @default(0)
   metaTitle          String?
   metaTitle_en       String?
   metaDescription    String?
   metaDescription_en String?
-  createdAt          DateTime  @default(now())
-  updatedAt          DateTime  @updatedAt
-
-  featuredImage    Media?          @relation("CourseFeaturedImage", fields: [featuredImageId], references: [id])
-  featuredImage_en Media?          @relation("CourseFeaturedImageEn", fields: [featuredImageId_en], references: [id])
-  category      Category?       @relation(fields: [categoryId], references: [id])
-  author        User            @relation(fields: [authorId], references: [id])
-  partners      CoursePartner[]
-  registrations Registration[]
-  contacts      ContactForm[]
-  // Note: ContentSection uses entityType + entityId pattern instead of direct FK
+  createdAt          DateTime        @default(now())
+  updatedAt          DateTime        @updatedAt
+  contacts           ContactForm[]
+  partners           CoursePartner[]
+  author             User            @relation(fields: [authorId], references: [id])
+  category           Category?       @relation(fields: [categoryId], references: [id])
+  featuredImage_en   Media?          @relation("CourseFeaturedImageEn", fields: [featuredImageId_en], references: [id])
+  featuredImage      Media?          @relation("CourseFeaturedImage", fields: [featuredImageId], references: [id])
+  registrations      Registration[]
 
   @@map("courses")
 }
@@ -264,24 +236,21 @@ model Course {
 model CoursePartner {
   courseId  String
   partnerId String
-
-  course  Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
-  partner Partner @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+  partner   Partner @relation(fields: [partnerId], references: [id], onDelete: Cascade)
+  course    Course  @relation(fields: [courseId], references: [id], onDelete: Cascade)
 
   @@id([courseId, partnerId])
   @@map("course_partners")
 }
 
-// ==================== CONTENT SECTIONS (Dynamic) ====================
-
 model ContentSection {
   id         String   @id @default(uuid())
-  entityType String   // EntityType: COURSE, SERVICE
+  entityType String
   entityId   String
-  sectionKey String   // e.g. "gioi-thieu", "muc-tieu"
+  sectionKey String
   title      String
   title_en   String?
-  content    String   // CKEditor HTML
+  content    String
   content_en String?
   sortOrder  Int      @default(0)
   isActive   Boolean  @default(true)
@@ -302,12 +271,11 @@ model Registration {
   position     String?
   courseId     String
   message      String?
-  status       String   @default("NEW") // RegistrationStatus: NEW, CONTACTED, ENROLLED, CANCELLED
+  status       String   @default("NEW")
   source       String?
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
-
-  course Course @relation(fields: [courseId], references: [id])
+  course       Course   @relation(fields: [courseId], references: [id])
 
   @@map("registrations")
 }
@@ -320,53 +288,86 @@ model ContactForm {
   subject   String?
   message   String
   courseId  String?
-  status    String   @default("NEW") // ContactStatus: NEW, READ, REPLIED
+  status    String   @default("NEW")
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  course Course? @relation(fields: [courseId], references: [id])
+  course    Course?  @relation(fields: [courseId], references: [id])
 
   @@map("contact_forms")
 }
 
 model Media {
+  id             String    @id @default(uuid())
+  publicId       String?   @unique
+  filename       String
+  format         String?
+  resourceType   String?
+  url            String
+  secureUrl      String?
+  mimeType       String?
+  size           Int
+  width          Int?
+  height         Int?
+  alt            String?
+  alt_en         String?
+  uploadedById   String
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  courseImagesEn Course[]  @relation("CourseFeaturedImageEn")
+  courseImages   Course[]  @relation("CourseFeaturedImage")
+  uploadedBy     User      @relation(fields: [uploadedById], references: [id])
+  pageImagesEn   Page[]    @relation("PageFeaturedImageEn")
+  pageImages     Page[]    @relation("PageFeaturedImage")
+  partnerLogosEn Partner[] @relation("PartnerLogoEn")
+  partnerLogos   Partner[] @relation("PartnerLogo")
+  postImagesEn   Post[]    @relation("PostFeaturedImageEn")
+  postImages     Post[]    @relation("PostFeaturedImage")
+  staffAvatarsEn Staff[]   @relation("StaffAvatarEn")
+  staffAvatars   Staff[]   @relation("StaffAvatar")
+
+  @@map("media")
+}
+
+model Service {
+  id              String   @id @default(uuid())
+  title           String
+  title_en        String?
+  slug            String   @unique
+  excerpt         String?
+  excerpt_en      String?
+  thumbnailUrl    String?
+  isFeatured      Boolean  @default(false)
+  isActive        Boolean  @default(true)
+  sortOrder       Int      @default(0)
+  metaTitle       String?
+  metaDescription String?
+  viewCount       Int      @default(0)
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@map("services")
+}
+
+model Video {
   id           String   @id @default(uuid())
-  publicId     String?  @unique
-  filename     String
-  format       String?
-  resourceType String?
-  url          String
-  secureUrl    String?
-  mimeType     String?
-  size         Int
-  width        Int?
-  height       Int?
-  alt          String?
-  alt_en       String?
-  uploadedById String
+  title        String
+  title_en     String?
+  thumbnailUrl String?
+  videoUrl     String
+  isFeatured   Boolean  @default(false)
+  sortOrder    Int      @default(0)
+  isActive     Boolean  @default(true)
   createdAt    DateTime @default(now())
   updatedAt    DateTime @updatedAt
 
-  uploadedBy   User      @relation(fields: [uploadedById], references: [id])
-  postImages      Post[]    @relation("PostFeaturedImage")
-  postImagesEn    Post[]    @relation("PostFeaturedImageEn")
-  pageImages      Page[]    @relation("PageFeaturedImage")
-  pageImagesEn    Page[]    @relation("PageFeaturedImageEn")
-  courseImages    Course[]  @relation("CourseFeaturedImage")
-  courseImagesEn  Course[]  @relation("CourseFeaturedImageEn")
-  staffAvatars    Staff[]   @relation("StaffAvatar")
-  staffAvatarsEn  Staff[]   @relation("StaffAvatarEn")
-  partnerLogos    Partner[] @relation("PartnerLogo")
-  partnerLogosEn  Partner[] @relation("PartnerLogoEn")
-
-  @@map("media")
+  @@map("videos")
 }
 
 model Configuration {
   id          String   @id @default(uuid())
   key         String   @unique
-  value       String   // JSON for complex values
-  type        String   @default("STRING") // ConfigType: STRING, JSON, BOOLEAN, NUMBER
+  value       String
+  type        String   @default("STRING")
   group       String   @default("general")
   description String?
   createdAt   DateTime @default(now())
@@ -377,15 +378,15 @@ model Configuration {
 
 model HomepageSection {
   id          String   @id @default(uuid())
-  sectionKey  String   // hero, reviews, partners, services, video, training, news, gallery, cta, contact
-  locale      String   // Locale: VI, EN
+  sectionKey  String
+  locale      String
   title       String?
   title_en    String?
   subtitle    String?
   subtitle_en String?
   isEnabled   Boolean  @default(true)
   sortOrder   Int      @default(0)
-  config      String?  // JSON config
+  config      String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
 
@@ -394,21 +395,20 @@ model HomepageSection {
 }
 
 model MenuItem {
-  id        String   @id @default(uuid())
+  id        String     @id @default(uuid())
   label     String
   label_en  String?
   url       String
-  locale    String   // Locale: VI, EN
+  locale    String
   parentId  String?
   icon      String?
-  target    String   @default("_self")
-  sortOrder Int      @default(0)
-  isActive  Boolean  @default(true)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-
-  parent   MenuItem?  @relation("MenuHierarchy", fields: [parentId], references: [id])
-  children MenuItem[] @relation("MenuHierarchy")
+  target    String     @default("_self")
+  sortOrder Int        @default(0)
+  isActive  Boolean    @default(true)
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  parent    MenuItem?  @relation("MenuHierarchy", fields: [parentId], references: [id])
+  children  MenuItem[] @relation("MenuHierarchy")
 
   @@map("menu_items")
 }

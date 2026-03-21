@@ -1,6 +1,6 @@
 "use client";
 
-import { SectionWrapper } from "./SectionWrapper";
+import { SectionWrapper, type SectionWrapperProps } from "./SectionWrapper";
 import { SectionHeader } from "./SectionHeader";
 import { ServiceCard } from "@/components/cards";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -29,6 +29,9 @@ interface ServicesSectionProps {
     services?: Service[];
     title?: string;
     subtitle?: string;
+    background?: SectionWrapperProps["background"];
+    textColor?: SectionWrapperProps["textColor"];
+    backdropBlur?: SectionWrapperProps["backdropBlur"];
 }
 
 const iconMap: Record<string, LucideIcon> = {
@@ -62,7 +65,9 @@ const enServices: Service[] = [
 export function ServicesSection({
     services,
     title,
-    subtitle,
+    background,
+    textColor,
+    backdropBlur,
 }: ServicesSectionProps) {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
@@ -70,16 +75,12 @@ export function ServicesSection({
 
     const resolvedServices = services || (isEn ? enServices : viServices);
     const resolvedTitle = title || (isEn ? "Our Services" : "Dịch Vụ Của Chúng Tôi");
-    const resolvedSubtitle = subtitle || (isEn
-        ? "Scientific research, technology transfer, and professional technical services"
-        : "Nghiên cứu khoa học, chuyển giao công nghệ và các dịch vụ kỹ thuật chuyên nghiệp");
 
     return (
-        <SectionWrapper>
+        <SectionWrapper background={background || "frosted-white"} textColor={textColor} backdropBlur={backdropBlur}>
             <ScrollReveal>
                 <SectionHeader
                     title={resolvedTitle}
-                    subtitle={resolvedSubtitle}
                     centered
                 />
             </ScrollReveal>
@@ -89,8 +90,8 @@ export function ServicesSection({
                     {resolvedServices.map((service) => (
                         <GlowingCard
                             key={service.id}
-                            glowColor="#0ea5e9"
-                            className="w-full sm:basis-[calc(50%-0.75rem)] xl:basis-[calc(33.333%-1rem)]"
+                            glowColor="#3B82F6"
+                            className="w-full sm:basis-[calc(50%-0.75rem)] xl:basis-[calc(33.333%-1rem)] p-0 overflow-hidden"
                         >
                             <ServiceCard
                                 title={service.title}
@@ -98,6 +99,7 @@ export function ServicesSection({
                                 slug={service.slug}
                                 icon={service.iconName ? iconMap[service.iconName] : undefined}
                                 locale={locale}
+                                variant="transparent"
                             />
                         </GlowingCard>
                     ))}

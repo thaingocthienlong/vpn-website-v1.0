@@ -19,6 +19,14 @@ const nextConfig: NextConfig = {
         protocol: 'https',
         hostname: 'res.cloudinary.com',
       },
+      {
+        protocol: 'https',
+        hostname: 'vie61786.hl-cdn.com',
+      },
+      {
+        protocol: 'https',
+        hostname: 'i.ibb.co',
+      },
     ],
   },
   eslint: {

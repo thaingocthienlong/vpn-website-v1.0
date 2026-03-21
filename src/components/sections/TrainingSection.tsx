@@ -1,6 +1,6 @@
 "use client";
 
-import { SectionWrapper } from "./SectionWrapper";
+import { SectionWrapper, type SectionWrapperProps } from "./SectionWrapper";
 import { SectionHeader } from "./SectionHeader";
 import { CourseCard } from "@/components/cards";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -31,31 +31,32 @@ interface TrainingSectionProps {
     courses?: Course[];
     title?: string;
     subtitle?: string;
+    background?: SectionWrapperProps["background"];
+    textColor?: SectionWrapperProps["textColor"];
+    backdropBlur?: SectionWrapperProps["backdropBlur"];
 }
 
 export function TrainingSection({
     courses = [],
     title,
-    subtitle,
+    background,
+    textColor,
+    backdropBlur,
 }: TrainingSectionProps) {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
 
     const resolvedTitle = title || (isEn ? "Featured Courses" : "Khóa Học Nổi Bật");
-    const resolvedSubtitle = subtitle || (isEn
-        ? "High-quality training programs designed to meet practical needs"
-        : "Các chương trình đào tạo chất lượng cao, được thiết kế để đáp ứng nhu cầu thực tiễn");
 
     // Show max 6 courses
     const displayCourses = courses.slice(0, 9);
 
     return (
-        <SectionWrapper>
+        <SectionWrapper background={background || "transparent"} textColor={textColor} backdropBlur={backdropBlur}>
             <ScrollReveal>
                 <SectionHeader
                     title={resolvedTitle}
-                    subtitle={resolvedSubtitle}
                     centered
                 />
             </ScrollReveal>

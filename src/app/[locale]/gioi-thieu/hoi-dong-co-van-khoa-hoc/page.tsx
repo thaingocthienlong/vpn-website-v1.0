@@ -15,8 +15,8 @@ export default async function AdvisoryBoardPage({ params: { locale } }: { params
     const staffList = await prisma.staff.findMany({
         where: {
             isActive: true,
-            staffType: {
-                name: 'Hội đồng Cố vấn Khoa học'
+            department: {
+                slug: 'ban-co-van'
             }
         },
         include: {

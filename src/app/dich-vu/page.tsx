@@ -1,75 +1,28 @@
-"use client";
-
 import { Header, Footer } from "@/components/layout";
 import { Button } from "@/components/ui/Button";
-import { ArrowRight, FlaskConical, Cpu, Shield, BarChart3, Award, GraduationCap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import Link from "next/link";
+import { getActiveServices } from "@/lib/services/api-services";
+import Image from "next/image";
 
-// Services per FEATURES_SPEC SV-01 to SV-06
-const services = [
-    {
-        id: "SV-01",
-        slug: "nghien-cuu",
-        title: "Nghiên cứu Khoa học",
-        excerpt: "Triển khai các đề tài nghiên cứu khoa học, ứng dụng thực tiễn trong nhiều lĩnh vực.",
-        icon: FlaskConical,
-        color: "from-blue-500 to-blue-600",
-        bgColor: "from-blue-50 to-blue-100",
-        features: ["Nghiên cứu cơ bản", "Nghiên cứu ứng dụng", "Công bố khoa học"],
-    },
-    {
-        id: "SV-02",
-        slug: "chuyen-giao",
-        title: "Chuyển giao Công nghệ",
-        excerpt: "Chuyển giao các công nghệ tiên tiến, hỗ trợ doanh nghiệp nâng cao năng lực sản xuất.",
-        icon: Cpu,
-        color: "from-cyan-500 to-cyan-600",
-        bgColor: "from-cyan-50 to-cyan-100",
-        features: ["Tư vấn công nghệ", "Đào tạo vận hành", "Hỗ trợ triển khai"],
-    },
-    {
-        id: "SV-03",
-        slug: "kiem-dinh",
-        title: "Kiểm định An toàn",
-        excerpt: "Dịch vụ kiểm định thiết bị, máy móc đảm bảo an toàn trong môi trường công nghiệp.",
-        icon: Shield,
-        color: "from-green-500 to-green-600",
-        bgColor: "from-green-50 to-green-100",
-        features: ["Kiểm định thiết bị", "Huấn luyện an toàn", "Cấp chứng nhận"],
-    },
-    {
-        id: "SV-04",
-        slug: "quan-trac",
-        title: "Quan trắc Môi trường",
-        excerpt: "Hệ thống quan trắc, đánh giá tác động và báo cáo môi trường theo quy chuẩn.",
-        icon: BarChart3,
-        color: "from-emerald-500 to-emerald-600",
-        bgColor: "from-emerald-50 to-emerald-100",
-        features: ["Quan trắc tự động", "Đánh giá tác động", "Lập báo cáo"],
-    },
-    {
-        id: "SV-05",
-        slug: "tu-van-iso",
-        title: "Tư vấn ISO",
-        excerpt: "Tư vấn xây dựng và chứng nhận hệ thống quản lý chất lượng theo tiêu chuẩn ISO.",
-        icon: Award,
-        color: "from-purple-500 to-purple-600",
-        bgColor: "from-purple-50 to-purple-100",
-        features: ["Xây dựng hệ thống", "Đào tạo nhân sự", "Hỗ trợ chứng nhận"],
-    },
-    {
-        id: "SV-06",
-        slug: "dao-tao",
-        title: "Đào tạo & Cấp chứng chỉ",
-        excerpt: "Các khóa đào tạo chuyên nghiệp với chứng chỉ được công nhận toàn quốc.",
-        icon: GraduationCap,
-        color: "from-orange-500 to-orange-600",
-        bgColor: "from-orange-50 to-orange-100",
-        features: ["Khóa ngắn hạn", "Khóa dài hạn", "Cấp chứng chỉ"],
-    },
+// Gradient colors for service cards (cycled through)
+const CARD_COLORS = [
+    "from-blue-500 to-blue-600",
+    "from-cyan-500 to-cyan-600",
+    "from-green-500 to-green-600",
+    "from-emerald-500 to-emerald-600",
+    "from-purple-500 to-purple-600",
+    "from-orange-500 to-orange-600",
+    "from-teal-500 to-teal-600",
+    "from-indigo-500 to-indigo-600",
+    "from-rose-500 to-rose-600",
 ];
 
-export default function ServicesListingPage() {
+export const revalidate = 3600; // ISR: revalidate every hour
+
+export default async function ServicesListingPage() {
+    const services = await getActiveServices();
+
     return (
         <div className="min-h-screen flex flex-col">
             <Header />
@@ -83,7 +36,7 @@ export default function ServicesListingPage() {
                             </span>
                             <h1 className="text-4xl md:text-5xl font-heading font-bold text-slate-800 mb-6">
                                 Giải pháp{" "}
-                                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                                <span className="bg-linear-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
                                     toàn diện
                                 </span>
                             </h1>
@@ -99,8 +52,8 @@ export default function ServicesListingPage() {
                 <section className="py-20">
                     <div className="container mx-auto px-4">
                         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                            {services.map((service) => {
-                                const Icon = service.icon;
+                            {services.map((service, idx) => {
+                                const color = CARD_COLORS[idx % CARD_COLORS.length];
                                 return (
                                     <Link
                                         key={service.id}
@@ -108,31 +61,38 @@ export default function ServicesListingPage() {
                                         className="group"
                                     >
                                         <div className="bg-white shadow-sm rounded-3xl p-8 border border-slate-200 h-full hover:border-slate-200 hover:shadow-[0_0_30px_rgba(59,130,246,0.1)] transition-all cursor-pointer">
-                                            {/* Icon */}
-                                            <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6`}>
-                                                <Icon className="w-8 h-8 text-slate-800" />
-                                            </div>
+                                            {/* Thumbnail or gradient fallback */}
+                                            {service.thumbnailUrl ? (
+                                                <div className="w-full h-40 rounded-2xl overflow-hidden mb-6 relative">
+                                                    <Image
+                                                        src={service.thumbnailUrl}
+                                                        alt={service.title}
+                                                        fill
+                                                        className="object-cover"
+                                                        sizes="(max-width: 768px) 100vw, 33vw"
+                                                        unoptimized
+                                                    />
+                                                </div>
+                                            ) : (
+                                                <div className={`w-16 h-16 rounded-2xl bg-linear-to-br ${color} flex items-center justify-center mb-6`}>
+                                                    <span className="text-white font-bold text-xl">
+                                                        {service.title.charAt(0)}
+                                                    </span>
+                                                </div>
+                                            )}
 
                                             {/* Content */}
                                             <h3 className="text-xl font-heading font-bold text-slate-800 mb-3 group-hover:text-blue-400 transition-colors">
                                                 {service.title}
                                             </h3>
-                                            <p className="text-slate-800 mb-4 leading-relaxed">
-                                                {service.excerpt}
-                                            </p>
-
-                                            {/* Features */}
-                                            <ul className="space-y-2 mb-6">
-                                                {service.features.map((feature, idx) => (
-                                                    <li key={idx} className="flex items-center gap-2 text-sm text-slate-800">
-                                                        <div className={`w-1.5 h-1.5 rounded-full bg-gradient-to-br ${service.color}`} />
-                                                        {feature}
-                                                    </li>
-                                                ))}
-                                            </ul>
+                                            {service.excerpt && (
+                                                <p className="text-slate-600 mb-6 leading-relaxed line-clamp-3">
+                                                    {service.excerpt}
+                                                </p>
+                                            )}
 
                                             {/* CTA */}
-                                            <div className="flex items-center gap-2 text-blue-400 font-medium group-hover:gap-3 transition-all">
+                                            <div className="flex items-center gap-2 text-blue-400 font-medium group-hover:gap-3 transition-all mt-auto">
                                                 Xem chi tiết
                                                 <ArrowRight className="w-4 h-4" />
                                             </div>
@@ -141,6 +101,12 @@ export default function ServicesListingPage() {
                                 );
                             })}
                         </div>
+
+                        {services.length === 0 && (
+                            <p className="text-center text-slate-500 py-20">
+                                Chưa có dịch vụ nào. Vui lòng chạy migration để tải dữ liệu.
+                            </p>
+                        )}
                     </div>
                 </section>
 
