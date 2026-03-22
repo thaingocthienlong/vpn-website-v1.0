@@ -3,11 +3,12 @@
 import { SectionWrapper } from "./SectionWrapper";
 import { SectionHeader } from "./SectionHeader";
 import { Button, Input, Textarea } from "@/components/ui";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { EnvelopeSimple, Clock, MapPin, PaperPlaneTilt, Phone } from "@phosphor-icons/react";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { detectLocaleFromPath } from "@/lib/routes";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { FloatingAccent, MotionGroup, MotionItem, MotionSection, publicMotionTokens } from "@/components/motion/PublicMotion";
 
 interface ContactSectionProps {
     title?: string;
@@ -31,6 +32,7 @@ export function ContactSection({
     const isEn = locale === "en";
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitted, setSubmitted] = useState(false);
+    const shouldReduceMotion = useReducedMotion();
 
     const resolvedTitle = title || (isEn ? "Contact Us" : "Liên Hệ Với Chúng Tôi");
     const resolvedSubtitle = subtitle || (isEn
@@ -44,7 +46,6 @@ export function ContactSection({
         e.preventDefault();
         setIsSubmitting(true);
 
-        // Simulate API call
         await new Promise((resolve) => setTimeout(resolve, 1000));
 
         setIsSubmitting(false);
@@ -54,108 +55,169 @@ export function ContactSection({
     const contactInfo = [
         { icon: MapPin, label: isEn ? "Address" : "Địa chỉ", value: address },
         { icon: Phone, label: isEn ? "Phone" : "Điện thoại", value: phone, href: `tel:${phone.replace(/\s/g, "")}` },
-        { icon: Mail, label: "Email", value: email, href: `mailto:${email}` },
+        { icon: EnvelopeSimple, label: "Email", value: email, href: `mailto:${email}` },
         { icon: Clock, label: isEn ? "Working Hours" : "Giờ làm việc", value: resolvedHours },
     ];
 
     return (
-        <SectionWrapper>
-            <ScrollReveal>
-                <SectionHeader
-                    title={resolvedTitle}
-                    subtitle={resolvedSubtitle}
-                    centered
-                />
-            </ScrollReveal>
+        <SectionWrapper background="gradient-blue">
+            <MotionSection>
+                <SectionHeader title={resolvedTitle} subtitle={resolvedSubtitle} />
+            </MotionSection>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-                {/* Contact form */}
-                <ScrollReveal delay={1}>
-                    <div className="clay-card p-8">
-                        {submitted ? (
-                            <div className="text-center py-8">
-                                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                                    <Send className="w-8 h-8 text-green-600" />
-                                </div>
-                                <h3 className="font-heading text-xl font-semibold mb-2">
-                                    {isEn ? "Thank you!" : "Cảm ơn bạn!"}
-                                </h3>
-                                <p className="text-slate-800">
-                                    {isEn
-                                        ? "We've received your message and will get back to you soon."
-                                        : "Chúng tôi đã nhận được tin nhắn và sẽ liên hệ lại sớm nhất."}
-                                </p>
-                            </div>
-                        ) : (
-                            <form onSubmit={handleSubmit} className="space-y-6">
-                                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                                    <Input
-                                        label={isEn ? "Full Name" : "Họ và tên"}
-                                        placeholder={isEn ? "John Doe" : "Nguyễn Văn A"}
-                                        required
-                                    />
-                                    <Input
-                                        label={isEn ? "Phone Number" : "Số điện thoại"}
-                                        type="tel"
-                                        placeholder="0901 234 567"
-                                        required
-                                    />
-                                </div>
-                                <Input
-                                    label="Email"
-                                    type="email"
-                                    placeholder="email@example.com"
-                                    required
-                                />
-                                <Input
-                                    label={isEn ? "Subject" : "Chủ đề"}
-                                    placeholder={isEn ? "Course consultation..." : "Tư vấn khóa học..."}
-                                    required
-                                />
-                                <Textarea
-                                    label={isEn ? "Message" : "Nội dung"}
-                                    placeholder={isEn ? "Your message..." : "Nội dung tin nhắn..."}
-                                    rows={4}
-                                    required
-                                />
-                                <Button type="submit" className="w-full" disabled={isSubmitting}>
-                                    {isSubmitting
-                                        ? (isEn ? "Sending..." : "Đang gửi...")
-                                        : (isEn ? "Send Message" : "Gửi tin nhắn")}
-                                </Button>
-                            </form>
-                        )}
+            <MotionGroup className="grid grid-cols-1 gap-6 xl:grid-cols-[0.88fr_1.12fr]" stagger={0.1}>
+                <MotionItem>
+                    <div className="public-panel-muted relative rounded-[2.5rem] p-6 md:p-8">
+                        <FloatingAccent className="right-[8%] top-[8%] h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(23,88,216,0.14),transparent_70%)]" variant="halo" />
+                        <MotionGroup className="relative grid gap-4 sm:grid-cols-2" stagger={0.08}>
+                            {contactInfo.map((item, index) => (
+                                <MotionItem key={index}>
+                                    <motion.div
+                                        whileHover={shouldReduceMotion ? undefined : { y: -5, scale: 1.01 }}
+                                        transition={publicMotionTokens.hoverSpring}
+                                        className="rounded-[1.55rem] border border-[rgba(26,72,164,0.12)] bg-white/78 p-4"
+                                    >
+                                        <motion.div
+                                            className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-[rgba(23,88,216,0.14)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]"
+                                            animate={shouldReduceMotion ? undefined : { y: [0, -3, 0] }}
+                                            transition={shouldReduceMotion ? undefined : { duration: 4.6, ease: "easeInOut", repeat: Infinity, delay: index * 0.14 }}
+                                        >
+                                            <item.icon className="h-5 w-5" weight="bold" />
+                                        </motion.div>
+                                        <p className="mb-1 text-sm text-[var(--ink-muted)]">{item.label}</p>
+                                        {item.href ? (
+                                            <a href={item.href} className="font-medium text-[var(--ink)] transition-colors hover:text-[var(--accent-strong)]">
+                                                {item.value}
+                                            </a>
+                                        ) : (
+                                            <p className="font-medium text-[var(--ink)]">{item.value}</p>
+                                        )}
+                                    </motion.div>
+                                </MotionItem>
+                            ))}
+
+                            <MotionItem className="sm:col-span-2">
+                                <motion.div
+                                    whileHover={shouldReduceMotion ? undefined : { y: -5, scale: 1.005 }}
+                                    transition={publicMotionTokens.hoverSpring}
+                                    className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-[1.9rem] border border-[rgba(26,72,164,0.12)] bg-[linear-gradient(160deg,rgba(255,255,255,0.9),rgba(227,239,255,0.72))]"
+                                >
+                                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_24%,rgba(23,88,216,0.12),transparent_32%),radial-gradient(circle_at_76%_68%,rgba(23,88,216,0.08),transparent_36%),linear-gradient(rgba(23,88,216,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(23,88,216,0.06)_1px,transparent_1px)] bg-[length:auto,auto,28px_28px,28px_28px]" />
+                                    <motion.div
+                                        className="relative inline-flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(23,88,216,0.14)] bg-white/84 text-[var(--accent-strong)] shadow-[var(--shadow-xs)]"
+                                        animate={shouldReduceMotion ? undefined : { y: [0, -5, 0], scale: [1, 1.04, 1] }}
+                                        transition={shouldReduceMotion ? undefined : { duration: 4.8, ease: "easeInOut", repeat: Infinity }}
+                                    >
+                                        <MapPin className="h-5 w-5" weight="fill" />
+                                    </motion.div>
+                                    <span className="absolute bottom-5 left-1/2 -translate-x-1/2 text-sm text-[var(--ink-muted)]">Google Maps</span>
+                                </motion.div>
+                            </MotionItem>
+                        </MotionGroup>
                     </div>
-                </ScrollReveal>
+                </MotionItem>
 
-                {/* Contact info */}
-                <ScrollReveal delay={2}>
-                    <div className="space-y-6">
-                        {contactInfo.map((item, index) => (
-                            <div key={index} className="flex items-start gap-4 p-4 rounded-xl bg-white0 border border-slate-200">
-                                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                                    <item.icon className="w-6 h-6 text-primary" />
-                                </div>
-                                <div>
-                                    <p className="text-sm text-slate-500 mb-1">{item.label}</p>
-                                    {item.href ? (
-                                        <a href={item.href} className="font-medium text-slate-800 hover:text-primary transition-colors">
-                                            {item.value}
-                                        </a>
-                                    ) : (
-                                        <p className="font-medium text-slate-800">{item.value}</p>
-                                    )}
-                                </div>
-                            </div>
-                        ))}
-
-                        {/* Map placeholder */}
-                        <div className="aspect-video rounded-xl overflow-hidden bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                            <span className="text-slate-500">Google Maps</span>
-                        </div>
+                <MotionItem>
+                    <div className="public-panel rounded-[2.5rem] p-6 md:p-8">
+                        <AnimatePresence mode="wait" initial={false}>
+                            {submitted ? (
+                                <motion.div
+                                    key="submitted"
+                                    initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                                    animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                                    exit={shouldReduceMotion ? undefined : { opacity: 0, y: -12 }}
+                                    transition={publicMotionTokens.sectionSpring}
+                                    className="py-10 text-center"
+                                >
+                                    <motion.div
+                                        className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-[1.5rem] bg-[rgba(47,122,95,0.12)]"
+                                        animate={shouldReduceMotion ? undefined : { y: [0, -4, 0], scale: [1, 1.03, 1] }}
+                                        transition={shouldReduceMotion ? undefined : { duration: 4.2, ease: "easeInOut", repeat: Infinity }}
+                                    >
+                                        <PaperPlaneTilt className="h-8 w-8 text-green-600" weight="fill" />
+                                    </motion.div>
+                                    <h3 className="mb-2 font-heading text-xl font-semibold text-[var(--ink)]">
+                                        {isEn ? "Thank you!" : "Cảm ơn bạn!"}
+                                    </h3>
+                                    <p className="text-[var(--ink-soft)]">
+                                        {isEn
+                                            ? "We've received your message and will get back to you soon."
+                                            : "Chúng tôi đã nhận được tin nhắn và sẽ liên hệ lại sớm nhất."}
+                                    </p>
+                                </motion.div>
+                            ) : (
+                                <motion.form
+                                    key="form"
+                                    onSubmit={handleSubmit}
+                                    className="space-y-6"
+                                    initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                                    animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                                    exit={shouldReduceMotion ? undefined : { opacity: 0, y: -12 }}
+                                    transition={publicMotionTokens.sectionSpring}
+                                >
+                                    <MotionGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2" stagger={0.06}>
+                                        <MotionItem>
+                                            <motion.div whileHover={shouldReduceMotion ? undefined : { y: -3 }} transition={publicMotionTokens.hoverSpring}>
+                                                <Input
+                                                    label={isEn ? "Full Name" : "Họ và tên"}
+                                                    placeholder={isEn ? "John Doe" : "Nguyễn Văn A"}
+                                                    required
+                                                />
+                                            </motion.div>
+                                        </MotionItem>
+                                        <MotionItem>
+                                            <motion.div whileHover={shouldReduceMotion ? undefined : { y: -3 }} transition={publicMotionTokens.hoverSpring}>
+                                                <Input
+                                                    label={isEn ? "Phone Number" : "Số điện thoại"}
+                                                    type="tel"
+                                                    placeholder="0901 234 567"
+                                                    required
+                                                />
+                                            </motion.div>
+                                        </MotionItem>
+                                    </MotionGroup>
+                                    <MotionItem>
+                                        <motion.div whileHover={shouldReduceMotion ? undefined : { y: -3 }} transition={publicMotionTokens.hoverSpring}>
+                                            <Input
+                                                label="Email"
+                                                type="email"
+                                                placeholder="email@example.com"
+                                                required
+                                            />
+                                        </motion.div>
+                                    </MotionItem>
+                                    <MotionItem>
+                                        <motion.div whileHover={shouldReduceMotion ? undefined : { y: -3 }} transition={publicMotionTokens.hoverSpring}>
+                                            <Input
+                                                label={isEn ? "Subject" : "Chủ đề"}
+                                                placeholder={isEn ? "Course consultation..." : "Tư vấn khóa học..."}
+                                                required
+                                            />
+                                        </motion.div>
+                                    </MotionItem>
+                                    <MotionItem>
+                                        <motion.div whileHover={shouldReduceMotion ? undefined : { y: -3 }} transition={publicMotionTokens.hoverSpring}>
+                                            <Textarea
+                                                label={isEn ? "Message" : "Nội dung"}
+                                                placeholder={isEn ? "Your message..." : "Nội dung tin nhắn..."}
+                                                rows={4}
+                                                required
+                                            />
+                                        </motion.div>
+                                    </MotionItem>
+                                    <MotionItem>
+                                        <Button type="submit" className="w-full" motion="magnetic" disabled={isSubmitting}>
+                                            {isSubmitting
+                                                ? (isEn ? "Sending..." : "Đang gửi...")
+                                                : (isEn ? "Send Message" : "Gửi tin nhắn")}
+                                        </Button>
+                                    </MotionItem>
+                                </motion.form>
+                            )}
+                        </AnimatePresence>
                     </div>
-                </ScrollReveal>
-            </div>
+                </MotionItem>
+            </MotionGroup>
         </SectionWrapper>
     );
 }

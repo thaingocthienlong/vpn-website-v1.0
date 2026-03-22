@@ -3,3 +3,7 @@ export { NewsList } from "./NewsList";
 export { NewsSidebar } from "./NewsSidebar";
 export { NewsDetail } from "./NewsDetail";
 export { NewsPagination } from "./NewsPagination";
+export { NewsPageShell } from "./NewsPageShell";
+export { NewsListingPageClient } from "./NewsListingPageClient";
+export { NewsCategoryPageClient } from "./NewsCategoryPageClient";
+export { NewsArticlePageClient } from "./NewsArticlePageClient";

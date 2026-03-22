@@ -6,7 +6,7 @@ import path from 'path';
 export async function GET() {
     try {
         const rawData = await fs.readFile(path.join(process.cwd(), 'bancovan.json'), 'utf8');
-        let records = JSON.parse(rawData);
+        const records: Array<{ name?: string; mieutangan?: string }> = JSON.parse(rawData);
 
         let count = 0;
         for (const r of records) {
@@ -23,7 +23,8 @@ export async function GET() {
         }
 
         return NextResponse.json({ success: true, updated: count });
-    } catch (error: any) {
-        return NextResponse.json({ error: error.message }, { status: 500 });
+    } catch (error) {
+        const message = error instanceof Error ? error.message : "Unknown error";
+        return NextResponse.json({ error: message }, { status: 500 });
     }
 }

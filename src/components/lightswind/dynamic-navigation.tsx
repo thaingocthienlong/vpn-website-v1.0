@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "../../lib/utils";
 
 export interface DynamicNavigationProps {
@@ -52,6 +52,7 @@ export const DynamicNavigation = ({
     activeLink || (links.length > 0 ? links[0].id : null)
   );
   const [hoveredLink, setHoveredLink] = useState<string | null>(null);
+  const currentActive = activeLink ?? active;
 
   // Directly define the default styles representing a light theme fallback
   const defaultThemeStyles = {
@@ -63,7 +64,7 @@ export const DynamicNavigation = ({
   };
 
   // Update highlight position based on active link
-  const updateHighlightPosition = (id?: string) => {
+  const updateHighlightPosition = useCallback((id?: string) => {
     if (!navRef.current || !highlightRef.current) return;
 
     const linkElement = navRef.current.querySelector(
@@ -77,7 +78,7 @@ export const DynamicNavigation = ({
     highlightRef.current.style.transform = `translateX(${left - navRect.left
       }px)`;
     highlightRef.current.style.width = `${width}px`;
-  };
+  }, [active]);
 
   // Create ripple effect
   const createRipple = (event: React.MouseEvent<HTMLAnchorElement>) => {
@@ -142,14 +143,7 @@ export const DynamicNavigation = ({
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, [active, links]);
-
-  // Update when active link changes externally
-  useEffect(() => {
-    if (activeLink && activeLink !== active) {
-      setActive(activeLink);
-    }
-  }, [activeLink]);
+  }, [currentActive, links, updateHighlightPosition]);
 
   return (
     <nav
@@ -198,7 +192,7 @@ export const DynamicNavigation = ({
                 rounded-full font-medium transition-all duration-300 hover:scale-105 
                 relative overflow-hidden`,
                 defaultThemeStyles.text,
-                active === link.id && "font-semibold"
+                currentActive === link.id && "font-semibold"
               )}
               onClick={(e) => {
                 handleLinkClick(link.id, e);

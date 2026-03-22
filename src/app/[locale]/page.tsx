@@ -55,11 +55,11 @@ export default async function HomePage({
     const { posts, courses, partners } = await getHomepageData(locale as Locale);
 
     return (
-        <div className="min-h-screen flex flex-col">
+        <div className="public-shell min-h-screen flex flex-col">
             <Header />
-            <main className="flex-1 pt-24">
+            <main id="main-content" className="flex-1 pt-24 md:pt-28">
                 {/* 1. Hero */}
-                <HeroSection />
+                <HeroSection featuredPrograms={courses.slice(0, 3)} />
 
                 {/* 2. Reviews */}
                 <ReviewsSection />

@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowRight, Clock, GraduationCap } from "@phosphor-icons/react";
 import { Badge } from "@/components/ui";
-import { Clock, GraduationCap, ArrowRight } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface CourseCardProps {
     id: string;
@@ -21,6 +22,8 @@ interface CourseCardProps {
         slug: string;
     } | null;
     locale?: "vi" | "en";
+    variant?: "feature" | "default" | "compact";
+    className?: string;
 }
 
 const viTypeLabels: Record<string, { label: string; color: "primary" | "accent" | "secondary" }> = {
@@ -46,11 +49,15 @@ export function CourseCard({
     isRegistrationOpen,
     category,
     locale = "vi",
+    variant = "default",
+    className,
 }: CourseCardProps) {
     const isEn = locale === "en";
     const typeLabels = isEn ? enTypeLabels : viTypeLabels;
     const typeInfo = typeLabels[type] || typeLabels.SHORT_COURSE;
     const href = isEn ? `/en/training/${slug}` : `/dao-tao/${slug}`;
+    const isFeature = variant === "feature";
+    const isCompact = variant === "compact";
 
     const formattedPrice = price
         ? new Intl.NumberFormat(isEn ? "en-US" : "vi-VN", {
@@ -62,82 +69,87 @@ export function CourseCard({
 
     return (
         <Link href={href} className="group block h-full cursor-pointer">
-            <article className="relative rounded-2xl overflow-hidden h-full transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl shadow-md">
-
-                {/* Image container — aspect-video fits most course banners */}
-                <div className="relative w-full aspect-video">
-                    {featuredImage ? (
-                        <Image
-                            src={featuredImage}
-                            alt={title}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                    ) : (
-                        <div className="absolute inset-0 bg-gradient-to-br from-primary/30 via-primary/10 to-accent/20 flex items-center justify-center">
-                            <GraduationCap className="w-16 h-16 text-primary/30" />
+            <article
+                className={cn(
+                    "interactive-card flex h-full flex-col overflow-hidden rounded-[2rem] border border-[rgba(26,72,164,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(234,243,255,0.84))] shadow-[var(--shadow-xs)]",
+                    isCompact ? "p-5" : "",
+                    className
+                )}
+            >
+                {!isCompact && (
+                    <div className={cn("relative w-full overflow-hidden", isFeature ? "aspect-[16/11]" : "aspect-[16/10]")}>
+                        {featuredImage ? (
+                            <Image
+                                src={featuredImage}
+                                alt={title}
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                        ) : (
+                            <div className="absolute inset-0 flex items-center justify-center bg-[linear-gradient(160deg,rgba(23,88,216,0.16),rgba(234,243,255,0.52))]">
+                                <GraduationCap className="h-14 w-14 text-[rgba(23,88,216,0.3)]" weight="duotone" />
+                            </div>
+                        )}
+                        <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+                            <Badge variant={typeInfo.color} size="sm">
+                                {typeInfo.label}
+                            </Badge>
+                            {isRegistrationOpen && (
+                                <Badge variant="accent" size="sm">
+                                    {isEn ? "Open" : "Đang mở"}
+                                </Badge>
+                            )}
                         </div>
-                    )}
-                </div>
-
-                {/* Registration status — always visible */}
-                {isRegistrationOpen && (
-                    <div className="absolute bottom-3 right-3 z-20">
-                        <Badge variant="accent" size="sm" className="animate-pulse">
-                            {isEn ? "Open" : "Đang mở"}
-                        </Badge>
                     </div>
                 )}
 
-                {/* Default state: bottom gradient scrim with title */}
-                <div className="absolute inset-x-0 bottom-0 z-10 bg-gradient-to-t from-black/40 via-black/10 to-transparent p-4 pt-12 transition-opacity duration-300 group-hover:opacity-0">
-                    {/* {category && (
-                        <span className="text-xs text-white/70 font-medium mb-1 block">
-                            {category.name}
-                        </span>
-                    )}
-                    <h3 className="font-heading text-base font-semibold text-white line-clamp-2 drop-shadow-md">
-                        {title}
-                    </h3> */}
-                </div>
-
-                {/* Hover state: blur overlay with full info */}
-                <div className="absolute inset-0 z-10 flex flex-col justify-end p-4 bg-black/50 backdrop-blur-md opacity-0 group-hover:opacity-100 transition-all duration-300">
+                <div className={cn("flex flex-1 flex-col", isCompact ? "pt-0" : isFeature ? "p-7 md:p-8" : "p-6 md:p-7")}>
                     {category && (
-                        <span className="text-xs text-white/70 font-medium mb-1">
+                        <span className="mb-3 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-muted)]">
                             {category.name}
                         </span>
                     )}
 
-                    <h3 className="font-heading text-base font-semibold text-white mb-2 line-clamp-2">
+                    {isCompact && (
+                        <div className="mb-4 flex flex-wrap gap-2">
+                            <Badge variant={typeInfo.color} size="sm">
+                                {typeInfo.label}
+                            </Badge>
+                            {isRegistrationOpen && (
+                                <Badge variant="accent" size="sm">
+                                    {isEn ? "Open" : "Đang mở"}
+                                </Badge>
+                            )}
+                        </div>
+                    )}
+
+                    <h3 className={cn("font-heading text-[var(--ink)]", isFeature ? "mb-4 text-[2.15rem]" : isCompact ? "mb-3 text-[1.35rem]" : "mb-4 text-[1.8rem]")}>
                         {title}
                     </h3>
 
                     {excerpt && (
-                        <p className="text-white/80 text-sm line-clamp-2 mb-2">
+                        <p className={cn("text-[var(--ink-soft)]", isCompact ? "mb-5 line-clamp-2 text-sm leading-7" : "mb-6 line-clamp-3 text-sm leading-7")}>
                             {excerpt}
                         </p>
                     )}
 
-                    {/* Meta: duration + price */}
-                    <div className="flex items-center gap-3 text-sm text-white/70 mb-3">
+                    <div className="mb-6 flex flex-wrap items-center gap-4 text-sm text-[var(--ink-soft)]">
                         {duration && (
-                            <span className="flex items-center gap-1">
-                                <Clock className="w-3.5 h-3.5" />
+                            <span className="flex items-center gap-1.5">
+                                <Clock className="h-4 w-4" weight="bold" />
                                 {duration}
                             </span>
                         )}
                         {formattedPrice && (
-                            <span className="font-semibold text-white">
+                            <span className="font-semibold text-[var(--accent-strong)]">
                                 {formattedPrice}
                             </span>
                         )}
                     </div>
 
-                    {/* CTA */}
-                    <span className="inline-flex items-center gap-1.5 text-sm font-medium text-white/90 group-hover:text-white transition-colors">
+                    <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium uppercase tracking-[0.14em] text-[var(--accent-strong)]">
                         {isEn ? "Learn more" : "Xem chi tiết"}
-                        <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
+                        <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" weight="bold" />
                     </span>
                 </div>
             </article>

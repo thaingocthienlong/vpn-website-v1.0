@@ -51,7 +51,7 @@ const Modal: React.FC<ModalProps> = ({
         <div className="fixed inset-0 z-50 flex items-center justify-center">
             {/* Backdrop */}
             <div
-                className="absolute inset-0 bg-black/50  animate-fadeIn"
+                className="absolute inset-0 bg-[rgba(28,35,34,0.46)] backdrop-blur-sm animate-fadeIn"
                 onClick={onClose}
                 aria-hidden="true"
             />
@@ -59,7 +59,7 @@ const Modal: React.FC<ModalProps> = ({
             {/* Modal */}
             <div
                 className={cn(
-                    "relative w-full mx-4 clay-card clay-card-elevated p-6 animate-scaleIn",
+                    "relative mx-4 w-full public-panel p-6 animate-scaleIn",
                     sizes[size]
                 )}
                 role="dialog"
@@ -68,19 +68,19 @@ const Modal: React.FC<ModalProps> = ({
             >
                 {/* Header */}
                 {title && (
-                    <div className="flex items-center justify-between mb-4 pb-4 border-b border-slate-200">
+                    <div className="mb-4 flex items-center justify-between border-b border-[rgba(73,96,164,0.12)] pb-4">
                         <h2
                             id="modal-title"
-                            className="text-lg font-semibold text-slate-800"
+                            className="text-lg font-semibold text-[var(--ink)]"
                         >
                             {title}
                         </h2>
                         <button
                             onClick={onClose}
-                            className="p-2 rounded-full hover:bg-slate-100 transition-colors"
+                            className="rounded-full p-2 transition-colors hover:bg-[rgba(46,94,196,0.08)]"
                             aria-label="Đóng"
                         >
-                            <X className="h-5 w-5 text-slate-800" />
+                            <X className="h-5 w-5 text-[var(--ink)]" />
                         </button>
                     </div>
                 )}
@@ -89,10 +89,10 @@ const Modal: React.FC<ModalProps> = ({
                 {!title && (
                     <button
                         onClick={onClose}
-                        className="absolute top-4 right-4 p-2 rounded-full hover:bg-slate-100 transition-colors"
+                        className="absolute right-4 top-4 rounded-full p-2 transition-colors hover:bg-[rgba(46,94,196,0.08)]"
                         aria-label="Đóng"
                     >
-                        <X className="h-5 w-5 text-slate-800" />
+                        <X className="h-5 w-5 text-[var(--ink)]" />
                     </button>
                 )}
 

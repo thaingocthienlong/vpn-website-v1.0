@@ -1,11 +1,13 @@
 "use client";
 
 import { Button } from "@/components/ui";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import Link from "next/link";
-import { ArrowRight, Phone, Mail } from "lucide-react";
+import { ArrowRight, EnvelopeSimple, Phone } from "@phosphor-icons/react";
 import { usePathname } from "next/navigation";
 import { detectLocaleFromPath } from "@/lib/routes";
+import { Container } from "@/components/layout";
+import { motion, useReducedMotion } from "framer-motion";
+import { FloatingAccent, MotionGroup, MotionItem, MotionSection, publicMotionTokens } from "@/components/motion/PublicMotion";
 
 interface CTASectionProps {
     title?: string;
@@ -33,6 +35,7 @@ export function CTASection({
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
+    const shouldReduceMotion = useReducedMotion();
 
     const resolvedTitle = title || (isEn
         ? "Ready to Start Your Learning Journey?"
@@ -48,51 +51,98 @@ export function CTASection({
         : { text: "Xem khóa học", href: "/dao-tao" });
 
     return (
-        <section className="relative py-20 overflow-hidden bg-gradient-to-br from-[#2563EB] to-[#1E40AF]">
+        <section className="relative overflow-hidden py-20">
+            <Container className="relative z-10">
+                <MotionSection>
+                    <div className="public-panel public-band relative overflow-hidden rounded-[3rem] px-6 py-10 shadow-[var(--shadow-sm)] md:px-10 md:py-12">
+                        <FloatingAccent className="left-[9%] top-[16%] h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(23,88,216,0.14),transparent_72%)]" variant="halo" />
+                        <FloatingAccent className="right-[10%] bottom-[12%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(127,178,255,0.16),transparent_74%)]" variant="orb" />
 
-            <div className="container mx-auto px-4 relative z-10">
-                <ScrollReveal>
-                    <div className="max-w-3xl mx-auto text-center">
-                        <h2 className="font-heading text-3xl md:text-4xl font-bold text-white mb-4">
-                            {resolvedTitle}
-                        </h2>
-                        <p className="text-white/80 text-lg mb-8">
-                            {resolvedSubtitle}
-                        </p>
+                        <MotionGroup className="relative grid gap-6 xl:grid-cols-[0.98fr_1.02fr]" stagger={0.1}>
+                            <MotionItem>
+                                <div className="public-panel-muted rounded-[2.3rem] p-6 md:p-7">
+                                    <MotionGroup className="space-y-6" stagger={0.08}>
+                                        <MotionItem>
+                                            <h2 className="max-w-[12ch] font-heading text-[2.35rem] text-[var(--ink)] md:text-[3.4rem]">
+                                                {resolvedTitle}
+                                            </h2>
+                                        </MotionItem>
+                                        <MotionItem>
+                                            <p className="max-w-[40rem] text-base leading-8 text-[var(--ink-soft)]">
+                                                {resolvedSubtitle}
+                                            </p>
+                                        </MotionItem>
+                                        <MotionGroup className="flex flex-col gap-3 sm:flex-row" stagger={0.08}>
+                                            <MotionItem>
+                                                <Button asChild size="lg" motion="magnetic" className="min-w-[220px]">
+                                                    <Link href={resolvedPrimaryCTA.href} className="inline-flex items-center">
+                                                        <span>{resolvedPrimaryCTA.text}</span>
+                                                        <ArrowRight className="ml-2 h-4 w-4" weight="bold" />
+                                                    </Link>
+                                                </Button>
+                                            </MotionItem>
+                                            <MotionItem>
+                                                <Button asChild size="lg" variant="outline" motion="lift" className="min-w-[220px]">
+                                                    <Link href={resolvedSecondaryCTA.href}>
+                                                        {resolvedSecondaryCTA.text}
+                                                    </Link>
+                                                </Button>
+                                            </MotionItem>
+                                        </MotionGroup>
+                                    </MotionGroup>
+                                </div>
+                            </MotionItem>
 
-                        {/* CTAs */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-10">
-                            <Button asChild size="lg" variant="secondary" className="min-w-[200px] bg-white text-primary hover:bg-slate-100">
-                                <Link href={resolvedPrimaryCTA.href} className="inline-flex items-center">
-                                    <span>{resolvedPrimaryCTA.text}</span>
-                                    <ArrowRight className="w-5 h-5 ml-2" />
-                                </Link>
-                            </Button>
-                            <Button asChild size="lg" variant="ghost" className="min-w-[200px] border-2 border-white/60 text-white hover:bg-white/10 hover:border-white">
-                                <Link href={resolvedSecondaryCTA.href}>
-                                    {resolvedSecondaryCTA.text}
-                                </Link>
-                            </Button>
-                        </div>
-
-                        {/* Contact info */}
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-white/70">
-                            {phone && (
-                                <a href={`tel:${phone.replace(/\s/g, "")}`} className="flex items-center gap-2 hover:text-white transition-colors">
-                                    <Phone className="w-5 h-5" />
-                                    <span>{phone}</span>
-                                </a>
-                            )}
-                            {email && (
-                                <a href={`mailto:${email}`} className="flex items-center gap-2 hover:text-white transition-colors">
-                                    <Mail className="w-5 h-5" />
-                                    <span>{email}</span>
-                                </a>
-                            )}
-                        </div>
+                            <MotionItem>
+                                <div className="public-panel-muted flex h-full flex-col justify-center rounded-[2.3rem] p-5 md:p-6">
+                                    <MotionGroup className="grid gap-3" stagger={0.08}>
+                                        {phone ? (
+                                            <MotionItem>
+                                                <motion.a
+                                                    href={`tel:${phone.replace(/\s/g, "")}`}
+                                                    whileHover={shouldReduceMotion ? undefined : { y: -5, scale: 1.01 }}
+                                                    whileTap={shouldReduceMotion ? undefined : { scale: 0.99 }}
+                                                    transition={publicMotionTokens.hoverSpring}
+                                                    className="flex items-center gap-4 rounded-[1.5rem] border border-[rgba(26,72,164,0.12)] bg-white/82 px-4 py-4 text-[var(--ink-soft)] transition-colors hover:bg-white hover:text-[var(--ink)]"
+                                                >
+                                                    <motion.div
+                                                        className="inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-[rgba(23,88,216,0.14)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]"
+                                                        animate={shouldReduceMotion ? undefined : { y: [0, -3, 0] }}
+                                                        transition={shouldReduceMotion ? undefined : { duration: 4.6, ease: "easeInOut", repeat: Infinity }}
+                                                    >
+                                                        <Phone className="h-[1.125rem] w-[1.125rem]" weight="bold" />
+                                                    </motion.div>
+                                                    <span className="block text-sm leading-7">{phone}</span>
+                                                </motion.a>
+                                            </MotionItem>
+                                        ) : null}
+                                        {email ? (
+                                            <MotionItem>
+                                                <motion.a
+                                                    href={`mailto:${email}`}
+                                                    whileHover={shouldReduceMotion ? undefined : { y: -5, scale: 1.01 }}
+                                                    whileTap={shouldReduceMotion ? undefined : { scale: 0.99 }}
+                                                    transition={publicMotionTokens.hoverSpring}
+                                                    className="flex items-center gap-4 rounded-[1.5rem] border border-[rgba(26,72,164,0.12)] bg-white/82 px-4 py-4 text-[var(--ink-soft)] transition-colors hover:bg-white hover:text-[var(--ink)]"
+                                                >
+                                                    <motion.div
+                                                        className="inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-[rgba(23,88,216,0.14)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]"
+                                                        animate={shouldReduceMotion ? undefined : { y: [0, -3, 0] }}
+                                                        transition={shouldReduceMotion ? undefined : { duration: 4.6, ease: "easeInOut", repeat: Infinity, delay: 0.18 }}
+                                                    >
+                                                        <EnvelopeSimple className="h-[1.125rem] w-[1.125rem]" weight="bold" />
+                                                    </motion.div>
+                                                    <span className="block text-sm leading-7">{email}</span>
+                                                </motion.a>
+                                            </MotionItem>
+                                        ) : null}
+                                    </MotionGroup>
+                                </div>
+                            </MotionItem>
+                        </MotionGroup>
                     </div>
-                </ScrollReveal>
-            </div>
+                </MotionSection>
+            </Container>
         </section>
     );
 }

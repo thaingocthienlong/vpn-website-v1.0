@@ -5,12 +5,32 @@ import { unstable_cache } from "next/cache";
 
 type CourseType = "ADMISSION" | "SHORT_COURSE" | "STUDY_ABROAD";
 
+function isMissingSqliteTableError(error: unknown) {
+    return error instanceof Error && error.message.includes("SQLITE_ERROR: no such table");
+}
+
+async function hasSqliteTable(tableName: string) {
+    try {
+        const rows = await prisma.$queryRawUnsafe<Array<{ name: string }>>(
+            "SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?",
+            tableName
+        );
+        return rows.length > 0;
+    } catch {
+        return false;
+    }
+}
+
 /**
  * Service to fetch featured posts directly from the database for SSR
  * Retrieves localized data based on the provided locale
  */
 export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4) {
     try {
+        if (!(await hasSqliteTable("posts"))) {
+            return [];
+        }
+
         const posts = await prisma.post.findMany({
             where: {
                 isPublished: true,
@@ -52,7 +72,9 @@ export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4)
             isFeatured: post.isFeatured,
         }));
     } catch (error) {
-        console.error("Error fetching featured posts via service:", error);
+        if (!isMissingSqliteTableError(error)) {
+            console.error("Error fetching featured posts via service:", error);
+        }
         return [];
     }
 }
@@ -62,6 +84,10 @@ export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4)
  */
 export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 9) {
     try {
+        if (!(await hasSqliteTable("courses"))) {
+            return [];
+        }
+
         const courses = await prisma.course.findMany({
             where: {
                 isPublished: true,
@@ -100,7 +126,9 @@ export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 
             } : null,
         }));
     } catch (error) {
-        console.error("Error fetching featured courses via service:", error);
+        if (!isMissingSqliteTableError(error)) {
+            console.error("Error fetching featured courses via service:", error);
+        }
         return [];
     }
 }
@@ -110,6 +138,10 @@ export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 
  */
 export async function getActivePartners(locale: Locale = 'vi') {
     try {
+        if (!(await hasSqliteTable("partners"))) {
+            return [];
+        }
+
         const partners = await prisma.partner.findMany({
             where: {
                 isActive: true,
@@ -132,7 +164,9 @@ export async function getActivePartners(locale: Locale = 'vi') {
                 : partner.description,
         }));
     } catch (error) {
-        console.error("Error fetching partners via service:", error);
+        if (!isMissingSqliteTableError(error)) {
+            console.error("Error fetching partners via service:", error);
+        }
         return [];
     }
 }

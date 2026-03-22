@@ -3,9 +3,9 @@
 import { SectionWrapper } from "./SectionWrapper";
 import { SectionHeader } from "./SectionHeader";
 import { ReviewCard } from "@/components/cards";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
 import { usePathname } from "next/navigation";
 import { detectLocaleFromPath } from "@/lib/routes";
+import { MotionGroup, MotionItem, MotionSection } from "@/components/motion/PublicMotion";
 
 interface Review {
     id: string;
@@ -94,20 +94,13 @@ export function ReviewsSection({
 
     return (
         <SectionWrapper>
-            <ScrollReveal>
-                <SectionHeader
-                    title={resolvedTitle}
-                    subtitle={resolvedSubtitle}
-                    centered
-                />
-            </ScrollReveal>
+            <MotionSection>
+                <SectionHeader title={resolvedTitle} subtitle={resolvedSubtitle} />
+            </MotionSection>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <MotionGroup className="grid gap-4 lg:grid-cols-[minmax(0,1.18fr)_minmax(0,0.91fr)_minmax(0,0.91fr)] lg:items-stretch" stagger={0.12}>
                 {resolvedReviews.map((review, index) => (
-                    <ScrollReveal
-                        key={review.id}
-                        delay={index + 1}
-                    >
+                    <MotionItem key={review.id}>
                         <ReviewCard
                             name={review.name}
                             role={review.role}
@@ -115,10 +108,12 @@ export function ReviewsSection({
                             content={review.content}
                             avatar={review.avatar}
                             rating={review.rating}
+                            variant={index === 0 ? "feature" : "default"}
+                            className="h-full min-h-[16.75rem] md:min-h-[17.5rem] lg:min-h-[18.25rem]"
                         />
-                    </ScrollReveal>
+                    </MotionItem>
                 ))}
-            </div>
+            </MotionGroup>
         </SectionWrapper>
     );
 }

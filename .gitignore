@@ -56,3 +56,6 @@ dev.db
 /solving-plans
 /documents
 /reports
+
+# clerk configuration (can include secrets)
+/.clerk/

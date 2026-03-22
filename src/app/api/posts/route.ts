@@ -8,6 +8,10 @@ import {
     buildPaginationMeta,
 } from "@/lib/api-response";
 
+function isMissingSqliteTableError(error: unknown) {
+    return error instanceof Error && error.message.includes("SQLITE_ERROR: no such table");
+}
+
 /**
  * GET /api/posts
  * List published posts with pagination
@@ -82,6 +86,11 @@ export async function GET(request: NextRequest) {
             buildPaginationMeta(page, limit, total)
         );
     } catch (error) {
+        if (isMissingSqliteTableError(error)) {
+            const fallbackPage = Math.max(1, parseInt(new URL(request.url).searchParams.get("page") || "1", 10));
+            const fallbackLimit = Math.min(100, Math.max(1, parseInt(new URL(request.url).searchParams.get("limit") || "12", 10)));
+            return successResponse([], buildPaginationMeta(fallbackPage, fallbackLimit, 0));
+        }
         console.error("Error fetching posts:", error);
         return errors.serverError("Không thể tải danh sách bài viết");
     }

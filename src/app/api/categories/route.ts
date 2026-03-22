@@ -2,6 +2,10 @@ import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { successResponse, errors, getLocale } from "@/lib/api-response";
 
+function isMissingSqliteTableError(error: unknown) {
+    return error instanceof Error && error.message.includes("SQLITE_ERROR: no such table");
+}
+
 /**
  * GET /api/categories
  * List categories with optional type filter and post count
@@ -47,6 +51,9 @@ export async function GET(request: NextRequest) {
 
         return successResponse(transformedCategories);
     } catch (error) {
+        if (isMissingSqliteTableError(error)) {
+            return successResponse([]);
+        }
         console.error("Error fetching categories:", error);
         return errors.serverError("Không thể tải danh mục");
     }

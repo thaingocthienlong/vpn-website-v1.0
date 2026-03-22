@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState, useCallback } from "react";
+import React, { useEffect, useId, useRef, useState, useCallback } from "react";
 import { cn } from "../../lib/utils"; // Assuming this is a utility like clsx or classnames
 
 export interface ParticleConfig {
@@ -70,7 +70,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
   const intervalRef = useRef<number>(0);
   const particlesArrayRef = useRef<ParticleConfig[]>([]);
   const isPausedRef = useRef(false);
-  const gooIdRef = useRef('goo-' + Math.random().toString(36).substring(2, 11));
+  const gooId = `goo-${useId().replace(/:/g, "")}`;
 
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
 
@@ -135,7 +135,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
     };
   }, [createParticleElement, dimensions, friction, scaleRange]);
 
-  const updateParticle = (particle: ParticleConfig): boolean => {
+  const updateParticle = useCallback((particle: ParticleConfig): boolean => {
     particle.y -= particle.friction;
 
     const left =
@@ -166,19 +166,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
     }
 
     return true;
-  };
-
-  const animate = useCallback(() => {
-    if (isPausedRef.current) {
-      animationRef.current = requestAnimationFrame(animate);
-      return;
-    }
-
-    particlesArrayRef.current =
-      particlesArrayRef.current.filter(updateParticle);
-
-    animationRef.current = requestAnimationFrame(animate);
-  }, []);
+  }, [particleSize]);
 
   const spawnParticle = useCallback(() => {
     if (!isPausedRef.current && dimensions.width > 0 && dimensions.height > 0) {
@@ -221,6 +209,16 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
 
   useEffect(() => {
     if (dimensions.width > 0 && dimensions.height > 0) {
+      const step = () => {
+        if (isPausedRef.current) {
+          animationRef.current = requestAnimationFrame(step);
+          return;
+        }
+
+        particlesArrayRef.current = particlesArrayRef.current.filter(updateParticle);
+        animationRef.current = requestAnimationFrame(step);
+      };
+
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
       }
@@ -228,7 +226,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
         clearInterval(intervalRef.current);
       }
 
-      animationRef.current = requestAnimationFrame(animate);
+      animationRef.current = requestAnimationFrame(step);
       intervalRef.current = window.setInterval(spawnParticle, spawnInterval);
     }
 
@@ -246,7 +244,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
       });
       particlesArrayRef.current = [];
     };
-  }, [dimensions, spawnInterval, animate, spawnParticle]);
+  }, [dimensions, spawnInterval, spawnParticle, updateParticle]);
 
   // Determine the background class/style to apply
   const hasBgClass = className && className.split(' ').some(cls => cls.startsWith('bg-'));
@@ -276,7 +274,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
         ref={particlesRef}
         className="absolute inset-0 w-full h-full pointer-events-none z-0"
         style={{
-          filter: enableGooEffect ? "url(#" + gooIdRef.current + ")" : undefined,
+          filter: enableGooEffect ? "url(#" + gooId + ")" : undefined,
         }}
       />
 
@@ -287,7 +285,7 @@ const AnimatedBubbleParticles: React.FC<AnimatedBubbleParticlesProps> = ({
       {enableGooEffect && (
         <svg className="absolute w-0 h-0 z-0">
           <defs>
-            <filter id={gooIdRef.current}>
+            <filter id={gooId}>
               <feGaussianBlur
                 in="SourceGraphic"
                 result="blur"

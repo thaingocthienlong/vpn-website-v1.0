@@ -3,6 +3,22 @@ import { prisma } from "@/lib/prisma";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://vienphuongnam.com";
 
+function isMissingSqliteTableError(error: unknown) {
+    return error instanceof Error && error.message.includes("SQLITE_ERROR: no such table");
+}
+
+async function hasSqliteTable(tableName: string) {
+    try {
+        const rows = await prisma.$queryRawUnsafe<Array<{ name: string }>>(
+            "SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?",
+            tableName
+        );
+        return rows.length > 0;
+    } catch {
+        return false;
+    }
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Static pages (both VI and EN)
     const staticRoutes = [
@@ -35,11 +51,24 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         });
     }
 
-    // Dynamic: Published posts
-    const posts = await prisma.post.findMany({
-        where: { isPublished: true },
-        select: { slug: true, updatedAt: true, category: { select: { slug: true } } },
-    });
+    let posts: Array<{
+        slug: string;
+        updatedAt: Date;
+        category: { slug: string } | null;
+    }> = [];
+
+    try {
+        if (await hasSqliteTable("posts")) {
+            posts = await prisma.post.findMany({
+                where: { isPublished: true },
+                select: { slug: true, updatedAt: true, category: { select: { slug: true } } },
+            });
+        }
+    } catch (error) {
+        if (!isMissingSqliteTableError(error)) {
+            console.error("Failed to load sitemap posts:", error);
+        }
+    }
 
     const postEntries: MetadataRoute.Sitemap = posts.map((post) => ({
         url: `${SITE_URL}/news/${post.category?.slug || "tin-tuc"}/${post.slug}`,
@@ -54,11 +83,23 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
     }));
 
-    // Dynamic: Published courses
-    const courses = await prisma.course.findMany({
-        where: { isPublished: true },
-        select: { slug: true, updatedAt: true },
-    });
+    let courses: Array<{
+        slug: string;
+        updatedAt: Date;
+    }> = [];
+
+    try {
+        if (await hasSqliteTable("courses")) {
+            courses = await prisma.course.findMany({
+                where: { isPublished: true },
+                select: { slug: true, updatedAt: true },
+            });
+        }
+    } catch (error) {
+        if (!isMissingSqliteTableError(error)) {
+            console.error("Failed to load sitemap courses:", error);
+        }
+    }
 
     const courseEntries: MetadataRoute.Sitemap = courses.map((course) => ({
         url: `${SITE_URL}/training/${course.slug}`,
@@ -73,23 +114,35 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
     }));
 
-    // Dynamic: Published services (stored as Pages)
-    const services = await prisma.page.findMany({
-        where: {
-            isPublished: true,
-            slug: {
-                in: [
-                    "nghien-cuu-khoa-hoc",
-                    "chuyen-giao-cong-nghe",
-                    "phat-trien-nhan-luc",
-                    "hop-tac-quoc-te",
-                    "tu-van-chinh-sach",
-                    "ho-tro-doanh-nghiep",
-                ],
-            },
-        },
-        select: { slug: true, updatedAt: true },
-    });
+    let services: Array<{
+        slug: string;
+        updatedAt: Date;
+    }> = [];
+
+    try {
+        if (await hasSqliteTable("pages")) {
+            services = await prisma.page.findMany({
+                where: {
+                    isPublished: true,
+                    slug: {
+                        in: [
+                            "nghien-cuu-khoa-hoc",
+                            "chuyen-giao-cong-nghe",
+                            "phat-trien-nhan-luc",
+                            "hop-tac-quoc-te",
+                            "tu-van-chinh-sach",
+                            "ho-tro-doanh-nghiep",
+                        ],
+                    },
+                },
+                select: { slug: true, updatedAt: true },
+            });
+        }
+    } catch (error) {
+        if (!isMissingSqliteTableError(error)) {
+            console.error("Failed to load sitemap services:", error);
+        }
+    }
 
     const serviceEntries: MetadataRoute.Sitemap = services.map((service) => ({
         url: `${SITE_URL}/services/${service.slug}`,
@@ -104,10 +157,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         },
     }));
 
-    // Dynamic: News categories
-    const categories = await prisma.category.findMany({
-        select: { slug: true },
-    });
+    let categories: Array<{ slug: string }> = [];
+
+    try {
+        if (await hasSqliteTable("categories")) {
+            categories = await prisma.category.findMany({
+                select: { slug: true },
+            });
+        }
+    } catch (error) {
+        if (!isMissingSqliteTableError(error)) {
+            console.error("Failed to load sitemap categories:", error);
+        }
+    }
 
     const categoryEntries: MetadataRoute.Sitemap = categories.map((cat) => ({
         url: `${SITE_URL}/news/${cat.slug}`,

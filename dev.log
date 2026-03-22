@@ -1,0 +1,433 @@
+
+> new@0.1.0 dev
+> next dev --port 3000
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.12:3000
+- Environments: .env.local, .env
+- Experiments (use with caution):
+  · cpus: 1
+
+✓ Starting...
+✓ Ready in 1894ms
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 1613ms (compile: 540ms, proxy.ts: 127ms, render: 946ms)
+ POST / 200 in 41ms (compile: 9ms, proxy.ts: 13ms, render: 20ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 191ms (compile: 7ms, proxy.ts: 7ms, render: 177ms)
+ POST / 200 in 33ms (compile: 8ms, proxy.ts: 8ms, render: 17ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /vi 200 in 1525ms (compile: 1153ms, proxy.ts: 7ms, generate-params: 1048ms, render: 365ms)
+ POST /vi 200 in 68ms (compile: 28ms, proxy.ts: 6ms, generate-params: 14ms, render: 33ms)
+ POST /vi 200 in 53ms (compile: 24ms, proxy.ts: 9ms, generate-params: 80µs, render: 20ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /en 200 in 258ms (compile: 23ms, proxy.ts: 10ms, generate-params: 11ms, render: 225ms)
+ POST /en 200 in 46ms (compile: 17ms, proxy.ts: 10ms, generate-params: 55µs, render: 19ms)
+ POST /en 200 in 31ms (compile: 11ms, proxy.ts: 7ms, generate-params: 53µs, render: 13ms)
+ GET /tin-tuc 200 in 261ms (compile: 89ms, proxy.ts: 4ms, render: 168ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 500 in 452ms (compile: 102ms, proxy.ts: 5ms, render: 346ms)
+ POST /tin-tuc 200 in 449ms (compile: 6ms, proxy.ts: 5ms, render: 437ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 500 in 241ms (compile: 51ms, proxy.ts: 4ms, render: 187ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 500 in 167ms (compile: 5ms, proxy.ts: 5ms, render: 157ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 500 in 171ms (compile: 4ms, proxy.ts: 3ms, render: 163ms)
+ GET /dich-vu 200 in 177ms (compile: 70ms, proxy.ts: 4ms, render: 103ms)
+ POST /dich-vu 200 in 21ms (compile: 5ms, proxy.ts: 4ms, render: 12ms)
+ GET /lien-he 200 in 155ms (compile: 52ms, proxy.ts: 6ms, render: 98ms)
+ POST /lien-he 200 in 41ms (compile: 25ms, proxy.ts: 4ms, render: 12ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+✓ Compiled in 1038ms
+ GET / 200 in 62ms (compile: 6ms, proxy.ts: 6ms, render: 51ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 188ms (compile: 7ms, proxy.ts: 4ms, render: 177ms)
+ POST / 200 in 27ms (compile: 5ms, proxy.ts: 9ms, render: 13ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /vi 200 in 869ms (compile: 381ms, proxy.ts: 5ms, generate-params: 13ms, render: 484ms)
+ POST /vi 200 in 42ms (compile: 13ms, proxy.ts: 9ms, generate-params: 65µs, render: 20ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /en 200 in 250ms (compile: 29ms, proxy.ts: 5ms, generate-params: 13ms, render: 216ms)
+ POST /en 200 in 32ms (compile: 10ms, proxy.ts: 9ms, generate-params: 65µs, render: 13ms)
+ GET /tin-tuc 200 in 107ms (compile: 6ms, proxy.ts: 5ms, render: 96ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 81ms (compile: 60ms, proxy.ts: 3ms, render: 17ms)
+ POST /tin-tuc 200 in 77ms (compile: 5ms, proxy.ts: 7ms, render: 64ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 81ms (compile: 61ms, proxy.ts: 5ms, render: 15ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 23ms (compile: 3ms, proxy.ts: 4ms, render: 15ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 26ms (compile: 4ms, proxy.ts: 6ms, render: 15ms)
+ GET /dich-vu 200 in 110ms (compile: 6ms, proxy.ts: 4ms, render: 101ms)
+ POST /dich-vu 200 in 22ms (compile: 5ms, proxy.ts: 5ms, render: 11ms)
+ GET /lien-he 200 in 101ms (compile: 4ms, proxy.ts: 3ms, render: 93ms)
+ POST /lien-he 200 in 24ms (compile: 6ms, proxy.ts: 8ms, render: 11ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /vi 200 in 213ms (compile: 20ms, proxy.ts: 5ms, generate-params: 11ms, render: 188ms)
+ POST /vi 200 in 30ms (compile: 11ms, proxy.ts: 5ms, generate-params: 32µs, render: 14ms)
+ GET /dich-vu 200 in 129ms (compile: 7ms, proxy.ts: 7ms, render: 116ms)
+ POST /dich-vu 200 in 23ms (compile: 5ms, proxy.ts: 5ms, render: 13ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 145ms (compile: 5ms, proxy.ts: 6ms, render: 134ms)
+ POST / 200 in 32ms (compile: 6ms, proxy.ts: 11ms, render: 15ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 158ms (compile: 10ms, proxy.ts: 6ms, render: 142ms)
+ POST / 200 in 27ms (compile: 9ms, proxy.ts: 6ms, render: 11ms)
+✓ Compiled in 346ms
+✓ Compiled in 367ms
+✓ Compiled in 336ms
+✓ Compiled in 913ms
+✓ Compiled in 400ms
+✓ Compiled in 353ms
+✓ Compiled in 240ms
+✓ Compiled in 258ms
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 1687ms (compile: 541ms, proxy.ts: 12ms, render: 1135ms)
+ GET /vi 200 in 1712ms (compile: 1234ms, proxy.ts: 16ms, generate-params: 9ms, render: 462ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 135ms (compile: 10ms, proxy.ts: 4ms, render: 121ms)
+ POST / 200 in 54ms (compile: 6ms, proxy.ts: 4ms, render: 45ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /vi 200 in 183ms (compile: 22ms, proxy.ts: 4ms, generate-params: 8ms, render: 156ms)
+ POST /vi 200 in 27ms (compile: 10ms, proxy.ts: 4ms, generate-params: 33µs, render: 14ms)
+ GET /tin-tuc 200 in 630ms (compile: 295ms, proxy.ts: 3ms, render: 332ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 55ms (compile: 5ms, proxy.ts: 4ms, render: 47ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 55ms (compile: 26ms, proxy.ts: 9ms, render: 20ms)
+ POST /tin-tuc 200 in 61ms (compile: 14ms, proxy.ts: 11ms, render: 36ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 18ms (compile: 4ms, proxy.ts: 3ms, render: 11ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 19ms (compile: 4ms, proxy.ts: 3ms, render: 12ms)
+ GET /dich-vu 200 in 474ms (compile: 238ms, proxy.ts: 3ms, render: 233ms)
+ POST /dich-vu 200 in 19ms (compile: 6ms, proxy.ts: 4ms, render: 8ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 219ms (compile: 12ms, proxy.ts: 10ms, render: 196ms)
+ POST / 200 in 27ms (compile: 6ms, proxy.ts: 4ms, render: 17ms)
+ GET /images/gallery-1.jpg 404 in 278ms (compile: 134ms, render: 144ms)
+ GET /images/gallery-3.jpg 404 in 383ms (compile: 156ms, render: 228ms)
+ GET /images/gallery-2.jpg 404 in 413ms (compile: 239ms, render: 174ms)
+ GET /images/gallery-4.jpg 404 in 130ms (compile: 36ms, render: 94ms)
+ GET /images/gallery-5.jpg 404 in 131ms (compile: 67ms, render: 64ms)
+ GET /images/gallery-6.jpg 404 in 110ms (compile: 15ms, render: 95ms)
+ GET /images/gallery-7.jpg 404 in 112ms (compile: 52ms, render: 59ms)
+ GET /images/gallery-8.jpg 404 in 61ms (compile: 9ms, render: 51ms)
+ GET /dao-tao 200 in 1571ms (compile: 1533ms, proxy.ts: 5ms, render: 33ms)
+prisma:error SQLITE_ERROR: no such table: main.courses
+prisma:error SQLITE_ERROR: no such table: main.courses
+ GET /api/courses?page=1&limit=12 500 in 523ms (compile: 239ms, proxy.ts: 6ms, render: 278ms)
+prisma:error SQLITE_ERROR: no such table: main.courses
+prisma:error SQLITE_ERROR: no such table: main.courses
+ GET /api/courses?page=1&limit=12 500 in 240ms (compile: 10ms, proxy.ts: 6ms, render: 225ms)
+ GET /dich-vu 200 in 40ms (compile: 8ms, proxy.ts: 4ms, render: 28ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /gioi-thieu 200 in 68ms (compile: 22ms, proxy.ts: 5ms, generate-params: 12ms, render: 41ms)
+✓ Compiled in 441ms
+✓ Compiled in 444ms
+✓ Compiled in 426ms
+✓ Compiled in 510ms
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /gioi-thieu 200 in 719ms (compile: 243ms, proxy.ts: 133ms, generate-params: 10ms, render: 342ms)
+ GET /gioi-thieu 200 in 196ms (compile: 19ms, proxy.ts: 6ms, generate-params: 57µs, render: 171ms)
+ GET /gioi-thieu 200 in 76ms (compile: 12ms, proxy.ts: 6ms, generate-params: 28µs, render: 58ms)
+✓ Compiled in 448ms
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /gioi-thieu 200 in 639ms (compile: 268ms, proxy.ts: 34ms, generate-params: 14ms, render: 338ms)
+ GET /gioi-thieu 200 in 202ms (compile: 11ms, proxy.ts: 6ms, generate-params: 35µs, render: 185ms)
+ GET /gioi-thieu 200 in 125ms (compile: 16ms, proxy.ts: 8ms, generate-params: 57µs, render: 101ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+✓ Compiled in 292ms
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /gioi-thieu 200 in 164ms (compile: 18ms, proxy.ts: 5ms, generate-params: 8ms, render: 142ms)
+ GET /gioi-thieu 200 in 81ms (compile: 12ms, proxy.ts: 4ms, generate-params: 35µs, render: 65ms)
+✓ Compiled in 344ms
+✓ Compiled in 336ms
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+✓ Compiled in 377ms
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /gioi-thieu 200 in 161ms (compile: 21ms, proxy.ts: 5ms, generate-params: 9ms, render: 135ms)
+ GET /gioi-thieu 200 in 77ms (compile: 13ms, proxy.ts: 5ms, generate-params: 31µs, render: 59ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+✓ Compiled in 311ms
+ GET /gioi-thieu 200 in 97ms (compile: 23ms, proxy.ts: 5ms, generate-params: 12ms, render: 69ms)
+ GET /dich-vu 200 in 518ms (compile: 166ms, proxy.ts: 5ms, render: 347ms)
+ POST /dich-vu 200 in 26ms (compile: 6ms, proxy.ts: 8ms, render: 13ms)
+ GET /dich-vu 200 in 116ms (compile: 8ms, proxy.ts: 8ms, render: 100ms)
+ POST /dich-vu 200 in 29ms (compile: 8ms, proxy.ts: 7ms, render: 14ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 105ms (compile: 74ms, proxy.ts: 6ms, render: 24ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=1 200 in 71ms (compile: 44ms, proxy.ts: 5ms, render: 22ms)
+prisma:error SQLITE_ERROR: no such table: main.pages
+ GET /api/services?locale=en 500 in 502ms (compile: 221ms, proxy.ts: 6ms, render: 274ms)
+✓ Compiled in 290ms
+ GET /dich-vu 200 in 502ms (compile: 183ms, proxy.ts: 5ms, render: 315ms)
+ GET /dich-vu/nghien-cuu 200 in 1955ms (compile: 1836ms, proxy.ts: 5ms, render: 113ms)
+ GET /tin-tuc 200 in 690ms (compile: 360ms, proxy.ts: 4ms, render: 326ms)
+ GET /tin-tuc/su-kien 200 in 1826ms (compile: 1696ms, proxy.ts: 6ms, render: 125ms)
+ GET /tin-tuc/su-kien/mau-bai-viet 200 in 1832ms (compile: 1711ms, proxy.ts: 4ms, render: 117ms)
+ GET /en/services 200 in 1867ms (compile: 1711ms, proxy.ts: 9ms, generate-params: 764ms, render: 147ms)
+prisma:error SQLITE_ERROR: no such table: main.pages
+ GET /en/services/nghien-cuu 200 in 2.1s (compile: 1970ms, proxy.ts: 11ms, render: 154ms)
+ GET /en/news 200 in 1921ms (compile: 1806ms, proxy.ts: 6ms, generate-params: 844ms, render: 109ms)
+ GET /en/news/sample 200 in 1920ms (compile: 1807ms, proxy.ts: 6ms, render: 108ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /en/news/sample/example 200 in 2.3s (compile: 2.1s, proxy.ts: 10ms, render: 141ms)
+ GET /tin-tuc 200 in 113ms (compile: 9ms, proxy.ts: 5ms, render: 98ms)
+ POST /tin-tuc 200 in 31ms (compile: 9ms, proxy.ts: 5ms, render: 16ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 47ms (compile: 23ms, proxy.ts: 8ms, render: 16ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 62ms (compile: 40ms, proxy.ts: 8ms, render: 14ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 81ms (compile: 45ms, proxy.ts: 19ms, render: 16ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 90ms (compile: 63ms, proxy.ts: 14ms, render: 13ms)
+ GET /en/news 200 in 139ms (compile: 21ms, proxy.ts: 16ms, generate-params: 9ms, render: 102ms)
+ POST /en/news 200 in 33ms (compile: 13ms, proxy.ts: 8ms, generate-params: 48µs, render: 12ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=9&locale=en 200 in 38ms (compile: 16ms, proxy.ts: 8ms, render: 15ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST&locale=en 200 in 52ms (compile: 32ms, proxy.ts: 8ms, render: 12ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest&locale=en 200 in 69ms (compile: 42ms, proxy.ts: 11ms, render: 16ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular&locale=en 200 in 79ms (compile: 58ms, proxy.ts: 8ms, render: 13ms)
+ GET /en/services 200 in 126ms (compile: 23ms, proxy.ts: 7ms, generate-params: 9ms, render: 96ms)
+prisma:error SQLITE_ERROR: no such table: main.pages
+ GET /api/services?locale=en 500 in 215ms (compile: 5ms, proxy.ts: 5ms, render: 205ms)
+ POST /en/services 200 in 87ms (compile: 38ms, proxy.ts: 28ms, generate-params: 15ms, render: 21ms)
+ GET /dich-vu/nghien-cuu 200 in 119ms (compile: 21ms, proxy.ts: 4ms, render: 94ms)
+ POST /dich-vu/nghien-cuu 200 in 47ms (compile: 26ms, proxy.ts: 4ms, render: 17ms)
+ GET /en/news/sample 200 in 164ms (compile: 22ms, proxy.ts: 8ms, render: 134ms)
+ POST /en/news/sample 200 in 44ms (compile: 22ms, proxy.ts: 8ms, render: 14ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?category=sample&page=1&limit=9&locale=en 200 in 51ms (compile: 17ms, proxy.ts: 14ms, render: 20ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST&locale=en 200 in 62ms (compile: 37ms, proxy.ts: 13ms, render: 12ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest&locale=en 200 in 76ms (compile: 48ms, proxy.ts: 13ms, render: 14ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular&locale=en 200 in 89ms (compile: 63ms, proxy.ts: 13ms, render: 13ms)
+ GET /dich-vu 200 in 45ms (compile: 7ms, proxy.ts: 7ms, render: 32ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 277ms (compile: 178ms, proxy.ts: 4ms, render: 94ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /gioi-thieu 200 in 92ms (compile: 25ms, proxy.ts: 3ms, generate-params: 10ms, render: 64ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 383ms (compile: 7ms, proxy.ts: 6ms, render: 370ms)
+ POST / 200 in 33ms (compile: 7ms, proxy.ts: 9ms, render: 17ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /gioi-thieu 200 in 78ms (compile: 21ms, proxy.ts: 4ms, generate-params: 12ms, render: 53ms)
+ GET /dao-tao 200 in 218ms (compile: 161ms, proxy.ts: 4ms, render: 53ms)
+prisma:error SQLITE_ERROR: no such table: main.courses
+prisma:error SQLITE_ERROR: no such table: main.courses
+ GET /api/courses?page=1&limit=12 500 in 262ms (compile: 35ms, proxy.ts: 20ms, render: 208ms)
+prisma:error SQLITE_ERROR: no such table: main.courses
+prisma:error SQLITE_ERROR: no such table: main.courses
+ GET /api/courses?page=1&limit=12 500 in 142ms (compile: 5ms, proxy.ts: 4ms, render: 134ms)
+ GET /dich-vu 200 in 35ms (compile: 5ms, proxy.ts: 4ms, render: 26ms)
+ GET /tin-tuc 200 in 38ms (compile: 7ms, proxy.ts: 5ms, render: 25ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 51ms (compile: 12ms, proxy.ts: 23ms, render: 16ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 58ms (compile: 28ms, proxy.ts: 23ms, render: 7ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 71ms (compile: 38ms, proxy.ts: 23ms, render: 11ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 69ms (compile: 50ms, proxy.ts: 9ms, render: 11ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 27ms (compile: 12ms, proxy.ts: 8ms, render: 8ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 40ms (compile: 21ms, proxy.ts: 8ms, render: 11ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 51ms (compile: 33ms, proxy.ts: 8ms, render: 10ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 64ms (compile: 45ms, proxy.ts: 8ms, render: 11ms)
+ GET /lien-he 200 in 350ms (compile: 292ms, proxy.ts: 4ms, render: 54ms)
+ GET /tin-tuc 200 in 36ms (compile: 7ms, proxy.ts: 5ms, render: 24ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 44ms (compile: 16ms, proxy.ts: 14ms, render: 15ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 54ms (compile: 32ms, proxy.ts: 12ms, render: 9ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 69ms (compile: 41ms, proxy.ts: 12ms, render: 16ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 82ms (compile: 55ms, proxy.ts: 15ms, render: 13ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 35ms (compile: 13ms, proxy.ts: 12ms, render: 10ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 49ms (compile: 24ms, proxy.ts: 10ms, render: 15ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 68ms (compile: 41ms, proxy.ts: 10ms, render: 18ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 83ms (compile: 59ms, proxy.ts: 10ms, render: 14ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /gioi-thieu 200 in 69ms (compile: 19ms, proxy.ts: 3ms, generate-params: 10ms, render: 46ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 41ms (compile: 21ms, proxy.ts: 6ms, render: 14ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 50ms (compile: 29ms, proxy.ts: 12ms, render: 10ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 66ms (compile: 41ms, proxy.ts: 11ms, render: 14ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 81ms (compile: 55ms, proxy.ts: 10ms, render: 16ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 78ms (compile: 18ms, proxy.ts: 44ms, render: 16ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 57ms (compile: 32ms, proxy.ts: 13ms, render: 12ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 68ms (compile: 46ms, proxy.ts: 8ms, render: 15ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 87ms (compile: 62ms, proxy.ts: 7ms, render: 18ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 56ms (compile: 7ms, proxy.ts: 5ms, render: 43ms)
+ GET /tin-tuc 200 in 33ms (compile: 8ms, proxy.ts: 4ms, render: 22ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 42ms (compile: 14ms, proxy.ts: 10ms, render: 18ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 53ms (compile: 33ms, proxy.ts: 10ms, render: 11ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 67ms (compile: 44ms, proxy.ts: 11ms, render: 12ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 79ms (compile: 57ms, proxy.ts: 11ms, render: 10ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+ GET /api/categories?type=POST 200 in 27ms (compile: 10ms, proxy.ts: 10ms, render: 7ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=newest 200 in 36ms (compile: 17ms, proxy.ts: 8ms, render: 10ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?page=1&limit=12 200 in 45ms (compile: 28ms, proxy.ts: 7ms, render: 9ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+ GET /api/posts?limit=5&sort=popular 200 in 58ms (compile: 39ms, proxy.ts: 7ms, render: 12ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 47ms (compile: 5ms, proxy.ts: 3ms, render: 39ms)
+ GET /images/gallery-1.jpg 404 in 218ms (compile: 54ms, render: 164ms)
+ GET /images/gallery-2.jpg 404 in 225ms (compile: 166ms, render: 59ms)
+ GET /images/gallery-3.jpg 404 in 65ms (compile: 7ms, render: 58ms)
+ GET /images/gallery-4.jpg 404 in 129ms (compile: 10ms, render: 119ms)
+ GET /images/gallery-5.jpg 404 in 134ms (compile: 56ms, render: 78ms)
+ GET /images/gallery-6.jpg 404 in 121ms (compile: 13ms, render: 108ms)
+ GET /images/gallery-7.jpg 404 in 130ms (compile: 66ms, render: 64ms)
+ GET /images/gallery-8.jpg 404 in 63ms (compile: 6ms, render: 57ms)

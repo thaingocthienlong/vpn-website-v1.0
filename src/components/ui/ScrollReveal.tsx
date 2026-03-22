@@ -1,13 +1,13 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode, createElement } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 
 interface ScrollRevealProps {
     children: ReactNode;
     delay?: number;
     threshold?: number;
     className?: string;
-    as?: string;
+    as?: "div" | "section" | "article" | "aside" | "main";
 }
 
 export function ScrollReveal({
@@ -17,7 +17,7 @@ export function ScrollReveal({
     className = "",
     as = "div",
 }: ScrollRevealProps) {
-    const ref = useRef<HTMLDivElement>(null);
+    const ref = useRef<HTMLElement | null>(null);
 
     useEffect(() => {
         const el = ref.current;
@@ -47,14 +47,27 @@ export function ScrollReveal({
         };
     }, [threshold]);
 
-    return createElement(
-        as,
-        {
-            ref,
-            className: `reveal ${className}`,
-            ...(delay ? { "data-delay": delay } : {}),
-        },
-        children
-    );
+    const sharedProps = {
+        className: `reveal ${className}`.trim(),
+        ...(delay ? { "data-delay": delay } : {}),
+    };
+
+    if (as === "section") {
+        return <section ref={ref as React.Ref<HTMLElement>} {...sharedProps}>{children}</section>;
+    }
+
+    if (as === "article") {
+        return <article ref={ref as React.Ref<HTMLElement>} {...sharedProps}>{children}</article>;
+    }
+
+    if (as === "aside") {
+        return <aside ref={ref as React.Ref<HTMLElement>} {...sharedProps}>{children}</aside>;
+    }
+
+    if (as === "main") {
+        return <main ref={ref as React.Ref<HTMLElement>} {...sharedProps}>{children}</main>;
+    }
+
+    return <div ref={ref as React.Ref<HTMLDivElement>} {...sharedProps}>{children}</div>;
 }
 

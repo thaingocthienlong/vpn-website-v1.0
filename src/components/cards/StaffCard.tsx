@@ -1,69 +1,91 @@
+import Image from "next/image";
+import { cn } from "@/lib/utils";
 
-import Image from 'next/image';
-import { cn } from '@/lib/utils';
-import { Media, Staff } from '@prisma/client';
+type AvatarLike = {
+    url: string;
+    secureUrl?: string | null;
+} | null;
+
+export interface StaffCardPerson {
+    id: string;
+    name: string;
+    title?: string | null;
+    position?: string | null;
+    bio?: string | null;
+    avatar?: AvatarLike;
+}
 
 interface StaffCardProps {
-    person: Staff & { avatar: Media | null };
-    variant?: 'default' | 'large';
+    person: StaffCardPerson;
+    variant?: "default" | "large";
     className?: string;
 }
 
-export function StaffCard({ person, variant = 'default', className }: StaffCardProps) {
-    const isLarge = variant === 'large';
+export function StaffCard({ person, variant = "default", className }: StaffCardProps) {
+    const isLarge = variant === "large";
+    const roleLabel = person.position || person.title;
+    const avatarUrl = person.avatar?.secureUrl || person.avatar?.url;
 
     return (
-        <div className={cn(
-            "group flex flex-col items-center text-center bg-white shadow-sm rounded-2xl overflow-hidden hover:shadow-lg hover:-translate-y-1 transition-all duration-300 border border-slate-100",
-            isLarge ? "p-6" : "p-4",
-            className
-        )}>
-            <div className={cn(
-                "relative overflow-hidden rounded-full border-4 border-slate-100 shadow-sm bg-white mb-4",
-                isLarge ? "w-48 h-48" : "w-32 h-32"
-            )}>
-                {person.avatar ? (
-                    <Image
-                        src={person.avatar.secureUrl || person.avatar.url}
-                        alt={person.name}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        sizes={isLarge ? "192px" : "128px"}
-                    />
-                ) : (
-                    <div className="w-full h-full flex items-center justify-center bg-slate-50 text-slate-400">
-                        <svg className="w-1/2 h-1/2" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
-                        </svg>
-                    </div>
-                )}
-            </div>
-
-            <h3 className={cn(
-                "font-bold text-slate-900 group-hover:text-primary transition-colors",
-                isLarge ? "text-xl mb-1" : "text-lg mb-1"
-            )}>
-                {person.name}
-            </h3>
-
-            {person.title && (
-                <p className={cn(
-                    "text-slate-500 font-medium tracking-wide mb-2 text-center",
-                    isLarge ? "text-sm" : "text-xs"
-                )}>
-                    {person.title}
-                </p>
+        <article
+            className={cn(
+                "group public-panel interactive-card flex h-full flex-col rounded-[2rem]",
+                isLarge ? "p-6 md:p-7" : "p-5 md:p-6",
+                className
             )}
+        >
+            <div className="flex items-start gap-4">
+                <div
+                    className={cn(
+                        "relative flex-none overflow-hidden rounded-[1.45rem] border border-[rgba(26,72,164,0.12)] bg-[rgba(23,88,216,0.08)]",
+                        isLarge ? "h-24 w-24" : "h-[72px] w-[72px]"
+                    )}
+                >
+                    {avatarUrl ? (
+                        <Image
+                            src={avatarUrl}
+                            alt={person.name}
+                            fill
+                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            sizes={isLarge ? "96px" : "72px"}
+                        />
+                    ) : (
+                        <div className="flex h-full w-full items-center justify-center text-lg font-semibold text-[var(--accent-strong)]">
+                            {person.name.charAt(0)}
+                        </div>
+                    )}
+                </div>
+
+                <div className="min-w-0 space-y-2 text-left">
+                    <h3
+                        className={cn(
+                            "leading-tight text-[var(--ink)] transition-colors group-hover:text-[var(--accent-strong)]",
+                            isLarge ? "text-[1.75rem]" : "text-xl"
+                        )}
+                    >
+                        {person.name}
+                    </h3>
+
+                    {person.title && (
+                        <p className="text-sm leading-7 text-[var(--accent-strong)]">
+                            {person.title}
+                        </p>
+                    )}
+
+                    {roleLabel && (
+                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                            {roleLabel}
+                        </p>
+                    )}
+                </div>
+            </div>
 
             {person.bio && (
                 <div
-                    className={cn(
-                        "text-slate-700 prose prose-sm max-w-none w-full text-left prose-p:my-1 prose-strong:text-primary prose-strong:font-bold prose-ul:list-disc prose-ul:pl-4 prose-li:my-0.5",
-                        isLarge ? "text-sm" : "text-xs"
-                    )}
+                    className="prose prose-sm mt-5 max-w-none border-t border-[rgba(26,72,164,0.1)] pt-5 text-[var(--ink-soft)] prose-p:my-2 prose-p:text-[var(--ink-soft)] prose-strong:text-[var(--ink)] prose-ul:pl-5 prose-li:my-1 prose-li:text-[var(--ink-soft)]"
                     dangerouslySetInnerHTML={{ __html: person.bio }}
                 />
             )}
-        </div>
+        </article>
     );
 }

@@ -183,6 +183,17 @@ function ResultItem({ item, onClose }: { item: SearchResult; onClose: () => void
 }
 
 function HashIcon({ type }: { type: string }) {
-    // Simple icon mapper based on type string or just return a generic icon
+    if (type.toLowerCase().includes("service")) {
+        return <Briefcase className="h-5 w-5" />;
+    }
+
+    if (type.toLowerCase().includes("news") || type.toLowerCase().includes("tin")) {
+        return <FileText className="h-5 w-5" />;
+    }
+
+    if (type.toLowerCase().includes("training") || type.toLowerCase().includes("đào")) {
+        return <BookOpen className="h-5 w-5" />;
+    }
+
     return <Search className="h-5 w-5" />;
 }

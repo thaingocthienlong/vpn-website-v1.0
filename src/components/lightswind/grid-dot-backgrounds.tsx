@@ -3,6 +3,18 @@
 import React, { useEffect, useState } from "react";
 import { cn } from "../../lib/utils";
 
+function detectDarkMode() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  const prefersDarkMode =
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  return document.documentElement.classList.contains("dark") || prefersDarkMode;
+}
+
 // Grid Background Component
 export interface GridBackgroundProps extends React.HTMLProps<HTMLDivElement> {
   gridSize?: number;
@@ -23,34 +35,32 @@ export const GridBackground = ({
   fadeIntensity = 20,
   ...props
 }: GridBackgroundProps) => {
-  const [currentGridColor, setCurrentGridColor] = useState(gridColor);
+  const [isDarkMode, setIsDarkMode] = useState(() => detectDarkMode());
 
   useEffect(() => {
-    const prefersDarkMode =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const isDarkModeActive =
-      document.documentElement.classList.contains("dark") || prefersDarkMode;
-    setCurrentGridColor(isDarkModeActive ? darkGridColor : gridColor);
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const syncTheme = () => {
+      setIsDarkMode(detectDarkMode());
+    };
 
-    const observer = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
         if (mutation.attributeName === "class") {
-          const updatedIsDarkModeActive =
-            document.documentElement.classList.contains("dark");
-          setCurrentGridColor(
-            updatedIsDarkModeActive ? darkGridColor : gridColor
-          );
+          syncTheme();
         }
       });
     });
 
     observer.observe(document.documentElement, { attributes: true });
+    mediaQuery.addEventListener("change", syncTheme);
 
-    return function () {
-      return observer.disconnect();
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener("change", syncTheme);
     };
-  }, [gridColor, darkGridColor]);
+  }, []);
+
+  const currentGridColor = isDarkMode ? darkGridColor : gridColor;
 
   return (
     <div
@@ -117,32 +127,32 @@ export const DotBackground = ({
   fadeIntensity = 100,
   ...props
 }: DotBackgroundProps) => {
-  const [currentDotColor, setCurrentDotColor] = useState(dotColor);
+  const [isDarkMode, setIsDarkMode] = useState(() => detectDarkMode());
 
   useEffect(() => {
-    const prefersDarkMode =
-      window.matchMedia &&
-      window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const isDarkModeActive =
-      document.documentElement.classList.contains("dark") || prefersDarkMode;
-    setCurrentDotColor(isDarkModeActive ? darkDotColor : dotColor);
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    const syncTheme = () => {
+      setIsDarkMode(detectDarkMode());
+    };
 
-    const observer = new MutationObserver(function (mutations) {
-      mutations.forEach(function (mutation) {
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
         if (mutation.attributeName === "class") {
-          const updatedIsDarkModeActive =
-            document.documentElement.classList.contains("dark");
-          setCurrentDotColor(updatedIsDarkModeActive ? darkDotColor : dotColor);
+          syncTheme();
         }
       });
     });
 
     observer.observe(document.documentElement, { attributes: true });
+    mediaQuery.addEventListener("change", syncTheme);
 
-    return function () {
-      return observer.disconnect();
+    return () => {
+      observer.disconnect();
+      mediaQuery.removeEventListener("change", syncTheme);
     };
-  }, [dotColor, darkDotColor]);
+  }, []);
+
+  const currentDotColor = isDarkMode ? darkDotColor : dotColor;
 
   return (
     <div
@@ -188,4 +198,6 @@ export const DotBackground = ({
   );
 };
 
-export default { GridBackground, DotBackground };
+const gridDotBackgrounds = { GridBackground, DotBackground };
+
+export default gridDotBackgrounds;

@@ -1,8 +1,7 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 
-export interface InputProps
-    extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string;
     error?: string;
     helperText?: string;
@@ -25,30 +24,28 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         },
         ref
     ) => {
-        const inputId = id || React.useId();
+        const generatedId = React.useId();
+        const inputId = id ?? generatedId;
 
         const baseInputStyles =
-            "w-full px-5 py-3 rounded-full border-2 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0";
+            "public-input-surface w-full rounded-[1.35rem] px-4 py-3.5 text-sm text-[var(--ink)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-0";
 
         const normalStyles =
-            "border-slate-200 focus:ring-blue-500/50 focus:border-blue-400 bg-white placeholder:text-slate-400";
+            "placeholder:text-[var(--ink-muted)] focus:border-[rgba(23,88,216,0.28)] focus:ring-[rgba(23,88,216,0.18)]";
 
         const errorStyles =
-            "border-red-400 focus:ring-red-500/50 focus:border-red-400";
+            "border-[rgba(160,79,92,0.45)] focus:border-[rgba(160,79,92,0.45)] focus:ring-[rgba(160,79,92,0.16)]";
 
         return (
             <div className="w-full">
                 {label && (
-                    <label
-                        htmlFor={inputId}
-                        className="block text-sm font-medium text-slate-700 mb-2"
-                    >
+                    <label htmlFor={inputId} className="mb-2 block text-sm font-medium text-[var(--ink)]">
                         {label}
                     </label>
                 )}
                 <div className="relative">
                     {leftAddon && (
-                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-700">
+                        <div className="absolute left-4 top-1/2 -translate-y-1/2 text-[var(--ink-muted)]">
                             {leftAddon}
                         </div>
                     )}
@@ -68,18 +65,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                         {...props}
                     />
                     {rightAddon && (
-                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-700">
+                        <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--ink-muted)]">
                             {rightAddon}
                         </div>
                     )}
                 </div>
                 {error && (
-                    <p id={`${inputId}-error`} className="mt-1 text-sm text-red-600">
+                    <p id={`${inputId}-error`} className="mt-1 text-sm text-[var(--error)]">
                         {error}
                     </p>
                 )}
                 {helperText && !error && (
-                    <p className="mt-1 text-sm text-slate-500">{helperText}</p>
+                    <p className="mt-1 text-sm text-[var(--ink-muted)]">{helperText}</p>
                 )}
             </div>
         );

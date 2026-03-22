@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface CourseSection {
     id: string;
@@ -17,64 +17,79 @@ interface TocItem {
 interface CourseContentProps {
     sections: CourseSection[];
     toc: TocItem[];
+    tocTitle?: string;
 }
 
-export default function CourseContent({ sections, toc }: CourseContentProps) {
-    const [activeSection, setActiveSection] = useState<string>(
-        sections.length > 0 ? sections[0].key : ""
-    );
+export default function CourseContent({ sections, toc, tocTitle = "Nội dung" }: CourseContentProps) {
+    const [activeSection, setActiveSection] = useState<string>(sections.length > 0 ? sections[0].key : "");
     const sectionRefs = useRef<{ [key: string]: HTMLElement | null }>({});
 
-    // Scroll spy for TOC
     useEffect(() => {
-        if (!sections.length) return;
+        if (!sections.length || typeof window === "undefined") return;
 
-        const handleScroll = () => {
-            const scrollPosition = window.scrollY + 150;
+        const observer = new IntersectionObserver(
+            (entries) => {
+                const visibleEntry = entries
+                    .filter((entry) => entry.isIntersecting)
+                    .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
 
-            for (const section of sections) {
-                const element = sectionRefs.current[section.key];
-                if (element) {
-                    const { offsetTop, offsetHeight } = element;
-                    if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-                        setActiveSection(section.key);
-                        break;
-                    }
+                if (visibleEntry?.target?.id) {
+                    setActiveSection(visibleEntry.target.id);
                 }
+            },
+            {
+                rootMargin: "-20% 0px -55% 0px",
+                threshold: [0.15, 0.35, 0.6],
             }
-        };
+        );
 
-        window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);
+        sections.forEach((section) => {
+            const element = sectionRefs.current[section.key];
+            if (element) {
+                observer.observe(element);
+            }
+        });
+
+        return () => {
+            observer.disconnect();
+        };
     }, [sections]);
 
     const scrollToSection = (sectionKey: string) => {
         const element = sectionRefs.current[sectionKey];
         if (element) {
-            window.scrollTo({
-                top: element.offsetTop - 120,
+            element.scrollIntoView({
                 behavior: "smooth",
+                block: "start",
             });
         }
     };
 
     return (
         <>
-            {/* TOC Sidebar - Fixed Left */}
             <div className="lg:col-span-1">
-                <div className="bg-white shadow-sm rounded-2xl p-6 border border-slate-200 sticky top-32">
-                    <h3 className="font-heading font-bold text-slate-800 mb-4">
-                        Nội dung
+                <div className="public-panel sticky top-28 rounded-[2rem] p-5 md:p-6">
+                    <div className="mb-5 flex items-center justify-between gap-3 border-b border-[rgba(26,72,164,0.1)] pb-4">
+                        <h3 className="font-heading text-xl font-bold text-[var(--ink)]">
+                            {tocTitle}
+                        </h3>
+                        <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                            {toc.length}
+                        </span>
+                    </div>
+                    <h3 className="sr-only">
+                        {tocTitle}
                     </h3>
                     <nav className="space-y-1">
                         {toc.map((item) => (
                             <button
                                 key={item.key}
                                 onClick={() => scrollToSection(item.key)}
-                                className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors cursor-pointer ${activeSection === item.key
-                                    ? "bg-blue-50 text-blue-700 font-medium"
-                                    : "text-slate-600 hover:bg-slate-50"
-                                    }`}
+                                className={`w-full rounded-[1rem] px-3 py-2.5 text-left text-sm transition-colors ${
+                                    activeSection === item.key
+                                        ? "bg-[rgba(23,88,216,0.1)] font-medium text-[var(--accent-strong)] shadow-[inset_0_1px_0_rgba(255,255,255,0.55)]"
+                                        : "text-[var(--ink-soft)] hover:bg-[rgba(23,88,216,0.04)] hover:text-[var(--ink)]"
+                                }`}
                             >
                                 {item.title}
                             </button>
@@ -83,21 +98,23 @@ export default function CourseContent({ sections, toc }: CourseContentProps) {
                 </div>
             </div>
 
-            {/* Content Sections */}
             <div className="lg:col-span-3">
-                <div className="space-y-8">
+                <div className="space-y-6 md:space-y-8">
                     {sections.map((section) => (
                         <div
                             key={section.key}
                             id={section.key}
                             ref={(el) => { sectionRefs.current[section.key] = el; }}
-                            className="bg-white shadow-sm rounded-2xl p-8 border border-slate-200"
+                            className="content-area public-band rounded-[2.2rem] p-6 md:p-8"
                         >
-                            <h2 className="text-2xl font-heading font-bold text-slate-800 mb-6">
-                                {section.title}
-                            </h2>
+                            <div className="mb-6 flex items-start gap-4">
+                                <div className="mt-1 h-12 w-px shrink-0 bg-[rgba(23,88,216,0.22)] md:h-16" />
+                                <h2 className="text-2xl font-heading font-bold text-[var(--ink)] md:text-[2.1rem]">
+                                    {section.title}
+                                </h2>
+                            </div>
                             <article
-                                className="prose prose-lg max-w-none prose-headings:font-heading prose-headings:text-slate-800 prose-p:text-slate-600 prose-li:text-slate-600 prose-table:text-sm prose-table:border-collapse prose-th:bg-white prose-th:p-2 prose-td:p-2 prose-td:border-slate-200 prose-th:border-slate-200 prose-td:border prose-th:border prose-img:rounded-xl prose-img:shadow-md prose-strong:text-slate-800 prose-a:text-blue-400"
+                                className="prose prose-lg max-w-none"
                                 dangerouslySetInnerHTML={{ __html: section.content }}
                             />
                         </div>

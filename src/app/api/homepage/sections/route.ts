@@ -1,16 +1,12 @@
-import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { successResponse, errors, getLocale } from "@/lib/api-response";
+import { successResponse, errors } from "@/lib/api-response";
 
 /**
  * GET /api/homepage/sections
  * Get all enabled homepage sections for display
  */
-export async function GET(request: NextRequest) {
+export async function GET() {
     try {
-        const { searchParams } = new URL(request.url);
-        const locale = getLocale(searchParams);
-
         const sections = await prisma.homepageSection.findMany({
             where: { isEnabled: true },
             orderBy: { sortOrder: "asc" },

@@ -200,6 +200,66 @@
       "other": "Khác"
     }
   },
+  "registration": {
+    "title": "Đăng ký",
+    "titleHighlight": "khóa học",
+    "subtitle": "Hoàn thành 3 bước đơn giản để đăng ký tham gia khóa đào tạo",
+    "steps": {
+      "personal": "Thông tin cá nhân",
+      "course": "Chọn khóa học",
+      "confirm": "Xác nhận"
+    },
+    "fields": {
+      "fullName": "Họ và tên",
+      "phone": "Số điện thoại",
+      "company": "Công ty/Tổ chức",
+      "position": "Chức vụ",
+      "courseType": "Loại khóa học",
+      "courseName": "Tên khóa học",
+      "studyFormat": "Hình thức học",
+      "note": "Ghi chú"
+    },
+    "placeholders": {
+      "fullName": "Nguyễn Văn A",
+      "email": "email@example.com",
+      "phone": "0901 234 567",
+      "company": "Tên công ty",
+      "position": "Chức vụ hiện tại",
+      "courseName": "Tên khóa học hoặc chuyên đề",
+      "note": "Yêu cầu đặc biệt, câu hỏi..."
+    },
+    "errors": {
+      "fullName": "Vui lòng nhập họ tên (tối thiểu 2 ký tự)",
+      "email": "Vui lòng nhập email hợp lệ",
+      "phone": "Vui lòng nhập số điện thoại hợp lệ",
+      "courseType": "Vui lòng chọn loại khóa học",
+      "courseName": "Vui lòng nhập tên khóa học",
+      "agreeTerms": "Vui lòng đồng ý với điều khoản để tiếp tục"
+    },
+    "select": {
+      "courseType": "Chọn loại khóa học",
+      "studyFormat": "Chọn hình thức học"
+    },
+    "terms": {
+      "agree": "Tôi đồng ý với",
+      "service": "điều khoản dịch vụ",
+      "and": "và",
+      "privacy": "chính sách bảo mật",
+      "ofInstitute": "của Viện."
+    },
+    "success": {
+      "title": "Đăng ký thành công!",
+      "message": "Cảm ơn bạn đã đăng ký. Chúng tôi sẽ liên hệ xác nhận trong vòng 24 giờ.",
+      "viewCourses": "Xem khóa học khác",
+      "backHome": "Về trang chủ"
+    },
+    "nav": {
+      "back": "Quay lại",
+      "continue": "Tiếp tục",
+      "submit": "Hoàn tất đăng ký",
+      "processing": "Đang xử lý..."
+    }
+  },
   "staff": {
     "title": "Đội ngũ",
     "leaders": "Ban lãnh đạo",

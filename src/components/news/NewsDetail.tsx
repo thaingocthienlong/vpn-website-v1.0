@@ -4,7 +4,16 @@ import Image from "next/image";
 import Link from "next/link";
 import { format } from "date-fns";
 import { vi, enUS } from "date-fns/locale";
-import { Eye, Calendar, Tag, Share2, Facebook, Linkedin, Copy } from "lucide-react";
+import {
+    CalendarBlank,
+    Copy,
+    Eye,
+    FacebookLogo,
+    LinkedinLogo,
+    ShareNetwork,
+    Tag,
+} from "@phosphor-icons/react";
+import { Badge } from "@/components/ui";
 import { NewsCard } from "./NewsCard";
 
 interface NewsDetailProps {
@@ -41,7 +50,6 @@ export function NewsDetail({ post, relatedPosts = [], locale = "vi" }: NewsDetai
     const isEn = locale === "en";
     const newsBasePath = isEn ? "/en/news" : "/tin-tuc";
 
-    // Labels
     const labels = isEn ? {
         views: "views",
         author: "Author:",
@@ -73,117 +81,100 @@ export function NewsDetail({ post, relatedPosts = [], locale = "vi" }: NewsDetai
 
     return (
         <article className="space-y-8">
-            {/* Hero Image */}
-            {
-                post.featuredImage && post.featuredImage.url && (
-                    <div className="relative aspect-video rounded-2xl overflow-hidden shadow-lg">
-                        <Image
-                            src={post.featuredImage.url}
-                            alt={post.featuredImage.alt || post.title}
-                            fill
-                            className="object-cover"
-                            priority
-                            sizes="(max-width: 768px) 100vw, 800px"
-                        />
-                    </div>
-                )
-            }
+            {post.featuredImage && post.featuredImage.url && (
+                <div className="relative aspect-video overflow-hidden rounded-[2.4rem] shadow-[var(--shadow-md)]">
+                    <Image
+                        src={post.featuredImage.url}
+                        alt={post.featuredImage.alt || post.title}
+                        fill
+                        className="object-cover"
+                        priority
+                        sizes="(max-width: 768px) 100vw, 900px"
+                    />
+                </div>
+            )}
 
-            {/* Header */}
-            <header className="space-y-4">
-                <Link
-                    href={`${newsBasePath}/${post.category.slug}`}
-                    className="inline-flex items-center px-4 py-1.5 text-sm font-medium text-blue-700 bg-blue-50 border border-blue-500/30 rounded-full hover:bg-blue-500/30 transition-colors"
-                >
-                    {post.category.name}
-                </Link>
+            <header className="space-y-5">
+                <Badge variant="default" size="md">
+                    <Link href={`${newsBasePath}/${post.category.slug}`}>{post.category.name}</Link>
+                </Badge>
 
-                <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-slate-800 leading-tight drop-shadow-sm">
+                <h1 className="font-heading text-[2.4rem] text-[var(--ink)] md:text-[3.8rem]">
                     {post.title}
                 </h1>
 
-                {/* Meta */}
-                <div className="flex flex-wrap items-center gap-4 text-sm text-slate-800">
+                <div className="flex flex-wrap items-center gap-4 rounded-[1.6rem] border border-[rgba(26,72,164,0.1)] bg-[rgba(255,255,255,0.7)] px-5 py-4 text-sm text-[var(--ink-soft)]">
                     {post.publishedAt && (
                         <span className="flex items-center gap-1.5">
-                            <Calendar size={16} />
+                            <CalendarBlank className="h-4 w-4" weight="bold" />
                             {format(new Date(post.publishedAt), "dd MMMM, yyyy", { locale: isEn ? enUS : vi })}
                         </span>
                     )}
                     <span className="flex items-center gap-1.5">
-                        <Eye size={16} />
+                        <Eye className="h-4 w-4" weight="bold" />
                         {post.viewCount.toLocaleString(isEn ? "en-US" : "vi-VN")} {labels.views}
                     </span>
-                    <span>{labels.author} <strong className="text-slate-800">{post.author.name}</strong></span>
+                    <span>
+                        {labels.author} <strong className="text-[var(--ink)]">{post.author.name}</strong>
+                    </span>
                 </div>
             </header>
 
-            {/* Content */}
-            <div
-                className="prose prose-lg max-w-none prose-invert prose-headings:text-slate-800 prose-p:text-slate-600 prose-a:text-blue-400 prose-img:rounded-xl prose-img:h-auto prose-img:max-w-full"
-                dangerouslySetInnerHTML={{ __html: post.content }}
-            />
+            <div className="content-area prose prose-lg max-w-none p-6 md:p-8" dangerouslySetInnerHTML={{ __html: post.content }} />
 
-            {/* Tags */}
-            {
-                post.tags.length > 0 && (
-                    <div className="flex flex-wrap items-center gap-2 pt-4 border-t border-slate-200">
-                        <Tag size={16} className="text-slate-500" />
-                        {post.tags.map((tag) => (
-                            <span
-                                key={tag.slug}
-                                className="px-3 py-1 text-sm text-slate-800 bg-white border border-slate-200 rounded-full hover:bg-slate-100 transition-colors cursor-default"
-                            >
-                                {tag.name}
-                            </span>
-                        ))}
-                    </div>
-                )
-            }
+            {post.tags.length > 0 && (
+                <div className="flex flex-wrap items-center gap-2 border-t border-[rgba(26,72,164,0.12)] pt-4">
+                    <Tag className="h-4 w-4 text-[var(--ink-muted)]" weight="bold" />
+                    {post.tags.map((tag) => (
+                        <span
+                            key={tag.slug}
+                            className="rounded-full border border-[rgba(26,72,164,0.12)] bg-[rgba(255,255,255,0.82)] px-3 py-1 text-sm text-[var(--ink)]"
+                        >
+                            {tag.name}
+                        </span>
+                    ))}
+                </div>
+            )}
 
-            {/* Share Buttons */}
-            <div className="flex items-center gap-4 pt-4 border-t border-slate-200">
-                <span className="flex items-center gap-2 text-slate-800">
-                    <Share2 size={18} />
+            <div className="flex flex-wrap items-center gap-4 border-t border-[rgba(26,72,164,0.12)] pt-4">
+                <span className="flex items-center gap-2 text-[var(--ink)]">
+                    <ShareNetwork className="h-[18px] w-[18px]" weight="bold" />
                     {labels.share}
                 </span>
                 <button
                     onClick={() => handleShare("facebook")}
-                    className="p-2 rounded-full bg-[#1877f2] text-slate-800 hover:bg-[#166fe5] shadow-[0_0_10px_rgba(24,119,242,0.3)] transition-colors"
+                    className="rounded-full bg-[rgba(23,88,216,0.12)] p-2 text-[var(--accent-strong)] transition-colors hover:bg-[rgba(23,88,216,0.18)]"
                     aria-label="Share on Facebook"
                 >
-                    <Facebook size={18} />
+                    <FacebookLogo className="h-[18px] w-[18px]" weight="fill" />
                 </button>
                 <button
                     onClick={() => handleShare("linkedin")}
-                    className="p-2 rounded-full bg-[#0a66c2] text-slate-800 hover:bg-[#0958a7] shadow-[0_0_10px_rgba(10,102,194,0.3)] transition-colors"
+                    className="rounded-full bg-[rgba(23,88,216,0.12)] p-2 text-[var(--accent-strong)] transition-colors hover:bg-[rgba(23,88,216,0.18)]"
                     aria-label="Share on LinkedIn"
                 >
-                    <Linkedin size={18} />
+                    <LinkedinLogo className="h-[18px] w-[18px]" weight="fill" />
                 </button>
                 <button
                     onClick={() => handleShare("copy")}
-                    className="p-2 rounded-full bg-slate-700 text-slate-800 hover:bg-slate-600 shadow-[0_0_10px_rgba(51,65,85,0.3)] transition-colors"
+                    className="rounded-full bg-[rgba(23,88,216,0.12)] p-2 text-[var(--accent-strong)] transition-colors hover:bg-[rgba(23,88,216,0.18)]"
                     aria-label="Copy link"
                 >
-                    <Copy size={18} />
+                    <Copy className="h-[18px] w-[18px]" weight="bold" />
                 </button>
             </div>
 
-            {/* Related Posts */}
-            {
-                relatedPosts.length > 0 && (
-                    <section className="pt-8 border-t border-slate-200">
-                        <h2 className="text-xl font-bold text-slate-800 mb-6">{labels.relatedPosts}</h2>
-                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                            {relatedPosts.slice(0, 3).map((rp) => (
-                                <NewsCard key={rp.id} post={rp} locale={locale} />
-                            ))}
-                        </div>
-                    </section>
-                )
-            }
-        </article >
+            {relatedPosts.length > 0 && (
+                <section className="border-t border-[rgba(26,72,164,0.12)] pt-8">
+                    <h2 className="mb-6 text-xl font-bold text-[var(--ink)]">{labels.relatedPosts}</h2>
+                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                        {relatedPosts.slice(0, 3).map((rp) => (
+                            <NewsCard key={rp.id} post={rp} locale={locale} />
+                        ))}
+                    </div>
+                </section>
+            )}
+        </article>
     );
 }
 

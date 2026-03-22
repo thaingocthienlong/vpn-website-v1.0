@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { ArrowUpRight, CalendarBlank, Eye, NewspaperClipping } from "@phosphor-icons/react";
 import { Badge } from "@/components/ui";
-import { Calendar, Eye } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 interface NewsCardProps {
     id: string;
@@ -19,6 +20,8 @@ interface NewsCardProps {
     viewCount?: number;
     isFeatured?: boolean;
     locale?: "vi" | "en";
+    variant?: "feature" | "default" | "compact";
+    className?: string;
 }
 
 export function NewsCard({
@@ -31,9 +34,13 @@ export function NewsCard({
     viewCount,
     isFeatured,
     locale = "vi",
+    variant = "default",
+    className,
 }: NewsCardProps) {
     const isEn = locale === "en";
-    const href = isEn ? `/en/news/${slug}` : `/tin-tuc/${slug}`;
+    const href = isEn ? `/en/news/${category.slug}/${slug}` : `/tin-tuc/${category.slug}/${slug}`;
+    const isFeature = variant === "feature";
+    const isCompact = variant === "compact";
 
     const formattedDate = publishedAt
         ? new Date(publishedAt).toLocaleDateString(isEn ? "en-US" : "vi-VN", {
@@ -45,67 +52,80 @@ export function NewsCard({
 
     return (
         <Link href={href} className="group block h-full cursor-pointer">
-            <article className="bg-white rounded-2xl shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 h-full overflow-hidden flex flex-col border border-slate-100">
-                {/* Image */}
-                <div className="relative aspect-[16/10] overflow-hidden">
-                    {featuredImage ? (
-                        <Image
-                            src={featuredImage}
-                            alt={title}
-                            fill
-                            className="object-cover transition-transform duration-500 group-hover:scale-110"
-                        />
-                    ) : (
-                        <div className="w-full h-full bg-gradient-to-br from-primary/10 to-accent/10 flex items-center justify-center">
-                            <span className="text-slate-600 text-sm">
-                                {isEn ? "No image" : "No image"}
-                            </span>
-                        </div>
-                    )}
+            <article
+                className={cn(
+                    "interactive-card flex h-full flex-col overflow-hidden rounded-[2rem] border border-[rgba(26,72,164,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(234,243,255,0.84))] shadow-[var(--shadow-xs)]",
+                    className
+                )}
+            >
+                {!isCompact && (
+                    <div className={cn("relative overflow-hidden", isFeature ? "aspect-[16/11]" : "aspect-[16/10]")}>
+                        {featuredImage ? (
+                            <Image
+                                src={featuredImage}
+                                alt={title}
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                            />
+                        ) : (
+                            <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(160deg,rgba(23,88,216,0.12),rgba(234,243,255,0.35))]">
+                                <NewspaperClipping className="h-12 w-12 text-[rgba(23,88,216,0.32)]" weight="duotone" />
+                            </div>
+                        )}
 
-                    {/* Category badge */}
-                    <div className="absolute top-3 left-3">
-                        <Badge variant="primary" size="sm">
-                            {category.name}
-                        </Badge>
-                    </div>
-
-                    {/* Featured badge */}
-                    {isFeatured && (
-                        <div className="absolute top-3 right-3">
-                            <Badge variant="accent" size="sm">
-                                {isEn ? "Featured" : "Nổi bật"}
+                        <div className="absolute left-4 top-4 flex flex-wrap gap-2">
+                            <Badge variant="default" size="sm">
+                                {category.name}
                             </Badge>
+                            {isFeatured && (
+                                <Badge variant="accent" size="sm">
+                                    {isEn ? "Featured" : "Nổi bật"}
+                                </Badge>
+                            )}
+                        </div>
+                    </div>
+                )}
+
+                <div className={cn("flex flex-1 flex-col", isCompact ? "p-5" : isFeature ? "p-7 md:p-8" : "p-6")}>
+                    {isCompact && (
+                        <div className="mb-4 flex flex-wrap gap-2">
+                            <Badge variant="default" size="sm">
+                                {category.name}
+                            </Badge>
+                            {isFeatured && (
+                                <Badge variant="accent" size="sm">
+                                    {isEn ? "Featured" : "Nổi bật"}
+                                </Badge>
+                            )}
                         </div>
                     )}
-                </div>
 
-                {/* Content */}
-                <div className="p-5 flex-1 flex flex-col">
-                    <h3 className="font-heading font-semibold text-lg text-slate-900 line-clamp-2 group-hover:text-primary transition-colors mb-2">
+                    <h3 className={cn("font-heading text-[var(--ink)]", isFeature ? "mb-4 text-[2.1rem]" : isCompact ? "mb-3 text-[1.35rem]" : "mb-4 text-[1.65rem]")}>
                         {title}
                     </h3>
 
                     {excerpt && (
-                        <p className="text-slate-600 text-sm line-clamp-2 mb-4 flex-1">
+                        <p className={cn("text-[var(--ink-soft)]", isFeature ? "mb-6 text-[15px] leading-8" : "mb-5 text-sm leading-7", isCompact && "line-clamp-2")}>
                             {excerpt}
                         </p>
                     )}
 
-                    {/* Meta */}
-                    <div className="flex items-center gap-4 text-xs text-slate-400 mt-auto pt-3 border-t border-slate-100">
+                    <div className="mt-auto flex flex-wrap items-center gap-4 border-t border-[rgba(26,72,164,0.1)] pt-4 text-xs uppercase tracking-[0.1em] text-[var(--ink-muted)]">
                         {formattedDate && (
-                            <span className="flex items-center gap-1">
-                                <Calendar className="w-3 h-3" />
+                            <span className="flex items-center gap-1.5">
+                                <CalendarBlank className="h-3.5 w-3.5" weight="bold" />
                                 {formattedDate}
                             </span>
                         )}
                         {viewCount !== undefined && (
-                            <span className="flex items-center gap-1">
-                                <Eye className="w-3 h-3" />
+                            <span className="flex items-center gap-1.5">
+                                <Eye className="h-3.5 w-3.5" weight="bold" />
                                 {viewCount.toLocaleString()}
                             </span>
                         )}
+                        <span className="inline-flex items-center gap-1.5 text-[var(--accent-strong)]">
+                            <ArrowUpRight className="h-3.5 w-3.5" weight="bold" />
+                        </span>
                     </div>
                 </div>
             </article>

@@ -1,0 +1,138 @@
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+Error fetching posts: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async GET (src\app\api\posts\route.ts:37:32)
+  35 |
+  36 |         // Get posts with count
+> 37 |         const [posts, total] = await Promise.all([
+     |                                ^
+  38 |             prisma.post.findMany({
+  39 |                 where,
+  40 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching categories: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.categories
+    at async GET (src\app\api\categories\route.ts:25:28)
+  23 |
+  24 |         // Get categories with post count
+> 25 |         const categories = await prisma.category.findMany({
+     |                            ^
+  26 |             where,
+  27 |             orderBy: { sortOrder: "asc" },
+  28 |             include: { {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching posts: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async GET (src\app\api\posts\route.ts:37:32)
+  35 |
+  36 |         // Get posts with count
+> 37 |         const [posts, total] = await Promise.all([
+     |                                ^
+  38 |             prisma.post.findMany({
+  39 |                 where,
+  40 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching posts: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async GET (src\app\api\posts\route.ts:37:32)
+  35 |
+  36 |         // Get posts with count
+> 37 |         const [posts, total] = await Promise.all([
+     |                                ^
+  38 |             prisma.post.findMany({
+  39 |                 where,
+  40 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+⨯ The requested resource isn't a valid image for /images/gallery-1.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-3.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-2.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-4.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-5.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-6.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-7.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-8.jpg received null
+Error fetching courses: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.courses
+    at async GET (src\app\api\courses\route.ts:47:34)
+  45 |
+  46 |         // Get courses with count
+> 47 |         const [courses, total] = await Promise.all([
+     |                                  ^
+  48 |             prisma.course.findMany({
+  49 |                 where,
+  50 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching courses: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.courses
+    at async GET (src\app\api\courses\route.ts:47:34)
+  45 |
+  46 |         // Get courses with count
+> 47 |         const [courses, total] = await Promise.all([
+     |                                  ^
+  48 |             prisma.course.findMany({
+  49 |                 where,
+  50 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching services: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.pages
+    at async GET (src\app\api\services\route.ts:16:26)
+  14 |         // Services are stored as Pages with specific slugs or as ContentSections with entityType = SERVICE
+  15 |         // For this implementation, we'll get pages that are services
+> 16 |         const services = await prisma.page.findMany({
+     |                          ^
+  17 |             where: {
+  18 |                 isPublished: true,
+  19 |                 slug: { {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching services: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.pages
+    at async GET (src\app\api\services\route.ts:16:26)
+  14 |         // Services are stored as Pages with specific slugs or as ContentSections with entityType = SERVICE
+  15 |         // For this implementation, we'll get pages that are services
+> 16 |         const services = await prisma.page.findMany({
+     |                          ^
+  17 |             where: {
+  18 |                 isPublished: true,
+  19 |                 slug: { {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching courses: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.courses
+    at async GET (src\app\api\courses\route.ts:47:34)
+  45 |
+  46 |         // Get courses with count
+> 47 |         const [courses, total] = await Promise.all([
+     |                                  ^
+  48 |             prisma.course.findMany({
+  49 |                 where,
+  50 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching courses: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.courses
+    at async GET (src\app\api\courses\route.ts:47:34)
+  45 |
+  46 |         // Get courses with count
+> 47 |         const [courses, total] = await Promise.all([
+     |                                  ^
+  48 |             prisma.course.findMany({
+  49 |                 where,
+  50 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+⨯ The requested resource isn't a valid image for /images/gallery-1.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-2.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-3.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-4.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-5.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-6.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-7.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-8.jpg received null
+^C^C

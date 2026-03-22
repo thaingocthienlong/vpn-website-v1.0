@@ -12,6 +12,11 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Legacy tooling and admin surfaces are out of the current public-frontend scope.
+    "scripts/**",
+    "server.js",
+    "src/app/admin/**",
+    "src/app/api/admin/**",
   ]),
 ]);
 

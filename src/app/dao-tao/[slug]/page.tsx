@@ -1,39 +1,20 @@
-import { Header, Footer } from "@/components/layout";
-import { Button } from "@/components/ui/Button";
-import { ArrowRight, ArrowLeft, Phone, Star, GraduationCap, BookOpen, FileText, AlertCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import {
+    ArrowLeft,
+    ArrowRight,
+    CheckCircle,
+    Clock,
+    GraduationCap,
+    Phone,
+    Star,
+    UsersThree,
+} from "@phosphor-icons/react/dist/ssr";
 import { notFound } from "next/navigation";
-import { getCourseBySlug, getRelatedCourses } from "@/lib/services/api-services";
+import { Button } from "@/components/ui";
+import { PublicPageShell } from "@/components/route-shell";
 import CourseContent from "@/components/course/CourseContent";
-
-// Course type labels
-const typeConfig: Record<string, { label: string; color: string; iconName: string }> = {
-    ADMISSION: {
-        label: "Tuyển sinh",
-        color: "bg-emerald-600",
-        iconName: "FileText",
-    },
-    SHORT_COURSE: {
-        label: "Bồi dưỡng",
-        color: "bg-blue-600",
-        iconName: "BookOpen",
-    },
-    STUDY_ABROAD: {
-        label: "Du học",
-        color: "bg-purple-600",
-        iconName: "GraduationCap",
-    },
-};
-
-function TypeIcon({ name }: { name: string }) {
-    switch (name) {
-        case "FileText": return <FileText className="w-4 h-4" />;
-        case "BookOpen": return <BookOpen className="w-4 h-4" />;
-        case "GraduationCap": return <GraduationCap className="w-4 h-4" />;
-        default: return <BookOpen className="w-4 h-4" />;
-    }
-}
+import { getCourseBySlug, getRelatedCourses } from "@/lib/services/api-services";
 
 interface PageProps {
     params: Promise<{ slug: string }>;
@@ -41,147 +22,152 @@ interface PageProps {
 
 export default async function CourseDetailPage({ params }: PageProps) {
     const { slug } = await params;
-
-    // Fetch course data directly from database (no API round-trip)
     const course = await getCourseBySlug(slug);
 
-    // 404 if course not found
     if (!course) {
         notFound();
     }
 
-    // Fetch related courses (needs course.type from above)
     const relatedCourses = await getRelatedCourses(course.type, slug);
+    const toc = course.toc.map((item) => ({ key: item.key, title: item.title }));
+    const typeLabel =
+        course.type === "ADMISSION" ? "Tuyển sinh" : course.type === "STUDY_ABROAD" ? "Du học" : "Bồi dưỡng";
 
-    const type = typeConfig[course.type] || typeConfig.SHORT_COURSE;
+    const heroActions = (
+        <>
+            <Button asChild variant="outline">
+                <Link href="/dao-tao">
+                    <ArrowLeft className="h-4 w-4" weight="bold" />
+                    Tất cả khóa học
+                </Link>
+            </Button>
+            <Button asChild>
+                <Link href="/dao-tao/dang-ky">
+                    Đăng ký khóa học
+                    <ArrowRight className="h-4 w-4" weight="bold" />
+                </Link>
+            </Button>
+        </>
+    );
+
+    const heroPanel = (
+        <div className="grid gap-3">
+            <div className="public-panel-muted rounded-[1.6rem] p-4">
+                <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                    {course.category?.name || "Đào tạo"}
+                </p>
+                <div className="mt-4 flex items-center gap-3 text-sm leading-7 text-[var(--ink)]">
+                    <Clock className="h-5 w-5 text-[var(--accent-strong)]" weight="duotone" />
+                    24 giờ
+                </div>
+                <div className="mt-3 flex items-center gap-3 text-sm leading-7 text-[var(--ink)]">
+                    <UsersThree className="h-5 w-5 text-[var(--accent-strong)]" weight="duotone" />
+                    Nhóm 20-30 người
+                </div>
+                <div className="mt-3 flex items-center gap-3 text-sm leading-7 text-[var(--ink)]">
+                    <CheckCircle className="h-5 w-5 text-[var(--accent-strong)]" weight="duotone" />
+                    Chứng nhận đi kèm
+                </div>
+            </div>
+            <div className="public-panel-muted rounded-[1.6rem] p-4">
+                <div className="flex flex-wrap gap-2 text-xs font-medium">
+                    <span className="rounded-full border border-[rgba(23,88,216,0.18)] bg-[rgba(23,88,216,0.08)] px-3 py-1 text-[var(--accent-strong)]">
+                        {typeLabel}
+                    </span>
+                    {course.isFeatured && (
+                        <span className="inline-flex items-center gap-1 rounded-full border border-[rgba(148,102,46,0.18)] bg-[rgba(148,102,46,0.12)] px-3 py-1 text-[var(--warning)]">
+                            <Star className="h-3.5 w-3.5" weight="fill" />
+                            Nổi bật
+                        </span>
+                    )}
+                    {course.isRegistrationOpen && (
+                        <span className="rounded-full border border-[rgba(47,122,95,0.18)] bg-[rgba(47,122,95,0.12)] px-3 py-1 text-[var(--success)]">
+                            Đang tuyển sinh
+                        </span>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+
+    const main = (
+        <div className="space-y-8">
+            <div className="grid gap-8 lg:grid-cols-4">
+                <CourseContent sections={course.sections} toc={toc} />
+            </div>
+
+            <section className="public-panel public-band rounded-[2.1rem] p-6 text-center md:p-8">
+                <h2 className="text-3xl leading-[0.95] text-[var(--ink)]">Sẵn sàng tham gia?</h2>
+                <p className="mx-auto mt-4 max-w-[58ch] text-base leading-8 text-[var(--ink-soft)]">
+                    Đăng ký ngay để nhận ưu đãi đặc biệt cho khóa học này
+                </p>
+                <div className="mt-6 flex flex-wrap justify-center gap-3">
+                    <Button asChild size="lg">
+                        <Link href="/dao-tao/dang-ky">
+                            Đăng ký khóa học
+                            <ArrowRight className="h-4 w-4" weight="bold" />
+                        </Link>
+                    </Button>
+                    <Button asChild variant="outline" size="lg">
+                        <a href="tel:19001234">
+                            <Phone className="h-4 w-4" weight="bold" />
+                            Gọi tư vấn
+                        </a>
+                    </Button>
+                </div>
+            </section>
+
+            {relatedCourses.length > 0 && (
+                <section className="space-y-5">
+                    <div className="space-y-3">
+                        <div className="public-divider" />
+                        <h2 className="text-2xl leading-tight text-[var(--ink)] md:text-[2.2rem]">
+                            Khóa học liên quan
+                        </h2>
+                    </div>
+                    <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+                        {relatedCourses.map((related, index) => (
+                            <Link
+                                key={related.id}
+                                href={`/dao-tao/${related.slug}`}
+                                className={`public-panel interactive-card group overflow-hidden rounded-[2rem] ${
+                                    index % 3 === 1 ? "xl:translate-y-6" : ""
+                                }`}
+                            >
+                                <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-[rgba(23,88,216,0.08)]">
+                                    {related.featuredImage ? (
+                                        <Image
+                                            src={related.featuredImage}
+                                            alt={related.title}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                                        />
+                                    ) : (
+                                        <div className="flex h-full w-full items-center justify-center text-[var(--accent-strong)]">
+                                            <GraduationCap className="h-10 w-10" weight="duotone" />
+                                        </div>
+                                    )}
+                                </div>
+                                <div className="space-y-3 p-5 md:p-6">
+                                    <h3 className="text-xl leading-tight text-[var(--ink)]">{related.title}</h3>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                </section>
+            )}
+        </div>
+    );
 
     return (
-        <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1 pt-24">
-                {/* Hero with Featured Image */}
-                <section className="relative py-16 overflow-hidden">
-                    <div className="container mx-auto px-4 relative z-10">
-                        <Link
-                            href="/dao-tao"
-                            className="inline-flex items-center gap-2 text-slate-800 hover:text-slate-800 mb-6"
-                        >
-                            <ArrowLeft className="w-4 h-4" />
-                            Tất cả khóa học
-                        </Link>
-
-                        {/* Badges */}
-                        <div className="flex gap-2 mb-4">
-                            <span className={`px-3 py-1 rounded-full ${type.color} text-slate-800 text-sm font-medium flex items-center gap-1`}>
-                                <TypeIcon name={type.iconName} />
-                                {type.label}
-                            </span>
-                            {course.isFeatured && (
-                                <span className="px-3 py-1 rounded-full bg-white  text-slate-800 text-sm font-medium flex items-center gap-1">
-                                    <Star className="w-4 h-4" />
-                                    Nổi bật
-                                </span>
-                            )}
-                            {course.isRegistrationOpen && (
-                                <span className="px-3 py-1 rounded-full bg-emerald-500/80  text-slate-800 text-sm font-medium">
-                                    Đang tuyển sinh
-                                </span>
-                            )}
-                        </div>
-
-                        <h1 className="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-slate-800 mb-4 max-w-4xl">
-                            {course.title}
-                        </h1>
-                        {course.excerpt && (
-                            <p className="text-xl text-slate-800 max-w-3xl mb-8">
-                                {course.excerpt}
-                            </p>
-                        )}
-
-                        {/* Category */}
-                        {course.category && (
-                            <div className="flex flex-wrap gap-6 text-slate-800">
-                                <span className="flex items-center gap-2">
-                                    <GraduationCap className="w-5 h-5" />
-                                    {course.category.name}
-                                </span>
-                            </div>
-                        )}
-                    </div>
-                </section>
-
-                {/* Content with TOC Sidebar */}
-                <section className="py-12">
-                    <div className="container mx-auto px-4">
-                        <div className="grid lg:grid-cols-4 gap-8">
-                            {/* Interactive TOC + Content (client component) */}
-                            <CourseContent sections={course.sections} toc={course.toc} />
-                        </div>
-
-                        {/* Registration CTA */}
-                        <div className="mt-8 glass-panel rounded-2xl p-8 text-center border border-slate-200">
-                            <h3 className="text-2xl font-heading font-bold text-slate-800 mb-4">
-                                Sẵn sàng tham gia?
-                            </h3>
-                            <p className="text-slate-800 mb-6">
-                                Đăng ký ngay để nhận ưu đãi đặc biệt cho khóa học này
-                            </p>
-                            <div className="flex flex-wrap justify-center gap-4">
-                                <Link href="/dao-tao/dang-ky">
-                                    <Button variant="secondary" size="lg">
-                                        Đăng ký khóa học
-                                        <ArrowRight className="w-4 h-4 ml-2" />
-                                    </Button>
-                                </Link>
-                                <a href="tel:19001234">
-                                    <Button variant="ghost" size="lg" className="border-2 border-white !text-slate-800 !bg-transparent hover:!bg-white">
-                                        <Phone className="w-4 h-4 mr-2" />
-                                        Gọi tư vấn
-                                    </Button>
-                                </a>
-                            </div>
-                        </div>
-
-                        {/* Related Courses */}
-                        {relatedCourses.length > 0 && (
-                            <div className="mt-8">
-                                <h3 className="text-xl font-heading font-bold text-slate-800 mb-4">
-                                    Khóa học liên quan
-                                </h3>
-                                <div className="grid sm:grid-cols-3 gap-4">
-                                    {relatedCourses.map((related) => (
-                                        <Link
-                                            key={related.id}
-                                            href={`/dao-tao/${related.slug}`}
-                                            className="group bg-white shadow-sm rounded-xl overflow-hidden border border-slate-200 hover:border-slate-200 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)] transition-all cursor-pointer block"
-                                        >
-                                            <div className="relative aspect-video bg-gradient-to-br from-blue-500/10 to-cyan-500/10 flex items-center justify-center overflow-hidden">
-                                                {related.featuredImage ? (
-                                                    <Image
-                                                        src={related.featuredImage}
-                                                        alt={related.title}
-                                                        fill
-                                                        className="object-cover group-hover:scale-105 transition-transform duration-500"
-                                                        sizes="(max-width: 640px) 100vw, 33vw"
-                                                    />
-                                                ) : (
-                                                    <GraduationCap className="w-8 h-8 text-blue-400/30" />
-                                                )}
-                                            </div>
-                                            <div className="p-4">
-                                                <h4 className="font-medium text-slate-800 text-sm group-hover:text-blue-400 transition-colors line-clamp-2">
-                                                    {related.title}
-                                                </h4>
-                                            </div>
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-                        )}
-                    </div>
-                </section>
-            </main>
-            <Footer />
-        </div>
+        <PublicPageShell
+            title={course.title}
+            description={course.excerpt || undefined}
+            actions={heroActions}
+            secondaryPanel={heroPanel}
+            main={main}
+            asideSticky={false}
+        />
     );
 }

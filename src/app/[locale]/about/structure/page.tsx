@@ -1,8 +1,9 @@
 "use client";
 
-import { Header, Footer } from "@/components/layout";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
+import StaffDirectoryPage, { type StaffDirectoryGroup } from "@/components/about/StaffDirectoryPage";
+import type { StaffCardPerson } from "@/components/cards/StaffCard";
 
 interface StaffMember {
     id: string;
@@ -35,80 +36,40 @@ export default function OrgStructurePage() {
                 setLoading(false);
             }
         }
+
         fetchStaff();
     }, []);
 
-    // Group by department
-    const departments = staff.reduce<Record<string, StaffMember[]>>((acc, member) => {
-        const deptName = member.department?.name || "Leadership";
-        if (!acc[deptName]) acc[deptName] = [];
-        acc[deptName].push(member);
-        return acc;
-    }, {});
+    const groups = useMemo<StaffDirectoryGroup[]>(() => {
+        const mapped = staff.reduce<Record<string, StaffCardPerson[]>>((accumulator, member) => {
+            const departmentName = member.department?.name || "Leadership";
+            if (!accumulator[departmentName]) {
+                accumulator[departmentName] = [];
+            }
+
+            accumulator[departmentName].push({
+                id: member.id,
+                name: member.name,
+                title: member.title,
+                position: member.staffType.name,
+                bio: member.bio,
+                avatar: member.avatar ? { url: member.avatar, secureUrl: member.avatar } : null,
+            });
+
+            return accumulator;
+        }, {});
+
+        return Object.entries(mapped).map(([title, members]) => ({ title, members }));
+    }, [staff]);
 
     return (
-        <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1 pt-24">
-                <section className="py-16 relative">
-                    <div className="container mx-auto px-4 text-center relative z-10">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-slate-800 mb-4">
-                            {t("title")}
-                        </h1>
-                        <p className="text-slate-800 max-w-2xl mx-auto">
-                            {t("description")}
-                        </p>
-                    </div>
-                </section>
-
-                <section className="py-12">
-                    <div className="container mx-auto px-4">
-                        {loading ? (
-                            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                                {[...Array(6)].map((_, i) => (
-                                    <div key={i} className="animate-pulse bg-white rounded-xl h-48 border border-white/5" />
-                                ))}
-                            </div>
-                        ) : Object.keys(departments).length === 0 ? (
-                            <div className="text-center py-20 text-slate-800">
-                                {tCommon("updateSoon")}
-                            </div>
-                        ) : (
-                            Object.entries(departments).map(([deptName, members]) => (
-                                <div key={deptName} className="mb-12">
-                                    <h2 className="text-2xl font-heading font-bold text-slate-800 mb-6 pb-2 border-b-2 border-blue-500/30">
-                                        {deptName}
-                                    </h2>
-                                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                        {members.map((member) => (
-                                            <div key={member.id} className="bg-white shadow-sm rounded-xl p-6 border border-slate-200 hover:border-slate-200 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)] transition-all duration-300">
-                                                <div className="flex items-center gap-4">
-                                                    <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500/20 to-cyan-500/20 border border-slate-200 flex items-center justify-center flex-shrink-0 overflow-hidden">
-                                                        {member.avatar ? (
-                                                            <img src={member.avatar} alt={member.name} className="w-full h-full object-cover" />
-                                                        ) : (
-                                                            <span className="text-2xl text-blue-400 font-bold">{member.name.charAt(0)}</span>
-                                                        )}
-                                                    </div>
-                                                    <div>
-                                                        <h3 className="font-semibold text-slate-800">{member.name}</h3>
-                                                        {member.title && <p className="text-sm text-blue-400">{member.title}</p>}
-                                                        <p className="text-xs text-slate-800">{member.staffType.name}</p>
-                                                    </div>
-                                                </div>
-                                                {member.bio && (
-                                                    <p className="text-sm text-slate-800 mt-4 line-clamp-3">{member.bio}</p>
-                                                )}
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            ))
-                        )}
-                    </div>
-                </section>
-            </main>
-            <Footer />
-        </div>
+        <StaffDirectoryPage
+            badge={t("title")}
+            title={t("title")}
+            description={t("description")}
+            groups={groups}
+            loading={loading}
+            emptyTitle={tCommon("updateSoon")}
+        />
     );
 }

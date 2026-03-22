@@ -12,16 +12,16 @@ const Container: React.FC<ContainerProps> = ({
     ...props
 }) => {
     const sizes = {
-        sm: "max-w-screen-sm",    // 640px
-        md: "max-w-screen-md",    // 768px
-        lg: "max-w-screen-lg",    // 1024px
-        xl: "max-w-7xl",          // 1280px (default)
+        sm: "max-w-3xl",
+        md: "max-w-5xl",
+        lg: "max-w-6xl",
+        xl: "max-w-[1400px]",
         full: "max-w-full",
     };
 
     return (
         <div
-            className={cn("mx-auto px-6", sizes[size], className)}
+            className={cn("mx-auto w-full px-4 sm:px-6 lg:px-8", sizes[size], className)}
             {...props}
         >
             {children}

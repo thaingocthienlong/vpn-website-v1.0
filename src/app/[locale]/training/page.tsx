@@ -1,10 +1,11 @@
 "use client";
 
-import { Header, Footer } from "@/components/layout";
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import Image from "next/image";
+import Link from "next/link";
+import { FunnelSimple, GraduationCap } from "@phosphor-icons/react";
 import { useTranslations } from "next-intl";
+import { PublicPageShell, PublicStatePanel } from "@/components/route-shell";
 
 interface Course {
     id: string;
@@ -39,9 +40,9 @@ export default function TrainingPage() {
                 const params = new URLSearchParams({ locale: "en", limit: "20" });
                 if (selectedType) params.set("type", selectedType);
 
-                const res = await fetch(`/api/courses?${params}`);
-                if (res.ok) {
-                    const data = await res.json();
+                const response = await fetch(`/api/courses?${params}`);
+                if (response.ok) {
+                    const data = await response.json();
                     setCourses(data.data || []);
                 }
             } catch (error) {
@@ -50,96 +51,100 @@ export default function TrainingPage() {
                 setLoading(false);
             }
         }
+
         fetchCourses();
     }, [selectedType]);
 
-    return (
-        <div className="min-h-screen flex flex-col">
-            <Header />
-            <main className="flex-1 pt-24">
-                {/* Hero */}
-                <section className="py-16 relative">
-                    <div className="container mx-auto px-4 text-center relative z-10">
-                        <h1 className="text-4xl md:text-5xl font-heading font-bold text-slate-800 mb-4">
-                            {t("title")}
-                        </h1>
-                        <p className="text-slate-800 max-w-2xl mx-auto">
-                            {t("description")}
-                        </p>
-                    </div>
-                </section>
+    const controls = (
+        <section className="public-panel rounded-[1.8rem] p-4">
+            <div className="mb-3 flex items-center gap-2 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                <FunnelSimple className="h-4 w-4" weight="bold" />
+                {t("types.all")}
+            </div>
+            <div className="flex flex-wrap gap-2">
+                {courseTypes.map((type) => (
+                    <button
+                        key={type.value}
+                        type="button"
+                        onClick={() => setSelectedType(type.value)}
+                        className={`rounded-[1rem] px-4 py-2.5 text-sm font-medium transition-colors ${
+                            selectedType === type.value
+                                ? "bg-[var(--accent)] text-[var(--paper)]"
+                                : "bg-[rgba(255,255,255,0.72)] text-[var(--ink)] hover:bg-white"
+                        }`}
+                    >
+                        {type.label}
+                    </button>
+                ))}
+            </div>
+        </section>
+    );
 
-                {/* Type Filter */}
-                <section className="py-6 border-b border-slate-200 glass-panel relative z-10">
-                    <div className="container mx-auto px-4">
-                        <div className="flex gap-3 flex-wrap">
-                            {courseTypes.map((type) => (
-                                <button
-                                    key={type.value}
-                                    onClick={() => setSelectedType(type.value)}
-                                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${selectedType === type.value ? "bg-blue-600 text-white shadow-[0_0_10px_rgba(37,99,235,0.5)] border border-blue-500" : "bg-white text-white hover:bg-white hover:text-white border border-slate-200"}`}
-                                >
-                                    {type.label}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </section>
-
-                {/* Courses Grid */}
-                <section className="py-12">
-                    <div className="container mx-auto px-4">
-                        {loading ? (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {[...Array(6)].map((_, i) => (
-                                    <div key={i} className="animate-pulse bg-white rounded-xl h-72 border border-white/5" />
-                                ))}
-                            </div>
-                        ) : courses.length === 0 ? (
-                            <div className="text-center py-20 text-slate-800">
-                                {tCommon("noResults")}
-                            </div>
+    const main = loading ? (
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {Array.from({ length: 6 }).map((_, index) => (
+                <div key={index} className="public-panel h-[300px] animate-pulse rounded-[1.9rem]" />
+            ))}
+        </div>
+    ) : courses.length === 0 ? (
+        <PublicStatePanel icon={GraduationCap} title={tCommon("noResults")} />
+    ) : (
+        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+            {courses.map((course, index) => (
+                <Link
+                    key={course.id}
+                    href={`/en/training/${course.slug}`}
+                    className={`public-panel interactive-card group overflow-hidden rounded-[2rem] ${
+                        index % 3 === 1 ? "xl:translate-y-6" : ""
+                    }`}
+                >
+                    <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-[rgba(23,88,216,0.08)]">
+                        {course.featuredImage ? (
+                            <Image
+                                src={course.featuredImage}
+                                alt={course.title}
+                                fill
+                                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                            />
                         ) : (
-                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                                {courses.map((course) => (
-                                    <Link key={course.id} href={`/en/training/${course.slug}`}
-                                        className="group bg-white shadow-sm rounded-xl overflow-hidden hover:shadow-lg hover:shadow-blue-900/20 transition-all duration-300 border border-slate-200 hover:border-slate-200">
-                                        <div className="relative aspect-video bg-white overflow-hidden">
-                                            {course.featuredImage ? (
-                                                <Image src={course.featuredImage} alt={course.title} fill sizes="(max-width: 768px) 100vw, 33vw"
-                                                    className="object-cover group-hover:scale-105 transition-transform duration-300" />
-                                            ) : (
-                                                <div className="w-full h-full flex items-center justify-center text-slate-500">
-                                                    {tCommon("noImage")}
-                                                </div>
-                                            )}
-                                        </div>
-                                        <div className="p-5">
-                                            <div className="flex items-center gap-2 mb-2">
-                                                {course.category && (
-                                                    <span className="text-xs text-blue-400 font-medium">{course.category.name}</span>
-                                                )}
-                                                {course.isRegistrationOpen && (
-                                                    <span className="text-xs bg-green-500/20 text-green-300 border border-green-500/30 px-2 py-0.5 rounded-full">
-                                                        {tCommon("open")}
-                                                    </span>
-                                                )}
-                                            </div>
-                                            <h3 className="text-lg font-semibold text-slate-800 line-clamp-2 group-hover:text-blue-400 transition-colors">
-                                                {course.title}
-                                            </h3>
-                                            {course.excerpt && (
-                                                <p className="text-sm text-slate-800 mt-2 line-clamp-2">{course.excerpt}</p>
-                                            )}
-                                        </div>
-                                    </Link>
-                                ))}
+                            <div className="flex h-full w-full items-center justify-center text-[var(--accent-strong)]">
+                                <GraduationCap className="h-10 w-10" weight="duotone" />
                             </div>
                         )}
                     </div>
-                </section>
-            </main>
-            <Footer />
+                    <div className="space-y-4 p-5 md:p-6">
+                        <div className="flex flex-wrap items-center gap-2 text-xs">
+                            {course.category && (
+                                <span className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                                    {course.category.name}
+                                </span>
+                            )}
+                            {course.isRegistrationOpen && (
+                                <span className="rounded-full border border-[rgba(47,122,95,0.18)] bg-[rgba(47,122,95,0.12)] px-3 py-1 text-[var(--success)]">
+                                    {tCommon("open")}
+                                </span>
+                            )}
+                        </div>
+                        <h2 className="text-2xl leading-tight text-[var(--ink)]">{course.title}</h2>
+                        {course.excerpt && (
+                            <p className="line-clamp-3 text-sm leading-7 text-[var(--ink-soft)]">
+                                {course.excerpt}
+                            </p>
+                        )}
+                    </div>
+                </Link>
+            ))}
         </div>
+    );
+
+    return (
+        <PublicPageShell
+            title={t("title")}
+            description={t("description")}
+            controls={controls}
+            main={main}
+            asideSticky={false}
+        />
     );
 }

@@ -1,4 +1,12 @@
 {
+  "OrgStructure": {
+    "metaTitle": "Organizational structure - SISRD",
+    "metaDescription": "Organizational structure of the Southern Institute for Social Resources Development."
+  },
+  "AdvisoryBoard": {
+    "metaTitle": "Scientific advisory board - SISRD",
+    "metaDescription": "Scientific advisory board of the Southern Institute for Social Resources Development."
+  },
   "nav": {
     "home": "Home",
     "about": "About",
@@ -223,9 +231,50 @@
     "titleHighlight": "Registration",
     "subtitle": "Complete 3 simple steps to register for a training course",
     "steps": {
+      "personal": "Personal information",
+      "course": "Select course",
+      "confirm": "Confirmation",
       "personalInfo": "Personal Info",
       "courseSelection": "Select Course",
       "confirmation": "Confirmation"
+    },
+    "fields": {
+      "fullName": "Full name",
+      "phone": "Phone number",
+      "company": "Company/organization",
+      "position": "Position",
+      "courseType": "Course type",
+      "courseName": "Course name",
+      "studyFormat": "Study format",
+      "note": "Note"
+    },
+    "placeholders": {
+      "fullName": "Your full name",
+      "email": "email@example.com",
+      "phone": "Your phone number",
+      "company": "Company name",
+      "position": "Your position",
+      "courseName": "Selected course or topic",
+      "note": "Special requests, questions..."
+    },
+    "errors": {
+      "fullName": "Please enter your full name (minimum 2 characters)",
+      "email": "Please enter a valid email address",
+      "phone": "Please enter a valid phone number",
+      "courseType": "Please select a course type",
+      "courseName": "Please enter a course name",
+      "agreeTerms": "Please agree to the terms to continue"
+    },
+    "select": {
+      "courseType": "Select a course type",
+      "studyFormat": "Select a study format"
+    },
+    "terms": {
+      "agree": "I agree to the",
+      "service": "terms of service",
+      "and": "and",
+      "privacy": "privacy policy",
+      "ofInstitute": "of the institute."
     },
     "form": {
       "fullName": "Full Name",
@@ -265,6 +314,8 @@
     "success": {
       "title": "Registration Successful!",
       "message": "Thank you for registering. We will contact you to confirm within 24 hours.",
+      "viewCourses": "View other courses",
+      "backHome": "Back to homepage",
       "viewOtherCourses": "View other courses",
       "backToHome": "Back to homepage"
     },
@@ -272,6 +323,7 @@
       "back": "Back",
       "cancel": "Cancel",
       "continue": "Continue",
+      "submit": "Complete registration",
       "complete": "Complete Registration",
       "processing": "Processing..."
     }

@@ -1,0 +1,762 @@
+
+> new@0.1.0 dev
+> next dev --port 3000
+
+⚠ `eslint` configuration in next.config.ts is no longer supported. See more info here: https://nextjs.org/docs/app/api-reference/cli/next#next-lint-options
+⚠ Invalid next.config.ts options detected: 
+⚠     Unrecognized key(s) in object: 'eslint'
+⚠ See more info here: https://nextjs.org/docs/messages/invalid-next-config
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.12:3000
+- Experiments (use with caution):
+  · cpus: 1
+
+✓ Starting...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 1569ms
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.courses
+Error fetching featured posts via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async getFeaturedPosts (src\lib\services\api-services.ts:14:23)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  12 | export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4) {
+  13 |     try {
+> 14 |         const posts = await prisma.post.findMany({
+     |                       ^
+  15 |             where: {
+  16 |                 isPublished: true,
+  17 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+prisma:error SQLITE_ERROR: no such table: main.partners
+Error fetching featured courses via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.courses
+    at async getFeaturedCourses (src\lib\services\api-services.ts:65:25)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  63 | export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 9) {
+  64 |     try {
+> 65 |         const courses = await prisma.course.findMany({
+     |                         ^
+  66 |             where: {
+  67 |                 isPublished: true,
+  68 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching partners via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.partners
+    at async getActivePartners (src\lib\services\api-services.ts:113:26)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  111 | export async function getActivePartners(locale: Locale = 'vi') {
+  112 |     try {
+> 113 |         const partners = await prisma.partner.findMany({
+      |                          ^
+  114 |             where: {
+  115 |                 isActive: true,
+  116 |             }, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+
+[35m
+[Clerk]:[0m You are running in keyless mode.
+You can [35mclaim your keys[0m by visiting https://dashboard.clerk.com/apps/claim?token=4krbjy8f2t8iy5i63sr548g15eg7xfaouqlmeg85&return_url=http%3A%2F%2Flocalhost%3A3000%2F
+
+⨯ Error: Failed to call `useTranslations` because the context from `NextIntlClientProvider` was not found.
+
+This can happen because:
+1) You intended to render this component as a Server Component, the render
+   failed, and therefore React attempted to render the component on the client
+   instead. If this is the case, check the console for server errors.
+2) You intended to render this component on the client side, but no context was found.
+   Learn more about this error here: https://next-intl.dev/docs/environments/server-client-components#missing-context
+    at HeroSection (src\components\sections\HeroSection.tsx:41:34)
+  39 |     const locale = detectLocaleFromPath(pathname);
+  40 |     const isEn = locale === "en";
+> 41 |     const tHero = useTranslations("home.hero");
+     |                                  ^
+  42 |     const tHomeSections = useTranslations("home.sections");
+  43 |     const tNav = useTranslations("nav");
+  44 | {
+  digest: '2888215236'
+}
+ GET / 500 in 1880ms (compile: 490ms, proxy.ts: 110ms, render: 1281ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.courses
+Error fetching featured posts via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async getFeaturedPosts (src\lib\services\api-services.ts:14:23)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  12 | export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4) {
+  13 |     try {
+> 14 |         const posts = await prisma.post.findMany({
+     |                       ^
+  15 |             where: {
+  16 |                 isPublished: true,
+  17 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+prisma:error SQLITE_ERROR: no such table: main.partners
+Error fetching featured courses via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.courses
+    at async getFeaturedCourses (src\lib\services\api-services.ts:65:25)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  63 | export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 9) {
+  64 |     try {
+> 65 |         const courses = await prisma.course.findMany({
+     |                         ^
+  66 |             where: {
+  67 |                 isPublished: true,
+  68 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching partners via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.partners
+    at async getActivePartners (src\lib\services\api-services.ts:113:26)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  111 | export async function getActivePartners(locale: Locale = 'vi') {
+  112 |     try {
+> 113 |         const partners = await prisma.partner.findMany({
+      |                          ^
+  114 |             where: {
+  115 |                 isActive: true,
+  116 |             }, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+⨯ Error: Failed to call `useTranslations` because the context from `NextIntlClientProvider` was not found.
+
+This can happen because:
+1) You intended to render this component as a Server Component, the render
+   failed, and therefore React attempted to render the component on the client
+   instead. If this is the case, check the console for server errors.
+2) You intended to render this component on the client side, but no context was found.
+   Learn more about this error here: https://next-intl.dev/docs/environments/server-client-components#missing-context
+    at HeroSection (src\components\sections\HeroSection.tsx:41:34)
+  39 |     const locale = detectLocaleFromPath(pathname);
+  40 |     const isEn = locale === "en";
+> 41 |     const tHero = useTranslations("home.hero");
+     |                                  ^
+  42 |     const tHomeSections = useTranslations("home.sections");
+  43 |     const tNav = useTranslations("nav");
+  44 | {
+  digest: '2888215236'
+}
+ GET / 500 in 444ms (compile: 8ms, proxy.ts: 9ms, render: 427ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+⨯ Error: Failed to call `useTranslations` because the context from `NextIntlClientProvider` was not found.
+
+This can happen because:
+1) You intended to render this component as a Server Component, the render
+   failed, and therefore React attempted to render the component on the client
+   instead. If this is the case, check the console for server errors.
+2) You intended to render this component on the client side, but no context was found.
+   Learn more about this error here: https://next-intl.dev/docs/environments/server-client-components#missing-context
+    at HeroSection (src\components\sections\HeroSection.tsx:41:34)
+  39 |     const locale = detectLocaleFromPath(pathname);
+  40 |     const isEn = locale === "en";
+> 41 |     const tHero = useTranslations("home.hero");
+     |                                  ^
+  42 |     const tHomeSections = useTranslations("home.sections");
+  43 |     const tNav = useTranslations("nav");
+  44 | {
+  digest: '2888215236'
+}
+ GET / 500 in 249ms (compile: 7ms, proxy.ts: 9ms, render: 232ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ GET /vi 200 in 3.0s (compile: 2.5s, proxy.ts: 5ms, generate-params: 826ms, render: 468ms)
+ POST /vi 200 in 80ms (compile: 28ms, proxy.ts: 9ms, generate-params: 13ms, render: 43ms)
+ POST /vi 200 in 70ms (compile: 15ms, proxy.ts: 43ms, generate-params: 40µs, render: 13ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ POST /vi 200 in 139ms (compile: 10ms, proxy.ts: 6ms, generate-params: 28µs, render: 123ms)
+ POST /vi 200 in 50ms (compile: 8ms, proxy.ts: 8ms, generate-params: 42µs, render: 34ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+⨯ Error: Failed to call `useTranslations` because the context from `NextIntlClientProvider` was not found.
+
+This can happen because:
+1) You intended to render this component as a Server Component, the render
+   failed, and therefore React attempted to render the component on the client
+   instead. If this is the case, check the console for server errors.
+2) You intended to render this component on the client side, but no context was found.
+   Learn more about this error here: https://next-intl.dev/docs/environments/server-client-components#missing-context
+    at HeroSection (src\components\sections\HeroSection.tsx:41:34)
+  39 |     const locale = detectLocaleFromPath(pathname);
+  40 |     const isEn = locale === "en";
+> 41 |     const tHero = useTranslations("home.hero");
+     |                                  ^
+  42 |     const tHomeSections = useTranslations("home.sections");
+  43 |     const tNav = useTranslations("nav");
+  44 | {
+  digest: '2888215236'
+}
+ GET / 500 in 169ms (compile: 8ms, proxy.ts: 9ms, render: 152ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ GET /vi 200 in 286ms (compile: 24ms, proxy.ts: 7ms, generate-params: 12ms, render: 255ms)
+ POST /vi 200 in 37ms (compile: 18ms, proxy.ts: 7ms, generate-params: 69µs, render: 12ms)
+ POST /vi 200 in 26ms (compile: 12ms, proxy.ts: 6ms, generate-params: 44µs, render: 8ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ POST /vi 200 in 130ms (compile: 8ms, proxy.ts: 6ms, generate-params: 42µs, render: 116ms)
+ POST /vi 200 in 47ms (compile: 10ms, proxy.ts: 7ms, generate-params: 64µs, render: 31ms)
+ GET /images/gallery-3.jpg 404 in 632ms (compile: 299ms, render: 332ms)
+ GET /images/gallery-4.jpg 404 in 785ms (compile: 242ms, render: 543ms)
+ GET /images/gallery-5.jpg 404 in 768ms (compile: 245ms, render: 522ms)
+ GET /images/gallery-1.jpg 404 in 1308ms (compile: 811ms, render: 497ms)
+⨯ The requested resource isn't a valid image for /images/gallery-3.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-4.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-5.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-1.jpg received null
+ GET /images/gallery-2.jpg 404 in 1313ms (compile: 880ms, render: 433ms)
+ GET /images/gallery-6.jpg 404 in 772ms (compile: 371ms, render: 400ms)
+⨯ The requested resource isn't a valid image for /images/gallery-2.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-6.jpg received null
+ GET /images/gallery-7.jpg 404 in 58ms (compile: 8ms, render: 50ms)
+⨯ The requested resource isn't a valid image for /images/gallery-7.jpg received null
+ GET /images/gallery-8.jpg 404 in 60ms (compile: 7ms, render: 52ms)
+⨯ The requested resource isn't a valid image for /images/gallery-8.jpg received null
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+⨯ Error: Failed to call `useTranslations` because the context from `NextIntlClientProvider` was not found.
+
+This can happen because:
+1) You intended to render this component as a Server Component, the render
+   failed, and therefore React attempted to render the component on the client
+   instead. If this is the case, check the console for server errors.
+2) You intended to render this component on the client side, but no context was found.
+   Learn more about this error here: https://next-intl.dev/docs/environments/server-client-components#missing-context
+    at HeroSection (src\components\sections\HeroSection.tsx:41:34)
+  39 |     const locale = detectLocaleFromPath(pathname);
+  40 |     const isEn = locale === "en";
+> 41 |     const tHero = useTranslations("home.hero");
+     |                                  ^
+  42 |     const tHomeSections = useTranslations("home.sections");
+  43 |     const tNav = useTranslations("nav");
+  44 | {
+  digest: '2888215236'
+}
+ GET / 500 in 191ms (compile: 10ms, proxy.ts: 8ms, render: 174ms)
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+
+[35m
+[Clerk]:[0m You are running in keyless mode.
+You can [35mclaim your keys[0m by visiting https://dashboard.clerk.com/apps/claim?token=4krbjy8f2t8iy5i63sr548g15eg7xfaouqlmeg85&return_url=http%3A%2F%2Flocalhost%3A3000%2F
+
+✓ Compiled in 829ms
+ GET / 200 in 604ms (compile: 191ms, proxy.ts: 4ms, render: 409ms)
+ POST / 200 in 31ms (compile: 6ms, proxy.ts: 10ms, render: 15ms)
+ POST / 200 in 32ms (compile: 15ms, proxy.ts: 4ms, render: 13ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ GET / 200 in 210ms (compile: 5ms, proxy.ts: 5ms, render: 199ms)
+ POST / 200 in 32ms (compile: 11ms, proxy.ts: 8ms, render: 13ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ POST / 200 in 98ms (compile: 5ms, proxy.ts: 6ms, render: 86ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ GET /vi 200 in 778ms (compile: 261ms, proxy.ts: 4ms, generate-params: 16ms, render: 513ms)
+ POST /vi 200 in 39ms (compile: 10ms, proxy.ts: 6ms, generate-params: 66µs, render: 23ms)
+ POST /vi 200 in 28ms (compile: 9ms, proxy.ts: 8ms, generate-params: 31µs, render: 11ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ POST /vi 200 in 154ms (compile: 18ms, proxy.ts: 6ms, generate-params: 10ms, render: 130ms)
+ POST /vi 200 in 43ms (compile: 9ms, proxy.ts: 5ms, generate-params: 27µs, render: 29ms)
+ GET /images/gallery-1.jpg 404 in 144ms (compile: 14ms, render: 130ms)
+⨯ The requested resource isn't a valid image for /images/gallery-1.jpg received null
+ GET /images/gallery-2.jpg 404 in 155ms (compile: 61ms, render: 94ms)
+⨯ The requested resource isn't a valid image for /images/gallery-2.jpg received null
+ GET /images/gallery-3.jpg 404 in 89ms (compile: 13ms, render: 76ms)
+⨯ The requested resource isn't a valid image for /images/gallery-3.jpg received null
+ GET /images/gallery-4.jpg 404 in 126ms (compile: 16ms, render: 110ms)
+ GET /images/gallery-5.jpg 404 in 130ms (compile: 43ms, render: 87ms)
+⨯ The requested resource isn't a valid image for /images/gallery-4.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-5.jpg received null
+ GET /images/gallery-6.jpg 404 in 133ms (compile: 13ms, render: 120ms)
+⨯ The requested resource isn't a valid image for /images/gallery-6.jpg received null
+ GET /images/gallery-7.jpg 404 in 142ms (compile: 65ms, render: 77ms)
+⨯ The requested resource isn't a valid image for /images/gallery-7.jpg received null
+ GET /images/gallery-8.jpg 404 in 63ms (compile: 11ms, render: 53ms)
+⨯ The requested resource isn't a valid image for /images/gallery-8.jpg received null
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+
+[35m
+[Clerk]:[0m You are running in keyless mode.
+You can [35mclaim your keys[0m by visiting https://dashboard.clerk.com/apps/claim?token=4krbjy8f2t8iy5i63sr548g15eg7xfaouqlmeg85&return_url=http%3A%2F%2Flocalhost%3A3000%2F
+
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ GET / 200 in 515ms (compile: 252ms, proxy.ts: 12ms, render: 251ms)
+ GET / 200 in 106ms (compile: 7ms, proxy.ts: 12ms, render: 87ms)
+✓ Compiled in 611ms
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ GET / 200 in 326ms (compile: 4ms, proxy.ts: 3ms, render: 319ms)
+ POST / 200 in 23ms (compile: 6ms, proxy.ts: 6ms, render: 11ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ POST / 200 in 114ms (compile: 5ms, proxy.ts: 5ms, render: 104ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ GET /vi 200 in 756ms (compile: 247ms, proxy.ts: 7ms, generate-params: 13ms, render: 501ms)
+ POST /vi 200 in 45ms (compile: 15ms, proxy.ts: 8ms, generate-params: 43µs, render: 21ms)
+ POST /vi 200 in 22ms (compile: 7ms, proxy.ts: 5ms, generate-params: 26µs, render: 11ms)
+ POST /vi 200 in 45ms (compile: 9ms, proxy.ts: 4ms, generate-params: 31µs, render: 32ms)
+ POST /vi 200 in 45ms (compile: 10ms, proxy.ts: 6ms, generate-params: 29µs, render: 29ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ GET / 200 in 217ms (compile: 6ms, proxy.ts: 5ms, render: 205ms)
+ POST / 200 in 27ms (compile: 6ms, proxy.ts: 8ms, render: 13ms)
+prisma:query SELECT `main`.`posts`.`id`, `main`.`posts`.`title`, `main`.`posts`.`title_en`, `main`.`posts`.`slug`, `main`.`posts`.`excerpt`, `main`.`posts`.`excerpt_en`, `main`.`posts`.`content`, `main`.`posts`.`content_en`, `main`.`posts`.`featuredImageId`, `main`.`posts`.`featuredImageId_en`, `main`.`posts`.`categoryId`, `main`.`posts`.`authorId`, `main`.`posts`.`type`, `main`.`posts`.`sourceUrl`, `main`.`posts`.`isFeatured`, `main`.`posts`.`isPublished`, `main`.`posts`.`publishedAt`, `main`.`posts`.`viewCount`, `main`.`posts`.`sortOrder`, `main`.`posts`.`metaTitle`, `main`.`posts`.`metaTitle_en`, `main`.`posts`.`metaDescription`, `main`.`posts`.`metaDescription_en`, `main`.`posts`.`createdAt`, `main`.`posts`.`updatedAt` FROM `main`.`posts` WHERE (`main`.`posts`.`isPublished` = ? AND `main`.`posts`.`isFeatured` = ?) ORDER BY `main`.`posts`.`isFeatured` DESC, `main`.`posts`.`publishedAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`courses`.`id`, `main`.`courses`.`title`, `main`.`courses`.`title_en`, `main`.`courses`.`slug`, `main`.`courses`.`excerpt`, `main`.`courses`.`excerpt_en`, `main`.`courses`.`featuredImageId`, `main`.`courses`.`featuredImageId_en`, `main`.`courses`.`categoryId`, `main`.`courses`.`type`, `main`.`courses`.`authorId`, `main`.`courses`.`isFeatured`, `main`.`courses`.`isPublished`, `main`.`courses`.`publishedAt`, `main`.`courses`.`isRegistrationOpen`, `main`.`courses`.`viewCount`, `main`.`courses`.`sortOrder`, `main`.`courses`.`metaTitle`, `main`.`courses`.`metaTitle_en`, `main`.`courses`.`metaDescription`, `main`.`courses`.`metaDescription_en`, `main`.`courses`.`createdAt`, `main`.`courses`.`updatedAt` FROM `main`.`courses` WHERE (`main`.`courses`.`isPublished` = ? AND `main`.`courses`.`isFeatured` = ?) ORDER BY `main`.`courses`.`isFeatured` DESC, `main`.`courses`.`sortOrder` ASC, `main`.`courses`.`createdAt` DESC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`partners`.`id`, `main`.`partners`.`name`, `main`.`partners`.`name_en`, `main`.`partners`.`logoId`, `main`.`partners`.`logoId_en`, `main`.`partners`.`website`, `main`.`partners`.`description`, `main`.`partners`.`description_en`, `main`.`partners`.`sortOrder`, `main`.`partners`.`isActive`, `main`.`partners`.`createdAt`, `main`.`partners`.`updatedAt` FROM `main`.`partners` WHERE `main`.`partners`.`isActive` = ? ORDER BY `main`.`partners`.`sortOrder` ASC LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`users`.`id`, `main`.`users`.`name` FROM `main`.`users` WHERE `main`.`users`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`categories`.`id`, `main`.`categories`.`name`, `main`.`categories`.`name_en`, `main`.`categories`.`slug` FROM `main`.`categories` WHERE `main`.`categories`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+prisma:query SELECT `main`.`media`.`id`, `main`.`media`.`url`, `main`.`media`.`alt` FROM `main`.`media` WHERE `main`.`media`.`id` IN (NULL) LIMIT ? OFFSET ?
+ POST / 200 in 106ms (compile: 5ms, proxy.ts: 5ms, render: 96ms)
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.1.12:3000
+- Environments: .env.local, .env
+- Experiments (use with caution):
+  · cpus: 1
+
+✓ Starting...
+⚠ The "middleware" file convention is deprecated. Please use "proxy" instead. Learn more: https://nextjs.org/docs/messages/middleware-to-proxy
+✓ Ready in 2.5s
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.courses
+Error fetching featured posts via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async getFeaturedPosts (src\lib\services\api-services.ts:14:23)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  12 | export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4) {
+  13 |     try {
+> 14 |         const posts = await prisma.post.findMany({
+     |                       ^
+  15 |             where: {
+  16 |                 isPublished: true,
+  17 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+prisma:error SQLITE_ERROR: no such table: main.partners
+Error fetching featured courses via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.courses
+    at async getFeaturedCourses (src\lib\services\api-services.ts:65:25)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  63 | export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 9) {
+  64 |     try {
+> 65 |         const courses = await prisma.course.findMany({
+     |                         ^
+  66 |             where: {
+  67 |                 isPublished: true,
+  68 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching partners via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.partners
+    at async getActivePartners (src\lib\services\api-services.ts:113:26)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  111 | export async function getActivePartners(locale: Locale = 'vi') {
+  112 |     try {
+> 113 |         const partners = await prisma.partner.findMany({
+      |                          ^
+  114 |             where: {
+  115 |                 isActive: true,
+  116 |             }, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+ GET / 200 in 3.1s (compile: 1725ms, proxy.ts: 120ms, render: 1282ms)
+ POST / 200 in 76ms (compile: 40ms, proxy.ts: 13ms, render: 23ms)
+ GET /images/gallery-1.jpg 404 in 624ms (compile: 205ms, render: 419ms)
+ GET /images/gallery-5.jpg 404 in 714ms (compile: 227ms, render: 487ms)
+⨯ The requested resource isn't a valid image for /images/gallery-1.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-5.jpg received null
+ GET /images/gallery-3.jpg 404 in 738ms (compile: 347ms, render: 391ms)
+ GET /images/gallery-2.jpg 404 in 750ms (compile: 388ms, render: 362ms)
+ GET /images/gallery-4.jpg 404 in 747ms (compile: 415ms, render: 332ms)
+ GET /images/gallery-6.jpg 404 in 742ms (compile: 456ms, render: 287ms)
+⨯ The requested resource isn't a valid image for /images/gallery-3.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-2.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-4.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-6.jpg received null
+ GET /images/gallery-7.jpg 404 in 144ms (compile: 17ms, render: 127ms)
+⨯ The requested resource isn't a valid image for /images/gallery-7.jpg received null
+ GET /images/gallery-8.jpg 404 in 150ms (compile: 61ms, render: 89ms)
+⨯ The requested resource isn't a valid image for /images/gallery-8.jpg received null
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.courses
+Error fetching featured posts via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async getFeaturedPosts (src\lib\services\api-services.ts:14:23)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  12 | export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4) {
+  13 |     try {
+> 14 |         const posts = await prisma.post.findMany({
+     |                       ^
+  15 |             where: {
+  16 |                 isPublished: true,
+  17 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+prisma:error SQLITE_ERROR: no such table: main.partners
+Error fetching featured courses via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.courses
+    at async getFeaturedCourses (src\lib\services\api-services.ts:65:25)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  63 | export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 9) {
+  64 |     try {
+> 65 |         const courses = await prisma.course.findMany({
+     |                         ^
+  66 |             where: {
+  67 |                 isPublished: true,
+  68 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching partners via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.partners
+    at async getActivePartners (src\lib\services\api-services.ts:113:26)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  111 | export async function getActivePartners(locale: Locale = 'vi') {
+  112 |     try {
+> 113 |         const partners = await prisma.partner.findMany({
+      |                          ^
+  114 |             where: {
+  115 |                 isActive: true,
+  116 |             }, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+ GET / 200 in 317ms (compile: 6ms, proxy.ts: 7ms, render: 304ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.courses
+Error fetching featured posts via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async getFeaturedPosts (src\lib\services\api-services.ts:14:23)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  12 | export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4) {
+  13 |     try {
+> 14 |         const posts = await prisma.post.findMany({
+     |                       ^
+  15 |             where: {
+  16 |                 isPublished: true,
+  17 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+prisma:error SQLITE_ERROR: no such table: main.partners
+Error fetching featured courses via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.courses
+    at async getFeaturedCourses (src\lib\services\api-services.ts:65:25)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  63 | export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 9) {
+  64 |     try {
+> 65 |         const courses = await prisma.course.findMany({
+     |                         ^
+  66 |             where: {
+  67 |                 isPublished: true,
+  68 |                 isFeatured: true, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+Error fetching partners via service: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.partners
+    at async getActivePartners (src\lib\services\api-services.ts:113:26)
+    at async getHomepageData (src\app\page.tsx:35:40)
+    at async HomePage (src\app\page.tsx:57:40)
+  111 | export async function getActivePartners(locale: Locale = 'vi') {
+  112 |     try {
+> 113 |         const partners = await prisma.partner.findMany({
+      |                          ^
+  114 |             where: {
+  115 |                 isActive: true,
+  116 |             }, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+ GET / 200 in 485ms (compile: 5ms, proxy.ts: 8ms, render: 471ms)
+ GET /images/gallery-1.jpg 404 in 366ms (compile: 43ms, render: 323ms)
+ GET /images/gallery-2.jpg 404 in 368ms (compile: 74ms, render: 294ms)
+ GET /images/gallery-3.jpg 404 in 369ms (compile: 105ms, render: 264ms)
+ GET /images/gallery-4.jpg 404 in 370ms (compile: 138ms, render: 232ms)
+⨯ The requested resource isn't a valid image for /images/gallery-1.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-2.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-3.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-4.jpg received null
+ GET /images/gallery-5.jpg 404 in 387ms (compile: 230ms, render: 156ms)
+ GET /images/gallery-6.jpg 404 in 388ms (compile: 255ms, render: 133ms)
+⨯ The requested resource isn't a valid image for /images/gallery-5.jpg received null
+⨯ The requested resource isn't a valid image for /images/gallery-6.jpg received null
+ POST / 200 in 95ms (compile: 27ms, proxy.ts: 31ms, render: 37ms)
+ GET /images/gallery-7.jpg 404 in 70ms (compile: 12ms, render: 58ms)
+⨯ The requested resource isn't a valid image for /images/gallery-7.jpg received null
+✓ Compiled in 270ms
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.courses
+prisma:error SQLITE_ERROR: no such table: main.partners
+ GET / 200 in 407ms (compile: 241ms, proxy.ts: 7ms, render: 160ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 386ms (compile: 214ms, proxy.ts: 7ms, render: 166ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 413ms (compile: 7ms, proxy.ts: 7ms, render: 400ms)
+ POST / 200 in 33ms (compile: 8ms, proxy.ts: 8ms, render: 17ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /vi 200 in 1661ms (compile: 1390ms, proxy.ts: 6ms, generate-params: 1034ms, render: 266ms)
+ POST /vi 200 in 55ms (compile: 26ms, proxy.ts: 7ms, generate-params: 12ms, render: 22ms)
+ POST /vi 200 in 30ms (compile: 12ms, proxy.ts: 7ms, generate-params: 55µs, render: 11ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 176ms (compile: 9ms, proxy.ts: 11ms, render: 156ms)
+ POST / 200 in 24ms (compile: 7ms, proxy.ts: 6ms, render: 11ms)
+ GET /images/gallery-1.jpg 404 in 118ms (compile: 22ms, render: 96ms)
+⨯ The requested resource isn't a valid image for /images/gallery-1.jpg received null
+ GET /images/gallery-2.jpg 404 in 120ms (compile: 64ms, render: 56ms)
+⨯ The requested resource isn't a valid image for /images/gallery-2.jpg received null
+ GET /images/gallery-3.jpg 404 in 50ms (compile: 8ms, render: 42ms)
+⨯ The requested resource isn't a valid image for /images/gallery-3.jpg received null
+ GET /images/gallery-4.jpg 404 in 116ms (compile: 12ms, render: 104ms)
+⨯ The requested resource isn't a valid image for /images/gallery-4.jpg received null
+ GET /images/gallery-5.jpg 404 in 123ms (compile: 67ms, render: 56ms)
+⨯ The requested resource isn't a valid image for /images/gallery-5.jpg received null
+ GET /images/gallery-6.jpg 404 in 119ms (compile: 14ms, render: 105ms)
+⨯ The requested resource isn't a valid image for /images/gallery-6.jpg received null
+ GET /images/gallery-7.jpg 404 in 126ms (compile: 55ms, render: 71ms)
+⨯ The requested resource isn't a valid image for /images/gallery-7.jpg received null
+ GET /images/gallery-8.jpg 404 in 61ms (compile: 8ms, render: 53ms)
+⨯ The requested resource isn't a valid image for /images/gallery-8.jpg received null
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET / 200 in 177ms (compile: 5ms, proxy.ts: 4ms, render: 168ms)
+ POST / 200 in 26ms (compile: 6ms, proxy.ts: 7ms, render: 14ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /vi 200 in 224ms (compile: 25ms, proxy.ts: 5ms, generate-params: 9ms, render: 195ms)
+ POST /vi 200 in 32ms (compile: 8ms, proxy.ts: 6ms, generate-params: 43µs, render: 19ms)
+ POST /vi 200 in 24ms (compile: 8ms, proxy.ts: 4ms, generate-params: 38µs, render: 12ms)
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+prisma:query SELECT name FROM sqlite_master WHERE type = 'table' AND name = ?
+ GET /en 200 in 271ms (compile: 22ms, proxy.ts: 11ms, generate-params: 11ms, render: 237ms)
+ POST /en 200 in 44ms (compile: 21ms, proxy.ts: 10ms, generate-params: 40µs, render: 12ms)
+ POST /en 200 in 28ms (compile: 9ms, proxy.ts: 6ms, generate-params: 48µs, render: 14ms)
+ GET /tin-tuc 200 in 1536ms (compile: 1395ms, proxy.ts: 6ms, render: 135ms)
+ POST /tin-tuc 200 in 23ms (compile: 7ms, proxy.ts: 5ms, render: 10ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+Error fetching posts: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async GET (src\app\api\posts\route.ts:37:32)
+  35 |
+  36 |         // Get posts with count
+> 37 |         const [posts, total] = await Promise.all([
+     |                                ^
+  38 |             prisma.post.findMany({
+  39 |                 where,
+  40 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+ GET /api/posts?page=1&limit=12 500 in 721ms (compile: 437ms, proxy.ts: 4ms, render: 280ms)
+prisma:error SQLITE_ERROR: no such table: main.categories
+Error fetching categories: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.categories
+    at async GET (src\app\api\categories\route.ts:25:28)
+  23 |
+  24 |         // Get categories with post count
+> 25 |         const categories = await prisma.category.findMany({
+     |                            ^
+  26 |             where,
+  27 |             orderBy: { sortOrder: "asc" },
+  28 |             include: { {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+ GET /api/categories?type=POST 500 in 346ms (compile: 168ms, proxy.ts: 4ms, render: 174ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+Error fetching posts: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async GET (src\app\api\posts\route.ts:37:32)
+  35 |
+  36 |         // Get posts with count
+> 37 |         const [posts, total] = await Promise.all([
+     |                                ^
+  38 |             prisma.post.findMany({
+  39 |                 where,
+  40 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+ GET /api/posts?limit=5&sort=newest 500 in 175ms (compile: 4ms, proxy.ts: 4ms, render: 167ms)
+prisma:error SQLITE_ERROR: no such table: main.posts
+prisma:error SQLITE_ERROR: no such table: main.posts
+Error fetching posts: Error [DriverAdapterError]: SQLITE_ERROR: no such table: main.posts
+    at async GET (src\app\api\posts\route.ts:37:32)
+  35 |
+  36 |         // Get posts with count
+> 37 |         const [posts, total] = await Promise.all([
+     |                                ^
+  38 |             prisma.post.findMany({
+  39 |                 where,
+  40 |                 skip, {
+  clientVersion: '7.3.0',
+  [cause]: [Object]
+}
+ GET /api/posts?limit=5&sort=popular 500 in 150ms (compile: 3ms, proxy.ts: 4ms, render: 143ms)
+ GET /dich-vu 200 in 872ms (compile: 656ms, proxy.ts: 4ms, render: 212ms)
+ POST /dich-vu 200 in 18ms (compile: 4ms, proxy.ts: 4ms, render: 11ms)
+ GET /lien-he 200 in 818ms (compile: 697ms, proxy.ts: 4ms, render: 117ms)
+ POST /lien-he 200 in 23ms (compile: 5ms, proxy.ts: 7ms, render: 12ms)
+[?25h

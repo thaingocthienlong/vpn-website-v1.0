@@ -20,23 +20,24 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         { className, options, label, error, placeholder, id, ...props },
         ref
     ) => {
-        const selectId = id || React.useId();
+        const generatedId = React.useId();
+        const selectId = id ?? generatedId;
 
         const baseStyles =
-            "w-full px-5 py-3 pr-10 rounded-full border-2 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0 appearance-none cursor-pointer";
+            "public-input-surface w-full appearance-none rounded-[1.35rem] px-4 py-3.5 pr-11 text-sm text-[var(--ink)] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-0";
 
         const normalStyles =
-            "border-slate-200 focus:ring-blue-500/50 focus:border-blue-400 bg-white text-slate-700";
+            "placeholder:text-[var(--ink-muted)] focus:border-[rgba(46,94,196,0.28)] focus:ring-[rgba(46,94,196,0.24)]";
 
         const errorStyles =
-            "border-red-400 focus:ring-red-500/50 focus:border-red-400 text-slate-700";
+            "border-[rgba(155,74,69,0.45)] focus:border-[rgba(155,74,69,0.45)] focus:ring-[rgba(155,74,69,0.2)]";
 
         return (
             <div className="w-full">
                 {label && (
                     <label
                         htmlFor={selectId}
-                        className="block text-sm font-medium text-slate-700 mb-2"
+                        className="mb-2 block text-sm font-medium text-[var(--ink)]"
                     >
                         {label}
                     </label>
@@ -54,20 +55,20 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
                         {...props}
                     >
                         {placeholder && (
-                            <option value="" disabled className="bg-slate-800 text-slate-700">
+                            <option value="" disabled>
                                 {placeholder}
                             </option>
                         )}
                         {options.map((option) => (
-                            <option key={option.value} value={option.value} className="bg-slate-800 text-slate-700">
+                            <option key={option.value} value={option.value}>
                                 {option.label}
                             </option>
                         ))}
                     </select>
-                    <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-700 pointer-events-none" />
+                    <ChevronDown className="pointer-events-none absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-[var(--ink-muted)]" />
                 </div>
                 {error && (
-                    <p className="mt-1 text-sm text-red-600">{error}</p>
+                    <p className="mt-1 text-sm text-[var(--error)]">{error}</p>
                 )}
             </div>
         );

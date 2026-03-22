@@ -3,7 +3,13 @@
 
 import React from "react";
 import { cn } from "@/lib/utils";
-import { motion } from "framer-motion";
+import { motion, type Transition } from "framer-motion";
+
+type BeamStyle = React.CSSProperties & {
+  "--color-from"?: string;
+  "--color-to"?: string;
+  offsetPath?: string;
+};
 
 interface BorderBeamProps {
   /**
@@ -29,7 +35,7 @@ interface BorderBeamProps {
   /**
    * The motion transition of the border beam.
    */
-  transition?: any;
+  transition?: Transition;
   /**
    * The class name of the border beam.
    */
@@ -123,7 +129,7 @@ export const BorderBeam = ({
           boxShadow: glowEffect,
           borderRadius: beamBorderRadius ? `${beamBorderRadius}px` : undefined,
           ...style,
-        } as any}
+        } as BeamStyle}
         initial={{ offsetDistance: `${initialOffset}%` }}
         animate={{
           offsetDistance: reverse

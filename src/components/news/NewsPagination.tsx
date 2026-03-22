@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChevronLeft, ChevronRight } from "lucide-react";
+import { CaretLeft, CaretRight } from "@phosphor-icons/react";
 
 interface NewsPaginationProps {
     currentPage: number;
@@ -56,11 +56,11 @@ export function NewsPagination({ currentPage, totalPages, basePath, locale = "vi
         return pages.filter((p, i, arr) => p !== "..." || arr[i - 1] !== "...");
     };
 
-    const linkClass = "flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-800 bg-white rounded-lg border border-slate-200 hover:bg-slate-100 hover:text-slate-800 transition-colors";
-    const disabledClass = "flex items-center gap-1 px-4 py-2 text-sm font-medium text-slate-500 bg-white rounded-lg border border-slate-200 cursor-not-allowed";
+    const linkClass = "inline-flex items-center gap-1 rounded-full border border-[rgba(26,72,164,0.12)] bg-white px-4 py-2.5 text-sm font-semibold text-[var(--ink)] transition-colors hover:bg-[rgba(23,88,216,0.08)]";
+    const disabledClass = "inline-flex items-center gap-1 rounded-full border border-[rgba(26,72,164,0.12)] bg-white/70 px-4 py-2.5 text-sm font-semibold text-[var(--ink-muted)]";
 
     return (
-        <nav className="flex items-center justify-center gap-2 mt-12" aria-label="Pagination">
+        <nav className="mt-12 flex items-center justify-center gap-2 rounded-[2rem] border border-[rgba(26,72,164,0.08)] bg-[rgba(255,255,255,0.72)] p-3" aria-label="Pagination">
             {/* Previous */}
             {currentPage > 1 ? (
                 <Link
@@ -68,12 +68,12 @@ export function NewsPagination({ currentPage, totalPages, basePath, locale = "vi
                     onClick={(e) => handlePageClick(currentPage - 1, e)}
                     className={linkClass}
                 >
-                    <ChevronLeft size={16} />
+                    <CaretLeft size={16} weight="bold" />
                     {prevLabel}
                 </Link>
             ) : (
                 <span className={disabledClass}>
-                    <ChevronLeft size={16} />
+                    <CaretLeft size={16} weight="bold" />
                     {prevLabel}
                 </span>
             )}
@@ -82,15 +82,15 @@ export function NewsPagination({ currentPage, totalPages, basePath, locale = "vi
             <div className="hidden md:flex items-center gap-1">
                 {getPageNumbers().map((page, idx) => (
                     page === "..." ? (
-                        <span key={`ellipsis-${idx}`} className="px-3 py-2 text-slate-500">...</span>
+                        <span key={`ellipsis-${idx}`} className="px-3 py-2 text-[var(--ink-muted)]">...</span>
                     ) : (
                         <Link
                             key={page}
                             href={getPageUrl(page)}
                             onClick={(e) => handlePageClick(page as number, e)}
-                            className={`px-4 py-2 text-sm font-medium rounded-lg border transition-colors ${page === currentPage
-                                ? "bg-blue-600 text-slate-800 border-blue-500 shadow-[0_0_10px_rgba(37,99,235,0.4)] pointer-events-none"
-                                : "text-slate-800 bg-white border-slate-200 hover:bg-slate-100 hover:text-slate-800"
+                            className={`inline-flex h-10 min-w-10 items-center justify-center rounded-full border px-4 text-sm font-semibold transition-colors ${page === currentPage
+                                ? "pointer-events-none border-[var(--accent)] bg-[var(--accent)] text-white"
+                                : "border-[rgba(26,72,164,0.12)] bg-white text-[var(--ink)] hover:bg-[rgba(23,88,216,0.08)]"
                                 }`}
                         >
                             {page}
@@ -100,7 +100,7 @@ export function NewsPagination({ currentPage, totalPages, basePath, locale = "vi
             </div>
 
             {/* Mobile: Current page indicator */}
-            <span className="md:hidden px-4 py-2 text-sm text-slate-800">
+            <span className="px-4 py-2 text-sm text-[var(--ink)] md:hidden">
                 {pageLabel} {currentPage} / {totalPages}
             </span>
 
@@ -112,12 +112,12 @@ export function NewsPagination({ currentPage, totalPages, basePath, locale = "vi
                     className={linkClass}
                 >
                     {nextLabel}
-                    <ChevronRight size={16} />
+                    <CaretRight size={16} weight="bold" />
                 </Link>
             ) : (
                 <span className={disabledClass}>
                     {nextLabel}
-                    <ChevronRight size={16} />
+                    <CaretRight size={16} weight="bold" />
                 </span>
             )}
         </nav>

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
-import { ClerkProvider } from "@clerk/nextjs";
-import { DotBackground } from "@/components/lightswind/grid-dot-backgrounds";
+import { OptionalClerkProvider } from "@/components/providers/OptionalClerkProvider";
 import "./globals.css";
 
 // Momo Trust Sans — body text (variable font)
@@ -68,29 +67,23 @@ export default function RootLayout({
   };
 
   return (
-    <ClerkProvider>
-      <html lang="vi">
-        <body
-          className={`${momoTrustSans.variable} ${momoTrustDisplay.variable} ${momoSignature.variable} bg-background text-foreground antialiased`}
-        >
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-          />
-          <DotBackground
-            className="!fixed !inset-0 !h-screen !w-screen !z-0 pointer-events-none !bg-transparent"
-            dotSize={1}
-            dotColor="#d4d4d440"
-            darkDotColor="#40404040"
-            spacing={20}
-            showFade={true}
-            fadeIntensity={30}
-          />
-          <div className="relative z-10">
+    <html lang="vi">
+      <body
+        className={`${momoTrustSans.variable} ${momoTrustDisplay.variable} ${momoSignature.variable} bg-background text-foreground antialiased`}
+      >
+        <a href="#main-content" className="skip-link">
+          Skip to content
+        </a>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <OptionalClerkProvider>
+          <div className="public-shell relative z-10">
             {children}
           </div>
-        </body>
-      </html>
-    </ClerkProvider>
+        </OptionalClerkProvider>
+      </body>
+    </html>
   );
 }
