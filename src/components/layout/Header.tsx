@@ -39,36 +39,41 @@ export function Header({
 
     return (
         <header className="fixed inset-x-0 top-0 z-40">
-            <Container className="pt-4 md:pt-6">
+            <Container className="pt-4 md:pt-5">
                 <motion.div
                     initial={{ opacity: 0, y: -28, scale: 0.985 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={publicMotionTokens.sectionSpring}
-                    className="public-panel public-band relative grid grid-cols-[auto_1fr_auto] items-center gap-3 overflow-hidden rounded-[2rem] px-4 py-3.5 md:px-6 md:py-4"
+                    className="relative grid grid-cols-[auto_1fr_auto] items-center gap-3 overflow-visible rounded-[2rem] border border-[rgba(125,167,244,0.28)] bg-[linear-gradient(180deg,rgba(255,255,255,0.97),rgba(237,245,255,0.88))] px-4 py-3 shadow-[0_28px_70px_-42px_rgba(23,88,216,0.34)] backdrop-blur-xl md:px-6 md:py-3.5"
                 >
-                    <FloatingAccent className="right-8 top-0 h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(23,88,216,0.18),transparent_70%)]" variant="halo" />
-                    <Link href={homeUrl} className="flex min-w-0 items-center" title="Viện Phương Nam">
-                        <div className="relative h-[64px] w-[112px] shrink-0 overflow-hidden rounded-[1.1rem] md:h-[72px] md:w-[126px]">
+                    <div className="pointer-events-none absolute inset-px overflow-hidden rounded-[calc(2rem-1px)]">
+                        <div className="absolute inset-0 bg-[linear-gradient(130deg,rgba(255,255,255,0.45),transparent_32%),radial-gradient(circle_at_top_right,rgba(68,136,255,0.16),transparent_28%)]" />
+                        <FloatingAccent className="right-8 top-0 h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(23,88,216,0.18),transparent_70%)]" variant="halo" />
+                    </div>
+                    <Link href={homeUrl} className="relative z-[1] flex min-w-0 items-center" title="Viện Phương Nam">
+                        <div className="relative flex h-[66px] w-[174px] shrink-0 items-center md:h-[82px] md:w-[214px]">
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src={logo}
                                 alt="Viện Phương Nam"
-                                className="h-full w-full object-cover object-top"
+                                className="!h-full !w-full object-contain object-left object-center"
                             />
                         </div>
                     </Link>
 
-                    <Navbar items={items} className="min-w-0 justify-center px-2" />
+                    <Navbar items={items} className="relative z-[1] min-w-0 justify-center px-2" />
 
-                    <div className="hidden xl:block">
+                    <div className="relative z-[1] hidden xl:block">
                         <Button
                             asChild
-                            variant="secondary"
+                            variant="primary"
                             size="md"
                             motion="magnetic"
-                            className="min-w-[146px] border-[rgba(26,72,164,0.16)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)] shadow-none hover:bg-[rgba(23,88,216,0.14)]"
+                            className="min-w-[136px] border-[rgba(255,255,255,0.2)] bg-[linear-gradient(135deg,var(--accent),#5a99ff)] text-white shadow-[var(--shadow-xs)] hover:bg-[linear-gradient(135deg,#0f4cbc,#4d8eff)]"
                         >
-                            <Link href={resolvedCtaUrl}>{ctaText}</Link>
+                            <Link href={resolvedCtaUrl} className="whitespace-nowrap text-white">
+                                {ctaText}
+                            </Link>
                         </Button>
                     </div>
 
@@ -182,12 +187,14 @@ export function Header({
                             <div className="mt-4">
                                 <Button
                                     asChild
-                                    variant="secondary"
+                                    variant="primary"
                                     size="md"
                                     motion="magnetic"
-                                    className="w-full border-[rgba(26,72,164,0.16)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)] shadow-none hover:bg-[rgba(23,88,216,0.14)]"
+                                    className="w-full border-transparent bg-[linear-gradient(135deg,var(--accent),#5a99ff)] text-white shadow-[var(--shadow-xs)] hover:bg-[linear-gradient(135deg,#0f4cbc,#4d8eff)]"
                                 >
-                                    <Link href={resolvedCtaUrl}>{ctaText}</Link>
+                                    <Link href={resolvedCtaUrl} className="text-white">
+                                        {ctaText}
+                                    </Link>
                                 </Button>
                             </div>
                         </motion.div>

@@ -191,30 +191,29 @@ export function NewsSection({
                     </MotionSection>
                 </>
             ) : (
-                <MotionGroup className="grid gap-5 xl:grid-cols-[minmax(0,1.04fr)_minmax(320px,0.96fr)]" stagger={0.12}>
+                <MotionGroup className="grid gap-5 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]" stagger={0.12}>
                     <MotionItem>
-                    <div className="public-panel public-band relative overflow-hidden rounded-[2.4rem] p-6 md:p-8">
+                    <div className="public-panel public-band relative overflow-hidden rounded-[2.3rem] p-6 md:p-7">
                         <FloatingAccent className="right-[8%] top-[10%] h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(23,88,216,0.14),transparent_72%)]" variant="halo" />
-                        <div className="grid gap-6 lg:grid-cols-[auto_minmax(0,1fr)] lg:items-start">
-                            <div className="inline-flex h-18 w-18 items-center justify-center rounded-[1.65rem] border border-[rgba(23,88,216,0.12)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]">
-                                <NewspaperClipping className="h-9 w-9" weight="duotone" />
-                            </div>
-
-                            <div className="space-y-5">
+                        <div className="flex h-full flex-col justify-between gap-6">
+                            <div className="space-y-4">
+                                <div className="inline-flex h-14 w-14 items-center justify-center rounded-[1.4rem] border border-[rgba(23,88,216,0.12)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]">
+                                    <NewspaperClipping className="h-7 w-7" weight="duotone" />
+                                </div>
                                 <div className="space-y-3">
-                                    <h3 className="max-w-[16ch] font-heading text-[2rem] text-[var(--ink)] md:text-[2.45rem]">
-                                        {isEn ? "New articles coming soon" : "Sắp ra mắt tin tức mới"}
-                                    </h3>
-                                    <p className="max-w-[42rem] text-sm leading-8 text-[var(--ink-soft)] md:text-[15px]">
-                                        {isEn
-                                            ? "We're updating the latest information. Please check back later!"
-                                            : "Chúng tôi đang cập nhật những thông tin mới nhất. Vui lòng quay lại sau!"}
+                                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                                        {resolvedTitle}
+                                    </p>
+                                    <p className="max-w-[34rem] text-sm leading-8 text-[var(--ink-soft)] md:text-[15px]">
+                                        {resolvedSubtitle}
                                     </p>
                                 </div>
-
-                                <Button asChild variant="outline" size="md" motion="magnetic">
-                                    <Link href={isEn ? "/en/contact" : "/lien-he"}>
-                                        {isEn ? "Contact us" : "Liên hệ với chúng tôi"}
+                            </div>
+                            <div>
+                                <Button asChild variant="outline" size="lg" motion="magnetic">
+                                    <Link href={listingHref} className="inline-flex items-center">
+                                        <span>{isEn ? "View all news" : "Xem tất cả tin tức"}</span>
+                                        <ArrowRight className="ml-2 h-4 w-4" weight="bold" />
                                     </Link>
                                 </Button>
                             </div>
@@ -222,26 +221,26 @@ export function NewsSection({
                     </div>
                     </MotionItem>
 
-                    <MotionGroup className="grid gap-4" stagger={0.1}>
-                        {[0, 1].map((index) => (
+                    <MotionGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-3" stagger={0.1}>
+                        {[0, 1, 2].map((index) => (
                             <MotionItem
                                 key={`news-shell-${index}`}
-                                className="rounded-[1.9rem] border border-[rgba(26,72,164,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(232,242,255,0.8))] p-5 shadow-[var(--shadow-xs)]"
+                                className="rounded-[1.8rem] border border-[rgba(26,72,164,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(232,242,255,0.8))] p-5 shadow-[var(--shadow-xs)]"
                             >
-                                <div className="mb-5 flex items-center justify-between gap-4">
-                                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-[rgba(23,88,216,0.12)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]">
-                                        <NewspaperClipping className="h-5 w-5" weight="duotone" />
-                                    </div>
+                                <div className="mb-4 flex items-center justify-between gap-4">
+                                    <span className="rounded-full border border-[rgba(23,88,216,0.12)] bg-[rgba(23,88,216,0.08)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent-strong)]">
+                                        {resolvedTitle}
+                                    </span>
                                     <ArrowRight className="h-4 w-4 text-[var(--accent-strong)]" weight="bold" />
                                 </div>
                                 <div className="space-y-3">
-                                    <motion.div className="h-3 w-[70%] rounded-full bg-[rgba(23,88,216,0.13)]" animate={shouldReduceMotion ? undefined : { opacity: [0.45, 0.92, 0.45], x: [0, 6, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }} />
-                                    <motion.div className="h-3 w-[88%] rounded-full bg-[rgba(23,88,216,0.09)]" animate={shouldReduceMotion ? undefined : { opacity: [0.35, 0.76, 0.35], x: [0, 8, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 0.14 }} />
-                                    <motion.div className="h-3 w-[58%] rounded-full bg-[rgba(23,88,216,0.09)]" animate={shouldReduceMotion ? undefined : { opacity: [0.35, 0.76, 0.35], x: [0, 5, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 0.22 }} />
+                                    <motion.div className="h-3 w-[78%] rounded-full bg-[rgba(23,88,216,0.13)]" animate={shouldReduceMotion ? undefined : { opacity: [0.45, 0.92, 0.45], x: [0, 6, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.4, repeat: Infinity, ease: "easeInOut" }} />
+                                    <motion.div className="h-3 w-full rounded-full bg-[rgba(23,88,216,0.09)]" animate={shouldReduceMotion ? undefined : { opacity: [0.35, 0.76, 0.35], x: [0, 8, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 0.14 }} />
+                                    <motion.div className="h-3 w-[62%] rounded-full bg-[rgba(23,88,216,0.09)]" animate={shouldReduceMotion ? undefined : { opacity: [0.35, 0.76, 0.35], x: [0, 5, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.4, repeat: Infinity, ease: "easeInOut", delay: 0.22 }} />
                                 </div>
                                 <div className="mt-6 flex gap-3">
-                                    <motion.div className="h-2.5 w-20 rounded-full bg-[rgba(23,88,216,0.1)]" animate={shouldReduceMotion ? undefined : { opacity: [0.3, 0.7, 0.3] }} transition={shouldReduceMotion ? undefined : { duration: 2.1, repeat: Infinity, ease: "easeInOut" }} />
-                                    <motion.div className="h-2.5 w-16 rounded-full bg-[rgba(23,88,216,0.08)]" animate={shouldReduceMotion ? undefined : { opacity: [0.25, 0.6, 0.25] }} transition={shouldReduceMotion ? undefined : { duration: 2.1, repeat: Infinity, ease: "easeInOut", delay: 0.12 }} />
+                                    <motion.div className="h-2.5 w-24 rounded-full bg-[rgba(23,88,216,0.1)]" animate={shouldReduceMotion ? undefined : { opacity: [0.3, 0.7, 0.3] }} transition={shouldReduceMotion ? undefined : { duration: 2.1, repeat: Infinity, ease: "easeInOut" }} />
+                                    <motion.div className="h-2.5 w-14 rounded-full bg-[rgba(23,88,216,0.08)]" animate={shouldReduceMotion ? undefined : { opacity: [0.25, 0.6, 0.25] }} transition={shouldReduceMotion ? undefined : { duration: 2.1, repeat: Infinity, ease: "easeInOut", delay: 0.12 }} />
                                 </div>
                             </MotionItem>
                         ))}

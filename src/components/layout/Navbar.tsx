@@ -85,7 +85,7 @@ export function Navbar({ items, className }: NavbarProps) {
 
     return (
         <nav
-            className={cn("hidden items-center gap-1 xl:flex", className)}
+            className={cn("hidden items-center gap-1 overflow-visible xl:flex", className)}
             aria-label="Primary navigation"
             onMouseLeave={() => {
                 setHoveredItem(null);
@@ -105,7 +105,7 @@ export function Navbar({ items, className }: NavbarProps) {
                     return (
                         <div
                             key={item.url}
-                            className="relative"
+                            className="relative overflow-visible"
                             onMouseEnter={() => {
                                 setHoveredItem(item.url);
                                 setOpenItem(item.url);
@@ -143,10 +143,10 @@ export function Navbar({ items, className }: NavbarProps) {
                                         animate={{ opacity: 1, y: 0, scale: 1 }}
                                         exit={{ opacity: 0, y: 10, scale: 0.98 }}
                                         transition={publicMotionTokens.hoverSpring}
-                                        className="absolute left-0 top-full z-30 pt-4"
+                                        className="absolute left-0 top-[calc(100%+0.6rem)] z-40 w-max max-w-[min(24rem,calc(100vw-4rem))]"
                                     >
-                                        <div className="public-panel min-w-[300px] overflow-hidden rounded-[1.6rem] p-3">
-                                            <div className="grid gap-1">
+                                        <div className="public-panel min-w-[316px] overflow-hidden rounded-[1.55rem] p-3 shadow-[var(--shadow-md)]">
+                                            <div className="grid gap-1.5">
                                                 {item.children?.map((child, index) => {
                                                     const childActive = pathname === child.url || pathname.startsWith(`${child.url}/`);
 
@@ -161,7 +161,7 @@ export function Navbar({ items, className }: NavbarProps) {
                                                             <Link
                                                                 href={child.url}
                                                                 className={cn(
-                                                                    "block rounded-[1.15rem] px-4 py-3 text-sm transition-all duration-300",
+                                                                    "block rounded-[1.15rem] px-4 py-3 text-sm whitespace-nowrap transition-all duration-300",
                                                                     childActive
                                                                         ? "bg-[rgba(23,88,216,0.1)] text-[var(--accent-strong)]"
                                                                         : "text-[var(--ink-soft)] hover:bg-[rgba(23,88,216,0.06)] hover:text-[var(--ink)]"
@@ -184,7 +184,7 @@ export function Navbar({ items, className }: NavbarProps) {
                 return (
                     <div
                         key={item.url}
-                        className="relative"
+                        className="relative overflow-visible"
                         onMouseEnter={() => setHoveredItem(item.url)}
                         onFocusCapture={() => setHoveredItem(item.url)}
                     >

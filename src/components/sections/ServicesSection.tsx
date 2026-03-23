@@ -131,11 +131,11 @@ export function ServicesSection({
                                         </div>
                                     </div>
 
-                                    <div className="grid gap-3 border-t border-[rgba(26,72,164,0.1)] pt-5 md:grid-cols-2">
+                                    <div className="grid gap-2.5 border-t border-[rgba(26,72,164,0.1)] pt-5 md:grid-cols-2">
                                         {upperStack.map((related) => (
                                             <div
                                                 key={`${leadService.id}-${related.id}`}
-                                                className="rounded-[1.55rem] border border-[rgba(23,88,216,0.12)] bg-white/72 px-4 py-4"
+                                                className="flex min-h-[104px] flex-col justify-between rounded-[1.45rem] border border-[rgba(23,88,216,0.1)] bg-white/66 px-4 py-3.5"
                                             >
                                                 <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-[var(--ink-muted)]">
                                                     {resolvedTitle}

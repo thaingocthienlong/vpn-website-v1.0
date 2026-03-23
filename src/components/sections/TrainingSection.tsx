@@ -220,43 +220,41 @@ export function TrainingSection({
                     </MotionSection>
                 </>
             ) : (
-                <MotionGroup className="grid gap-5 xl:grid-cols-[minmax(0,1.02fr)_minmax(320px,0.98fr)]" stagger={0.14}>
+                <MotionGroup className="grid gap-5 xl:grid-cols-[minmax(0,0.92fr)_minmax(0,1.08fr)]" stagger={0.14}>
                     <MotionItem>
-                    <div className="public-panel public-band relative overflow-hidden rounded-[2.4rem] p-6 md:p-8">
+                    <div className="public-panel public-band relative overflow-hidden rounded-[2.3rem] p-6 md:p-7">
                         <FloatingAccent className="right-[10%] top-[10%] h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(23,88,216,0.14),transparent_72%)]" variant="halo" />
-                        <div className="grid gap-6 lg:grid-cols-[auto_minmax(0,1fr)] lg:items-start">
-                            <div className="inline-flex h-18 w-18 items-center justify-center rounded-[1.65rem] border border-[rgba(23,88,216,0.12)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]">
-                                <GraduationCap className="h-9 w-9" weight="duotone" />
-                            </div>
-
-                            <div className="space-y-5">
+                        <div className="flex h-full flex-col justify-between gap-6">
+                            <div className="space-y-4">
+                                <div className="inline-flex h-14 w-14 items-center justify-center rounded-[1.4rem] border border-[rgba(23,88,216,0.12)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]">
+                                    <GraduationCap className="h-7 w-7" weight="duotone" />
+                                </div>
                                 <div className="space-y-3">
-                                    <h3 className="max-w-[16ch] font-heading text-[2rem] text-[var(--ink)] md:text-[2.4rem]">
-                                        {isEn ? "New courses coming soon" : "Sắp có khóa học mới"}
-                                    </h3>
-                                    <p className="max-w-[42rem] text-sm leading-8 text-[var(--ink-soft)] md:text-[15px]">
-                                        {isEn
-                                            ? "We're preparing high-quality courses. Sign up for notifications so you don't miss out!"
-                                            : "Chúng tôi đang chuẩn bị các khóa học chất lượng cao. Hãy đăng ký nhận thông báo để không bỏ lỡ!"}
+                                    <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                                        {resolvedTitle}
+                                    </p>
+                                    <p className="max-w-[34rem] text-sm leading-8 text-[var(--ink-soft)] md:text-[15px]">
+                                        {resolvedSubtitle}
                                     </p>
                                 </div>
-
-                                <motion.div className="flex flex-wrap gap-3" initial={false}>
-                                    {Object.values(typeLabels).map((label) => (
-                                        <motion.div
-                                            key={label}
-                                            className="rounded-full border border-[rgba(23,88,216,0.12)] bg-[rgba(23,88,216,0.08)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent-strong)]"
-                                            animate={shouldReduceMotion ? undefined : { y: [0, -4, 0] }}
-                                            transition={shouldReduceMotion ? undefined : { duration: 4.8, ease: "easeInOut", repeat: Infinity, delay: label.length * 0.05 }}
-                                        >
-                                            {label}
-                                        </motion.div>
-                                    ))}
-                                </motion.div>
-
-                                <Button asChild variant="outline" size="md" motion="magnetic">
-                                    <Link href={isEn ? "/en/contact" : "/lien-he"}>
-                                        {isEn ? "Get notified" : "Đăng ký nhận thông báo"}
+                            </div>
+                            <div className="flex flex-wrap gap-3">
+                                {Object.values(typeLabels).map((label) => (
+                                    <motion.div
+                                        key={label}
+                                        className="rounded-full border border-[rgba(23,88,216,0.12)] bg-[rgba(23,88,216,0.08)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent-strong)]"
+                                        animate={shouldReduceMotion ? undefined : { y: [0, -3, 0] }}
+                                        transition={shouldReduceMotion ? undefined : { duration: 4.8, ease: "easeInOut", repeat: Infinity, delay: label.length * 0.05 }}
+                                    >
+                                        {label}
+                                    </motion.div>
+                                ))}
+                            </div>
+                            <div>
+                                <Button asChild variant="outline" size="lg" motion="magnetic">
+                                    <Link href={viewAllHref} className="inline-flex items-center">
+                                        <span>{isEn ? "View all courses" : "Xem tất cả khóa học"}</span>
+                                        <ArrowRight className="ml-2 h-4 w-4" weight="bold" />
                                     </Link>
                                 </Button>
                             </div>
@@ -264,29 +262,30 @@ export function TrainingSection({
                     </div>
                     </MotionItem>
 
-                    <MotionItem>
-                    <div className="public-panel-muted rounded-[2.4rem] p-5 md:p-6">
-                        <MotionGroup className="grid gap-4" stagger={0.08}>
+                    <MotionGroup className="grid gap-4 md:grid-cols-2 xl:grid-cols-3" stagger={0.08}>
                             {Object.values(typeLabels).map((label) => (
                                 <MotionItem
                                     key={`${label}-shell`}
-                                    className="rounded-[1.55rem] border border-[rgba(26,72,164,0.12)] bg-white/80 p-4"
+                                    className="rounded-[1.8rem] border border-[rgba(26,72,164,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.9),rgba(234,243,255,0.8))] p-5 shadow-[var(--shadow-xs)]"
                                 >
-                                    <div className="mb-3 flex items-center justify-between gap-3">
-                                        <span className="text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--ink-muted)]">
+                                    <div className="mb-4 flex items-center justify-between gap-3">
+                                        <span className="rounded-full border border-[rgba(23,88,216,0.12)] bg-[rgba(23,88,216,0.08)] px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-[var(--accent-strong)]">
                                             {label}
                                         </span>
                                         <ArrowRight className="h-4 w-4 text-[var(--accent-strong)]" weight="bold" />
                                     </div>
-                                    <div className="space-y-2">
-                                        <motion.div className="h-2.5 w-full rounded-full bg-[rgba(23,88,216,0.12)]" animate={shouldReduceMotion ? undefined : { opacity: [0.45, 0.9, 0.45], x: [0, 6, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
-                                        <motion.div className="h-2.5 w-[72%] rounded-full bg-[rgba(23,88,216,0.09)]" animate={shouldReduceMotion ? undefined : { opacity: [0.35, 0.75, 0.35], x: [0, 4, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 0.18 }} />
+                                    <div className="space-y-3">
+                                        <motion.div className="h-3 w-[82%] rounded-full bg-[rgba(23,88,216,0.12)]" animate={shouldReduceMotion ? undefined : { opacity: [0.45, 0.9, 0.45], x: [0, 6, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut" }} />
+                                        <motion.div className="h-3 w-full rounded-full bg-[rgba(23,88,216,0.09)]" animate={shouldReduceMotion ? undefined : { opacity: [0.35, 0.75, 0.35], x: [0, 4, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 0.18 }} />
+                                        <motion.div className="h-3 w-[64%] rounded-full bg-[rgba(23,88,216,0.09)]" animate={shouldReduceMotion ? undefined : { opacity: [0.3, 0.7, 0.3], x: [0, 3, 0] }} transition={shouldReduceMotion ? undefined : { duration: 2.2, repeat: Infinity, ease: "easeInOut", delay: 0.28 }} />
+                                    </div>
+                                    <div className="mt-6 flex gap-3">
+                                        <motion.div className="h-2.5 w-20 rounded-full bg-[rgba(23,88,216,0.1)]" animate={shouldReduceMotion ? undefined : { opacity: [0.3, 0.7, 0.3] }} transition={shouldReduceMotion ? undefined : { duration: 2.1, repeat: Infinity, ease: "easeInOut" }} />
+                                        <motion.div className="h-2.5 w-14 rounded-full bg-[rgba(23,88,216,0.08)]" animate={shouldReduceMotion ? undefined : { opacity: [0.25, 0.6, 0.25] }} transition={shouldReduceMotion ? undefined : { duration: 2.1, repeat: Infinity, ease: "easeInOut", delay: 0.12 }} />
                                     </div>
                                 </MotionItem>
                             ))}
-                        </MotionGroup>
-                    </div>
-                    </MotionItem>
+                    </MotionGroup>
                 </MotionGroup>
             )}
         </SectionWrapper>

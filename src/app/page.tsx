@@ -59,7 +59,7 @@ export default async function HomePage() {
   return (
     <div className="public-shell min-h-screen flex flex-col">
       <Header />
-      <main id="main-content" className="flex-1 pt-24 md:pt-28">
+      <main id="main-content" className="flex-1 pt-[7.75rem] md:pt-[8.75rem]">
         {/* 1. Hero */}
         <HeroSection featuredPrograms={courses.slice(0, 3)} />
 

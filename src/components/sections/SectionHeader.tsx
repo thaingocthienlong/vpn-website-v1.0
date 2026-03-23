@@ -39,12 +39,12 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
 
     const desktopLayout =
         actualAlignment === "center"
-            ? "mx-auto max-w-6xl gap-5 lg:grid lg:grid-cols-[minmax(0,0.98fr)_minmax(280px,0.82fr)] lg:items-end lg:text-left"
-            : "gap-5 lg:grid lg:grid-cols-[minmax(0,0.98fr)_minmax(280px,0.82fr)] lg:items-end";
+            ? "mx-auto max-w-6xl gap-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.76fr)] lg:items-end lg:text-left"
+            : "gap-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.76fr)] lg:items-end";
 
     return (
         <motion.div
-            className={cn("mb-8 md:mb-10 lg:mb-12", alignmentMap[actualAlignment], className)}
+            className={cn("mb-8 md:mb-10 lg:mb-11", alignmentMap[actualAlignment], className)}
             initial={
                 shouldReduceMotion || motionPreset === "none"
                     ? false
@@ -101,7 +101,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                     )}
                     <h2
                         className={cn(
-                            "max-w-[11.5ch] font-heading text-[2.15rem] leading-[0.92] tracking-[-0.05em] md:text-[2.85rem] lg:text-[3.35rem]",
+                            "max-w-[12.2ch] font-heading text-[2.05rem] leading-[0.92] tracking-[-0.05em] md:text-[2.72rem] lg:text-[3.15rem]",
                             isDark ? "text-white" : "text-[var(--ink)]",
                             actualAlignment === "center" && "mx-auto",
                             actualAlignment === "right" && "ml-auto"
@@ -127,7 +127,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                         <div className={cn("mt-2 h-11 w-px shrink-0 md:h-12", isDark ? "bg-white/20" : "bg-[rgba(23,88,216,0.22)]")} />
                         <p
                             className={cn(
-                                "max-w-[32rem] text-[0.95rem] leading-[1.95rem] md:text-[1rem] md:leading-8",
+                            "max-w-[30rem] text-[0.94rem] leading-[1.9rem] md:text-[0.98rem] md:leading-[1.95rem]",
                                 isDark ? "text-white/76" : "text-[var(--ink-soft)]",
                                 actualAlignment === "center" && "lg:mx-0",
                                 actualAlignment === "right" && "text-left"

@@ -81,17 +81,20 @@ export function Footer({
         <footer className="relative pb-8 pt-10">
             <Container>
                 <MotionSection preset="footer">
-                    <div className="section-shell bg-navy-gradient relative overflow-hidden rounded-[3rem] px-6 py-10 text-[#f5f9ff] shadow-[var(--shadow-lg)] md:px-10 md:py-12">
+                    <div className="section-shell relative overflow-hidden rounded-[3rem] border border-[rgba(96,148,255,0.2)] bg-[linear-gradient(155deg,rgba(30,82,186,0.96),rgba(51,106,224,0.93)_54%,rgba(133,181,255,0.86)_124%)] px-6 py-10 text-[#f5f9ff] shadow-[0_34px_96px_rgba(25,72,182,0.22)] md:px-10 md:py-12">
                     <FloatingAccent className="right-[8%] top-[10%] h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(116,170,255,0.2),transparent_72%)]" variant="halo" />
                     <FloatingAccent className="bottom-[12%] left-[8%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.12),transparent_70%)]" variant="orb" />
                     <div className="section-outline hidden md:block" />
                     <MotionGroup className="relative grid gap-8 xl:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)]" stagger={0.1}>
                         <MotionItem className="space-y-6">
                             <div className="space-y-3">
-                                <div className="public-kicker border-white/12 bg-white/10 text-white/86">
+                                <div className="public-kicker border-white/16 bg-white/12 text-white/90">
                                     {orgName}
                                 </div>
-                                <h2 className="max-w-xl font-heading text-[2.2rem] tracking-[-0.04em] text-[#f7fbff] md:text-[3rem]">
+                                <h2
+                                    className="max-w-xl font-heading text-[2.2rem] tracking-[-0.04em] !text-[#f7fbff] md:text-[3rem]"
+                                    style={{ color: "#f7fbff" }}
+                                >
                                     {orgName}
                                 </h2>
                                 <p className="max-w-xl text-sm leading-8 text-white/72 md:text-[15px]">
@@ -143,8 +146,11 @@ export function Footer({
                         </MotionItem>
 
                         <MotionItem className="grid gap-4 md:grid-cols-3">
-                            <div className="rounded-[2rem] border border-white/10 bg-white/6 p-5 transition-colors duration-300 hover:bg-white/8">
-                                <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-white/60">
+                            <div className="rounded-[2rem] border border-white/14 bg-white/10 p-5 transition-colors duration-300 hover:bg-white/14">
+                                <h3
+                                    className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] !text-white/80"
+                                    style={{ color: "rgba(247, 251, 255, 0.8)" }}
+                                >
                                     {isEn ? "Quick Links" : "Liên kết"}
                                 </h3>
                                 <div className="grid gap-2">
@@ -160,8 +166,11 @@ export function Footer({
                                 </div>
                             </div>
 
-                            <div className="rounded-[2rem] border border-white/10 bg-white/6 p-5 transition-colors duration-300 hover:bg-white/8">
-                                <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-white/60">
+                            <div className="rounded-[2rem] border border-white/14 bg-white/10 p-5 transition-colors duration-300 hover:bg-white/14">
+                                <h3
+                                    className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] !text-white/80"
+                                    style={{ color: "rgba(247, 251, 255, 0.8)" }}
+                                >
                                     {isEn ? "Contact" : "Liên hệ"}
                                 </h3>
                                 <div className="space-y-3">
@@ -186,7 +195,7 @@ export function Footer({
                                 </div>
                             </div>
 
-                            <div className="flex flex-col justify-between gap-6 rounded-[2rem] border border-white/10 bg-white/6 p-5 transition-colors duration-300 hover:bg-white/8">
+                            <div className="flex flex-col justify-between gap-6 rounded-[2rem] border border-white/14 bg-white/10 p-5 transition-colors duration-300 hover:bg-white/14">
                                 <div className="space-y-3">
                                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/56">
                                         {isEn ? "Institutional" : "Thông tin"}

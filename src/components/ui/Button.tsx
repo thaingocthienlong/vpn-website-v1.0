@@ -31,13 +31,19 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             motion = "lift",
             disabled,
             children,
+            style,
             ...props
         },
         ref
     ) => {
         const shouldReduceMotion = useReducedMotion();
+        const resolvedStyle =
+            variant === "primary" || variant === "cta"
+                ? { color: "#f7fbff", ...style }
+                : style;
         const baseStyles = cn(
             "relative isolate inline-flex items-center justify-center overflow-hidden border font-medium tracking-[0.01em]",
+            "[&_svg]:text-inherit",
             "transition-[transform,box-shadow,background-color,border-color,color] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]",
             "focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-transparent disabled:cursor-not-allowed disabled:opacity-50",
             "active:translate-y-px"
@@ -48,7 +54,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 
         const variants = {
             primary: cn(
-                "border-transparent bg-[var(--accent)] text-[var(--color-primary-foreground)] shadow-[var(--shadow-sm)] hover:bg-[var(--accent-strong)]",
+                "border-transparent bg-[var(--accent)] text-white shadow-[var(--shadow-sm)] hover:bg-[var(--accent-strong)]",
                 "before:bg-[linear-gradient(135deg,rgba(255,255,255,0.24),transparent_58%)]",
                 "focus:ring-[rgba(23,88,216,0.28)]"
             ),
@@ -122,6 +128,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                         fullWidth && "w-full",
                         className
                     )}
+                    style={resolvedStyle}
                     ref={ref}
                     {...props}
                 >
@@ -140,6 +147,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
                     fullWidth && "w-full",
                     className
                 )}
+                style={resolvedStyle}
                 ref={ref}
                 disabled={disabled || isLoading}
                 {...props}

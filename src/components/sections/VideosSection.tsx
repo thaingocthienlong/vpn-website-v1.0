@@ -79,21 +79,22 @@ export function VideosSection({
     }
 
     return (
-        <SectionWrapper background="gradient-dark">
+        <SectionWrapper background="gradient-blue">
             <MotionSection preset="contrast">
-                <SectionHeader title={resolvedTitle} subtitle={resolvedSubtitle} variant="dark" motionPreset="contrast" />
+                <SectionHeader title={resolvedTitle} subtitle={resolvedSubtitle} motionPreset="section" />
             </MotionSection>
 
-            <div className="public-panel-contrast relative overflow-hidden rounded-[2.7rem] p-4 md:p-5">
-                <FloatingAccent className="left-[8%] top-[10%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.16),transparent_70%)]" variant="halo" />
-                <FloatingAccent className="bottom-[10%] right-[8%] h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(116,170,255,0.18),transparent_74%)]" variant="orb" />
+            <div className="relative overflow-hidden rounded-[2.7rem] border border-[rgba(96,148,255,0.2)] bg-[linear-gradient(155deg,rgba(30,82,186,0.96),rgba(51,106,224,0.93)_54%,rgba(133,181,255,0.86)_124%)] p-4 text-white shadow-[0_34px_96px_rgba(25,72,182,0.22)] md:p-5">
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(214,232,255,0.14),transparent_26%)]" />
+                <FloatingAccent className="left-[8%] top-[10%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.18),transparent_70%)]" variant="halo" />
+                <FloatingAccent className="bottom-[10%] right-[8%] h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(210,230,255,0.18),transparent_74%)]" variant="orb" />
 
                 <MotionGroup className="relative grid gap-4 xl:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.92fr)] xl:items-stretch" stagger={0.1}>
                     <MotionItem preset="fade-right">
                         <ParallaxLayer depth={20}>
                             <motion.div
                                 layout
-                                className="relative aspect-video overflow-hidden rounded-[2.2rem] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(255,255,255,0.03))] shadow-[0_28px_60px_rgba(5,15,34,0.22)]"
+                                className="relative aspect-video overflow-hidden rounded-[2.2rem] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.06))] shadow-[0_28px_60px_rgba(18,56,138,0.18)]"
                                 animate={
                                     shouldReduceMotion
                                         ? undefined
@@ -171,7 +172,7 @@ export function VideosSection({
                         </ParallaxLayer>
                     </MotionItem>
 
-                    <MotionGroup className="grid h-full gap-4 md:grid-cols-2 xl:grid-cols-1 xl:grid-rows-2" stagger={0.08}>
+                    <MotionGroup className="grid h-full gap-4 md:grid-cols-2 xl:grid-cols-1 xl:auto-rows-fr" stagger={0.08}>
                         {resolvedVideos.map((video, index) => {
                             const isActive = video.id === activeVideo.id;
 
@@ -187,22 +188,22 @@ export function VideosSection({
                                         whileHover={shouldReduceMotion ? undefined : { y: -6, scale: 1.01 }}
                                         whileTap={shouldReduceMotion ? undefined : { scale: 0.99 }}
                                         transition={publicMotionTokens.hoverSpring}
-                                        className={`relative w-full overflow-hidden rounded-[1.85rem] border p-3 text-left ${
+                                        className={`relative flex h-full w-full items-stretch overflow-hidden rounded-[1.85rem] border p-3.5 text-left ${
                                             isActive
-                                                ? "border-white/16 bg-white/12 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                                                : "border-white/10 bg-white/6 text-white/80 hover:bg-white/9"
+                                                ? "border-white/18 bg-white/14 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
+                                                : "border-white/14 bg-white/8 text-white/82 hover:bg-white/10"
                                         }`}
                                     >
                                         {!shouldReduceMotion && isActive ? (
                                             <motion.div
                                                 layoutId="video-selector-glow"
-                                                className="absolute inset-0 rounded-[1.75rem] border border-white/14 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_62%)]"
+                                                className="absolute inset-0 rounded-[1.75rem] border border-white/16 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_62%)]"
                                             />
                                         ) : null}
 
-                                        <div className="relative z-[1] grid h-full gap-4 sm:grid-cols-[132px_minmax(0,1fr)] sm:items-center">
+                                        <div className="relative z-[1] grid flex-1 gap-4 md:grid-cols-[144px_minmax(0,1fr)] md:items-center">
                                             <motion.div
-                                                className="relative min-h-[112px] overflow-hidden rounded-[1.3rem] bg-[rgba(255,255,255,0.06)]"
+                                                className="relative min-h-[120px] overflow-hidden rounded-[1.3rem] border border-white/10 bg-[rgba(255,255,255,0.08)]"
                                                 animate={
                                                     shouldReduceMotion || !isActive
                                                         ? undefined
@@ -248,7 +249,7 @@ export function VideosSection({
                                                 animate={shouldReduceMotion ? undefined : { x: isActive ? 0 : -2 }}
                                                 transition={publicMotionTokens.hoverSpring}
                                             >
-                                                <p className="text-sm leading-7 md:text-base">
+                                                <p className="text-sm leading-7 text-white/90 md:text-base">
                                                     {video.title}
                                                 </p>
                                             </motion.div>
