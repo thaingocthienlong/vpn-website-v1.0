@@ -1,0 +1,37 @@
+[
+  {
+    "id": 12,
+    "tukhoa": "Giới thiệu Viện Phương Nam",
+    "duongdan": "/gioi-thieu-chung/"
+  },
+  {
+    "id": 16,
+    "tukhoa": "Hội đồng cố vấn khoa học",
+    "duongdan": "/hoi-dong-co-van-khoa-hoc/"
+  },
+  {
+    "id": 17,
+    "tukhoa": "Đội ngũ Viện Phương Nam",
+    "duongdan": "/nhan-luc-vien-phuong-nam/"
+  },
+  {
+    "id": 22,
+    "tukhoa": "Tin tức",
+    "duongdan": "/bai-viet/tin-tuc/"
+  },
+  {
+    "id": 24,
+    "tukhoa": "Hội thảo",
+    "duongdan": "/bai-viet/hoi-thao/"
+  },
+  {
+    "id": 25,
+    "tukhoa": "Sự kiện",
+    "duongdan": "/bai-viet/su-kien/"
+  },
+  {
+    "id": 26,
+    "tukhoa": "Liên hệ",
+    "duongdan": "https://vienphuongnam.com.vn/lien-he/"
+  }
+]

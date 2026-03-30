@@ -1,0 +1,37 @@
+{
+  "name": "serena-mcp",
+  "version": "0.1.0",
+  "description": "Repo-aware Serena MCP plugin for workspace inspection and code navigation.",
+  "author": {
+    "name": "Local Workspace"
+  },
+  "homepage": "https://github.com/oraios/serena",
+  "repository": "https://github.com/oraios/serena",
+  "license": "UNLICENSED",
+  "keywords": [
+    "serena",
+    "mcp",
+    "repo-inspection",
+    "code-navigation"
+  ],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Serena MCP",
+    "shortDescription": "Workspace-aware repo inspection for Codex.",
+    "longDescription": "Adds Serena as a local MCP server and ships a small skill for symbol search, file discovery, and code navigation before falling back to manual shell inspection.",
+    "developerName": "Local Workspace",
+    "category": "Productivity",
+    "capabilities": [
+      "Interactive",
+      "Read"
+    ],
+    "websiteURL": "https://github.com/oraios/serena",
+    "defaultPrompt": [
+      "Use Serena to find where this symbol is defined.",
+      "Inspect this repo with Serena before shell fallbacks.",
+      "Map the files involved in this feature with Serena."
+    ],
+    "brandColor": "#2563EB"
+  }
+}

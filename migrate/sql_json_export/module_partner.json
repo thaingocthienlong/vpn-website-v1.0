@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "fullmanhinh": 0,
+    "tieude": "Đội ngũ giảng viên <span>Viện Phương Nam</span>",
+    "hinhnen": "",
+    "mauchu": "",
+    "duongvien": 0,
+    "thuoctinhbgd": "repeat",
+    "mieutangan": "",
+    "limitbgd": 0
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 0,
+    "fullmanhinh": 0,
+    "tieude": "",
+    "hinhnen": "",
+    "mauchu": "",
+    "duongvien": 1,
+    "thuoctinhbgd": "",
+    "mieutangan": "",
+    "limitbgd": 0
+  }
+]

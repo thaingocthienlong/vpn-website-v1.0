@@ -1,0 +1,433 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content" [ref=e2] [cursor=pointer]:
+    - /url: "#main-content"
+  - generic [ref=e5]:
+    - banner [ref=e6]:
+      - generic [ref=e8]:
+        - link "Vien Phuong Nam Institute Social Resource Institute Vien Phuong Nam Institute Public interest training and applied services" [ref=e9] [cursor=pointer]:
+          - /url: /en
+          - generic [ref=e10]:
+            - img "Vien Phuong Nam Institute" [ref=e12]
+            - generic [ref=e13]:
+              - paragraph [ref=e14]: Social Resource Institute
+              - paragraph [ref=e15]: Vien Phuong Nam Institute
+              - paragraph [ref=e16]: Public interest training and applied services
+        - navigation "Primary navigation" [ref=e18]:
+          - link "Home" [ref=e20] [cursor=pointer]:
+            - /url: /en
+            - text: Home
+          - link "Contact" [ref=e23] [cursor=pointer]:
+            - /url: /en/contact
+          - link "About" [ref=e25] [cursor=pointer]:
+            - /url: /en/about
+          - link "Training" [ref=e27] [cursor=pointer]:
+            - /url: /en/training
+          - link "News" [ref=e29] [cursor=pointer]:
+            - /url: /en/news
+        - link "Contact Us" [ref=e32] [cursor=pointer]:
+          - /url: /en/contact
+          - generic [ref=e33]: Contact Us
+          - img [ref=e35]
+    - main [ref=e37]:
+      - generic [ref=e41]:
+        - generic [ref=e43]:
+          - generic [ref=e44]:
+            - generic [ref=e45]: Institute profile
+            - generic [ref=e46]:
+              - generic [ref=e48]: Training
+              - generic [ref=e51]: Applied research
+              - generic [ref=e54]: Community partnerships
+            - heading "Viện Phương Nam" [level=1] [ref=e55]
+            - paragraph [ref=e56]: Đào tạo, nghiên cứu và kết nối nguồn lực xã hội vì cộng đồng.
+          - generic [ref=e57]:
+            - link "Khám phá chương trình" [ref=e59] [cursor=pointer]:
+              - /url: /dao-tao
+              - generic [ref=e60]: Khám phá chương trình
+              - img [ref=e62]
+            - link "Liên hệ tư vấn" [ref=e65] [cursor=pointer]:
+              - /url: /lien-he
+              - generic [ref=e66]: Liên hệ tư vấn
+              - img [ref=e68]
+          - generic [ref=e70]: A direct view into the institute's training, research, and social development agenda.
+        - generic [ref=e72]:
+          - article [ref=e73]:
+            - generic [ref=e76]: Video nổi bật
+            - generic [ref=e77]:
+              - img [ref=e79]
+              - generic [ref=e81]:
+                - heading "Viện Phương Nam" [level=2] [ref=e82]
+                - paragraph [ref=e83]: Đào tạo, nghiên cứu và kết nối nguồn lực xã hội vì cộng đồng.
+              - link "Get in touch" [ref=e84] [cursor=pointer]:
+                - /url: /#video
+                - generic [ref=e85]: Get in touch
+                - img [ref=e87]
+          - generic [ref=e89]:
+            - generic [ref=e90]:
+              - paragraph [ref=e91]: Selected programs
+              - link "View all" [ref=e92] [cursor=pointer]:
+                - /url: /en/training
+            - generic [ref=e93]:
+              - 'link "BỒI DƯỠNG KIẾN THỨC VÀ ÔN THI NGHIỆP VỤ CHUYÊN MÔN VỀ ĐẤU THẦU Dự kiến khai giảng: 20/3/2026 (thứ 6)" [ref=e94] [cursor=pointer]':
+                - /url: /en/training/on-thi-nghiep-vu-dau-thau
+                - generic [ref=e95]:
+                  - paragraph [ref=e96]: BỒI DƯỠNG KIẾN THỨC VÀ ÔN THI NGHIỆP VỤ CHUYÊN MÔN VỀ ĐẤU THẦU
+                  - paragraph [ref=e97]: "Dự kiến khai giảng: 20/3/2026 (thứ 6)"
+                - img [ref=e98]
+              - 'link "KHOÁ HỌC \"BỒI DƯỠNG THEO TIÊU CHUẨN CHỨC DANH NGHỀ NGHIỆP GIẢNG VIÊN ĐẠI HỌC\" Thời gian khai giảng dự kiến: th&aacute;ng 03/2026" [ref=e100] [cursor=pointer]':
+                - /url: /en/training/tccd-nghe-nghiep-giang-vien-dai-hoc
+                - generic [ref=e101]:
+                  - paragraph [ref=e102]: KHOÁ HỌC "BỒI DƯỠNG THEO TIÊU CHUẨN CHỨC DANH NGHỀ NGHIỆP GIẢNG VIÊN ĐẠI HỌC"
+                  - paragraph [ref=e103]: "Thời gian khai giảng dự kiến: th&aacute;ng 03/2026"
+                - img [ref=e104]
+      - generic [ref=e108]:
+        - generic [ref=e111]:
+          - generic [ref=e112]:
+            - generic [ref=e113]: Programs
+            - heading "Chương trình đào tạo" [level=2] [ref=e114]
+          - paragraph [ref=e117]: Các khóa học, chuyên đề và chương trình phát triển năng lực theo định hướng thực tiễn.
+        - generic [ref=e118]:
+          - link [ref=e120] [cursor=pointer]:
+            - /url: /en/training/on-thi-nghiep-vu-dau-thau
+            - article [ref=e121]:
+              - generic [ref=e122]:
+                - generic [ref=e123]:
+                  - img "BỒI DƯỠNG KIẾN THỨC VÀ ÔN THI NGHIỆP VỤ CHUYÊN MÔN VỀ ĐẤU THẦU" [ref=e124]
+                  - generic [ref=e126]: Short Course
+                  - generic [ref=e128]:
+                    - paragraph [ref=e129]: Chưa phân loại
+                    - paragraph [ref=e130]: BỒI DƯỠNG KIẾN THỨC VÀ ÔN THI NGHIỆP VỤ CHUYÊN MÔN VỀ ĐẤU THẦU
+                - generic [ref=e131]:
+                  - generic [ref=e132]:
+                    - paragraph [ref=e133]: Featured intake
+                    - paragraph [ref=e134]: "Dự kiến khai giảng: 20/3/2026 (thứ 6)"
+                  - generic [ref=e135]:
+                    - generic [ref=e137]: Chưa phân loại
+                    - generic [ref=e138]:
+                      - generic [ref=e139]: Open the programme
+                      - img [ref=e140]
+          - generic [ref=e143]:
+            - generic [ref=e144]:
+              - paragraph [ref=e145]: Program shelf
+              - heading "Short, clear previews before the full catalogue." [level=3] [ref=e146]
+              - paragraph [ref=e147]: Each programme stays lightweight on the homepage, with one lead path and two quieter supporting routes.
+            - generic [ref=e148]:
+              - 'link "Short Course KHOÁ HỌC \"BỒI DƯỠNG THEO TIÊU CHUẨN CHỨC DANH NGHỀ NGHIỆP GIẢNG VIÊN ĐẠI HỌC\" Thời gian khai giảng dự kiến: th&aacute;ng 03/2026 Chưa phân loại" [ref=e149] [cursor=pointer]':
+                - /url: /en/training/tccd-nghe-nghiep-giang-vien-dai-hoc
+                - generic [ref=e150]:
+                  - paragraph [ref=e151]: Short Course
+                  - heading "KHOÁ HỌC \"BỒI DƯỠNG THEO TIÊU CHUẨN CHỨC DANH NGHỀ NGHIỆP GIẢNG VIÊN ĐẠI HỌC\"" [level=3] [ref=e152]
+                  - paragraph [ref=e153]: "Thời gian khai giảng dự kiến: th&aacute;ng 03/2026"
+                  - generic [ref=e155]: Chưa phân loại
+                - img [ref=e156]
+              - 'link "Short Course TUYỂN SINH THẠC SĨ TRƯỜNG ĐẠI HỌC NÔNG LÂM, ĐẠI HỌC THÁI NGUYÊN Th&ocirc;ng b&aacute;o tuyển sinh chương tr&igrave;nh Thạc sĩ Quản l&yacute; đất đai, Trường Đại học N&ocirc;ng L&acirc;m, Đại học Th&aacute;i Nguy&ecirc;n: Chưa phân loại" [ref=e158] [cursor=pointer]':
+                - /url: /en/training/tuyen-sinh-thac-si-truong-dai-hoc-nong-lam-dai-hoc-thai-nguyen
+                - generic [ref=e159]:
+                  - paragraph [ref=e160]: Short Course
+                  - heading "TUYỂN SINH THẠC SĨ TRƯỜNG ĐẠI HỌC NÔNG LÂM, ĐẠI HỌC THÁI NGUYÊN" [level=3] [ref=e161]
+                  - paragraph [ref=e162]: "Th&ocirc;ng b&aacute;o tuyển sinh chương tr&igrave;nh Thạc sĩ Quản l&yacute; đất đai, Trường Đại học N&ocirc;ng L&acirc;m, Đại học Th&aacute;i Nguy&ecirc;n:"
+                  - generic [ref=e164]: Chưa phân loại
+                - img [ref=e165]
+            - link "View all courses" [ref=e169] [cursor=pointer]:
+              - /url: /en/training
+              - generic [ref=e170]: View all courses
+              - img [ref=e171]
+      - generic [ref=e175]:
+        - generic [ref=e178]:
+          - generic [ref=e179]:
+            - generic [ref=e180]: Capabilities
+            - heading "Dịch vụ và lĩnh vực hoạt động" [level=2] [ref=e181]
+          - paragraph [ref=e184]: Các chương trình tư vấn, đào tạo và hỗ trợ chuyên môn gắn với nhu cầu thực tiễn.
+        - generic [ref=e185]:
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - img [ref=e191]
+              - generic [ref=e194]:
+                - paragraph [ref=e195]: Featured service
+                - 'heading "PTE ACADEMIC 2025: NHỮNG THAY ĐỔI QUAN TRỌNG TỪ 7/8/2025" [level=3] [ref=e196]'
+                - paragraph [ref=e197]: Pearson chính thức ra mắt Enhanced PTE Academic vào ngày 7/8/2025 – phiên bản cải tiến với nhiều thay đổi về cấu trúc đề thi, dạng câu hỏi và cách chấm điểm. Đây là bước tiến nhằm...
+            - generic [ref=e198]:
+              - paragraph [ref=e199]: Kept deliberately compact on the homepage so visitors can scan the service landscape quickly.
+              - link "Open featured service" [ref=e201] [cursor=pointer]:
+                - /url: /en/services/pte-academic-2025-nhung-thay-doi-quan-trong-tu-782025
+                - generic [ref=e202]: Open featured service
+                - img [ref=e203]
+          - generic [ref=e205]:
+            - link [ref=e207] [cursor=pointer]:
+              - /url: /en/services/pte-academic-2025-nhung-thay-doi-quan-trong-tu-782025
+              - article [ref=e208]:
+                - generic [ref=e209]:
+                  - img [ref=e211]
+                  - img [ref=e214]
+                - 'heading "PTE ACADEMIC 2025: NHỮNG THAY ĐỔI QUAN TRỌNG TỪ 7/8/2025" [level=3] [ref=e216]'
+                - paragraph [ref=e217]: Pearson chính thức ra mắt Enhanced PTE Academic vào ngày 7/8/2025 – phiên bản cải tiến với nhiều thay đổi về cấu trúc đề thi, dạng câu hỏi và cách chấm điểm. Đây là bước tiến nhằm...
+            - link [ref=e219] [cursor=pointer]:
+              - /url: /en/services/dich-vu-tu-van-visa-cua-leading-edge-migration-lem-chia-khoa-vang-chinh-phuc-giac-mo-uc
+              - article [ref=e220]:
+                - generic [ref=e221]:
+                  - img [ref=e223]
+                  - img [ref=e226]
+                - heading "DỊCH VỤ TƯ VẤN VISA CỦA LEADING EDGE MIGRATION (LEM) – CHÌA KHÓA VÀNG CHINH PHỤC GIẤC MƠ ÚC" [level=3] [ref=e228]
+                - paragraph [ref=e229]: Bạn đang ấp ủ ước mơ du học, làm việc hoặc định cư tại Úc nhưng lo lắng về hồ sơ, thủ tục và tỷ lệ đậu visa? Leading Edge Migration (LEM) tại Perth, Úc chính là người bạn đồng hành...
+            - link [ref=e231] [cursor=pointer]:
+              - /url: /en/services/gioi-thieu-truong-va-nganh-hoc-noi-bat-o-uc
+              - article [ref=e232]:
+                - generic [ref=e233]:
+                  - img [ref=e235]
+                  - img [ref=e238]
+                - heading "GIỚI THIỆU TRƯỜNG VÀ NGÀNH HỌC NỔI BẬT Ở ÚC" [level=3] [ref=e240]
+                - paragraph [ref=e241]: Úc từ lâu đã được biết đến là điểm đến lý tưởng cho sinh viên quốc tế với nền giáo dục chất lượng cao, bằng cấp được công nhận toàn cầu và cơ hội nghề nghiệp rộng mở. Bên cạnh môi...
+            - link [ref=e243] [cursor=pointer]:
+              - /url: /en/services/he-thong-giao-duc-tai-uc
+              - article [ref=e244]:
+                - generic [ref=e245]:
+                  - img [ref=e247]
+                  - img [ref=e250]
+                - heading "HỆ THỐNG GIÁO DỤC TẠI ÚC" [level=3] [ref=e252]
+                - paragraph [ref=e253]: Úc là một trong những quốc gia có hệ thống giáo dục tiên tiến và được công nhận toàn cầu. Với Khung trình độ Úc (Australian Qualifications Framework – AQF) gồm 10 bậc từ chứng chỉ...
+        - link "View all services" [ref=e256] [cursor=pointer]:
+          - /url: /en/services
+          - generic [ref=e257]: View all services
+          - img [ref=e258]
+      - generic [ref=e264]:
+        - generic [ref=e265]:
+          - paragraph [ref=e266]: Trust network
+          - heading "Đối tác liên kết" [level=2] [ref=e267]
+          - paragraph [ref=e268]: Mạng lưới đối tác đồng hành trong đào tạo, nghiên cứu và phát triển nguồn lực xã hội.
+        - generic [ref=e269]:
+          - link "Liên hiệp các Hội Khoa học và Kỹ thuật Việt Nam" [ref=e272] [cursor=pointer]:
+            - /url: https://vusta.vn/
+            - img "Liên hiệp các Hội Khoa học và Kỹ thuật Việt Nam" [ref=e274]
+          - link "Viện Nghiên cứu Sư phạm - Trường ĐHSP Hà Nội 2" [ref=e277] [cursor=pointer]:
+            - /url: https://www.hpu2.edu.vn/vi-VN/vien-nghien-cuu-su-pham
+            - img "Viện Nghiên cứu Sư phạm - Trường ĐHSP Hà Nội 2" [ref=e279]
+          - link "Trường Chính sách công và Phát triển nông thôn" [ref=e282] [cursor=pointer]:
+            - /url: https://prd.edu.vn/
+            - img "Trường Chính sách công và Phát triển nông thôn" [ref=e284]
+          - link "Bệnh viện Lê Văn Thịnh" [ref=e287] [cursor=pointer]:
+            - /url: https://benhvienlevanthinh.vn/
+            - img "Bệnh viện Lê Văn Thịnh" [ref=e289]
+          - link "Trường Đại học Trà Vinh" [ref=e292] [cursor=pointer]:
+            - /url: https://www.tvu.edu.vn/
+            - img "Trường Đại học Trà Vinh" [ref=e294]
+          - link "Viện Nghiên cứu Khoa học Giáo dục và Đào tạo (Viện IES)" [ref=e297] [cursor=pointer]:
+            - /url: https://ires.edu.vn/
+            - img "Viện Nghiên cứu Khoa học Giáo dục và Đào tạo (Viện IES)" [ref=e299]
+          - link "Trường Đào tạo, bồi dưỡng cán bộ tài nguyên và môi trường (InNET)" [ref=e302] [cursor=pointer]:
+            - /url: http://innet.gov.vn/
+            - img "Trường Đào tạo, bồi dưỡng cán bộ tài nguyên và môi trường (InNET)" [ref=e304]
+          - link "Trung tâm Khám phá khoa học và Đổi mới sáng tạo Tp. Quy Nhơn" [ref=e307] [cursor=pointer]:
+            - /url: https://explorascience.vn/
+            - img "Trung tâm Khám phá khoa học và Đổi mới sáng tạo Tp. Quy Nhơn" [ref=e309]
+      - generic [ref=e312]:
+        - generic [ref=e315]:
+          - generic [ref=e316]:
+            - generic [ref=e317]: Updates
+            - heading "Tin tức và sự kiện" [level=2] [ref=e318]
+          - paragraph [ref=e321]: Cập nhật hoạt động đào tạo, nghiên cứu, hợp tác và các chương trình nổi bật của Viện.
+        - generic [ref=e322]:
+          - link [ref=e324] [cursor=pointer]:
+            - /url: /en/news/tuyen-dung/tuyen-dung-thuc-tap-sinh-tuyen-sinh-dao-tao
+            - article [ref=e325]:
+              - generic [ref=e326]:
+                - img "Tuyển dụng Thực tập sinh Tuyển sinh - Đào tạo" [ref=e327]
+                - generic [ref=e329]: Tuyển dụng
+              - generic [ref=e330]:
+                - generic [ref=e331]:
+                  - paragraph [ref=e332]: Featured story
+                  - heading "Tuyển dụng Thực tập sinh Tuyển sinh - Đào tạo" [level=3] [ref=e333]
+                  - paragraph [ref=e334]: Viện phát triển nguồn lực xã hội Phương Nam (Viện Phương Nam) đang có nhu cầu tuyển dụng Thực tập sinh Tuyển sinh - Đào tạo
+                - generic [ref=e335]:
+                  - generic [ref=e336]:
+                    - img [ref=e337]
+                    - text: 12/19/2025
+                  - generic [ref=e339]:
+                    - img [ref=e340]
+                    - text: "104"
+          - generic [ref=e343]:
+            - generic [ref=e344]:
+              - link "Tuyển dụng Tuyển dụng Thực tập sinh Kế toán Viện phát triển nguồn lực xã hội Phương Nam (Viện Phương Nam) đang có nhu cầu tuyển dụng Thực tập sinh Kế toán Read story" [ref=e345] [cursor=pointer]:
+                - /url: /en/news/tuyen-dung/tuyen-dung-thuc-tap-sinh-ke-toan
+                - paragraph [ref=e346]: Tuyển dụng
+                - heading "Tuyển dụng Thực tập sinh Kế toán" [level=3] [ref=e347]
+                - paragraph [ref=e348]: Viện phát triển nguồn lực xã hội Phương Nam (Viện Phương Nam) đang có nhu cầu tuyển dụng Thực tập sinh Kế toán
+                - generic [ref=e349]:
+                  - generic [ref=e350]: Read story
+                  - img [ref=e351]
+              - link "Tuyển dụng Tuyển dụng Thực tập sinh Truyền thông - Marketing Viện phát triển nguồn lực xã hội Phương Nam (Viện Phương Nam) đang có nhu cầu tuyển dụng Thực tập sinh Truyền thông - Marketing Read story" [ref=e353] [cursor=pointer]:
+                - /url: /en/news/tuyen-dung/tuyen-dung-thuc-tap-sinh-truyen-thong-marketing
+                - paragraph [ref=e354]: Tuyển dụng
+                - heading "Tuyển dụng Thực tập sinh Truyền thông - Marketing" [level=3] [ref=e355]
+                - paragraph [ref=e356]: Viện phát triển nguồn lực xã hội Phương Nam (Viện Phương Nam) đang có nhu cầu tuyển dụng Thực tập sinh Truyền thông - Marketing
+                - generic [ref=e357]:
+                  - generic [ref=e358]: Read story
+                  - img [ref=e359]
+            - link "View all news" [ref=e361] [cursor=pointer]:
+              - /url: /en/news
+              - generic [ref=e362]: View all news
+              - img [ref=e363]
+      - generic [ref=e367]:
+        - generic [ref=e370]:
+          - generic [ref=e371]:
+            - generic [ref=e372]: Film
+            - heading "Video nổi bật" [level=2] [ref=e373]
+          - paragraph [ref=e376]: Hoạt động, sự kiện và những câu chuyện từ hành trình phát triển của Viện Phương Nam.
+        - generic [ref=e377]:
+          - button "Video nổi bật" [ref=e380]:
+            - img [ref=e384]
+            - paragraph [ref=e387]: Video nổi bật
+          - generic [ref=e389]:
+            - generic [ref=e390]:
+              - paragraph [ref=e391]: Screening note
+              - heading "Video nổi bật" [level=3] [ref=e392]
+              - paragraph [ref=e393]: One primary film stays on the homepage. Supporting clips stay secondary so the section reads like one clear media moment.
+            - button "Play film" [ref=e394]:
+              - generic [ref=e395]: Play film
+              - img [ref=e397]
+      - generic [ref=e401]:
+        - generic [ref=e404]:
+          - generic [ref=e405]:
+            - generic [ref=e406]: Gallery
+            - heading "Hình ảnh hoạt động" [level=2] [ref=e407]
+          - paragraph [ref=e410]: Khoảnh khắc nổi bật từ các chương trình đào tạo, hội thảo và hoạt động cộng đồng.
+        - generic [ref=e411]:
+          - generic [ref=e412]:
+            - button "Hoạt động Viện Phương Nam 1 Visual teaser Hoạt động Viện Phương Nam 1":
+              - generic:
+                - img "Hoạt động Viện Phương Nam 1"
+              - generic [ref=e413]:
+                - paragraph: Visual teaser
+                - paragraph: Hoạt động Viện Phương Nam 1
+          - generic [ref=e415]:
+            - generic [ref=e416]:
+              - paragraph [ref=e417]: Open the gallery
+              - heading "A short visual preview, not the full archive." [level=3] [ref=e418]
+              - paragraph [ref=e419]: The homepage only keeps a handful of images. Use the lightbox for a closer look.
+              - button "Open gallery" [ref=e420]:
+                - generic [ref=e421]: Open gallery
+                - img [ref=e422]
+            - generic [ref=e424]:
+              - button "Hoạt động Viện Phương Nam 2" [ref=e425]:
+                - img "Hoạt động Viện Phương Nam 2" [ref=e427]
+              - button "Hoạt động Viện Phương Nam 3" [ref=e429]:
+                - img "Hoạt động Viện Phương Nam 3" [ref=e431]
+              - button "Hoạt động Viện Phương Nam 4" [ref=e433]:
+                - img "Hoạt động Viện Phương Nam 4" [ref=e435]
+              - button "Hoạt động Viện Phương Nam 5" [ref=e437]:
+                - img "Hoạt động Viện Phương Nam 5" [ref=e439]
+              - button "Hoạt động Viện Phương Nam 6" [ref=e441]:
+                - img "Hoạt động Viện Phương Nam 6" [ref=e443]
+      - generic [ref=e450]:
+        - generic [ref=e452]:
+          - generic [ref=e453]:
+            - paragraph [ref=e454]: Consultation desk
+            - heading "Kết nối cùng Viện Phương Nam" [level=2] [ref=e455]
+            - paragraph [ref=e456]: Trao đổi với chúng tôi về chương trình đào tạo, hợp tác chuyên môn và các sáng kiến vì cộng đồng.
+          - generic [ref=e457]:
+            - link "Liên hệ với chúng tôi" [ref=e459] [cursor=pointer]:
+              - /url: /lien-he
+              - generic [ref=e460]: Liên hệ với chúng tôi
+              - img [ref=e462]
+            - link "Khám phá dịch vụ" [ref=e465] [cursor=pointer]:
+              - /url: /dich-vu
+              - generic [ref=e466]: Khám phá dịch vụ
+              - img [ref=e468]
+          - generic [ref=e470]:
+            - generic [ref=e472]:
+              - img [ref=e474]
+              - paragraph [ref=e476]: Phone
+              - link "0912 114 511" [ref=e477] [cursor=pointer]:
+                - /url: tel:0912114511
+            - generic [ref=e479]:
+              - img [ref=e481]
+              - paragraph [ref=e483]: Email
+              - link "vanphong@vienphuongnam.com.vn" [ref=e484] [cursor=pointer]:
+                - /url: mailto:vanphong@vienphuongnam.com.vn
+            - generic [ref=e486]:
+              - img [ref=e488]
+              - paragraph [ref=e490]: Address
+              - paragraph [ref=e491]: 45 Đinh Tiên Hoàng, Phường Sài Gòn, TP.HCM (Quận 1)
+            - generic [ref=e493]:
+              - img [ref=e495]
+              - paragraph [ref=e497]: Hours
+              - paragraph [ref=e498]: Liên hệ trước để được sắp xếp lịch làm việc phù hợp.
+        - generic [ref=e501]:
+          - generic [ref=e502]:
+            - paragraph [ref=e503]: Compact brief
+            - paragraph [ref=e504]: Leave a short brief and the institute will route it to the right training, service, or partnership lead.
+          - generic [ref=e505]:
+            - generic [ref=e508]:
+              - generic [ref=e509]: Full Name
+              - textbox "Full Name" [ref=e511]:
+                - /placeholder: John Doe
+            - generic [ref=e514]:
+              - generic [ref=e515]: Phone Number
+              - textbox "Phone Number" [ref=e517]:
+                - /placeholder: 0901 234 567
+          - generic [ref=e520]:
+            - generic [ref=e521]: Email
+            - textbox "Email" [ref=e523]:
+              - /placeholder: email@example.com
+          - generic [ref=e526]:
+            - generic [ref=e527]: Message
+            - textbox "Message" [ref=e528]:
+              - /placeholder: Tell us what you need support with...
+          - button "Send request" [ref=e531]:
+            - generic [ref=e532]: Send request
+    - contentinfo [ref=e533]:
+      - generic [ref=e537]:
+        - generic [ref=e538]:
+          - generic [ref=e539]:
+            - generic [ref=e540]: Vien Phuong Nam
+            - heading "Vien Phuong Nam" [level=2] [ref=e541]
+            - paragraph [ref=e542]: VIỆN PHÁT TRIỂN NGUỒN LỰC XÃ HỘI PHƯƠNG NAM. Đào Tạo Bằng Tiếng Anh
+          - generic [ref=e543]:
+            - paragraph [ref=e544]: Institutional profile
+            - paragraph [ref=e545]: Training, research, and service programs designed to connect academic depth with practical community development.
+          - generic [ref=e546]:
+            - link "Facebook" [ref=e547] [cursor=pointer]:
+              - /url: https://www.facebook.com/vienphuongnam.vn
+              - img [ref=e548]
+            - link "Youtube" [ref=e550] [cursor=pointer]:
+              - /url: https://www.youtube.com/@PhuongNamInstitute
+              - img [ref=e551]
+        - generic [ref=e553]:
+          - generic [ref=e554]:
+            - generic [ref=e555]:
+              - heading "Quick Links" [level=3] [ref=e556]
+              - generic [ref=e557]:
+                - link "Home" [ref=e558] [cursor=pointer]:
+                  - /url: /en
+                - link "Contact" [ref=e559] [cursor=pointer]:
+                  - /url: /en/contact
+                - link "About" [ref=e560] [cursor=pointer]:
+                  - /url: /en/about
+                - link "Training" [ref=e561] [cursor=pointer]:
+                  - /url: /en/training
+                - link "News" [ref=e562] [cursor=pointer]:
+                  - /url: /en/news
+            - generic [ref=e563]:
+              - heading "Contact" [level=3] [ref=e564]
+              - generic [ref=e565]:
+                - link "0912 114 511" [ref=e566] [cursor=pointer]:
+                  - /url: tel:0912114511
+                  - img [ref=e567]
+                  - generic [ref=e569]: 0912 114 511
+                - link "vanphong@vienphuongnam.com.vn" [ref=e570] [cursor=pointer]:
+                  - /url: mailto:vanphong@vienphuongnam.com.vn
+                  - img [ref=e571]
+                  - generic [ref=e573]: vanphong@vienphuongnam.com.vn
+                - generic [ref=e574]:
+                  - img [ref=e575]
+                  - generic [ref=e577]: 45 Đinh Tiên Hoàng, Phường Sài Gòn, TP.HCM (Quận 1)
+          - generic [ref=e578]:
+            - generic [ref=e579]:
+              - paragraph [ref=e580]: Institutional
+              - paragraph [ref=e581]: "Viện phát triển nguồn lực xã hội Phương Nam hoạt động theo số đăng ký: A - 2619/Bộ Khoa Học và Công Nghệ"
+            - generic [ref=e582]:
+              - link "Privacy Policy" [ref=e583] [cursor=pointer]:
+                - /url: /en
+              - link "Terms of Service" [ref=e584] [cursor=pointer]:
+                - /url: /en
+  - button "Open Next.js Dev Tools" [ref=e590] [cursor=pointer]:
+    - img [ref=e591]
+  - alert [ref=e594]

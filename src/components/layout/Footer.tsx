@@ -29,6 +29,7 @@ export interface FooterProps {
         linkedin?: string;
     };
     quickLinks?: { label: string; url: string }[];
+    legalLinks?: { label: string; url: string }[];
     copyright?: string;
 }
 
@@ -50,9 +51,9 @@ const enQuickLinks = [
 
 export function Footer({
     contactInfo = {
-        phone: "1900 1234",
-        email: "info@vienphuongnam.com",
-        address: "123 Nguyễn Văn Linh, Quận 7, TP.HCM",
+        phone: "0912 114 511",
+        email: "vanphong@vienphuongnam.com.vn",
+        address: "45 Đinh Tiên Hoàng, Phường Sài Gòn, TP.HCM",
     },
     socialLinks = {
         facebook: "https://facebook.com",
@@ -60,6 +61,7 @@ export function Footer({
         linkedin: "https://linkedin.com",
     },
     quickLinks,
+    legalLinks,
     copyright,
     description,
 }: FooterProps) {
@@ -70,158 +72,174 @@ export function Footer({
     const resolvedDescription =
         description ||
         (isEn
-            ? "Southern Institute for Social Resources Development — Scientific research, technology transfer, training and high-quality human resources development."
-            : "Viện Phát triển nguồn lực xã hội Phương Nam — Nghiên cứu khoa học, chuyển giao công nghệ, đào tạo và phát triển nguồn nhân lực chất lượng cao.");
+            ? "Vien Phuong Nam Institute for social resource development, training, research, and community connection."
+            : "Viện Phát triển nguồn lực xã hội Phương Nam, kết nối đào tạo, nghiên cứu và phát triển nguồn lực xã hội.");
     const resolvedCopyright =
         copyright ||
-        `© ${new Date().getFullYear()} ${isEn ? "SISRD. All rights reserved." : "Viện Phương Nam. Tất cả quyền được bảo lưu."}`;
-    const orgName = isEn ? "SISRD" : "Viện Phương Nam";
+        `© ${new Date().getFullYear()} ${isEn ? "Vien Phuong Nam. All rights reserved." : "Viện Phương Nam. Tất cả quyền được bảo lưu."}`;
+    const orgName = isEn ? "Vien Phuong Nam" : "Viện Phương Nam";
+    const resolvedLegalLinks = legalLinks || [
+        {
+            label: isEn ? "Privacy Policy" : "Chính sách bảo mật",
+            url: isEn ? "/en/privacy-policy" : "/chinh-sach-bao-mat",
+        },
+        {
+            label: isEn ? "Terms of Service" : "Điều khoản sử dụng",
+            url: isEn ? "/en/terms" : "/dieu-khoan-su-dung",
+        },
+    ];
 
     return (
-        <footer className="relative pb-8 pt-10">
+        <footer className="relative overflow-hidden pb-8 pt-8 md:pb-10 md:pt-10">
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-[radial-gradient(circle_at_16%_12%,rgba(77,111,147,0.08),transparent_22%),radial-gradient(circle_at_84%_18%,rgba(255,255,255,0.44),transparent_18%),linear-gradient(180deg,rgba(248,251,253,0.42),rgba(228,235,241,0.14))]" />
+            <div className="pointer-events-none absolute inset-x-0 top-0 h-full opacity-[0.2]" style={{ backgroundImage: "linear-gradient(rgba(77,111,147,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(77,111,147,0.08) 1px, transparent 1px)", backgroundSize: "34px 34px", maskImage: "linear-gradient(180deg, rgba(0,0,0,0.28), transparent 92%)" }} />
             <Container>
                 <MotionSection preset="footer">
-                    <div className="section-shell relative overflow-hidden rounded-[3rem] border border-[rgba(96,148,255,0.2)] bg-[linear-gradient(155deg,rgba(30,82,186,0.96),rgba(51,106,224,0.93)_54%,rgba(133,181,255,0.86)_124%)] px-6 py-10 text-[#f5f9ff] shadow-[0_34px_96px_rgba(25,72,182,0.22)] md:px-10 md:py-12">
-                    <FloatingAccent className="right-[8%] top-[10%] h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(116,170,255,0.2),transparent_72%)]" variant="halo" />
-                    <FloatingAccent className="bottom-[12%] left-[8%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.12),transparent_70%)]" variant="orb" />
-                    <div className="section-outline hidden md:block" />
-                    <MotionGroup className="relative grid gap-8 xl:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)]" stagger={0.1}>
-                        <MotionItem className="space-y-6">
-                            <div className="space-y-3">
-                                <div className="public-kicker border-white/16 bg-white/12 text-white/90">
-                                    {orgName}
-                                </div>
-                                <h2
-                                    className="max-w-xl font-heading text-[2.2rem] tracking-[-0.04em] !text-[#f7fbff] md:text-[3rem]"
-                                    style={{ color: "#f7fbff" }}
-                                >
-                                    {orgName}
-                                </h2>
-                                <p className="max-w-xl text-sm leading-8 text-white/72 md:text-[15px]">
-                                    {resolvedDescription}
-                                </p>
-                            </div>
+                    <div className="relative overflow-hidden rounded-[2.7rem] border border-[rgba(16,36,56,0.1)] bg-[linear-gradient(180deg,rgba(248,251,253,0.28),rgba(242,245,247,0.18)_46%,rgba(228,235,241,0.08)_100%)] px-6 py-8 text-[var(--ink)] shadow-[0_22px_54px_-44px_rgba(8,20,33,0.16)] backdrop-blur-[10px] md:px-10 md:py-10">
+                        <FloatingAccent className="right-[8%] top-[10%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(77,111,147,0.12),transparent_72%)]" variant="halo" />
+                        <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.28),transparent_38%)]" />
 
-                            <div className="flex flex-wrap gap-3">
-                                {socialLinks.facebook ? (
-                                    <motion.a
-                                        href={socialLinks.facebook}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-white/12 bg-white/8 text-white/78 transition-colors hover:bg-white/16 hover:text-white"
-                                        aria-label="Facebook"
-                                        whileHover={{ y: -4, scale: 1.04 }}
-                                        whileTap={{ scale: 0.96 }}
-                                    >
-                                        <FacebookLogo className="h-5 w-5" weight="fill" />
-                                    </motion.a>
-                                ) : null}
-                                {socialLinks.youtube ? (
-                                    <motion.a
-                                        href={socialLinks.youtube}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-white/12 bg-white/8 text-white/78 transition-colors hover:bg-white/16 hover:text-white"
-                                        aria-label="Youtube"
-                                        whileHover={{ y: -4, scale: 1.04 }}
-                                        whileTap={{ scale: 0.96 }}
-                                    >
-                                        <YoutubeLogo className="h-5 w-5" weight="fill" />
-                                    </motion.a>
-                                ) : null}
-                                {socialLinks.linkedin ? (
-                                    <motion.a
-                                        href={socialLinks.linkedin}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className="inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-white/12 bg-white/8 text-white/78 transition-colors hover:bg-white/16 hover:text-white"
-                                        aria-label="LinkedIn"
-                                        whileHover={{ y: -4, scale: 1.04 }}
-                                        whileTap={{ scale: 0.96 }}
-                                    >
-                                        <LinkedinLogo className="h-5 w-5" weight="fill" />
-                                    </motion.a>
-                                ) : null}
-                            </div>
-                        </MotionItem>
-
-                        <MotionItem className="grid gap-4 md:grid-cols-3">
-                            <div className="rounded-[2rem] border border-white/14 bg-white/10 p-5 transition-colors duration-300 hover:bg-white/14">
-                                <h3
-                                    className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] !text-white/80"
-                                    style={{ color: "rgba(247, 251, 255, 0.8)" }}
-                                >
-                                    {isEn ? "Quick Links" : "Liên kết"}
-                                </h3>
-                                <div className="grid gap-2">
-                                    {resolvedQuickLinks.map((link) => (
-                                        <Link
-                                            key={link.url}
-                                            href={link.url}
-                                            className="rounded-[1rem] px-2 py-1.5 text-sm text-white/74 transition-colors hover:bg-white/8 hover:text-white"
-                                        >
-                                            {link.label}
-                                        </Link>
-                                    ))}
-                                </div>
-                            </div>
-
-                            <div className="rounded-[2rem] border border-white/14 bg-white/10 p-5 transition-colors duration-300 hover:bg-white/14">
-                                <h3
-                                    className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] !text-white/80"
-                                    style={{ color: "rgba(247, 251, 255, 0.8)" }}
-                                >
-                                    {isEn ? "Contact" : "Liên hệ"}
-                                </h3>
-                                <div className="space-y-3">
-                                    <a
-                                        href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
-                                        className="flex gap-3 rounded-[1rem] px-1 py-1 text-sm text-white/78 transition-colors hover:text-white"
-                                    >
-                                        <Phone className="mt-0.5 h-4 w-4 shrink-0" weight="bold" />
-                                        <span>{contactInfo.phone}</span>
-                                    </a>
-                                    <a
-                                        href={`mailto:${contactInfo.email}`}
-                                        className="flex gap-3 rounded-[1rem] px-1 py-1 text-sm text-white/78 transition-colors hover:text-white"
-                                    >
-                                        <EnvelopeSimple className="mt-0.5 h-4 w-4 shrink-0" weight="bold" />
-                                        <span>{contactInfo.email}</span>
-                                    </a>
-                                    <div className="flex gap-3 rounded-[1rem] px-1 py-1 text-sm text-white/78">
-                                        <MapPin className="mt-0.5 h-4 w-4 shrink-0" weight="bold" />
-                                        <span>{contactInfo.address}</span>
+                        <MotionGroup className="relative grid gap-10 xl:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)]" stagger={0.1}>
+                            <MotionItem className="space-y-6">
+                                <div className="space-y-4">
+                                    <div className="inline-flex items-center gap-3">
+                                        <span className="h-px w-10 bg-[rgba(16,36,56,0.12)]" />
+                                        <span className="editorial-caption text-[var(--ink-muted)]">
+                                            {orgName}
+                                        </span>
                                     </div>
-                                </div>
-                            </div>
-
-                            <div className="flex flex-col justify-between gap-6 rounded-[2rem] border border-white/14 bg-white/10 p-5 transition-colors duration-300 hover:bg-white/14">
-                                <div className="space-y-3">
-                                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/56">
-                                        {isEn ? "Institutional" : "Thông tin"}
+                                    <h2 className="max-w-[11ch] font-heading text-[2.35rem] tracking-[-0.05em] !text-[var(--ink)] md:text-[3.1rem]">
+                                        {orgName}
+                                    </h2>
+                                    <p className="max-w-[38rem] text-sm leading-8 text-[var(--ink-soft)] md:text-[15px]">
+                                        {resolvedDescription}
                                     </p>
-                                    <div className="space-y-2 text-sm leading-7 text-white/72">
-                                        <p>{resolvedCopyright}</p>
+                                </div>
+
+                                <div className="border-t border-[rgba(16,36,56,0.08)] pt-5">
+                                    <p className="editorial-caption text-[var(--ink-muted)]">
+                                        {isEn ? "Institutional profile" : "Hồ sơ đơn vị"}
+                                    </p>
+                                    <p className="mt-3 max-w-[34rem] text-sm leading-7 text-[var(--ink-soft)]">
+                                        {isEn
+                                            ? "Training, research, and service programs designed to connect academic depth with practical community development."
+                                            : "Các chương trình đào tạo, nghiên cứu và dịch vụ được thiết kế để kết nối chiều sâu học thuật với nhu cầu phát triển cộng đồng."}
+                                    </p>
+                                </div>
+
+                                <div className="flex flex-wrap gap-3 pt-1">
+                                    {socialLinks.facebook ? (
+                                        <motion.a
+                                            href={socialLinks.facebook}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex h-10 w-10 items-center justify-center rounded-[0.95rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(252,254,255,0.42)] text-[var(--ink-soft)] transition-colors hover:bg-[rgba(248,251,253,0.78)] hover:text-[var(--accent-strong)]"
+                                            aria-label="Facebook"
+                                            whileHover={{ y: -2 }}
+                                            whileTap={{ scale: 0.97 }}
+                                        >
+                                            <FacebookLogo className="h-5 w-5" weight="fill" />
+                                        </motion.a>
+                                    ) : null}
+                                    {socialLinks.youtube ? (
+                                        <motion.a
+                                            href={socialLinks.youtube}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex h-10 w-10 items-center justify-center rounded-[0.95rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(252,254,255,0.42)] text-[var(--ink-soft)] transition-colors hover:bg-[rgba(248,251,253,0.78)] hover:text-[var(--accent-strong)]"
+                                            aria-label="Youtube"
+                                            whileHover={{ y: -2 }}
+                                            whileTap={{ scale: 0.97 }}
+                                        >
+                                            <YoutubeLogo className="h-5 w-5" weight="fill" />
+                                        </motion.a>
+                                    ) : null}
+                                    {socialLinks.linkedin ? (
+                                        <motion.a
+                                            href={socialLinks.linkedin}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex h-10 w-10 items-center justify-center rounded-[0.95rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(252,254,255,0.42)] text-[var(--ink-soft)] transition-colors hover:bg-[rgba(248,251,253,0.78)] hover:text-[var(--accent-strong)]"
+                                            aria-label="LinkedIn"
+                                            whileHover={{ y: -2 }}
+                                            whileTap={{ scale: 0.97 }}
+                                        >
+                                            <LinkedinLogo className="h-5 w-5" weight="fill" />
+                                        </motion.a>
+                                    ) : null}
+                                </div>
+                            </MotionItem>
+
+                            <MotionItem className="space-y-6">
+                                <div className="grid gap-8 border-t border-[rgba(16,36,56,0.08)] pt-5 md:grid-cols-[0.82fr_1.18fr]">
+                                    <div>
+                                        <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                                            {isEn ? "Quick Links" : "Liên kết"}
+                                        </h3>
+                                        <div className="grid gap-2">
+                                            {resolvedQuickLinks.map((link, index) => (
+                                                <Link
+                                                    key={`${link.url}-${link.label}-${index}`}
+                                                    href={link.url}
+                                                    className="rounded-[0.9rem] px-1 py-1.5 text-sm text-[var(--ink-soft)] transition-colors hover:text-[var(--accent-strong)]"
+                                                >
+                                                    {link.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <h3 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                                            {isEn ? "Contact" : "Liên hệ"}
+                                        </h3>
+                                        <div className="space-y-3">
+                                            <a
+                                                href={`tel:${contactInfo.phone.replace(/\s/g, "")}`}
+                                                className="flex gap-3 rounded-[0.9rem] px-1 py-1 text-sm text-[var(--ink-soft)] transition-colors hover:text-[var(--accent-strong)]"
+                                            >
+                                                <Phone className="mt-0.5 h-4 w-4 shrink-0" weight="bold" />
+                                                <span>{contactInfo.phone}</span>
+                                            </a>
+                                            <a
+                                                href={`mailto:${contactInfo.email}`}
+                                                className="flex gap-3 rounded-[0.9rem] px-1 py-1 text-sm text-[var(--ink-soft)] transition-colors hover:text-[var(--accent-strong)]"
+                                            >
+                                                <EnvelopeSimple className="mt-0.5 h-4 w-4 shrink-0" weight="bold" />
+                                                <span>{contactInfo.email}</span>
+                                            </a>
+                                            <div className="flex gap-3 rounded-[0.9rem] px-1 py-1 text-sm text-[var(--ink-soft)]">
+                                                <MapPin className="mt-0.5 h-4 w-4 shrink-0" weight="bold" />
+                                                <span>{contactInfo.address}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                                <div className="space-y-3">
-                                    <Link
-                                        href={isEn ? "/en/privacy-policy" : "/chinh-sach-bao-mat"}
-                                        className="block rounded-[1rem] px-1 py-1 text-sm text-white/72 transition-colors hover:text-white"
-                                    >
-                                        {isEn ? "Privacy Policy" : "Chính sách bảo mật"}
-                                    </Link>
-                                    <Link
-                                        href={isEn ? "/en/terms" : "/dieu-khoan-su-dung"}
-                                        className="block rounded-[1rem] px-1 py-1 text-sm text-white/72 transition-colors hover:text-white"
-                                    >
-                                        {isEn ? "Terms of Service" : "Điều khoản sử dụng"}
-                                    </Link>
+
+                                <div className="flex flex-col gap-5 border-t border-[rgba(16,36,56,0.08)] pt-5 md:flex-row md:items-end md:justify-between">
+                                    <div className="space-y-3">
+                                        <p className="editorial-caption text-[var(--ink-muted)]">
+                                            {isEn ? "Institutional" : "Thông tin"}
+                                        </p>
+                                        <p className="max-w-[28rem] text-sm leading-7 text-[var(--ink-soft)]">
+                                            {resolvedCopyright}
+                                        </p>
+                                    </div>
+                                    <div className="flex flex-wrap gap-4">
+                                        {resolvedLegalLinks.map((link, index) => (
+                                            <Link
+                                                key={`${link.url}-${link.label}-${index}`}
+                                                href={link.url}
+                                                className="text-sm text-[var(--ink-soft)] transition-colors hover:text-[var(--accent-strong)]"
+                                            >
+                                                {link.label}
+                                            </Link>
+                                        ))}
+                                    </div>
                                 </div>
-                            </div>
-                        </MotionItem>
-                    </MotionGroup>
-                </div>
+                            </MotionItem>
+                        </MotionGroup>
+                    </div>
                 </MotionSection>
             </Container>
         </footer>

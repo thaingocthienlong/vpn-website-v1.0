@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "tieude": "PORTFOLIO",
+    "txtbtn": "Tư vấn nhanh",
+    "linkbtn": "tel:0974250568",
+    "mieutangan": "<p>Lorem Ipsum&nbsp;chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn.&nbsp;</p>\r\n",
+    "hinhnen": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616487/vienphuongnam/restored/vwmp0wuebunuy6syvlft.png",
+    "name": "Tắt module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "gioihan": 4,
+    "thuoctinhbgd": "repeat",
+    "mauchu": "",
+    "limitbgd": 0
+  },
+  {
+    "id": 2,
+    "tieude": "",
+    "txtbtn": "",
+    "linkbtn": "",
+    "mieutangan": "",
+    "hinhnen": "",
+    "name": "Bật module",
+    "trangthai": 0,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "gioihan": 0,
+    "thuoctinhbgd": "",
+    "mauchu": "",
+    "limitbgd": 0
+  }
+]

@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 0,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "tieude": "Chương trình đào tạo",
+    "mieutangan": "",
+    "gioihan": 9,
+    "hinhnen": "",
+    "thuoctinhbgd": "repeat",
+    "mauchu": "",
+    "limitbgd": 0,
+    "txtbtn": "Xem tất cả",
+    "linkbtn": "//vienphuongnam.com.vn/chuong-trinh-dao-tao/"
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "gioihan": 0,
+    "hinhnen": "",
+    "thuoctinhbgd": "",
+    "mauchu": "",
+    "limitbgd": 0,
+    "txtbtn": "",
+    "linkbtn": ""
+  }
+]

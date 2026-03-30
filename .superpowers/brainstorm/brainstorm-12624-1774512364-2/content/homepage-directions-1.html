@@ -1,0 +1,436 @@
+<style>
+  .intro {
+    max-width: 860px;
+    margin-bottom: 1.5rem;
+  }
+  .direction-card {
+    display: grid;
+    gap: 0.9rem;
+  }
+  .direction-preview {
+    aspect-ratio: 16 / 11;
+    padding: 0.9rem;
+    display: grid;
+    gap: 0.55rem;
+    border-radius: 16px;
+    overflow: hidden;
+  }
+  .preview-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.58rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    opacity: 0.82;
+  }
+  .preview-pill-row {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+  }
+  .preview-pill {
+    height: 0.8rem;
+    min-width: 2.5rem;
+    border-radius: 999px;
+    opacity: 0.9;
+  }
+  .preview-hero {
+    display: grid;
+    grid-template-columns: 1.35fr 0.85fr;
+    gap: 0.6rem;
+    min-height: 7.2rem;
+  }
+  .preview-copy {
+    display: grid;
+    gap: 0.45rem;
+    align-content: start;
+  }
+  .preview-kicker {
+    width: 4.8rem;
+    height: 0.7rem;
+    border-radius: 999px;
+    opacity: 0.82;
+  }
+  .preview-title {
+    display: grid;
+    gap: 0.28rem;
+  }
+  .preview-title span {
+    display: block;
+    border-radius: 999px;
+    height: 0.82rem;
+  }
+  .preview-title span:nth-child(1) { width: 82%; }
+  .preview-title span:nth-child(2) { width: 73%; }
+  .preview-title span:nth-child(3) { width: 56%; }
+  .preview-body span {
+    display: block;
+    height: 0.42rem;
+    border-radius: 999px;
+    margin-bottom: 0.24rem;
+    opacity: 0.68;
+  }
+  .preview-body span:nth-child(1) { width: 92%; }
+  .preview-body span:nth-child(2) { width: 84%; }
+  .preview-body span:nth-child(3) { width: 65%; }
+  .preview-cta-row {
+    display: flex;
+    gap: 0.42rem;
+    margin-top: 0.08rem;
+  }
+  .preview-button {
+    width: 4.7rem;
+    height: 1rem;
+    border-radius: 999px;
+  }
+  .preview-side {
+    display: grid;
+    gap: 0.5rem;
+    grid-template-rows: 1.3fr 1fr;
+  }
+  .preview-media,
+  .preview-card,
+  .preview-band,
+  .preview-tile,
+  .preview-footer-block {
+    border-radius: 14px;
+  }
+  .preview-media {
+    position: relative;
+    overflow: hidden;
+  }
+  .preview-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.42rem;
+  }
+  .preview-card {
+    min-height: 2.1rem;
+  }
+  .preview-sections {
+    display: grid;
+    gap: 0.46rem;
+  }
+  .preview-band {
+    min-height: 1.45rem;
+  }
+  .preview-mid-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 0.46rem;
+  }
+  .preview-tile-stack {
+    display: grid;
+    gap: 0.44rem;
+  }
+  .preview-footer {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 0.44rem;
+  }
+  .preview-footer-block {
+    min-height: 1.65rem;
+  }
+  .direction-notes {
+    display: grid;
+    gap: 0.36rem;
+    font-size: 0.84rem;
+    color: var(--text-secondary);
+  }
+  .direction-notes strong {
+    color: var(--text-primary);
+  }
+
+  .editorial {
+    background:
+      radial-gradient(circle at top right, rgba(186, 157, 120, 0.22), transparent 28%),
+      linear-gradient(180deg, #f6f0e4 0%, #efe7d8 100%);
+    color: #10233a;
+  }
+  .editorial .preview-topbar,
+  .editorial .preview-kicker,
+  .editorial .preview-title span,
+  .editorial .preview-body span,
+  .editorial .preview-pill,
+  .editorial .preview-card,
+  .editorial .preview-band,
+  .editorial .preview-tile,
+  .editorial .preview-footer-block {
+    background: rgba(16, 35, 58, 0.12);
+  }
+  .editorial .preview-button.primary,
+  .editorial .preview-media {
+    background: linear-gradient(145deg, #17324c 0%, #274764 100%);
+  }
+  .editorial .preview-button.secondary {
+    background: rgba(16, 35, 58, 0.14);
+  }
+  .editorial .preview-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.12), transparent 40%);
+  }
+
+  .warm {
+    background:
+      radial-gradient(circle at top left, rgba(229, 171, 88, 0.24), transparent 26%),
+      linear-gradient(180deg, #fbf4ea 0%, #f5ebdb 100%);
+    color: #49321f;
+  }
+  .warm .preview-topbar,
+  .warm .preview-kicker,
+  .warm .preview-title span,
+  .warm .preview-body span,
+  .warm .preview-pill,
+  .warm .preview-card,
+  .warm .preview-band,
+  .warm .preview-tile,
+  .warm .preview-footer-block {
+    background: rgba(113, 77, 38, 0.13);
+  }
+  .warm .preview-button.primary,
+  .warm .preview-media {
+    background: linear-gradient(145deg, #9a6230 0%, #d78d49 100%);
+  }
+  .warm .preview-button.secondary {
+    background: rgba(154, 98, 48, 0.18);
+  }
+  .warm .preview-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 72% 24%, rgba(255,255,255,0.2), transparent 22%);
+  }
+
+  .glass {
+    background:
+      radial-gradient(circle at top right, rgba(92, 133, 241, 0.22), transparent 26%),
+      linear-gradient(180deg, #edf2fb 0%, #e7edf8 100%);
+    color: #17304f;
+  }
+  .glass .preview-topbar,
+  .glass .preview-kicker,
+  .glass .preview-title span,
+  .glass .preview-body span,
+  .glass .preview-pill,
+  .glass .preview-card,
+  .glass .preview-band,
+  .glass .preview-tile,
+  .glass .preview-footer-block {
+    background: rgba(31, 73, 128, 0.12);
+    backdrop-filter: blur(10px);
+  }
+  .glass .preview-button.primary,
+  .glass .preview-media {
+    background: linear-gradient(145deg, #244a7b 0%, #3c679b 56%, #608dc6 100%);
+  }
+  .glass .preview-button.secondary {
+    background: rgba(255,255,255,0.46);
+    border: 1px solid rgba(31, 73, 128, 0.12);
+  }
+  .glass .preview-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.16), transparent 38%);
+  }
+</style>
+
+<div class="intro">
+  <div class="label">Homepage Direction</div>
+  <h2>Which tone should drive the redesign?</h2>
+  <p class="subtitle">
+    All three options keep the current homepage sections, but tighten the order and reduce visual clutter.
+    The differences are tone, spacing, and how “public institution” vs “community-facing” the page feels.
+  </p>
+</div>
+
+<div class="cards">
+  <div class="card" data-choice="a" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="direction-card">
+        <div class="direction-preview editorial">
+          <div class="preview-topbar">
+            <span>Editorial institutional</span>
+            <span>Swiss grid</span>
+          </div>
+          <div class="preview-pill-row">
+            <div class="preview-pill"></div>
+            <div class="preview-pill" style="width:3.2rem"></div>
+            <div class="preview-pill" style="width:2.7rem"></div>
+          </div>
+          <div class="preview-hero">
+            <div class="preview-copy">
+              <div class="preview-kicker"></div>
+              <div class="preview-title">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="preview-body">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="preview-cta-row">
+                <div class="preview-button primary"></div>
+                <div class="preview-button secondary"></div>
+              </div>
+            </div>
+            <div class="preview-side">
+              <div class="preview-media"></div>
+              <div class="preview-card-grid">
+                <div class="preview-card"></div>
+                <div class="preview-card"></div>
+                <div class="preview-card"></div>
+              </div>
+            </div>
+          </div>
+          <div class="preview-sections">
+            <div class="preview-band"></div>
+            <div class="preview-mid-grid">
+              <div class="preview-tile-stack">
+                <div class="preview-tile" style="min-height:1.5rem"></div>
+                <div class="preview-tile" style="min-height:1.5rem"></div>
+              </div>
+              <div class="preview-tile" style="min-height:3.45rem"></div>
+            </div>
+            <div class="preview-footer">
+              <div class="preview-footer-block"></div>
+              <div class="preview-footer-block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>A. Editorial Institutional</h3>
+      <p>Calm, credible, and sharper. Beige paper surfaces, dark navy typography, cleaner grids, and stronger reading rhythm.</p>
+      <div class="direction-notes">
+        <div><strong>Best if:</strong> you want the institute to feel authoritative, mature, and less “template-like.”</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="b" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="direction-card">
+        <div class="direction-preview warm">
+          <div class="preview-topbar">
+            <span>Warm civic</span>
+            <span>Community-first</span>
+          </div>
+          <div class="preview-pill-row">
+            <div class="preview-pill"></div>
+            <div class="preview-pill" style="width:3.05rem"></div>
+            <div class="preview-pill" style="width:2.45rem"></div>
+          </div>
+          <div class="preview-hero">
+            <div class="preview-copy">
+              <div class="preview-kicker"></div>
+              <div class="preview-title">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="preview-body">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="preview-cta-row">
+                <div class="preview-button primary"></div>
+                <div class="preview-button secondary"></div>
+              </div>
+            </div>
+            <div class="preview-side">
+              <div class="preview-media"></div>
+              <div class="preview-card-grid">
+                <div class="preview-card"></div>
+                <div class="preview-card"></div>
+                <div class="preview-card"></div>
+              </div>
+            </div>
+          </div>
+          <div class="preview-sections">
+            <div class="preview-band"></div>
+            <div class="preview-mid-grid">
+              <div class="preview-tile" style="min-height:3.45rem"></div>
+              <div class="preview-tile-stack">
+                <div class="preview-tile" style="min-height:1.5rem"></div>
+                <div class="preview-tile" style="min-height:1.5rem"></div>
+              </div>
+            </div>
+            <div class="preview-footer">
+              <div class="preview-footer-block"></div>
+              <div class="preview-footer-block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>B. Warm Civic</h3>
+      <p>More welcoming and human. Warmer neutrals, softer edges, and a friendlier tone without becoming playful.</p>
+      <div class="direction-notes">
+        <div><strong>Best if:</strong> you want the homepage to feel approachable for learners, partners, and community organizations.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="card" data-choice="c" onclick="toggleSelect(this)">
+    <div class="card-image">
+      <div class="direction-card">
+        <div class="direction-preview glass">
+          <div class="preview-topbar">
+            <span>Modern blue glass</span>
+            <span>Refined continuity</span>
+          </div>
+          <div class="preview-pill-row">
+            <div class="preview-pill"></div>
+            <div class="preview-pill" style="width:3rem"></div>
+            <div class="preview-pill" style="width:2.35rem"></div>
+          </div>
+          <div class="preview-hero">
+            <div class="preview-copy">
+              <div class="preview-kicker"></div>
+              <div class="preview-title">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="preview-body">
+                <span></span><span></span><span></span>
+              </div>
+              <div class="preview-cta-row">
+                <div class="preview-button primary"></div>
+                <div class="preview-button secondary"></div>
+              </div>
+            </div>
+            <div class="preview-side">
+              <div class="preview-media"></div>
+              <div class="preview-card-grid">
+                <div class="preview-card"></div>
+                <div class="preview-card"></div>
+                <div class="preview-card"></div>
+              </div>
+            </div>
+          </div>
+          <div class="preview-sections">
+            <div class="preview-band"></div>
+            <div class="preview-mid-grid">
+              <div class="preview-tile-stack">
+                <div class="preview-tile" style="min-height:1.5rem"></div>
+                <div class="preview-tile" style="min-height:1.5rem"></div>
+              </div>
+              <div class="preview-tile" style="min-height:3.45rem"></div>
+            </div>
+            <div class="preview-footer">
+              <div class="preview-footer-block"></div>
+              <div class="preview-footer-block"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3>C. Modern Blue Glass</h3>
+      <p>Keeps the current navy DNA, but trims the clutter and turns the page into a cleaner premium public-site experience.</p>
+      <div class="direction-notes">
+        <div><strong>Best if:</strong> you want continuity with the current site, but executed with much better restraint and spacing.</div>
+      </div>
+    </div>
+  </div>
+</div>

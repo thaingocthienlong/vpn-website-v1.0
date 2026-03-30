@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 0,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "tieude": "Đăng ký tư vấn",
+    "mieutangan": "<p style=\"text-align:center\">Qu&yacute; Anh/Chị vui l&ograve;ng để lại th&ocirc;ng tin&nbsp;b&ecirc;n dưới, chuy&ecirc;n vi&ecirc;n tư vấn của <span style=\"color:#0000ff\"><strong>Viện Phương Nam</strong></span> sẽ li&ecirc;n hệ để tư vấn chi tiết trong thời gian sớm nhất.</p>\r\n",
+    "hinhnen": "",
+    "mauchu": "",
+    "thuoctinhbgd": "repeat",
+    "limitbgd": 0
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "hinhnen": "",
+    "mauchu": "",
+    "thuoctinhbgd": "",
+    "limitbgd": 0
+  }
+]

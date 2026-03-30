@@ -18,17 +18,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { locale } = await params;
 
-    const baseUrl = "https://vienphuongnam.edu.vn";
+    const baseUrl = "https://vienphuongnam.com";
 
     return {
         title:
             locale === "en"
-                ? "SISRD - Southern Institute for Social Resources Development"
-                : "SISRD - Viện Nghiên Cứu và Phát Triển Nguồn Nhân Lực Phương Nam",
+                ? "Vien Phuong Nam Institute | Southern Social Resource Development Institute"
+                : "Viện Phương Nam | Viện Phát triển nguồn lực xã hội Phương Nam",
         description:
             locale === "en"
-                ? "Quality human resources training and development in Vietnam"
-                : "Đào tạo và phát triển nguồn nhân lực chất lượng cao tại Việt Nam",
+                ? "Training, research, services, and social resource development for the community."
+                : "Đào tạo, nghiên cứu, dịch vụ và phát triển nguồn lực xã hội vì cộng đồng.",
         alternates: {
             canonical: locale === "en" ? `${baseUrl}/en` : baseUrl,
             languages: {

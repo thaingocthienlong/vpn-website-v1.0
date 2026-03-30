@@ -16,9 +16,8 @@ export async function generateMetadata({ params }: MetadataParams): Promise<Meta
     const isEn = locale === "en";
 
     try {
-        // Services are stored as Pages
         const service = await prisma.page.findFirst({
-            where: { slug, isPublished: true },
+            where: { slug, isPublished: true, template: "service" },
             select: {
                 title: true,
                 title_en: true,
@@ -39,11 +38,9 @@ export async function generateMetadata({ params }: MetadataParams): Promise<Meta
             || (isEn && service.content_en ? service.content_en : service.content || "")
                 .replace(/<[^>]*>/g, "")
                 .substring(0, 160);
-        const metaTitle = service.metaTitle || `${title} | SISRD`;
-        const imageUrl = service.featuredImage?.url
-            ? `${BASE_URL}${service.featuredImage.url}`
-            : `${BASE_URL}/images/og-default.jpg`;
-        const pageUrl = `${BASE_URL}/${locale}/services/${slug}`;
+        const metaTitle = service.metaTitle || `${title} | Viện Phương Nam`;
+        const imageUrl = service.featuredImage?.url || `${BASE_URL}/images/og-default.jpg`;
+        const pageUrl = isEn ? `${BASE_URL}/en/services/${slug}` : `${BASE_URL}/dich-vu/${slug}`;
 
         return {
             title: metaTitle,
@@ -52,7 +49,7 @@ export async function generateMetadata({ params }: MetadataParams): Promise<Meta
                 title: metaTitle,
                 description,
                 url: pageUrl,
-                siteName: "Viện Phương Nam (SISRD)",
+                siteName: "Viện Phương Nam",
                 images: [{ url: imageUrl, width: 1200, height: 630, alt: title }],
                 locale: isEn ? "en_US" : "vi_VN",
                 type: "website",
@@ -66,7 +63,7 @@ export async function generateMetadata({ params }: MetadataParams): Promise<Meta
             alternates: {
                 canonical: pageUrl,
                 languages: {
-                    vi: `${BASE_URL}/vi/services/${slug}`,
+                    vi: `${BASE_URL}/dich-vu/${slug}`,
                     en: `${BASE_URL}/en/services/${slug}`,
                 },
             },

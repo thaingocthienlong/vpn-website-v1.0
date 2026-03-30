@@ -1,0 +1,282 @@
+[
+  {
+    "id": 6,
+    "stt_hienthi": 1,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616336/vienphuongnam/restored/wnfexeq9wvppzzameeqn.jpg",
+    "name": "Liên hiệp các Hội Khoa học và Kỹ thuật Việt Nam\t",
+    "chucvu": "https://vusta.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 7,
+    "stt_hienthi": 2,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616337/vienphuongnam/restored/qhzb15pvcu84bdc1ukot.png",
+    "name": "Viện Nghiên cứu Sư phạm - Trường ĐHSP Hà Nội 2",
+    "chucvu": "https://www.hpu2.edu.vn/vi-VN/vien-nghien-cuu-su-pham",
+    "mieutangan": ""
+  },
+  {
+    "id": 8,
+    "stt_hienthi": 3,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616337/vienphuongnam/restored/ayb0husun7hhqnqkn7jy.jpg",
+    "name": "Trường Chính sách công và Phát triển nông thôn",
+    "chucvu": "https://prd.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 9,
+    "stt_hienthi": 4,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616339/vienphuongnam/restored/qggv4uej2dkdd31gvx9w.png",
+    "name": "Bệnh viện Lê Văn Thịnh",
+    "chucvu": "https://benhvienlevanthinh.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 10,
+    "stt_hienthi": 6,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616340/vienphuongnam/restored/luwfahne69yodxzxd7la.jpg",
+    "name": "Viện Nghiên cứu Khoa học Giáo dục và Đào tạo (Viện IES)",
+    "chucvu": "https://ires.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 11,
+    "stt_hienthi": 7,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616340/vienphuongnam/restored/z8fk7mr3ptytvrryyphu.jpg",
+    "name": "Trường Đào tạo, bồi dưỡng cán bộ tài nguyên và môi trường (InNET)",
+    "chucvu": "http://innet.gov.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 12,
+    "stt_hienthi": 8,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616342/vienphuongnam/restored/u0l6i0wsqrygkx7o0w8k.jpg",
+    "name": "Trung tâm Khám phá khoa học và Đổi mới sáng tạo Tp. Quy Nhơn",
+    "chucvu": "https://explorascience.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 13,
+    "stt_hienthi": 9,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616343/vienphuongnam/restored/vcax4u1syahrfexthgze.jpg",
+    "name": "Trung tâm Bảo trợ - Dạy nghề và Tạo việc làm thành phố",
+    "chucvu": "https://vieclamnkt.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 14,
+    "stt_hienthi": 10,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616344/vienphuongnam/restored/gcye1n3vtb8anqls98qz.jpg",
+    "name": "Hiệp hội Doanh nghiệp Việt - Đài (VTBA)",
+    "chucvu": "https://www.vn.vtba.org.tw/",
+    "mieutangan": ""
+  },
+  {
+    "id": 15,
+    "stt_hienthi": 11,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616345/vienphuongnam/restored/yteury2h8vf6omyy7q6s.png",
+    "name": "Trung tâm giáo dục nghề nghiệp lái xe Thành Danh",
+    "chucvu": "http://trungtamthanhdanh.com/",
+    "mieutangan": ""
+  },
+  {
+    "id": 16,
+    "stt_hienthi": 12,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616346/vienphuongnam/restored/acpyicgfqyg6xiqforla.png",
+    "name": "Viện Tài nguyên Môi trường và Kiến thức Bản địa",
+    "chucvu": "http://www.webmoitruong-bandia.com/",
+    "mieutangan": ""
+  },
+  {
+    "id": 17,
+    "stt_hienthi": 13,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616347/vienphuongnam/restored/plwht7m7eup3dviqofeg.jpg",
+    "name": "Trường Trung cấp Y Dược Yersin Nha Trang",
+    "chucvu": "https://yduocyersinnhatrang.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 18,
+    "stt_hienthi": 14,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616348/vienphuongnam/restored/ejwgrkpu7xlsxh2ojbun.jpg",
+    "name": "Hội Chữ thập đỏ tỉnh Bình Định",
+    "chucvu": "https://ctd.binhdinh.gov.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 19,
+    "stt_hienthi": 15,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616349/vienphuongnam/restored/htz6blbhjr922qcinief.png",
+    "name": "Trung tâm Nghiên cứu - Tư vấn Công tác xã hội và Phát triển Cộng đồng (SDRC)",
+    "chucvu": "https://sdrc.org.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 20,
+    "stt_hienthi": 16,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616350/vienphuongnam/restored/cf8imgbrt4de2rawarls.jpg",
+    "name": "Hội Bảo vệ quyền trẻ em thành phố Hồ Chí Minh",
+    "chucvu": "https://treemviet.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 21,
+    "stt_hienthi": 17,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616351/vienphuongnam/restored/vkotzd16nnkg5htan0ol.jpg",
+    "name": "Trung tâm Nghiên cứu và Hỗ trợ sức khỏe cộng đồng",
+    "chucvu": "https://cchs-vn.org/tam-nhin-su-menh/",
+    "mieutangan": ""
+  },
+  {
+    "id": 22,
+    "stt_hienthi": 18,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616352/vienphuongnam/restored/g9abzfgeocwq8tae5s7h.png",
+    "name": "Viện nghiên cứu An toàn, Sức khỏe và Môi trường - SHERI",
+    "chucvu": "https://www.facebook.com/viensheri2021/",
+    "mieutangan": ""
+  },
+  {
+    "id": 23,
+    "stt_hienthi": 19,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616353/vienphuongnam/restored/zpqovitoqvimunia4usq.png",
+    "name": "Trung tâm Giáo dục nghề nghiệp - Giáo dục thường xuyên huyện Nhà Bè",
+    "chucvu": "https://ttdnnhabe.edu.vn/vi/",
+    "mieutangan": ""
+  },
+  {
+    "id": 24,
+    "stt_hienthi": 20,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616355/vienphuongnam/restored/wotrf014wjvum9grther.jpg",
+    "name": "Trung tâm Bồi dưỡng và Tư vấn phát triển - CTDC",
+    "chucvu": "https://ctdc.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 25,
+    "stt_hienthi": 21,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616356/vienphuongnam/restored/xbkudc4y5t55shfdknn1.jpg",
+    "name": "Trung tâm Nghiên cứu Ứng dụng Y học Chính xác Sài Gòn (SAIGONMEC)",
+    "chucvu": "https://saigonmec.org/",
+    "mieutangan": ""
+  },
+  {
+    "id": 26,
+    "stt_hienthi": 22,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616357/vienphuongnam/restored/pp2l2yt9cc3oow02tyzc.png",
+    "name": "Trường Đại học Khoa học, Đại học Huế",
+    "chucvu": "https://husc.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 27,
+    "stt_hienthi": 23,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616358/vienphuongnam/restored/i8wsmb0ph0xq0q7g5f8m.jpg",
+    "name": "Trường Đại học Công nghệ Đồng Nai",
+    "chucvu": "https://dntu.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 28,
+    "stt_hienthi": 24,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616359/vienphuongnam/restored/eb28ephpntwp8yrpa6iy.jpg",
+    "name": "Hiệp Hội Bảo Trợ Trẻ Em Christina Noble",
+    "chucvu": "https://www.cncf.org/vi/trang-chu/",
+    "mieutangan": ""
+  },
+  {
+    "id": 29,
+    "stt_hienthi": 25,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616360/vienphuongnam/restored/oqjfsunyvrcsbspickvk.png",
+    "name": "Trường Đại học Nông Lâm, Đại học Thái Nguyên",
+    "chucvu": "https://tuaf.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 30,
+    "stt_hienthi": 26,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616361/vienphuongnam/restored/wxybi8isna7xfpztsuha.png",
+    "name": "Trường Đại học Luật, Đại học Quốc Gia Hà Nội",
+    "chucvu": "https://law.vnu.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 31,
+    "stt_hienthi": 27,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616362/vienphuongnam/restored/mdfnjtrngkig2fjsgxfm.png",
+    "name": "Khoa Quốc tế Pháp ngữ, Đại học Quốc gia Hà Nội",
+    "chucvu": "https://ifi.vnu.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 32,
+    "stt_hienthi": 5,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616363/vienphuongnam/restored/wgzisgkjm4ycsjxomonw.jpg",
+    "name": "Trường Đại học Trà Vinh",
+    "chucvu": "https://www.tvu.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 33,
+    "stt_hienthi": 28,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616364/vienphuongnam/restored/azufxheq0ndmvls2bqwz.jpg",
+    "name": "Trường Đại học Mỏ - Địa chất",
+    "chucvu": "https://humg.edu.vn/Pages/home.aspx",
+    "mieutangan": ""
+  },
+  {
+    "id": 34,
+    "stt_hienthi": 29,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616365/vienphuongnam/restored/z1b20akajiyuvo7pgiuq.png",
+    "name": "Trường Đại học Giáo dục - Đại học Quốc gia Hà Nội",
+    "chucvu": "https://education.vnu.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 35,
+    "stt_hienthi": 30,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616366/vienphuongnam/restored/quamq01byt6y3injibsf.jpg",
+    "name": "Báo Tuổi Trẻ",
+    "chucvu": "https://tuoitre.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 36,
+    "stt_hienthi": 31,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616367/vienphuongnam/restored/hwkl6lhurj8zwnrghy7j.jpg",
+    "name": "Bệnh viện Đa khoa Gia Lai",
+    "chucvu": "https://benhvientinh.gialai.gov.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 37,
+    "stt_hienthi": 32,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616368/vienphuongnam/restored/ic3sjbbfh4xsmj7kgdxi.png",
+    "name": "Bệnh viện Bình Định",
+    "chucvu": "https://benhvienbinhdinh.com.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 38,
+    "stt_hienthi": 33,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616369/vienphuongnam/restored/sedp3weaai0ngyae85ri.png",
+    "name": "Leading Edge Migration",
+    "chucvu": "https://www.leadingedgemigration.com.au/",
+    "mieutangan": ""
+  },
+  {
+    "id": 39,
+    "stt_hienthi": 34,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616370/vienphuongnam/restored/ygsqulcrvomxlzlccipl.png",
+    "name": "Trường Đại học Công nghệ và Quản lý Hữu Nghị",
+    "chucvu": "https://utm.edu.vn/",
+    "mieutangan": ""
+  },
+  {
+    "id": 40,
+    "stt_hienthi": 35,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616371/vienphuongnam/restored/utszsnnouliayksxyewg.png",
+    "name": "Trường Đại học Đồng Tháp",
+    "chucvu": "https://www.dthu.edu.vn/default.aspx",
+    "mieutangan": ""
+  }
+]

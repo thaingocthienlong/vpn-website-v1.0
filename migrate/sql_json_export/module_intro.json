@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "tieude": "Tin mới",
+    "mieutangan": "<div class=\"hl-editor type-mieutangan\">\r\n<div class=\"_design_box_1\">\r\n<div class=\"row\">\r\n<div class=\"col-lg-5 d-lg-block d-none\">\r\n<div class=\"_design_box_1_left\">\r\n<div class=\"_design_box_1_left_inner\" style=\"background-image:url(https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616484/vienphuongnam/content/hopmhsxckk7xzv5wk4we.jpg)\">Tin mới</div>\r\n</div>\r\n</div>\r\n\r\n<div class=\"col-lg-7\">\r\n<div class=\"_design_box_1_right\">\r\n<div class=\"hl-editor\">\r\n<p style=\"text-align:center\"><a class=\"img-link\" href=\"https://vienphuongnam.com.vn/khoa-hoc-chuyen-gia-thiet-ke-nghien-cuu-va-dao-duc-khoa-hoc/\" target=\"_blank\"><img src=\"https://vienphuongnam.com.vn/uploads/files/VPN/2025/Cong%20van%20thong%20bao/TB15_2025_THI%E1%BA%BET%20K%E1%BA%BE%20NGHIEN%20C%E1%BB%A8U%20VA%20D%E1%BA%A0O%20D%E1%BB%A8C%20KHOA%20H%E1%BB%8CC_Final.jpg\" style=\"height:1200px; width:auto\" /> KHO&Aacute; HỌC CHUY&Ecirc;N GIA &ldquo;THIẾT KẾ NGHI&Ecirc;N CỨU V&Agrave; ĐẠO ĐỨC KHOA HỌC&rdquo; </a></p>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n</div>\r\n",
+    "lienket": "",
+    "anhdaidien": "",
+    "hinhnen": "",
+    "thuoctinhbgd": "repeat",
+    "mauchu": "",
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "limitbgd": 0,
+    "subtieude": "",
+    "titlelienket": "",
+    "mieutathem": ""
+  },
+  {
+    "id": 3,
+    "name": "Bật module",
+    "trangthai": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "lienket": "",
+    "anhdaidien": "",
+    "hinhnen": "",
+    "thuoctinhbgd": "",
+    "mauchu": "",
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "limitbgd": 0,
+    "subtieude": "",
+    "titlelienket": "",
+    "mieutathem": ""
+  }
+]

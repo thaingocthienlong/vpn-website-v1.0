@@ -179,6 +179,7 @@ export function ServicesListPage({
             return;
         }
 
+        const requestUrl = fetchUrl;
         let ignore = false;
 
         async function fetchServices() {
@@ -186,7 +187,7 @@ export function ServicesListPage({
             setHasError(false);
 
             try {
-                const response = await fetch(fetchUrl);
+                const response = await fetch(requestUrl);
 
                 if (!response.ok) {
                     throw new Error(`Failed to fetch services: ${response.status}`);

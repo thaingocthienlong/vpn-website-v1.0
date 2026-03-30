@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Badge } from "@/components/ui/Badge";
 import { motion, useReducedMotion } from "framer-motion";
 import { publicMotionTokens } from "@/components/motion/PublicMotion";
 
@@ -37,14 +36,9 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
         right: "text-right",
     } as const;
 
-    const desktopLayout =
-        actualAlignment === "center"
-            ? "mx-auto max-w-6xl gap-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.76fr)] lg:items-end lg:text-left"
-            : "gap-4 lg:grid lg:grid-cols-[minmax(0,1fr)_minmax(300px,0.76fr)] lg:items-end";
-
     return (
         <motion.div
-            className={cn("mb-8 md:mb-10 lg:mb-11", alignmentMap[actualAlignment], className)}
+            className={cn("mb-8 md:mb-10", alignmentMap[actualAlignment], className)}
             initial={
                 shouldReduceMotion || motionPreset === "none"
                     ? false
@@ -57,14 +51,14 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
             variants={{
                 hidden: {
                     opacity: 0,
-                    y: 26,
-                    transition: { staggerChildren: 0.12 },
+                    y: 22,
+                    transition: { staggerChildren: 0.1 },
                 },
                 hiddenContrast: {
                     opacity: 0,
-                    y: 32,
+                    y: 28,
                     scale: 0.985,
-                    transition: { staggerChildren: 0.12 },
+                    transition: { staggerChildren: 0.1 },
                 },
                 visible: {
                     opacity: 1,
@@ -72,37 +66,32 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                     scale: 1,
                     transition: {
                         ...publicMotionTokens.sectionSpring,
-                        staggerChildren: 0.12,
+                        staggerChildren: 0.1,
                     },
                 },
             }}
         >
-            <div className={cn(desktopLayout)}>
+            <div className="grid gap-4 lg:grid-cols-[minmax(0,1.08fr)_minmax(280px,0.68fr)] lg:items-end">
                 <motion.div
                     variants={{
-                        hidden: { opacity: 0, y: 24 },
-                        hiddenContrast: { opacity: 0, y: 24 },
+                        hidden: { opacity: 0, y: 20 },
+                        hiddenContrast: { opacity: 0, y: 20 },
                         visible: { opacity: 1, y: 0 },
                     }}
-                    className={cn("space-y-2.5 md:space-y-3", actualAlignment === "right" && "lg:order-2")}
+                    className={cn("space-y-3", actualAlignment === "right" && "lg:order-2")}
                 >
-                    {badge && (
-                        <Badge
-                            variant={isDark ? "hot" : "default"}
-                            size="md"
-                            className={cn(
-                                isDark && "border-white/12 bg-white/10 text-white",
-                                actualAlignment === "center" && "lg:mx-0",
-                                actualAlignment === "right" && "ml-auto"
-                            )}
-                        >
-                            {badge}
-                        </Badge>
-                    )}
+                    {badge ? (
+                        <div className={cn("inline-flex items-center gap-3", actualAlignment === "right" && "ml-auto", actualAlignment === "center" && "mx-auto")}>
+                            <span className={cn("h-px w-10", isDark ? "bg-white/14" : "bg-[rgba(16,40,70,0.18)]")} />
+                            <span className={cn("editorial-caption", isDark ? "text-[var(--on-dark-meta)]" : "text-[var(--ink-muted)]")}>
+                                {badge}
+                            </span>
+                        </div>
+                    ) : null}
                     <h2
                         className={cn(
-                            "max-w-[12.2ch] font-heading text-[2.05rem] leading-[0.92] tracking-[-0.05em] md:text-[2.72rem] lg:text-[3.15rem]",
-                            isDark ? "text-white" : "text-[var(--ink)]",
+                            "max-w-[13ch] font-heading text-[2rem] leading-[0.94] tracking-[-0.055em] md:text-[2.55rem] lg:text-[3.05rem]",
+                            isDark ? "!text-[var(--on-dark-heading)]" : "text-[var(--ink)]",
                             actualAlignment === "center" && "mx-auto",
                             actualAlignment === "right" && "ml-auto"
                         )}
@@ -114,27 +103,22 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                 {subtitle ? (
                     <motion.div
                         variants={{
-                            hidden: { opacity: 0, y: 18 },
-                            hiddenContrast: { opacity: 0, y: 18 },
+                            hidden: { opacity: 0, y: 16 },
+                            hiddenContrast: { opacity: 0, y: 16 },
                             visible: { opacity: 1, y: 0 },
                         }}
-                        className={cn(
-                            "flex items-start gap-3.5 lg:justify-start",
-                            actualAlignment === "center" && "lg:justify-start",
-                            actualAlignment === "right" && "lg:justify-end"
-                        )}
+                        className={cn("flex items-start gap-3.5", actualAlignment === "right" && "lg:justify-end")}
                     >
-                        <div className={cn("mt-2 h-11 w-px shrink-0 md:h-12", isDark ? "bg-white/20" : "bg-[rgba(23,88,216,0.22)]")} />
+                        <div className={cn("mt-2 h-11 w-px shrink-0", isDark ? "bg-white/14" : "bg-[rgba(16,40,70,0.16)]")} />
                         <p
                             className={cn(
-                            "max-w-[30rem] text-[0.94rem] leading-[1.9rem] md:text-[0.98rem] md:leading-[1.95rem]",
-                                isDark ? "text-white/76" : "text-[var(--ink-soft)]",
-                                actualAlignment === "center" && "lg:mx-0",
+                                "max-w-[30rem] text-[0.96rem] leading-[1.84rem] md:text-[1rem] md:leading-[1.92rem]",
+                                isDark ? "text-[var(--on-dark-body)]" : "text-[var(--ink-soft)]",
                                 actualAlignment === "right" && "text-left"
                             )}
                         >
-                                {subtitle}
-                            </p>
+                            {subtitle}
+                        </p>
                     </motion.div>
                 ) : (
                     <div />

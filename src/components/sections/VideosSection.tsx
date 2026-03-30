@@ -2,13 +2,13 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Play } from "@phosphor-icons/react";
+import { ArrowRight, Play } from "@phosphor-icons/react";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { SectionHeader } from "./SectionHeader";
 import { SectionWrapper } from "./SectionWrapper";
 import { detectLocaleFromPath } from "@/lib/routes";
-import { FloatingAccent, MotionGroup, MotionItem, MotionSection, ParallaxLayer, publicMotionTokens } from "@/components/motion/PublicMotion";
+import { MotionGroup, MotionItem, MotionSection, publicMotionTokens } from "@/components/motion/PublicMotion";
 
 interface Video {
     id: string;
@@ -23,35 +23,16 @@ interface VideosSectionProps {
     subtitle?: string;
 }
 
-const viVideos: Video[] = [
-    {
-        id: "1",
-        title: "Giới thiệu Viện SISRD",
-        thumbnailUrl: "",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-    {
-        id: "2",
-        title: "Chương trình đào tạo",
-        thumbnailUrl: "",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-];
+function getDisplayVideoTitle(title: string | undefined, fallback: string) {
+    if (!title) return fallback;
 
-const enVideos: Video[] = [
-    {
-        id: "1",
-        title: "About SISRD",
-        thumbnailUrl: "",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-    {
-        id: "2",
-        title: "Training Programs",
-        thumbnailUrl: "",
-        videoUrl: "https://www.youtube.com/embed/dQw4w9WgXcQ",
-    },
-];
+    const normalized = title.trim().toLowerCase();
+    if (!normalized || /^video\s*\d+$/i.test(normalized)) {
+        return fallback;
+    }
+
+    return title;
+}
 
 export function VideosSection({
     videos,
@@ -61,7 +42,7 @@ export function VideosSection({
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
-    const resolvedVideos = videos || (isEn ? enVideos : viVideos);
+    const resolvedVideos = videos?.slice(0, 2) || [];
     const resolvedTitle = title || (isEn ? "Introduction Videos" : "Video Giới Thiệu");
     const resolvedSubtitle = subtitle || (
         isEn
@@ -72,6 +53,9 @@ export function VideosSection({
 
     const [activeVideoId, setActiveVideoId] = useState(resolvedVideos[0]?.id ?? null);
     const activeVideo = resolvedVideos.find((video) => video.id === activeVideoId) ?? resolvedVideos[0];
+    const secondaryVideo = resolvedVideos.find((video) => video.id !== activeVideo?.id) || null;
+    const activeVideoTitle = getDisplayVideoTitle(activeVideo?.title, resolvedTitle);
+    const secondaryVideoTitle = secondaryVideo ? getDisplayVideoTitle(secondaryVideo.title, resolvedTitle) : null;
     const [playingId, setPlayingId] = useState<string | null>(null);
 
     if (!activeVideo) {
@@ -79,188 +63,128 @@ export function VideosSection({
     }
 
     return (
-        <SectionWrapper background="gradient-blue">
-            <MotionSection preset="contrast">
-                <SectionHeader title={resolvedTitle} subtitle={resolvedSubtitle} motionPreset="section" />
+        <SectionWrapper background="gradient-dark">
+            <MotionSection>
+                <SectionHeader
+                    badge={isEn ? "Film" : "Phim giới thiệu"}
+                    title={resolvedTitle}
+                    subtitle={resolvedSubtitle}
+                    variant="dark"
+                />
             </MotionSection>
 
-            <div className="relative overflow-hidden rounded-[2.7rem] border border-[rgba(96,148,255,0.2)] bg-[linear-gradient(155deg,rgba(30,82,186,0.96),rgba(51,106,224,0.93)_54%,rgba(133,181,255,0.86)_124%)] p-4 text-white shadow-[0_34px_96px_rgba(25,72,182,0.22)] md:p-5">
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_top_left,rgba(255,255,255,0.14),transparent_22%),radial-gradient(circle_at_bottom_right,rgba(214,232,255,0.14),transparent_26%)]" />
-                <FloatingAccent className="left-[8%] top-[10%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.18),transparent_70%)]" variant="halo" />
-                <FloatingAccent className="bottom-[10%] right-[8%] h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(210,230,255,0.18),transparent_74%)]" variant="orb" />
-
-                <MotionGroup className="relative grid gap-4 xl:grid-cols-[minmax(0,1.08fr)_minmax(340px,0.92fr)] xl:items-stretch" stagger={0.1}>
-                    <MotionItem preset="fade-right">
-                        <ParallaxLayer depth={20}>
-                            <motion.div
-                                layout
-                                className="relative aspect-video overflow-hidden rounded-[2.2rem] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.06))] shadow-[0_28px_60px_rgba(18,56,138,0.18)]"
-                                animate={
-                                    shouldReduceMotion
-                                        ? undefined
-                                        : {
-                                              scale: [1, 1.008, 1],
-                                          }
-                                }
-                                transition={
-                                    shouldReduceMotion
-                                        ? undefined
-                                        : {
-                                              duration: 7.5,
-                                              ease: "easeInOut",
-                                              repeat: Infinity,
-                                          }
-                                }
-                            >
-                                <AnimatePresence mode="wait">
-                                    {playingId === activeVideo.id ? (
-                                        <motion.iframe
-                                            key={`playing-${activeVideo.id}`}
-                                            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.98 }}
-                                            animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
-                                            exit={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.985 }}
-                                            transition={publicMotionTokens.sectionSpring}
-                                            src={`${activeVideo.videoUrl}?autoplay=1`}
-                                            title={activeVideo.title}
-                                            className="h-full w-full"
-                                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                            allowFullScreen
+            <MotionGroup className="grid gap-6 xl:grid-cols-[minmax(0,1.08fr)_320px] xl:items-stretch" stagger={0.1}>
+                <MotionItem>
+                    <motion.div
+                        whileHover={shouldReduceMotion ? undefined : { y: -5 }}
+                        transition={publicMotionTokens.hoverSpring}
+                        className="relative aspect-video overflow-hidden rounded-[2.5rem] border border-white/12 bg-white/6 backdrop-blur-md"
+                    >
+                        <AnimatePresence mode="wait">
+                            {playingId === activeVideo.id ? (
+                                <motion.iframe
+                                    key={`playing-${activeVideo.id}`}
+                                    initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.99 }}
+                                    animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
+                                    exit={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.99 }}
+                                    transition={publicMotionTokens.sectionSpring}
+                                    src={`${activeVideo.videoUrl}?autoplay=1`}
+                                    title={activeVideoTitle}
+                                    className="h-full w-full"
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                />
+                            ) : (
+                                <motion.button
+                                    key={`poster-${activeVideo.id}`}
+                                    type="button"
+                                    onClick={() => setPlayingId(activeVideo.id)}
+                                    initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.99 }}
+                                    animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
+                                    exit={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.99 }}
+                                    transition={publicMotionTokens.sectionSpring}
+                                    className="group relative flex h-full w-full items-center justify-center overflow-hidden"
+                                    aria-label={activeVideoTitle}
+                                >
+                                    {activeVideo.thumbnailUrl ? (
+                                        <Image
+                                            src={activeVideo.thumbnailUrl}
+                                            alt={activeVideoTitle}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                                         />
                                     ) : (
-                                        <motion.button
-                                            key={`poster-${activeVideo.id}`}
-                                            type="button"
-                                            onClick={() => setPlayingId(activeVideo.id)}
-                                            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.985 }}
-                                            animate={shouldReduceMotion ? undefined : { opacity: 1, scale: 1 }}
-                                            exit={shouldReduceMotion ? undefined : { opacity: 0, scale: 0.985 }}
-                                            transition={publicMotionTokens.sectionSpring}
-                                            className="group relative flex h-full w-full items-center justify-center overflow-hidden"
-                                            aria-label={activeVideo.title}
-                                        >
-                                            {activeVideo.thumbnailUrl ? (
-                                                <Image
-                                                    src={activeVideo.thumbnailUrl}
-                                                    alt={activeVideo.title}
-                                                    fill
-                                                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                                                />
-                                            ) : null}
-                                            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.16),transparent_56%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(7,20,42,0.28))]" />
-                                            <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[linear-gradient(180deg,rgba(7,20,42,0),rgba(7,20,42,0.74))]" />
-                                            <motion.div
-                                                className="relative z-10 inline-flex h-18 w-18 items-center justify-center rounded-full border border-white/18 bg-white/12 text-white"
-                                                whileHover={shouldReduceMotion ? undefined : { scale: 1.08 }}
-                                                transition={publicMotionTokens.hoverSpring}
-                                            >
-                                                <Play className="ml-1 h-7 w-7" weight="fill" />
-                                            </motion.div>
-                                            <div className="absolute bottom-0 left-0 right-0 z-10 p-5 text-left md:p-6">
-                                                <motion.p
-                                                    className="max-w-xl text-base leading-8 text-white/86 md:text-lg"
-                                                    initial={shouldReduceMotion ? false : { opacity: 0, y: 10 }}
-                                                    animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
-                                                    transition={{ ...publicMotionTokens.sectionSpring, delay: 0.08 }}
-                                                >
-                                                    {activeVideo.title}
-                                                </motion.p>
-                                            </div>
-                                        </motion.button>
+                                        <div className="absolute inset-0 bg-[linear-gradient(160deg,rgba(255,255,255,0.12),rgba(255,255,255,0.03)_30%,rgba(8,20,35,0.56))]" />
                                     )}
-                                </AnimatePresence>
-                            </motion.div>
-                        </ParallaxLayer>
-                    </MotionItem>
+                                    <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,20,42,0.02),rgba(7,20,42,0.24),rgba(7,20,42,0.72))]" />
+                                    <div className="relative z-10 inline-flex h-18 w-18 items-center justify-center rounded-full border border-white/16 bg-white/12 text-white">
+                                        <Play className="ml-1 h-7 w-7" weight="fill" />
+                                    </div>
+                                    <div className="absolute inset-x-0 bottom-0 z-10 p-5 text-left md:p-6">
+                                        <p className="max-w-xl font-heading text-[1.85rem] leading-[0.98] !text-white md:text-[2.45rem]">
+                                            {activeVideoTitle}
+                                        </p>
+                                    </div>
+                                </motion.button>
+                            )}
+                        </AnimatePresence>
+                    </motion.div>
+                </MotionItem>
 
-                    <MotionGroup className="grid h-full gap-4 md:grid-cols-2 xl:grid-cols-1 xl:auto-rows-fr" stagger={0.08}>
-                        {resolvedVideos.map((video, index) => {
-                            const isActive = video.id === activeVideo.id;
+                <MotionItem>
+                    <motion.div
+                        whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+                        transition={publicMotionTokens.hoverSpring}
+                        className="flex h-full flex-col rounded-[2.1rem] border border-white/10 bg-white/6 p-5 backdrop-blur-md md:p-6"
+                    >
+                        <div className="space-y-4">
+                            <p className="editorial-caption text-white/46">
+                                {isEn ? "Screening note" : "Ghi chú xem nhanh"}
+                            </p>
+                            <h3 className="max-w-[12ch] font-heading text-[1.95rem] !text-white md:text-[2.3rem]">
+                                {activeVideoTitle}
+                            </h3>
+                            <p className="text-sm leading-8 text-white/68">
+                                {isEn
+                                    ? "One primary film stays on the homepage. Supporting clips stay secondary so the section reads like one clear media moment."
+                                    : "Trang chủ chỉ giữ một video chính. Những video còn lại được đẩy về vai trò phụ để khu vực này hoạt động như một điểm dừng hình ảnh rõ ràng."}
+                            </p>
+                        </div>
 
-                            return (
-                                <MotionItem key={video.id} preset="fade-left">
-                                    <motion.button
-                                        layout
-                                        type="button"
-                                        onClick={() => {
-                                            setActiveVideoId(video.id);
-                                            setPlayingId(null);
-                                        }}
-                                        whileHover={shouldReduceMotion ? undefined : { y: -6, scale: 1.01 }}
-                                        whileTap={shouldReduceMotion ? undefined : { scale: 0.99 }}
-                                        transition={publicMotionTokens.hoverSpring}
-                                        className={`relative flex h-full w-full items-stretch overflow-hidden rounded-[1.85rem] border p-3.5 text-left ${
-                                            isActive
-                                                ? "border-white/18 bg-white/14 text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]"
-                                                : "border-white/14 bg-white/8 text-white/82 hover:bg-white/10"
-                                        }`}
-                                    >
-                                        {!shouldReduceMotion && isActive ? (
-                                            <motion.div
-                                                layoutId="video-selector-glow"
-                                                className="absolute inset-0 rounded-[1.75rem] border border-white/16 bg-[linear-gradient(135deg,rgba(255,255,255,0.08),transparent_62%)]"
-                                            />
-                                        ) : null}
+                        {secondaryVideo ? (
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    setActiveVideoId(secondaryVideo.id);
+                                    setPlayingId(null);
+                                }}
+                                className="group mt-6 flex items-start justify-between gap-4 rounded-[1.7rem] border border-white/10 bg-white/[0.05] px-4 py-4 text-left transition-colors hover:bg-white/[0.08]"
+                            >
+                                <div className="space-y-2">
+                                    <p className="text-[11px] font-semibold uppercase tracking-[0.15em] text-white/46">
+                                        {isEn ? "Next film" : "Video tiếp theo"}
+                                    </p>
+                                    <p className="text-sm leading-7 text-white/88">
+                                        {secondaryVideoTitle}
+                                    </p>
+                                </div>
+                                <ArrowRight className="mt-1 h-4 w-4 shrink-0 text-white/62 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-white" weight="bold" />
+                            </button>
+                        ) : null}
 
-                                        <div className="relative z-[1] grid flex-1 gap-4 md:grid-cols-[144px_minmax(0,1fr)] md:items-center">
-                                            <motion.div
-                                                className="relative min-h-[120px] overflow-hidden rounded-[1.3rem] border border-white/10 bg-[rgba(255,255,255,0.08)]"
-                                                animate={
-                                                    shouldReduceMotion || !isActive
-                                                        ? undefined
-                                                        : { scale: [1, 1.02, 1] }
-                                                }
-                                                transition={
-                                                    shouldReduceMotion || !isActive
-                                                        ? undefined
-                                                        : { duration: 4.2, ease: "easeInOut", repeat: Infinity }
-                                                }
-                                            >
-                                                {video.thumbnailUrl ? (
-                                                    <Image src={video.thumbnailUrl} alt={video.title} fill className="object-cover" />
-                                                ) : null}
-                                                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(7,20,42,0.02),rgba(7,20,42,0.5))]" />
-                                                <div className="absolute inset-0 flex items-center justify-center">
-                                                    <motion.div
-                                                        className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/12 bg-white/12 text-white"
-                                                        animate={
-                                                            shouldReduceMotion
-                                                                ? undefined
-                                                                : { scale: [1, 1.06, 1] }
-                                                        }
-                                                        transition={
-                                                            shouldReduceMotion
-                                                                ? undefined
-                                                                : {
-                                                                      duration: 3.2,
-                                                                      ease: "easeInOut",
-                                                                      repeat: Infinity,
-                                                                      delay: index * 0.18,
-                                                                  }
-                                                        }
-                                                    >
-                                                        <Play className="ml-0.5 h-4 w-4" weight="fill" />
-                                                    </motion.div>
-                                                </div>
-                                            </motion.div>
-
-                                            <motion.div
-                                                layout
-                                                className="flex h-full items-center pr-1"
-                                                animate={shouldReduceMotion ? undefined : { x: isActive ? 0 : -2 }}
-                                                transition={publicMotionTokens.hoverSpring}
-                                            >
-                                                <p className="text-sm leading-7 text-white/90 md:text-base">
-                                                    {video.title}
-                                                </p>
-                                            </motion.div>
-                                        </div>
-                                    </motion.button>
-                                </MotionItem>
-                            );
-                        })}
-                    </MotionGroup>
-                </MotionGroup>
-            </div>
+                        <button
+                            type="button"
+                            onClick={() => setPlayingId(activeVideo.id)}
+                            className="mt-auto inline-flex items-center gap-3 pt-8 text-sm font-semibold text-white"
+                        >
+                            <span>{isEn ? "Play film" : "Phát video"}</span>
+                            <span className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-white/12 bg-white/8">
+                                <Play className="ml-0.5 h-4 w-4" weight="fill" />
+                            </span>
+                        </button>
+                    </motion.div>
+                </MotionItem>
+            </MotionGroup>
         </SectionWrapper>
     );
 }

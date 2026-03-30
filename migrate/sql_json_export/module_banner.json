@@ -1,0 +1,56 @@
+[
+  {
+    "id": 1,
+    "namebanner": "Không hiển thị",
+    "trangthai": 1,
+    "duongvien": 0
+  },
+  {
+    "id": 2,
+    "namebanner": "Module kiểu 1",
+    "trangthai": 0,
+    "duongvien": 1
+  },
+  {
+    "id": 3,
+    "namebanner": "Module kiểu 2",
+    "trangthai": 0,
+    "duongvien": 0
+  },
+  {
+    "id": 4,
+    "namebanner": "Module kiểu 3",
+    "trangthai": 0,
+    "duongvien": 0
+  },
+  {
+    "id": 5,
+    "namebanner": "Module kiểu 4",
+    "trangthai": 0,
+    "duongvien": 0
+  },
+  {
+    "id": 6,
+    "namebanner": "Module kiểu 5",
+    "trangthai": 0,
+    "duongvien": 0
+  },
+  {
+    "id": 7,
+    "namebanner": "Module kiểu 6",
+    "trangthai": 0,
+    "duongvien": 0
+  },
+  {
+    "id": 8,
+    "namebanner": "Module kiểu 7",
+    "trangthai": 0,
+    "duongvien": 0
+  },
+  {
+    "id": 9,
+    "namebanner": "Module kiểu 8",
+    "trangthai": 0,
+    "duongvien": 0
+  }
+]

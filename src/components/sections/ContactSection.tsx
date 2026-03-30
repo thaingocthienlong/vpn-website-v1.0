@@ -22,9 +22,9 @@ interface ContactSectionProps {
 export function ContactSection({
     title,
     subtitle,
-    address = "123 Đường ABC, Quận 1, TP.HCM",
-    phone = "028 1234 5678",
-    email = "info@sisrd.edu.vn",
+    address = "45 Đinh Tiên Hoàng, Phường Sài Gòn, TP.HCM",
+    phone = "0912 114 511",
+    email = "vanphong@vienphuongnam.com.vn",
     hours,
 }: ContactSectionProps) {
     const pathname = usePathname();
@@ -34,13 +34,13 @@ export function ContactSection({
     const [submitted, setSubmitted] = useState(false);
     const shouldReduceMotion = useReducedMotion();
 
-    const resolvedTitle = title || (isEn ? "Contact Us" : "Liên Hệ Với Chúng Tôi");
+    const resolvedTitle = title || (isEn ? "Contact Vien Phuong Nam" : "Liên hệ Viện Phương Nam");
     const resolvedSubtitle = subtitle || (isEn
-        ? "Leave your information and we'll contact you as soon as possible"
-        : "Hãy để lại thông tin, chúng tôi sẽ liên hệ tư vấn trong thời gian sớm nhất");
+        ? "Share your information and our team will reach out with the right training or service direction."
+        : "Để lại thông tin và đội ngũ của chúng tôi sẽ liên hệ để tư vấn đúng nhu cầu đào tạo hoặc dịch vụ.");
     const resolvedHours = hours || (isEn
         ? "Mon - Fri: 8:00 AM - 5:00 PM"
-        : "Thứ 2 - Thứ 6: 8:00 - 17:00");
+        : "Thứ 2 - Thứ 6: 08:00 - 17:00");
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -67,15 +67,29 @@ export function ContactSection({
 
             <MotionGroup className="grid grid-cols-1 gap-6 xl:grid-cols-[0.88fr_1.12fr]" stagger={0.1}>
                 <MotionItem>
-                    <div className="public-panel-muted relative rounded-[2.5rem] p-6 md:p-8">
+                    <div className="public-panel-muted public-frame relative rounded-[2.5rem] p-6 md:p-8">
                         <FloatingAccent className="right-[8%] top-[8%] h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(23,88,216,0.14),transparent_70%)]" variant="halo" />
+                        <div className="relative mb-6 space-y-3">
+                            <p className="editorial-caption text-[var(--ink-muted)]">
+                                {isEn ? "Visit or write to us" : "Ghé thăm hoặc gửi thông tin"}
+                            </p>
+                            <p className="max-w-[32rem] text-sm leading-7 text-[var(--ink-soft)]">
+                                {isEn
+                                    ? "Choose the direct contact method that fits your need, or send a brief through the form and our team will connect the right person."
+                                    : "Chọn kênh liên hệ phù hợp hoặc để lại thông tin trong biểu mẫu, đội ngũ của chúng tôi sẽ kết nối đúng bộ phận phụ trách."}
+                            </p>
+                        </div>
                         <MotionGroup className="relative grid gap-4 sm:grid-cols-2" stagger={0.08}>
                             {contactInfo.map((item, index) => (
-                                <MotionItem key={index}>
+                                <MotionItem key={index} className={index === 0 ? "sm:col-span-2" : undefined}>
                                     <motion.div
                                         whileHover={shouldReduceMotion ? undefined : { y: -5, scale: 1.01 }}
                                         transition={publicMotionTokens.hoverSpring}
-                                        className="rounded-[1.55rem] border border-[rgba(26,72,164,0.12)] bg-white/78 p-4"
+                                        className={`rounded-[1.7rem] border border-[rgba(26,72,164,0.12)] p-4 ${
+                                            index === 0
+                                                ? "bg-[linear-gradient(150deg,rgba(255,255,255,0.92),rgba(228,237,250,0.84))] md:p-5"
+                                                : "bg-white/78"
+                                        }`}
                                     >
                                         <motion.div
                                             className="mb-3 inline-flex h-11 w-11 items-center justify-center rounded-[1rem] border border-[rgba(23,88,216,0.14)] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]"
@@ -100,7 +114,7 @@ export function ContactSection({
                                 <motion.div
                                     whileHover={shouldReduceMotion ? undefined : { y: -5, scale: 1.005 }}
                                     transition={publicMotionTokens.hoverSpring}
-                                    className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-[1.9rem] border border-[rgba(26,72,164,0.12)] bg-[linear-gradient(160deg,rgba(255,255,255,0.9),rgba(227,239,255,0.72))]"
+                                    className="relative flex aspect-[16/10] items-center justify-center overflow-hidden rounded-[2rem] border border-[rgba(26,72,164,0.12)] bg-[linear-gradient(160deg,rgba(255,255,255,0.9),rgba(227,239,255,0.72))]"
                                 >
                                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_22%_24%,rgba(23,88,216,0.12),transparent_32%),radial-gradient(circle_at_76%_68%,rgba(23,88,216,0.08),transparent_36%),linear-gradient(rgba(23,88,216,0.06)_1px,transparent_1px),linear-gradient(90deg,rgba(23,88,216,0.06)_1px,transparent_1px)] bg-[length:auto,auto,28px_28px,28px_28px]" />
                                     <motion.div
@@ -118,7 +132,7 @@ export function ContactSection({
                 </MotionItem>
 
                 <MotionItem>
-                    <div className="public-panel rounded-[2.5rem] p-6 md:p-8">
+                    <div className="public-panel public-frame rounded-[2.5rem] p-6 md:p-8">
                         <AnimatePresence mode="wait" initial={false}>
                             {submitted ? (
                                 <motion.div
@@ -155,6 +169,16 @@ export function ContactSection({
                                     exit={shouldReduceMotion ? undefined : { opacity: 0, y: -12 }}
                                     transition={publicMotionTokens.sectionSpring}
                                 >
+                                    <div className="space-y-3">
+                                        <p className="editorial-caption text-[var(--ink-muted)]">
+                                            {isEn ? "Message form" : "Biểu mẫu liên hệ"}
+                                        </p>
+                                        <p className="max-w-[36rem] text-sm leading-7 text-[var(--ink-soft)]">
+                                            {isEn
+                                                ? "Share your contact details and a short request summary. We will route the message to the right academic, service, or partnership lead."
+                                                : "Để lại thông tin liên hệ và tóm tắt nhu cầu. Chúng tôi sẽ chuyển tiếp yêu cầu đến đúng bộ phận đào tạo, dịch vụ hoặc hợp tác."}
+                                        </p>
+                                    </div>
                                     <MotionGroup className="grid grid-cols-1 gap-4 sm:grid-cols-2" stagger={0.06}>
                                         <MotionItem>
                                             <motion.div whileHover={shouldReduceMotion ? undefined : { y: -3 }} transition={publicMotionTokens.hoverSpring}>

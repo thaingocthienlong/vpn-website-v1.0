@@ -3,8 +3,10 @@ import { cn } from "@/lib/utils";
 
 export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
     label?: string;
+    labelClassName?: string;
     error?: string;
     helperText?: string;
+    helperTextClassName?: string;
     leftAddon?: React.ReactNode;
     rightAddon?: React.ReactNode;
 }
@@ -15,8 +17,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
             className,
             type = "text",
             label,
+            labelClassName,
             error,
             helperText,
+            helperTextClassName,
             leftAddon,
             rightAddon,
             id,
@@ -28,18 +32,18 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
         const inputId = id ?? generatedId;
 
         const baseInputStyles =
-            "public-input-surface w-full rounded-[1.35rem] px-4 py-3.5 text-sm text-[var(--ink)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-0";
+            "public-input-surface w-full rounded-[1rem] px-4 py-3.5 text-sm text-[var(--ink)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-0";
 
         const normalStyles =
-            "placeholder:text-[var(--ink-muted)] focus:border-[rgba(23,88,216,0.28)] focus:ring-[rgba(23,88,216,0.18)]";
+            "placeholder:text-[var(--ink-muted)] focus:border-[rgba(77,111,147,0.28)] focus:ring-[rgba(94,130,166,0.18)]";
 
         const errorStyles =
-            "border-[rgba(160,79,92,0.45)] focus:border-[rgba(160,79,92,0.45)] focus:ring-[rgba(160,79,92,0.16)]";
+            "border-[rgba(138,79,93,0.42)] focus:border-[rgba(138,79,93,0.42)] focus:ring-[rgba(138,79,93,0.16)]";
 
         return (
             <div className="w-full">
                 {label && (
-                    <label htmlFor={inputId} className="mb-2 block text-sm font-medium text-[var(--ink)]">
+                    <label htmlFor={inputId} className={cn("mb-2 block text-sm font-medium text-[var(--ink)]", labelClassName)}>
                         {label}
                     </label>
                 )}
@@ -76,7 +80,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     </p>
                 )}
                 {helperText && !error && (
-                    <p className="mt-1 text-sm text-[var(--ink-muted)]">{helperText}</p>
+                    <p className={cn("mt-1 text-sm text-[var(--ink-muted)]", helperTextClassName)}>{helperText}</p>
                 )}
             </div>
         );

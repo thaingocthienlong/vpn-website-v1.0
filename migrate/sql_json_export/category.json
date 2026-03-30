@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "icon": "",
+    "stt_hienthi": 0,
+    "stt_thaydoi": 0,
+    "id_cha": 0,
+    "id_cha_cap2": 0,
+    "tendanhmuc": "Chưa phân loại",
+    "tieudeseo": "Chưa phân loại",
+    "duongdan": "chua-phan-loai",
+    "mieutangan": "<p>Chưa ph&acirc;n loại</p>\r\n",
+    "mieutangancuoitrang": "",
+    "mieutaseo": "Chưa phân loại",
+    "tukhoa": "Chưa phân loại",
+    "anhdaidien": "/fontend/images/transparent.png",
+    "anhdaidienheading": "",
+    "anhdaidienheadingmb": "",
+    "hiddenanhdaidienheading": 0,
+    "trangthai": 0,
+    "trangthaislider": 0,
+    "trangthaimenu": 0,
+    "trangthaimenudmsp": 0,
+    "linktags": 0,
+    "head": "",
+    "created_time": "2021-01-14 23:38:51",
+    "modified_time": "2023-10-10 20:10:26"
+  }
+]

@@ -1,17 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
-import { ArrowRight, Play } from "@phosphor-icons/react";
+import { ArrowRight, ArrowUpRight, Play } from "@phosphor-icons/react";
 import { usePathname } from "next/navigation";
-import { Button, Badge } from "@/components/ui";
+import { Button } from "@/components/ui";
 import { Container } from "@/components/layout";
 import { detectLocaleFromPath } from "@/lib/routes";
+import { cn } from "@/lib/utils";
 import {
-    FloatingAccent,
     MotionGroup,
     MotionItem,
-    ParallaxLayer,
     publicMotionTokens,
 } from "@/components/motion/PublicMotion";
 
@@ -25,6 +25,8 @@ interface Course {
 }
 
 interface HeroSectionProps {
+    title?: string;
+    subtitle?: string;
     ctaPrimary?: {
         text: string;
         href: string;
@@ -34,9 +36,9 @@ interface HeroSectionProps {
         href: string;
     };
     featuredPrograms?: Course[];
-    featuredVideo?: {
+    featuredMedia?: {
         eyebrow?: string;
-        title: string;
+        title?: string;
         description?: string;
         thumbnailUrl?: string;
         href?: string;
@@ -44,10 +46,12 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({
+    title,
+    subtitle,
     ctaPrimary,
     ctaSecondary,
     featuredPrograms = [],
-    featuredVideo,
+    featuredMedia,
 }: HeroSectionProps) {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
@@ -57,267 +61,194 @@ export function HeroSection({
     const copy = isEn
         ? {
               hero: {
-                  title: "Southern Institute for Social Resources Development",
-                  subtitle: "Research • Training • Technology Transfer",
-                  cta: "Explore",
+                  title: "Vien Phuong Nam Institute",
+                  subtitle: "Training, research, and institutional partnerships shaped around practical social-resource development needs.",
               },
-              sections: {
-                  training: "Training Programs",
-                  services: "Services",
-                  contact: "Contact",
-                  featured: "Featured",
-                  featuredVideo: "Featured Video",
-                  featuredPrograms: "Featured Programs",
+              labels: {
+                  eyebrow: "Editorial institutional profile",
+                  programmeRail: "Selected programs",
+                  programmeFirst: "Programs first",
+                  film: "Watch institutional film",
+                  visual: "Institutional view",
+                  imageCaption: "A closer look at the institute's programmes, partnerships, and public-interest work.",
               },
-              video: {
-                  eyebrow: "Introduction Video",
-                  title: "Inside Southern Institute for Social Resources Development",
-                  description: "A placeholder featured video module for the new homepage hero layout.",
-                  href: "/en/contact",
-              },
-              placeholders: {
-                  programTitle: "Featured Program",
-                  programDesc: "Program details will appear here when featured course data is available.",
-                  ctaLabel: "Get in Touch",
+              actions: {
+                  primary: { text: "Explore programs", href: "/en/training" },
+                  secondary: { text: "Contact the institute", href: "/en/contact" },
               },
           }
         : {
               hero: {
-                  cta: "Khám phá",
+                  title: "Viện Phương Nam",
+                  subtitle: "Đào tạo, nghiên cứu và kết nối nguồn lực xã hội theo một cấu trúc thực tiễn, rõ ràng và giàu chiều sâu tổ chức.",
               },
-              sections: {
-                  training: "Chương trình Đào tạo",
-                  services: "Dịch vụ",
-                  contact: "Liên hệ",
-                  featured: "Nổi bật",
-                  featuredVideo: "Video Nổi Bật",
-                  featuredPrograms: "Chương trình Nổi Bật",
+              labels: {
+                  eyebrow: "Chân dung hoạt động",
+                  programmeRail: "Chương trình chọn lọc",
+                  programmeFirst: "Ưu tiên chương trình",
+                  film: "Xem phim giới thiệu",
+                  visual: "Góc nhìn tổ chức",
+                  imageCaption: "Một lát cắt trực diện về chương trình, hợp tác và định hướng phát triển nguồn lực xã hội của viện.",
               },
-              video: {
-                  eyebrow: "Video Giới Thiệu",
-                  title: "Khám phá tổng quan về Viện Phát triển Nguồn lực Xã hội Phương Nam",
-                  description: "Khung video tạm thời để trực quan hóa bố cục hero mới trước khi gắn nội dung chính thức.",
-                  href: "/lien-he",
-              },
-              placeholders: {
-                  programTitle: "Chương trình nổi bật",
-                  programDesc: "Thông tin chương trình sẽ hiển thị tại đây khi có dữ liệu khóa học phù hợp.",
-                  ctaLabel: "Kết nối với chúng tôi",
+              actions: {
+                  primary: { text: "Khám phá chương trình", href: "/dao-tao" },
+                  secondary: { text: "Liên hệ với viện", href: "/lien-he" },
               },
           };
 
-    const ctaMain = ctaPrimary || (isEn ? { text: copy.hero.cta, href: "/en/services" } : { text: copy.hero.cta, href: "/dich-vu" });
-    const ctaContact = ctaSecondary || (isEn ? { text: copy.sections.contact, href: "/en/contact" } : { text: copy.sections.contact, href: "/lien-he" });
-
-    const displayPrograms = featuredPrograms.slice(0, 2).map((program) => ({
+    const resolvedTitle = title || copy.hero.title;
+    const resolvedSubtitle = subtitle || copy.hero.subtitle;
+    const primaryAction = ctaPrimary || copy.actions.primary;
+    const secondaryAction = ctaSecondary || copy.actions.secondary;
+    const filmHref = featuredMedia?.href;
+    const railItems = featuredPrograms.slice(0, 3).map((program) => ({
+        id: program.id,
         title: isEn ? (program.title_en || program.title) : program.title,
-        desc: isEn ? (program.excerpt_en || program.excerpt || "") : (program.excerpt || ""),
-        slug: isEn ? `/en/training/${program.slug}` : `/dao-tao/${program.slug}`,
+        excerpt: isEn ? (program.excerpt_en || program.excerpt || "") : (program.excerpt || ""),
+        href: isEn ? `/en/training/${program.slug}` : `/dao-tao/${program.slug}`,
     }));
-
-    const programCards = Array.from({ length: 2 }, (_, index) => {
-        const existingProgram = displayPrograms[index];
-        if (existingProgram) {
-            return existingProgram;
-        }
-
-        return {
-            title: copy.placeholders.programTitle,
-            desc: copy.placeholders.programDesc,
-            slug: ctaMain.href,
-        };
-    });
-
-    const heroVideo = featuredVideo || {
-        eyebrow: copy.video.eyebrow,
-        title: copy.video.title,
-        description: copy.video.description,
-        href: copy.video.href,
-    };
+    const heroSecondaryButtonClass = "rounded-[1.02rem] !border-[rgba(16,36,56,0.12)] !bg-[linear-gradient(180deg,rgba(228,236,243,0.88),rgba(214,225,236,0.76))] !text-[var(--accent-strong)] shadow-[0_14px_30px_-28px_rgba(8,20,33,0.28)] hover:!bg-[linear-gradient(180deg,rgba(236,243,248,0.94),rgba(222,232,241,0.84))] hover:!text-[var(--ink)]";
 
     return (
-        <section className="relative overflow-hidden pb-16 pt-8 md:pb-24 md:pt-10">
-            <Container>
+        <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f7fbfd_0%,#eef4f8_58%,#e7eef4_100%)] text-[var(--ink)]">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(77,111,147,0.12),transparent_22%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.62),transparent_20%),linear-gradient(90deg,rgba(16,40,70,0.04)_1px,transparent_1px),linear-gradient(rgba(16,40,70,0.04)_1px,transparent_1px)] [background-size:auto,auto,32px_32px,32px_32px] opacity-80" />
+            <div className="absolute inset-x-0 top-0 h-[16rem] bg-[linear-gradient(180deg,rgba(13,27,44,0.24),transparent)]" />
+
+            <Container className="relative">
                 <MotionGroup
-                    className="grid gap-5 xl:grid-cols-[minmax(0,1.18fr)_minmax(360px,0.82fr)]"
+                    className="grid min-h-[100svh] items-end gap-9 pb-12 pt-[7.25rem] md:pb-16 md:pt-[8.8rem] xl:grid-cols-[minmax(0,0.84fr)_minmax(420px,0.96fr)] xl:gap-12"
                     stagger={0.1}
                 >
                     <MotionItem preset="fade-right">
-                        <ParallaxLayer depth={20}>
+                        <div className="flex h-full flex-col justify-end">
                             <motion.div
-                                initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
+                                initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
                                 animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                                 transition={publicMotionTokens.sectionSpring}
-                                className="public-band relative min-h-[420px] overflow-hidden rounded-[2.8rem] border border-[rgba(97,147,255,0.2)] bg-[linear-gradient(155deg,rgba(42,101,227,0.95),rgba(64,124,244,0.92)_54%,rgba(154,197,255,0.86)_126%)] p-6 text-white shadow-[0_36px_110px_rgba(32,85,194,0.2)] md:min-h-[520px] md:p-8"
+                                className="space-y-7"
                             >
-                                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent_28%),radial-gradient(circle_at_top_right,rgba(255,255,255,0.2),transparent_24%),radial-gradient(circle_at_bottom_left,rgba(210,230,255,0.14),transparent_28%)]" />
-                                <FloatingAccent className="left-[8%] top-[10%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.16),transparent_74%)]" variant="halo" />
-                                <FloatingAccent className="bottom-[10%] right-[8%] h-28 w-28 rounded-full bg-[radial-gradient(circle,rgba(209,229,255,0.16),transparent_74%)]" variant="orb" />
+                                <div className="inline-flex items-center gap-3">
+                                    <span className="h-px w-12 bg-[rgba(16,40,70,0.14)]" />
+                                    <span className="editorial-caption text-[var(--ink-muted)]">{copy.labels.eyebrow}</span>
+                                </div>
 
-                                <div className="relative flex h-full flex-col justify-between gap-10">
-                                    <div className="flex items-start justify-between gap-4">
-                                        <div className="space-y-3">
-                                            <Badge variant="default" size="md" className="border-white/20 bg-white/14 !text-white shadow-none">
-                                                {heroVideo.eyebrow || copy.sections.featuredVideo}
-                                            </Badge>
-                                            <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/74">
-                                                {copy.sections.featured}
-                                            </p>
-                                        </div>
+                                <div className="space-y-4">
+                                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-strong)]">
+                                        {copy.labels.programmeFirst}
+                                    </p>
+                                    <h1 className="max-w-[8.2ch] font-heading text-[3.2rem] leading-[0.82] tracking-[-0.072em] text-[var(--ink)] md:text-[4.65rem] xl:text-[5.7rem]">
+                                        {resolvedTitle}
+                                    </h1>
+                                    <p className="max-w-[34rem] text-[0.98rem] leading-[1.95rem] text-[var(--ink-soft)] md:text-[1.02rem]">
+                                        {resolvedSubtitle}
+                                    </p>
+                                </div>
 
-                                        <Button
-                                            asChild
-                                            variant="outline"
-                                            size="icon"
-                                            motion="magnetic"
-                                            className="border-white/18 bg-white/10 text-white hover:bg-white/18 hover:text-white"
-                                        >
-                                            <Link href={heroVideo.href || ctaMain.href} aria-label={heroVideo.title}>
-                                                <ArrowRight className="h-4 w-4" weight="bold" />
-                                            </Link>
-                                        </Button>
-                                    </div>
-
-                                    <motion.div
-                                        whileHover={shouldReduceMotion ? undefined : { scale: 1.01 }}
-                                        transition={publicMotionTokens.hoverSpring}
-                                        className="relative flex flex-1 items-end overflow-hidden rounded-[2.2rem] border border-white/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.16),rgba(255,255,255,0.04))] p-5 md:p-6"
+                                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                                    <Button
+                                        asChild
+                                        size="lg"
+                                        motion="magnetic"
+                                        className="rounded-[1.05rem] bg-[var(--accent-strong)] text-white hover:bg-[#163455]"
                                     >
-                                        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.18),transparent_54%),linear-gradient(180deg,rgba(255,255,255,0.04),rgba(6,27,68,0.36))]" />
-                                        <div className="absolute inset-x-0 bottom-0 h-2/3 bg-[linear-gradient(180deg,rgba(7,20,42,0),rgba(7,20,42,0.76))]" />
-
-                                        <motion.div
-                                            className="absolute left-1/2 top-[42%] z-[1] inline-flex h-18 w-18 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/18 bg-white/12 text-white"
-                                            whileHover={shouldReduceMotion ? undefined : { scale: 1.08 }}
-                                            transition={publicMotionTokens.hoverSpring}
-                                        >
-                                            <Play className="ml-1 h-7 w-7" weight="fill" />
-                                        </motion.div>
-
-                                        <div className="relative z-[1] max-w-[34rem] space-y-4">
-                                            <h1
-                                                className="max-w-[13ch] font-heading text-[2.2rem] leading-[1.02] tracking-[-0.04em] !text-white md:text-[3rem] xl:text-[3.45rem]"
-                                                style={{ color: "#f7fbff" }}
-                                            >
-                                                {heroVideo.title}
-                                            </h1>
-                                            {heroVideo.description ? (
-                                                <p className="max-w-[34rem] text-sm leading-8 text-white/84 md:text-base">
-                                                    {heroVideo.description}
-                                                </p>
-                                            ) : null}
-                                        </div>
-                                    </motion.div>
+                                        <Link href={primaryAction.href} className="inline-flex items-center gap-3 text-white">
+                                            <span>{primaryAction.text}</span>
+                                            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/12 text-white">
+                                                <ArrowUpRight className="h-4 w-4" weight="bold" />
+                                            </span>
+                                        </Link>
+                                    </Button>
+                                    <Button
+                                        asChild
+                                        variant="outline"
+                                        size="lg"
+                                        motion="lift"
+                                        className={heroSecondaryButtonClass}
+                                    >
+                                        <Link href={secondaryAction.href} className="inline-flex items-center gap-3">
+                                            <span>{secondaryAction.text}</span>
+                                            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(19,44,71,0.08)] text-[var(--accent-strong)]">
+                                                <ArrowRight className="h-4 w-4" weight="bold" />
+                                            </span>
+                                        </Link>
+                                    </Button>
                                 </div>
                             </motion.div>
-                        </ParallaxLayer>
-                    </MotionItem>
 
-                    <MotionGroup className="grid gap-5 md:grid-cols-2 xl:grid-cols-1" stagger={0.08}>
-                        {programCards.map((program, index) => (
-                            <MotionItem key={`${program.title}-${index}`} preset="fade-left">
+                            {railItems.length > 0 ? (
                                 <motion.div
-                                    whileHover={shouldReduceMotion ? undefined : { y: -6 }}
-                                    transition={publicMotionTokens.hoverSpring}
-                                    className={`relative overflow-hidden rounded-[2.2rem] border p-5 shadow-[0_24px_66px_rgba(34,76,166,0.12)] md:p-6 ${
-                                        index === 0
-                                            ? "border-[rgba(96,148,255,0.22)] bg-[linear-gradient(150deg,rgba(60,120,242,0.94),rgba(89,145,255,0.88)_56%,rgba(167,206,255,0.82)_128%)] text-white"
-                                            : "border-[rgba(26,72,164,0.1)] bg-white/88 text-[var(--ink)]"
-                                    }`}
+                                    initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
+                                    animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
+                                    transition={{ ...publicMotionTokens.sectionSpring, delay: 0.08 }}
+                                    className="mt-9 border-t border-[rgba(16,40,70,0.1)] pt-5"
                                 >
-                                    {index === 0 ? (
-                                        <>
-                                            <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent_32%),radial-gradient(circle_at_top_right,rgba(255,255,255,0.14),transparent_24%)]" />
-                                            <FloatingAccent className="right-[10%] top-[18%] h-16 w-16 rounded-full bg-[radial-gradient(circle,rgba(255,255,255,0.14),transparent_72%)]" variant="mesh" />
-                                        </>
-                                    ) : null}
-
-                                    <div className="relative z-[1] flex h-full flex-col gap-6">
-                                        <div className="flex items-start justify-between gap-3">
-                                            <div>
-                                                <p className={`text-[11px] font-semibold uppercase tracking-[0.16em] ${index === 0 ? "text-white/72" : "text-[var(--ink-muted)]"}`}>
-                                                    {copy.sections.featuredPrograms}
-                                                </p>
-                                            </div>
-                                            <ArrowRight className={`h-4 w-4 shrink-0 ${index === 0 ? "text-white" : "text-[var(--accent-strong)]"}`} weight="bold" />
-                                        </div>
-
-                                        <div className="space-y-3">
-                                            <h2
-                                                className={`max-w-[15ch] font-heading text-[1.55rem] leading-[1.04] tracking-[-0.032em] ${index === 0 ? "!text-white" : "text-[var(--ink)]"}`}
-                                                style={index === 0 ? { color: "#f7fbff" } : undefined}
-                                            >
-                                                {program.title}
-                                            </h2>
-                                            {program.desc ? (
-                                                <p className={`text-sm leading-7 ${index === 0 ? "text-white/82" : "text-[var(--ink-soft)]"}`}>
-                                                    {program.desc}
-                                                </p>
-                                            ) : null}
-                                        </div>
-
-                                        <div className="pt-2">
+                                    <div className="mb-4 flex items-center gap-3">
+                                        <span className="editorial-caption text-[var(--ink-muted)]">{copy.labels.programmeRail}</span>
+                                    </div>
+                                    <div className="grid gap-3 xl:grid-cols-3">
+                                        {railItems.map((item, index) => (
                                             <Link
-                                                href={program.slug}
-                                                className={`inline-flex items-center gap-2 text-sm font-semibold ${index === 0 ? "text-white" : "text-[var(--accent-strong)]"}`}
+                                                key={item.id}
+                                                href={item.href}
+                                                className={cn(
+                                                    "group border-t border-[rgba(16,40,70,0.08)] pt-3 transition-colors hover:border-[rgba(16,40,70,0.18)]",
+                                                    index > 0 && "hidden xl:block"
+                                                )}
                                             >
-                                                {ctaMain.text}
-                                                <ArrowRight className="h-4 w-4" weight="bold" />
+                                                <p className="font-heading text-[1.18rem] leading-[1.02] text-[var(--ink)]">
+                                                    {item.title}
+                                                </p>
+                                                <p className="mt-1 line-clamp-1 text-sm leading-6 text-[var(--ink-soft)] transition-transform duration-300 group-hover:translate-x-1">
+                                                    {item.excerpt || (isEn ? "Structured learning route" : "Lộ trình học tập có cấu trúc")}
+                                                </p>
                                             </Link>
-                                        </div>
+                                        ))}
                                     </div>
                                 </motion.div>
-                            </MotionItem>
-                        ))}
+                            ) : null}
+                        </div>
+                    </MotionItem>
 
-                        <MotionItem preset="fade-up" className="md:col-span-2 xl:col-span-1">
-                            <motion.div
-                                whileHover={shouldReduceMotion ? undefined : { y: -6 }}
-                                transition={publicMotionTokens.hoverSpring}
-                                className="relative overflow-hidden rounded-[2.2rem] border border-[rgba(87,139,247,0.24)] bg-[linear-gradient(155deg,rgba(48,107,235,0.96),rgba(83,138,255,0.9)_56%,rgba(165,203,255,0.84)_126%)] p-5 text-white shadow-[0_28px_80px_rgba(31,83,190,0.16)] md:p-6"
-                            >
-                                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),transparent_30%),radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.14),transparent_26%)]" />
-
-                                <div className="relative z-[1] flex h-full flex-col gap-6">
-                                    <div className="space-y-3">
-                                        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-white/76">
-                                            {copy.placeholders.ctaLabel}
-                                        </p>
-                                        <h2 className="max-w-[14ch] font-heading text-[1.9rem] leading-[1.04] tracking-[-0.03em] !text-white" style={{ color: "#f7fbff" }}>
-                                            {copy.sections.contact}
-                                        </h2>
-                                        <p className="max-w-[24rem] text-sm leading-7 text-white/84">
-                                            {copy.video.description}
-                                        </p>
-                                    </div>
-
-                                    <div className="flex flex-wrap items-center gap-3">
-                                        <Button
-                                            asChild
-                                            size="lg"
-                                            motion="magnetic"
-                                            className="border-white/16 bg-[linear-gradient(135deg,rgba(8,38,92,0.44),rgba(19,60,132,0.4))] text-white shadow-none hover:bg-[linear-gradient(135deg,rgba(8,38,92,0.5),rgba(19,60,132,0.46))]"
-                                        >
-                                            <Link href={ctaMain.href} className="text-white">
-                                                {ctaMain.text}
-                                            </Link>
-                                        </Button>
-                                        <Button
-                                            asChild
-                                            variant="outline"
-                                            size="lg"
-                                            motion="lift"
-                                            className="border-white/18 bg-white/10 text-white hover:bg-white/16 hover:text-white"
-                                        >
-                                            <Link href={ctaContact.href} className="text-white">
-                                                {ctaContact.text}
-                                            </Link>
-                                        </Button>
-                                    </div>
+                    <MotionItem preset="fade-left">
+                        <motion.figure
+                            whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+                            transition={publicMotionTokens.hoverSpring}
+                            className="relative overflow-hidden rounded-[1.8rem] border border-[rgba(16,40,70,0.1)] bg-[rgba(252,254,255,0.38)] shadow-[var(--shadow-sm)]"
+                        >
+                            <div className="relative aspect-[4/5] min-h-[420px] w-full md:min-h-[540px]">
+                                {featuredMedia?.thumbnailUrl ? (
+                                    <Image
+                                        src={featuredMedia.thumbnailUrl}
+                                        alt={featuredMedia.title || resolvedTitle}
+                                        fill
+                                        className="object-cover"
+                                        priority
+                                        sizes="(max-width: 1280px) 100vw, 48vw"
+                                    />
+                                ) : (
+                                    <div className="absolute inset-0 bg-[linear-gradient(160deg,#deebf6_0%,#cedeed_42%,#eaf1f5_100%)]" />
+                                )}
+                                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,34,53,0.02),rgba(20,34,53,0.12),rgba(20,34,53,0.34))]" />
+                                <div className="absolute left-5 top-5 inline-flex items-center gap-3 rounded-full border border-white/32 bg-white/62 px-3 py-1.5 backdrop-blur-sm">
+                                    <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
+                                    <span className="editorial-caption text-[var(--accent-strong)]">{copy.labels.visual}</span>
                                 </div>
-                            </motion.div>
-                        </MotionItem>
-                    </MotionGroup>
+                                <figcaption className="absolute inset-x-0 bottom-0 border-t border-white/18 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(14,28,46,0.6))] px-5 py-4 md:px-6">
+                                    <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                                        <p className="max-w-[30rem] text-sm leading-7 text-white/84 md:text-[0.96rem]">
+                                            {featuredMedia?.description || copy.labels.imageCaption}
+                                        </p>
+                                        {filmHref ? (
+                                            <Link href={filmHref} className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/76 transition-colors hover:text-white">
+                                                <Play className="h-3.5 w-3.5" weight="fill" />
+                                                <span>{copy.labels.film}</span>
+                                            </Link>
+                                        ) : null}
+                                    </div>
+                                </figcaption>
+                            </div>
+                        </motion.figure>
+                    </MotionItem>
                 </MotionGroup>
             </Container>
         </section>

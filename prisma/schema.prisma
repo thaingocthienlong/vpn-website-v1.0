@@ -358,8 +358,30 @@ model Media {
   staffAvatarsEn  Staff[]   @relation("StaffAvatarEn")
   partnerLogos    Partner[] @relation("PartnerLogo")
   partnerLogosEn  Partner[] @relation("PartnerLogoEn")
+  reviewAvatars   Review[]  @relation("ReviewAvatar")
 
   @@map("media")
+}
+
+model Review {
+  id         String   @id @default(uuid())
+  name       String
+  role       String?
+  role_en    String?
+  company    String?
+  company_en String?
+  content    String
+  content_en String?
+  rating     Int      @default(5)
+  avatarId   String?
+  sortOrder  Int      @default(0)
+  isActive   Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  avatar Media? @relation("ReviewAvatar", fields: [avatarId], references: [id])
+
+  @@map("reviews")
 }
 
 model Configuration {

@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "anhdaidien": "/uploads/files/VPN/2026/Video%20Thumbnails/vlcsnap-2026-01-28-20h03m15s038.png",
+    "hinhnen": "",
+    "thuoctinhbgd": "repeat",
+    "mauchu": "",
+    "duongvien": 0,
+    "fullmanhinh": 1,
+    "video_home": "",
+    "muted": 0,
+    "autoplay": 1,
+    "controls": 1,
+    "limitbgd": 0,
+    "module_video_home": "",
+    "video_youtube": "swqyijceNg0"
+  },
+  {
+    "id": 2,
+    "name": "Bật module video",
+    "trangthai": 1,
+    "tieude": "",
+    "mieutangan": "",
+    "anhdaidien": "",
+    "hinhnen": "",
+    "thuoctinhbgd": "",
+    "mauchu": "",
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "video_home": "",
+    "muted": 0,
+    "autoplay": 0,
+    "controls": 0,
+    "limitbgd": 0,
+    "module_video_home": "",
+    "video_youtube": ""
+  }
+]

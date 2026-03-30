@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "tieude": "VỀ <span>CÔNG TY XXX</span>",
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616485/vienphuongnam/restored/hwuiugbjbbn2wxlnqdqh.jpg",
+    "hinhnen": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616486/vienphuongnam/restored/ryaaebunko6unsqkxghd.png",
+    "thuoctinhbgd": "repeat",
+    "sonam": 20,
+    "ghichunam": "<p style=\"text-align:center\"><strong>Năm</strong><br />\r\nHoạt động trong<br />\r\nngành nước</p>\r\n",
+    "soduan": "2000",
+    "ghichuduan": "<p style=\"text-align:center\"><strong>Dự án</strong><br />\r\nĐã bàn giao<br />\r\nthành công</p>\r\n",
+    "sokhachhang": 1000,
+    "ghichukhachhang": "<p style=\"text-align:center\"><strong>Khách hàng</strong><br />\r\nĐã tin tưởng<br />\r\nsử dụng</p>\r\n",
+    "mieutangan": "<p><strong>Lorem Ipsum</strong>&nbsp;chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500, khi một họa sĩ vô danh ghép nhiều đoạn văn bản với nhau để tạo thành một bản mẫu văn bản. Đoạn văn bản này không những đã tồn tại năm thế kỉ, mà khi được áp dụng vào tin học văn phòng, nội dung của nó vẫn không hề bị thay đổi. Nó đã được phổ biến trong những năm 1960 nhờ việc bán những bản giấy Letraset in những đoạn Lorem Ipsum, và gần đây hơn, được sử dụng trong các ứng dụng dàn trang, như Aldus PageMaker.</p>\r\n\r\n<ul>\r\n\t<li>Nam eu lectus et eros luctus dapibus at ut ligula.</li>\r\n\t<li>Fusce ut arcu eget ipsum consequat blandit.</li>\r\n\t<li>Cras ac nibh eget risus placerat convallis non a ipsum.</li>\r\n\t<li>In faucibus velit non pharetra blandit.</li>\r\n\t<li>Nunc sagittis augue nec semper pharetra.</li>\r\n\t<li>Fusce dignissim sem sed mattis facilisis.</li>\r\n</ul>\r\n"
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 0,
+    "tieude": "",
+    "anhdaidien": "",
+    "hinhnen": "",
+    "thuoctinhbgd": "",
+    "sonam": 0,
+    "ghichunam": "",
+    "soduan": "0",
+    "ghichuduan": "<p style=\"text-align:center\"><strong>Dự án</strong><br />\nĐã bàn giao<br />\nthành công</p>",
+    "sokhachhang": 0,
+    "ghichukhachhang": "",
+    "mieutangan": ""
+  }
+]

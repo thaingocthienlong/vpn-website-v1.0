@@ -1,0 +1,8 @@
+.next/**
+.tools/**
+.clerk/**
+.npm-cache-claude-context/**
+coverage/**
+dist/**
+build/**
+.vercel/**

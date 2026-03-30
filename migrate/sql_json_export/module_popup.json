@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "tieude": "",
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772768364/vienphuongnam/wyzjmkhl9qnzfiihmmqk.png",
+    "duongdan": "",
+    "thoigian": 1000,
+    "onlyhome": "onlyhome"
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 0,
+    "tieude": "",
+    "anhdaidien": "",
+    "duongdan": "",
+    "thoigian": 0,
+    "onlyhome": "0"
+  }
+]

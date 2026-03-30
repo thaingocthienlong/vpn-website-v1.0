@@ -1,5 +1,7 @@
 # 🎼 Orchestration Plan: Full Navbar & UI Audit
 
+> Superseded for current homepage/header refinement tracking by `docs/PLAN-HOMEPAGE-UI-REFINEMENT.md`. Keep this file as historical audit context only.
+
 ## Context
 The user invoked the `@[/orchestrate]` workflow, pointing out that not every page in the navbar was checked during the recent recovery phase, specifically citing that `http://localhost:3000/gioi-thieu/doi-tac` is not displaying images. The objective is to proactively audit *every* accessible page in the main navigation for rendering, image, and translation issues.
 

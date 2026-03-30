@@ -1,0 +1,8 @@
+{
+  "name": "claude-context-runner",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@zilliz/claude-context-core": "^0.1.6"
+  }
+}

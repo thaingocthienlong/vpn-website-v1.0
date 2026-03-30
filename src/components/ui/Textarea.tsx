@@ -3,28 +3,30 @@ import { cn } from "@/lib/utils";
 
 export interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
     label?: string;
+    labelClassName?: string;
     error?: string;
     helperText?: string;
+    helperTextClassName?: string;
 }
 
 const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
-    ({ className, label, error, helperText, id, ...props }, ref) => {
+    ({ className, label, labelClassName, error, helperText, helperTextClassName, id, ...props }, ref) => {
         const generatedId = React.useId();
         const textareaId = id ?? generatedId;
 
         const baseStyles =
-            "public-input-surface min-h-[156px] w-full resize-y rounded-[1.55rem] px-4 py-3.5 text-sm text-[var(--ink)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-0";
+            "public-input-surface min-h-[156px] w-full resize-y rounded-[1.08rem] px-4 py-3.5 text-sm text-[var(--ink)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-0";
 
         const normalStyles =
-            "placeholder:text-[var(--ink-muted)] focus:border-[rgba(23,88,216,0.28)] focus:ring-[rgba(23,88,216,0.18)]";
+            "placeholder:text-[var(--ink-muted)] focus:border-[rgba(77,111,147,0.28)] focus:ring-[rgba(94,130,166,0.18)]";
 
         const errorStyles =
-            "border-[rgba(160,79,92,0.45)] focus:border-[rgba(160,79,92,0.45)] focus:ring-[rgba(160,79,92,0.16)]";
+            "border-[rgba(138,79,93,0.42)] focus:border-[rgba(138,79,93,0.42)] focus:ring-[rgba(138,79,93,0.16)]";
 
         return (
             <div className="w-full">
                 {label && (
-                    <label htmlFor={textareaId} className="mb-2 block text-sm font-medium text-[var(--ink)]">
+                    <label htmlFor={textareaId} className={cn("mb-2 block text-sm font-medium text-[var(--ink)]", labelClassName)}>
                         {label}
                     </label>
                 )}
@@ -42,7 +44,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
                     </p>
                 )}
                 {helperText && !error && (
-                    <p className="mt-1 text-sm text-[var(--ink-muted)]">{helperText}</p>
+                    <p className={cn("mt-1 text-sm text-[var(--ink-muted)]", helperTextClassName)}>{helperText}</p>
                 )}
             </div>
         );

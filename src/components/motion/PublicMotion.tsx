@@ -9,6 +9,7 @@ import {
     useSpring,
     useTransform,
     type HTMLMotionProps,
+    type TargetAndTransition,
     type Transition,
     type Variants,
 } from "framer-motion";
@@ -42,7 +43,7 @@ export const publicMotionTokens = {
     fastLoop: 8,
 };
 
-const sectionStates: Record<MotionPreset, { initial: HTMLMotionProps<"div">["initial"]; animate: HTMLMotionProps<"div">["animate"] }> = {
+const sectionStates: Record<MotionPreset, { initial: TargetAndTransition; animate: TargetAndTransition }> = {
     hero: {
         initial: { opacity: 0, y: 52, scale: 0.985 },
         animate: { opacity: 1, y: 0, scale: 1 },
@@ -117,7 +118,7 @@ export function MotionSection({
         as,
         {
             className,
-            initial: shouldReduceMotion ? false : state.initial,
+            initial: shouldReduceMotion ? undefined : state.initial,
             whileInView: shouldReduceMotion ? undefined : state.animate,
             viewport: shouldReduceMotion ? undefined : { once, amount, margin: "0px 0px -10% 0px" },
             transition: delay

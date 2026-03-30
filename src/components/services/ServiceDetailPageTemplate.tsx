@@ -18,6 +18,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import type { ServiceDetailContent } from "@/lib/content/service-pages";
 import { serviceIconMap } from "./service-icons";
+import type { HeaderProps, FooterProps } from "@/components/layout";
 
 interface ServiceDetailLabels {
     allServicesLabel: string;
@@ -37,6 +38,8 @@ interface ServiceDetailPageTemplateProps {
     service: ServiceDetailContent | null;
     otherServices: ServiceDetailContent[];
     labels: ServiceDetailLabels;
+    headerProps?: HeaderProps;
+    footerProps?: FooterProps;
 }
 
 function ServiceSectionCard({
@@ -82,11 +85,13 @@ export function ServiceDetailPageTemplate({
     service,
     otherServices,
     labels,
+    headerProps,
+    footerProps,
 }: ServiceDetailPageTemplateProps) {
     if (!service) {
         return (
             <div className="min-h-screen public-shell">
-                <Header />
+                <Header {...headerProps} />
                 <main id="main-content" className="flex-1 px-4 pb-20 pt-28 md:pt-32">
                     <Container size="md">
                         <PublicStatePanel
@@ -100,7 +105,7 @@ export function ServiceDetailPageTemplate({
                         />
                     </Container>
                 </main>
-                <Footer />
+                <Footer {...footerProps} />
             </div>
         );
     }
@@ -123,7 +128,7 @@ export function ServiceDetailPageTemplate({
 
     return (
         <div className="min-h-screen public-shell">
-            <Header />
+            <Header {...headerProps} />
             <main id="main-content" className="flex-1 pb-20 pt-24 md:pt-28">
                 <Container className="space-y-8 md:space-y-10">
                     <PublicBreadcrumbBar
@@ -260,7 +265,7 @@ export function ServiceDetailPageTemplate({
                     </section>
                 )}
             </main>
-            <Footer />
+            <Footer {...footerProps} />
         </div>
     );
 }

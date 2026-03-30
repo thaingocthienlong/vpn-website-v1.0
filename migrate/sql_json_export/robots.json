@@ -1,0 +1,6 @@
+[
+  {
+    "id": 1,
+    "noidung": "RewriteEngine On\r\nErrorDocument 400 /404.php\r\nErrorDocument 401 /404.php\r\nErrorDocument 403 /404.php\r\nErrorDocument 404 /404.php\r\nErrorDocument 500 /404.php\r\n\r\nRewriteBase /\r\n\r\nRewriteCond %{REQUEST_FILENAME} !-f\r\nRewriteCond %{HTTP_HOST} ^www.vienphuongnam.com.vn [NC]\r\nRewriteRule ^(.*)$ https://vienphuongnam.com.vn/$1 [L,R=301]\r\nRewriteRule ^(.*)/$ /index.php?duongdan=$1\r\nRewriteRule ^$ /cnv/ [L]\r\n"
+  }
+]

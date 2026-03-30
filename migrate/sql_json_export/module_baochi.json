@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "tieude": "Thông báo <span>nổi bật</span>",
+    "trangthai": 1,
+    "name": "Bật module"
+  },
+  {
+    "id": 2,
+    "tieude": "abc",
+    "trangthai": 0,
+    "name": "Tắt module"
+  }
+]

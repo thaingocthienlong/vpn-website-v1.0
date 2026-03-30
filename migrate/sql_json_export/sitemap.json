@@ -1,0 +1,308 @@
+[
+  {
+    "id": 1,
+    "loc": "co-so-dao-tao",
+    "duongdan_cuoi": "co-so-dao-tao",
+    "lastmod": "2024-02-01T14:04:47+00:00",
+    "priority": 0.5,
+    "name": "Cơ sở đào tạo",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 2,
+    "loc": "giang-vien",
+    "duongdan_cuoi": "giang-vien",
+    "lastmod": "2024-02-01T14:04:29+00:00",
+    "priority": 0.5,
+    "name": "Giảng viên",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 3,
+    "loc": "nhan-su-vien-phuong-nam",
+    "duongdan_cuoi": "nhan-su-vien-phuong-nam",
+    "lastmod": "2024-02-01T14:05:35+00:00",
+    "priority": 0.5,
+    "name": "Nhân sự Viện Phương Nam",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 4,
+    "loc": "ban-lanh-dao",
+    "duongdan_cuoi": "ban-lanh-dao",
+    "lastmod": "2024-02-01T14:03:38+00:00",
+    "priority": 0.5,
+    "name": "Ban lãnh đạo",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 5,
+    "loc": "thong-diep-vien-truong",
+    "duongdan_cuoi": "thong-diep-vien-truong",
+    "lastmod": "2024-02-01T14:03:20+00:00",
+    "priority": 0.5,
+    "name": "Thông điệp viện trưởng",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 6,
+    "loc": "moc-su-kien-quan-trong",
+    "duongdan_cuoi": "moc-su-kien-quan-trong",
+    "lastmod": "2024-02-01T14:02:38+00:00",
+    "priority": 0.5,
+    "name": "Mốc sự kiện quan trọng",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 7,
+    "loc": "cong-nhan-quoc-te",
+    "duongdan_cuoi": "cong-nhan-quoc-te",
+    "lastmod": "2024-02-01T14:02:13+00:00",
+    "priority": 0.5,
+    "name": "Công nhận quốc tế",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 8,
+    "loc": "gioi-thieu-chung",
+    "duongdan_cuoi": "gioi-thieu-chung",
+    "lastmod": "2024-02-01T13:46:13+00:00",
+    "priority": 0.5,
+    "name": "Giới thiệu chung",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 9,
+    "loc": "vien-phuong-nam",
+    "duongdan_cuoi": "vien-phuong-nam",
+    "lastmod": "2023-11-01T18:12:14+00:00",
+    "priority": 0.5,
+    "name": "Viện Phương Nam",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 10,
+    "loc": "chuong-trinh-dao-tao",
+    "duongdan_cuoi": "chuong-trinh-dao-tao",
+    "lastmod": "2024-01-13T21:29:48+00:00",
+    "priority": 0.5,
+    "name": "Chương trình đào tạo",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 11,
+    "loc": "tac-gia",
+    "duongdan_cuoi": "tac-gia",
+    "lastmod": "2024-01-13T21:17:41+00:00",
+    "priority": 0.5,
+    "name": "Tác giả",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 12,
+    "loc": "ho-tro",
+    "duongdan_cuoi": "ho-tro",
+    "lastmod": "2023-11-01T18:12:06+00:00",
+    "priority": 0.5,
+    "name": "Hỗ trợ",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 13,
+    "loc": "",
+    "duongdan_cuoi": "",
+    "lastmod": "2023-05-14T23:16:14+00:00",
+    "priority": 1,
+    "name": "Trang chủ",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 14,
+    "loc": "chinh-sach-bao-mat",
+    "duongdan_cuoi": "chinh-sach-bao-mat",
+    "lastmod": "2023-11-01T18:11:57+00:00",
+    "priority": 0.5,
+    "name": "Chính sách bảo mật",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 15,
+    "loc": "chinh-sach-ban-hang",
+    "duongdan_cuoi": "chinh-sach-ban-hang",
+    "lastmod": "2023-05-14T23:16:14+00:00",
+    "priority": 0.5,
+    "name": "Chính sách bán hàng",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 16,
+    "loc": "lien-he",
+    "duongdan_cuoi": "lien-he",
+    "lastmod": "2023-11-01T18:11:41+00:00",
+    "priority": 0.5,
+    "name": "Liên hệ",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 17,
+    "loc": "video",
+    "duongdan_cuoi": "video",
+    "lastmod": "2023-10-31T18:27:52+00:00",
+    "priority": 0.5,
+    "name": "Video",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 18,
+    "loc": "bai-viet",
+    "duongdan_cuoi": "bai-viet",
+    "lastmod": "2023-05-14T23:16:14+00:00",
+    "priority": 0.5,
+    "name": "Bài viết",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 19,
+    "loc": "dich-vu",
+    "duongdan_cuoi": "dich-vu",
+    "lastmod": "2024-01-13T21:02:07+00:00",
+    "priority": 0.5,
+    "name": "Dịch vụ",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 20,
+    "loc": "bai-viet-demo-4",
+    "duongdan_cuoi": "bai-viet-demo-4",
+    "lastmod": "2024-01-10T16:35:39+00:00",
+    "priority": 0.5,
+    "name": "Bài viết demo 4",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 21,
+    "loc": "tin-tuc/bai-viet-demo-3",
+    "duongdan_cuoi": "bai-viet-demo-3",
+    "lastmod": "2023-11-01T18:07:11+00:00",
+    "priority": 0.5,
+    "name": "Bài viết demo 3",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 22,
+    "loc": "tin-tuc/bai-viet-demo-2",
+    "duongdan_cuoi": "bai-viet-demo-2",
+    "lastmod": "2023-11-01T18:07:17+00:00",
+    "priority": 0.5,
+    "name": "Bài viết demo 2",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 23,
+    "loc": "tin-tuc/bai-viet-demo-1",
+    "duongdan_cuoi": "bai-viet-demo-1",
+    "lastmod": "2023-11-01T18:07:22+00:00",
+    "priority": 0.5,
+    "name": "Bài viết demo 1",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 24,
+    "loc": "hop-tac-quoc-te/doan-lorem-ipsum-chuan-demo-1",
+    "duongdan_cuoi": "doan-lorem-ipsum-chuan-demo-1",
+    "lastmod": "2024-01-31T21:15:39+00:00",
+    "priority": 0.5,
+    "name": "Đoạn Lorem Ipsum chuẩn demo 1",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 25,
+    "loc": "bai-viet/tuyen-dung",
+    "duongdan_cuoi": "tuyen-dung",
+    "lastmod": "2024-01-27T10:53:18+00:00",
+    "priority": 0.5,
+    "name": "Tuyển dụng",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 26,
+    "loc": "bai-viet/su-kien",
+    "duongdan_cuoi": "su-kien",
+    "lastmod": "2024-01-27T10:52:52+00:00",
+    "priority": 0.5,
+    "name": "Sự kiện",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 27,
+    "loc": "bai-viet/tin-tuc",
+    "duongdan_cuoi": "tin-tuc",
+    "lastmod": "2024-01-27T11:23:46+00:00",
+    "priority": 0.5,
+    "name": "Tin tức",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 28,
+    "loc": "dich-vu/trung-tam-xyz",
+    "duongdan_cuoi": "trung-tam-xyz",
+    "lastmod": "2024-01-27T12:52:09+00:00",
+    "priority": 0.5,
+    "name": "Trung tâm XYZ",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 29,
+    "loc": "dich-vu/trung-tam-aus",
+    "duongdan_cuoi": "trung-tam-aus",
+    "lastmod": "2024-01-27T12:51:55+00:00",
+    "priority": 0.5,
+    "name": "Trung tâm AUS",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 30,
+    "loc": "dich-vu/hop-tac-quoc-te",
+    "duongdan_cuoi": "hop-tac-quoc-te",
+    "lastmod": "2024-01-27T12:50:29+00:00",
+    "priority": 0.5,
+    "name": "Hợp tác quốc tế",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 31,
+    "loc": "ninja-workshop-in-kyoto",
+    "duongdan_cuoi": "ninja-workshop-in-kyoto",
+    "lastmod": "2024-01-31T17:59:57+00:00",
+    "priority": 0.5,
+    "name": "Ninja Workshop in Kyoto",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 32,
+    "loc": "magic-of-muay-thai-masterclass",
+    "duongdan_cuoi": "magic-of-muay-thai-masterclass",
+    "lastmod": "2024-01-31T17:59:47+00:00",
+    "priority": 0.5,
+    "name": "Magic of Muay Thai Masterclass",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 33,
+    "loc": "al-ula-cycling-trail",
+    "duongdan_cuoi": "al-ula-cycling-trail",
+    "lastmod": "2024-01-31T17:59:37+00:00",
+    "priority": 0.5,
+    "name": "Al-Ula Cycling Trail",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 34,
+    "loc": "emperor-life-through-descendants-memory",
+    "duongdan_cuoi": "emperor-life-through-descendants-memory",
+    "lastmod": "2024-01-31T17:59:27+00:00",
+    "priority": 0.5,
+    "name": "Emperor Life Through Descendants’ Memory",
+    "changefreq": "weekly"
+  }
+]

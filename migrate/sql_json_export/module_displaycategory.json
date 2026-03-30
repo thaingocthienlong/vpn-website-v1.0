@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "tieude": "Danh mục sản phẩm",
+    "mieutangan": "",
+    "hienthidmsp": 0,
+    "hinhnen": "",
+    "thuoctinhbgd": "cover",
+    "mauchu": "",
+    "limitbgd": 0
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 0,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "hienthidmsp": 0,
+    "hinhnen": "",
+    "thuoctinhbgd": "",
+    "mauchu": "",
+    "limitbgd": 0
+  }
+]

@@ -8,6 +8,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "migrate:json:audit": "ts-node --project scripts/tsconfig.json migrate/migrate-from-json.ts --audit-only",
+    "migrate:json:dry-run": "ts-node --project scripts/tsconfig.json migrate/migrate-from-json.ts --dry-run",
+    "migrate:json": "ts-node --project scripts/tsconfig.json migrate/migrate-from-json.ts",
+    "verify:db:json": "ts-node --project scripts/tsconfig.json scripts/verify-database.ts",
     "plesk-install": "npm install --omit=dev",
     "plesk-db-push": "./node_modules/.bin/prisma db push",
     "plesk-build": "./node_modules/.bin/prisma generate && rm -rf .next && NODE_OPTIONS=\"--max-old-space-size=512\" NEXT_TELEMETRY_DISABLED=1 ./node_modules/.bin/next build",
@@ -22,10 +26,12 @@
     "@prisma/adapter-libsql": "^7.3.0",
     "@prisma/client": "^7.3.0",
     "@radix-ui/react-slot": "^1.2.4",
+    "@sentry/nextjs": "^10.45.0",
     "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "bcryptjs": "^3.0.2",
     "ckeditor5": "^47.5.0",
     "class-variance-authority": "^0.7.1",
     "cloudinary": "^2.9.0",
@@ -53,6 +59,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "playwright": "^1.58.2",
-    "sharp": "^0.34.5"
+    "sharp": "^0.34.5",
+    "ts-node": "^10.9.2"
   }
 }

@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "@zilliz/claude-context-mcp": "^0.1.6"
+  }
+}

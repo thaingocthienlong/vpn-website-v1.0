@@ -1,0 +1,11 @@
+
+> new@0.1.0 start
+> next start --port 3009
+
+▲ Next.js 16.1.6
+- Local:         http://localhost:3009
+- Network:       http://192.168.1.11:3009
+
+✓ Starting...
+⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+✓ Ready in 2.5s

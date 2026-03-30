@@ -82,10 +82,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         } as const;
 
         const sizes = {
-            sm: "h-10 rounded-[1rem] px-4 text-sm gap-2",
-            md: "h-12 rounded-[1.15rem] px-6 text-[15px] gap-2.5",
-            lg: "h-14 rounded-[1.3rem] px-7 text-base gap-3",
-            icon: "h-11 w-11 rounded-[1rem] p-0",
+            sm: "h-10 rounded-[0.95rem] px-4 text-sm gap-2",
+            md: "h-12 rounded-[1.02rem] px-5 text-[15px] gap-2.5",
+            lg: "h-[3.25rem] rounded-[1.08rem] px-6 text-[15px] gap-2.5",
+            icon: "h-11 w-11 rounded-[0.95rem] p-0",
         } as const;
 
         const wrapWithMotion = (node: React.ReactNode) => {
@@ -108,7 +108,7 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
             return (
                 <motionPrimitive.div
                     className={cn(fullWidth ? "w-full" : "inline-flex")}
-                    whileHover={{ y: -4, scale: 1.01 }}
+                    whileHover={{ y: -2, scale: 1.005 }}
                     whileTap={{ y: 1, scale: 0.985 }}
                     transition={publicMotionTokens.hoverSpring}
                 >

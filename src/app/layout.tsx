@@ -25,13 +25,13 @@ const momoSignature = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "SISRD - Viện Nghiên Cứu và Phát Triển Nguồn Nhân Lực Phương Nam",
-  description: "Đào tạo và phát triển nguồn nhân lực chất lượng cao tại Việt Nam",
+  title: "Viện Phương Nam | Viện Phát triển nguồn lực xã hội Phương Nam",
+  description: "Kết nối đào tạo, nghiên cứu, dịch vụ và phát triển nguồn lực xã hội vì cộng đồng.",
   alternates: {
-    canonical: "https://vienphuongnam.edu.vn",
+    canonical: "https://vienphuongnam.com",
     languages: {
-      "vi": "https://vienphuongnam.edu.vn",
-      "en": "https://vienphuongnam.edu.vn/en",
+      "vi": "https://vienphuongnam.com",
+      "en": "https://vienphuongnam.com/en",
     },
   },
 };
@@ -45,18 +45,19 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Organization",
     name: "Viện Phát triển nguồn lực xã hội Phương Nam",
-    alternateName: "SISRD",
+    alternateName: "Viện Phương Nam",
     url: "https://vienphuongnam.com",
-    logo: "https://vienphuongnam.com/images/logo.png",
-    description: "Đào tạo, nghiên cứu khoa học, chuyển giao công nghệ và phát triển nguồn nhân lực chất lượng cao tại Việt Nam.",
+    logo: "https://res.cloudinary.com/drn3cqgz5/image/upload/v1769676877/vienphuongnam/restored/v8twn3w8uyhdqrzx8p3j.png",
+    description: "Đào tạo, nghiên cứu, dịch vụ và phát triển nguồn lực xã hội vì cộng đồng.",
     address: {
       "@type": "PostalAddress",
+      streetAddress: "45 Đinh Tiên Hoàng",
       addressLocality: "TP. Hồ Chí Minh",
       addressCountry: "VN",
     },
     contactPoint: {
       "@type": "ContactPoint",
-      telephone: "+84-28-7306-0996",
+      telephone: "+84-912-114-511",
       contactType: "customer service",
       availableLanguage: ["Vietnamese", "English"],
     },

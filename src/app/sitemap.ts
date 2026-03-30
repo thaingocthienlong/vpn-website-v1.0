@@ -20,32 +20,30 @@ async function hasSqliteTable(tableName: string) {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-    // Static pages (both VI and EN)
     const staticRoutes = [
-        "",
-        "/about",
-        "/about/vision-mission",
-        "/about/advisory-board",
-        "/about/partners",
-        "/about/structure",
-        "/services",
-        "/training",
-        "/news",
-        "/contact",
+        { vi: "", en: "/en" },
+        { vi: "/gioi-thieu", en: "/en/about" },
+        { vi: "/gioi-thieu/tam-nhin-su-menh", en: "/en/about/vision-mission" },
+        { vi: "/gioi-thieu/hoi-dong-co-van", en: "/en/about/advisory-board" },
+        { vi: "/gioi-thieu/doi-tac", en: "/en/about/partners" },
+        { vi: "/gioi-thieu/co-cau-to-chuc", en: "/en/about/structure" },
+        { vi: "/dich-vu", en: "/en/services" },
+        { vi: "/dao-tao", en: "/en/training" },
+        { vi: "/tin-tuc", en: "/en/news" },
+        { vi: "/lien-he", en: "/en/contact" },
     ];
 
     const staticEntries: MetadataRoute.Sitemap = [];
     for (const route of staticRoutes) {
-        // Vietnamese (default)
         staticEntries.push({
-            url: `${SITE_URL}${route}`,
+            url: `${SITE_URL}${route.vi}`,
             lastModified: new Date(),
-            changeFrequency: route === "" ? "daily" : "weekly",
-            priority: route === "" ? 1.0 : 0.8,
+            changeFrequency: route.vi === "" ? "daily" : "weekly",
+            priority: route.vi === "" ? 1.0 : 0.8,
             alternates: {
                 languages: {
-                    vi: `${SITE_URL}${route}`,
-                    en: `${SITE_URL}/en${route}`,
+                    vi: `${SITE_URL}${route.vi}`,
+                    en: `${SITE_URL}${route.en}`,
                 },
             },
         });
@@ -102,13 +100,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     const courseEntries: MetadataRoute.Sitemap = courses.map((course) => ({
-        url: `${SITE_URL}/training/${course.slug}`,
+        url: `${SITE_URL}/dao-tao/${course.slug}`,
         lastModified: course.updatedAt,
         changeFrequency: "weekly" as const,
         priority: 0.8,
         alternates: {
             languages: {
-                vi: `${SITE_URL}/training/${course.slug}`,
+                vi: `${SITE_URL}/dao-tao/${course.slug}`,
                 en: `${SITE_URL}/en/training/${course.slug}`,
             },
         },
@@ -124,16 +122,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
             services = await prisma.page.findMany({
                 where: {
                     isPublished: true,
-                    slug: {
-                        in: [
-                            "nghien-cuu-khoa-hoc",
-                            "chuyen-giao-cong-nghe",
-                            "phat-trien-nhan-luc",
-                            "hop-tac-quoc-te",
-                            "tu-van-chinh-sach",
-                            "ho-tro-doanh-nghiep",
-                        ],
-                    },
+                    template: "service",
                 },
                 select: { slug: true, updatedAt: true },
             });
@@ -145,13 +134,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     const serviceEntries: MetadataRoute.Sitemap = services.map((service) => ({
-        url: `${SITE_URL}/services/${service.slug}`,
+        url: `${SITE_URL}/dich-vu/${service.slug}`,
         lastModified: service.updatedAt,
         changeFrequency: "monthly" as const,
         priority: 0.8,
         alternates: {
             languages: {
-                vi: `${SITE_URL}/services/${service.slug}`,
+                vi: `${SITE_URL}/dich-vu/${service.slug}`,
                 en: `${SITE_URL}/en/services/${service.slug}`,
             },
         },
@@ -172,13 +161,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     }
 
     const categoryEntries: MetadataRoute.Sitemap = categories.map((cat) => ({
-        url: `${SITE_URL}/news/${cat.slug}`,
+        url: `${SITE_URL}/tin-tuc/${cat.slug}`,
         lastModified: new Date(),
         changeFrequency: "daily" as const,
         priority: 0.6,
         alternates: {
             languages: {
-                vi: `${SITE_URL}/news/${cat.slug}`,
+                vi: `${SITE_URL}/tin-tuc/${cat.slug}`,
                 en: `${SITE_URL}/en/news/${cat.slug}`,
             },
         },

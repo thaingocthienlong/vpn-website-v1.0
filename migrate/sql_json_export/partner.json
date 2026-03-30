@@ -1,0 +1,32 @@
+[
+  {
+    "id": 11,
+    "name": "Ông TRẦN NGỌC DŨNG",
+    "anhdaidien": "/uploads/images/giang-vien-demo-1.jpg",
+    "duongdan": "Co-founder"
+  },
+  {
+    "id": 12,
+    "name": "Bà NGUYỄN THỊ AN",
+    "anhdaidien": "/uploads/images/giang-vien-demo-2.jpg",
+    "duongdan": "Co-founder"
+  },
+  {
+    "id": 13,
+    "name": "Bà TRẦN LỆ QUYÊN",
+    "anhdaidien": "/uploads/images/giang-vien-demo-3.jpg",
+    "duongdan": "CEO Hunter Agency"
+  },
+  {
+    "id": 14,
+    "name": "Bà LƯƠNG BÍCH HỮU",
+    "anhdaidien": "/uploads/images/giang-vien-demo-4.jpg",
+    "duongdan": "CEO Beyond Infinity"
+  },
+  {
+    "id": 16,
+    "name": "Ông NGUYỄN TIẾN ĐẠT",
+    "anhdaidien": "/uploads/images/giang-vien-demo-1.jpg",
+    "duongdan": "CEO Hunter Agency"
+  }
+]

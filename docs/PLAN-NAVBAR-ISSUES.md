@@ -1,5 +1,7 @@
 # Navbar & Image Recovery Plan
 
+> Superseded for current public-header/homepage refinement work by `docs/PLAN-HOMEPAGE-UI-REFINEMENT.md`. Keep this file as historical recovery context only.
+
 ## Context
 
 The user reported three distinct issues after the recent orchestration:

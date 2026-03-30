@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "tieude": "Sản phẩm của chúng tôi",
+    "mieutangan": "",
+    "gioihan": 8,
+    "fullmanhinh": 0,
+    "hinhnen": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616490/vienphuongnam/restored/yl6lzwphtzpppde0g3gm.png",
+    "mauchu": "",
+    "thuoctinhbgd": "repeat",
+    "limitbgd": 0
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 0,
+    "duongvien": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "gioihan": 0,
+    "fullmanhinh": 0,
+    "hinhnen": "",
+    "mauchu": "",
+    "thuoctinhbgd": "",
+    "limitbgd": 0
+  }
+]

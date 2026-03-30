@@ -1,0 +1,31 @@
+[
+  {
+    "id": 1,
+    "namebank1": "XXXXXXXXXXXXX",
+    "stkbank1": "XXXXXXXXXXXXX",
+    "nameclientbank1": "XXXXXXXXXXXXX",
+    "namebank2": "XXXXXXXXXXXXX",
+    "stkbank2": "XXXXXXXXXXXXX",
+    "nameclientbank2": "XXXXXXXXXXXXX",
+    "namebank3": "ACB",
+    "stkbank3": "123456789",
+    "nameclientbank3": "TRẦN TỶ PHÚ",
+    "namebank4": "MBBANK",
+    "stkbank4": "123456789",
+    "nameclientbank4": "TRẦN TỶ PHÚ",
+    "zalopay": "",
+    "momo": "",
+    "airpay": "",
+    "moca": "",
+    "paypoo": "",
+    "viettelpay": "",
+    "vtcpay": "",
+    "bankplus": "",
+    "infobank1": "",
+    "infobank2": "",
+    "infobank3": "",
+    "infobank4": "",
+    "behiddencknh": 0,
+    "behiddenvidientu": 0
+  }
+]

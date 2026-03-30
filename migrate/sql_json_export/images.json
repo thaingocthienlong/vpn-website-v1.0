@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "tieude": "Album ảnh 1",
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616396/vienphuongnam/restored/efwvaohiiwjluxko8jvd.jpg",
+    "gallery_image": "/uploads/images/demo/1200x675-1.jpg,/uploads/images/demo/1200x675-2.jpg,/uploads/images/demo/1200x675-3.jpg,/uploads/images/demo/1200x675-4.jpg",
+    "mieutangan": "",
+    "noibat": 1
+  },
+  {
+    "id": 2,
+    "tieude": "Album ảnh 2",
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616397/vienphuongnam/restored/llrs47q6rvgzqrfheyur.jpg",
+    "gallery_image": "/uploads/images/demo/1200x675-1.jpg,/uploads/images/demo/1200x675-2.jpg,/uploads/images/demo/1200x675-3.jpg,/uploads/images/demo/1200x675-4.jpg,",
+    "mieutangan": "",
+    "noibat": 1
+  },
+  {
+    "id": 3,
+    "tieude": "Album ảnh 3",
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616398/vienphuongnam/restored/nvrsnsv2g80f12v6ejuc.jpg",
+    "gallery_image": "/uploads/images/demo/1200x675-1.jpg,/uploads/images/demo/1200x675-2.jpg,/uploads/images/demo/1200x675-3.jpg,/uploads/images/demo/1200x675-4.jpg,",
+    "mieutangan": "",
+    "noibat": 1
+  },
+  {
+    "id": 4,
+    "tieude": "Album ảnh 4",
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616399/vienphuongnam/restored/d84wfq1jqygbn32sxxzh.jpg",
+    "gallery_image": "/uploads/images/demo/1200x675-1.jpg,/uploads/images/demo/1200x675-2.jpg,/uploads/images/demo/1200x675-3.jpg,/uploads/images/demo/1200x675-4.jpg,",
+    "mieutangan": "",
+    "noibat": 0
+  }
+]

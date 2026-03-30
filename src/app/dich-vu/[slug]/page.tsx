@@ -1,5 +1,5 @@
 import { ServiceDetailPageTemplate } from "@/components/services/ServiceDetailPageTemplate";
-import { getAllServiceContent, getServiceContent } from "@/lib/content/service-pages";
+import { getServicePagePayload, getSiteLayout } from "@/lib/services/site-content";
 
 export default async function ServiceDetailPage({
     params,
@@ -7,24 +7,42 @@ export default async function ServiceDetailPage({
     params: Promise<{ slug: string }>;
 }) {
     const { slug } = await params;
-    const service = getServiceContent("vi", slug);
-    const otherServices = getAllServiceContent("vi").filter((item) => item.slug !== slug);
+    const [payload, layout] = await Promise.all([
+        getServicePagePayload(slug, "vi"),
+        getSiteLayout("vi"),
+    ]);
 
     return (
         <ServiceDetailPageTemplate
             basePath="/dich-vu"
             contactHref="/lien-he"
-            service={service}
-            otherServices={otherServices}
+            service={payload.service}
+            otherServices={payload.otherServices}
+            headerProps={{
+                logo: layout.logo,
+                siteName: layout.siteName,
+                hotline: layout.hotline,
+                ctaText: layout.ctaText,
+                ctaUrl: layout.ctaUrl,
+                menuItems: layout.menuItems,
+            }}
+            footerProps={{
+                description: layout.footer.description,
+                contactInfo: layout.footer.contactInfo,
+                socialLinks: layout.footer.socialLinks,
+                quickLinks: layout.footer.quickLinks,
+                legalLinks: layout.footer.legalLinks,
+                copyright: layout.footer.copyright,
+            }}
             labels={{
                 allServicesLabel: "Tất cả dịch vụ",
                 notFoundTitle: "Không tìm thấy dịch vụ",
                 viewAllLabel: "Xem tất cả dịch vụ",
                 workingProcessTitle: "Quy trình làm việc",
                 contactConsultationTitle: "Liên hệ tư vấn",
-                contactConsultationDescription: "Đội ngũ chuyên gia của chúng tôi sẵn sàng hỗ trợ bạn",
+                contactConsultationDescription: "Đội ngũ của Viện Phương Nam sẵn sàng hỗ trợ bạn.",
                 sendInquiryLabel: "Gửi yêu cầu tư vấn",
-                hotlineLabel: "Hotline: 1900 1234",
+                hotlineLabel: `Hotline: ${layout.footer.contactInfo.phone}`,
                 otherServicesTitle: "Dịch vụ khác",
             }}
         />

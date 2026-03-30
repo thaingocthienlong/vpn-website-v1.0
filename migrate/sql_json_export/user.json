@@ -1,0 +1,44 @@
+[
+  {
+    "id": 5,
+    "avatar": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616677/vienphuongnam/restored/upea3e0vhpixhvogpbyq.png",
+    "username": "admin_vienphuongnam",
+    "fullname": "Admin",
+    "gioithieungan": "",
+    "mieutachitiet": "Full quyền",
+    "sdt": "0974250568",
+    "password": "2c37967a0f99b9f875913ac531809ccb",
+    "security_hl": "07811dc6c422334ce36a09ff5cd6fe71",
+    "created_time": "2023-05-12",
+    "last_updated": "2023-05-12",
+    "phanquyen": 2
+  },
+  {
+    "id": 11,
+    "avatar": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616678/vienphuongnam/restored/zxrnawrkwir9vlxc2arh.png",
+    "username": "quanly",
+    "fullname": "Quản lý",
+    "gioithieungan": "Giới thiệu ngắn",
+    "mieutachitiet": "Đăng bài viết, đăng sản phẩm và kiểm duyệt",
+    "sdt": "0974250568",
+    "password": "25d55ad283aa400af464c76d713c07ad",
+    "security_hl": "25d55ad283aa400af464c76d713c07ad",
+    "created_time": "2023-05-12",
+    "last_updated": "2023-05-12",
+    "phanquyen": 1
+  },
+  {
+    "id": 12,
+    "avatar": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616680/vienphuongnam/restored/agwkttkontceb3qultwp.png",
+    "username": "bientapvien",
+    "fullname": "Biên tập viên",
+    "gioithieungan": "Giới thiệu ngắn",
+    "mieutachitiet": "Đăng bài viết và đăng sản phẩm",
+    "sdt": "0974250568",
+    "password": "25d55ad283aa400af464c76d713c07ad",
+    "security_hl": "25d55ad283aa400af464c76d713c07ad",
+    "created_time": "2023-05-12",
+    "last_updated": "2023-05-12",
+    "phanquyen": 0
+  }
+]

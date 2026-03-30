@@ -1,0 +1,10 @@
+{
+  "dependencies": {
+    "@zilliz/claude-context-mcp": "^0.1.6"
+  },
+  "_npx": {
+    "packages": [
+      "@zilliz/claude-context-mcp@latest"
+    ]
+  }
+}

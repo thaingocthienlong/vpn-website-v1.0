@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 0,
+    "togglemenudmsp": 0,
+    "hinhnen": "",
+    "hinhnenfixed": "",
+    "mauchu": "",
+    "mauchuhover": "",
+    "thuoctinhbgd": "repeat",
+    "thuoctinhbgdfixed": "default",
+    "hiddenhome": 0,
+    "limitbgd": 0
+  },
+  {
+    "id": 3,
+    "name": "Bật module",
+    "trangthai": 1,
+    "togglemenudmsp": 0,
+    "hinhnen": "",
+    "hinhnenfixed": "",
+    "mauchu": "",
+    "mauchuhover": "",
+    "thuoctinhbgd": "",
+    "thuoctinhbgdfixed": "",
+    "hiddenhome": 0,
+    "limitbgd": 0
+  }
+]

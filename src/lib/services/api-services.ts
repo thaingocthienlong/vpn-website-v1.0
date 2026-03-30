@@ -1,9 +1,24 @@
 import { prisma } from "@/lib/prisma";
 import type { Locale } from "@/i18n/config";
 import { optimizeCloudinaryUrl, ImageSizes } from "@/lib/cloudinary";
+import { reportServerException } from "@/lib/monitoring/report-server-exception";
 import { unstable_cache } from "next/cache";
+import { getServiceSummaries } from "@/lib/services/site-content";
 
 type CourseType = "ADMISSION" | "SHORT_COURSE" | "STUDY_ABROAD";
+type HomepageSectionConfig = Record<string, unknown>;
+
+export interface HomepageSectionView {
+    id: string;
+    sectionKey: string;
+    title?: string | null;
+    subtitle?: string | null;
+    hasEnglishTitle?: boolean;
+    hasEnglishSubtitle?: boolean;
+    isEnabled: boolean;
+    sortOrder: number;
+    config: HomepageSectionConfig;
+}
 
 function isMissingSqliteTableError(error: unknown) {
     return error instanceof Error && error.message.includes("SQLITE_ERROR: no such table");
@@ -19,6 +34,23 @@ async function hasSqliteTable(tableName: string) {
     } catch {
         return false;
     }
+}
+
+function normalizeLocale(locale: Locale = "vi"): "vi" | "en" {
+    return locale === "en" ? "en" : "vi";
+}
+
+function parseConfig(config: string | null): HomepageSectionConfig {
+    if (!config) return {};
+    try {
+        return JSON.parse(config) as HomepageSectionConfig;
+    } catch {
+        return {};
+    }
+}
+
+function hasLocalizedText(...values: Array<string | null | undefined>) {
+    return values.some((value) => typeof value === "string" && value.trim().length > 0);
 }
 
 /**
@@ -59,6 +91,7 @@ export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4)
             title: locale === "en" && post.title_en ? post.title_en : post.title,
             slug: post.slug,
             excerpt: locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt,
+            hasEnglishContent: hasLocalizedText(post.title_en, post.excerpt_en),
             featuredImage: optimizeCloudinaryUrl(post.featuredImage?.url || null, ImageSizes.POST_THUMBNAIL),
             category: {
                 name: locale === "en" && post.category.name_en
@@ -73,7 +106,10 @@ export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4)
         }));
     } catch (error) {
         if (!isMissingSqliteTableError(error)) {
-            console.error("Error fetching featured posts via service:", error);
+            reportServerException(
+                { area: "api-services.getFeaturedPosts", message: "Error fetching featured posts via service." },
+                error
+            );
         }
         return [];
     }
@@ -114,6 +150,7 @@ export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 
             title: locale === "en" && course.title_en ? course.title_en : course.title,
             slug: course.slug,
             excerpt: locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt,
+            hasEnglishContent: hasLocalizedText(course.title_en, course.excerpt_en),
             featuredImage: optimizeCloudinaryUrl(course.featuredImage?.url || null, ImageSizes.CARD_THUMBNAIL),
             type: course.type as CourseType,
             isFeatured: course.isFeatured,
@@ -127,7 +164,10 @@ export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 
         }));
     } catch (error) {
         if (!isMissingSqliteTableError(error)) {
-            console.error("Error fetching featured courses via service:", error);
+            reportServerException(
+                { area: "api-services.getFeaturedCourses", message: "Error fetching featured courses via service." },
+                error
+            );
         }
         return [];
     }
@@ -165,8 +205,118 @@ export async function getActivePartners(locale: Locale = 'vi') {
         }));
     } catch (error) {
         if (!isMissingSqliteTableError(error)) {
-            console.error("Error fetching partners via service:", error);
+            reportServerException(
+                { area: "api-services.getActivePartners", message: "Error fetching partners via service." },
+                error
+            );
         }
+        return [];
+    }
+}
+
+export async function getActiveReviews(locale: Locale = "vi", limit = 6) {
+    try {
+        if (!(await hasSqliteTable("reviews"))) {
+            return [];
+        }
+
+        const resolvedLocale = normalizeLocale(locale);
+        const reviews = await prisma.review.findMany({
+            where: {
+                isActive: true,
+            },
+            take: limit,
+            orderBy: [{ sortOrder: "asc" }, { createdAt: "asc" }],
+            include: {
+                avatar: {
+                    select: { url: true },
+                },
+            },
+        });
+
+        return reviews.map((review) => ({
+            id: review.id,
+            name: review.name,
+            role: resolvedLocale === "en" ? review.role_en || review.role : review.role,
+            company: resolvedLocale === "en" ? review.company_en || review.company : review.company,
+            content: resolvedLocale === "en" ? review.content_en || review.content : review.content,
+            hasEnglishContent: hasLocalizedText(review.content_en, review.role_en, review.company_en),
+            avatar: review.avatar?.url || null,
+            rating: review.rating,
+        }));
+    } catch (error) {
+        if (!isMissingSqliteTableError(error)) {
+            reportServerException(
+                { area: "api-services.getActiveReviews", message: "Error fetching active reviews via service." },
+                error
+            );
+        }
+        return [];
+    }
+}
+
+export async function getReviewsByIds(ids: string[], locale: Locale = "vi") {
+    if (ids.length === 0) return [];
+
+    try {
+        const resolvedLocale = normalizeLocale(locale);
+        const reviews = await prisma.review.findMany({
+            where: {
+                id: { in: ids },
+                isActive: true,
+            },
+            include: {
+                avatar: {
+                    select: { url: true },
+                },
+            },
+        });
+
+        return reviews.map((review) => ({
+            id: review.id,
+            name: review.name,
+            role: resolvedLocale === "en" ? review.role_en || review.role : review.role,
+            company: resolvedLocale === "en" ? review.company_en || review.company : review.company,
+            content: resolvedLocale === "en" ? review.content_en || review.content : review.content,
+            avatar: review.avatar?.url || null,
+            rating: review.rating,
+        }));
+    } catch (error) {
+        reportServerException(
+            { area: "api-services.getReviewsByIds", message: "Error fetching reviews by ids." },
+            error
+        );
+        return [];
+    }
+}
+
+export async function getActiveServices(locale: Locale = "vi", limit = 6) {
+    try {
+        const services = await getServiceSummaries(locale);
+        return services.slice(0, limit);
+    } catch (error) {
+        reportServerException(
+            { area: "api-services.getActiveServices", message: "Error fetching active services via service." },
+            error
+        );
+        return [];
+    }
+}
+
+export async function getServicesByIds(ids: string[], locale: Locale = "vi") {
+    if (ids.length === 0) return [];
+
+    try {
+        const services = await getServiceSummaries(locale);
+        const serviceMap = new Map(services.map((service) => [service.id, service]));
+        return ids
+            .map((id) => serviceMap.get(id))
+            .filter((service): service is NonNullable<typeof service> => Boolean(service));
+    } catch (error) {
+        reportServerException(
+            { area: "api-services.getServicesByIds", message: "Error fetching services by ids." },
+            error
+        );
         return [];
     }
 }
@@ -259,7 +409,10 @@ export async function getCourseBySlug(slug: string, locale: Locale = 'vi') {
             },
         };
     } catch (error) {
-        console.error("Error fetching course by slug via service:", error);
+        reportServerException(
+            { area: "api-services.getCourseBySlug", message: "Error fetching course by slug via service.", extra: { slug } },
+            error
+        );
         return null;
     }
 }
@@ -297,7 +450,14 @@ export async function getRelatedCourses(type: string, excludeSlug: string, local
             type: course.type as CourseType,
         }));
     } catch (error) {
-        console.error("Error fetching related courses via service:", error);
+        reportServerException(
+            {
+                area: "api-services.getRelatedCourses",
+                message: "Error fetching related courses via service.",
+                extra: { type, excludeSlug },
+            },
+            error
+        );
         return [];
     }
 }
@@ -310,37 +470,42 @@ export async function getHomepageSections(locale: Locale = 'vi') {
     const fetchSections = unstable_cache(
         async () => {
             try {
-                const sections = await prisma.homepageSection.findMany({
+                const resolvedLocale = normalizeLocale(locale);
+                const localeKey = resolvedLocale === "en" ? "EN" : "VI";
+                const rows = await prisma.homepageSection.findMany({
                     where: {
-                        locale: 'vi',
+                        locale: { in: [localeKey, "VI"] },
                         isEnabled: true,
                     },
                     orderBy: { sortOrder: "asc" },
                 });
 
-                return sections.map((sec) => {
-                    let configObj = {};
-                    try {
-                        if (sec.config && sec.config.trim() !== "") {
-                            configObj = JSON.parse(sec.config);
-                        }
-                    } catch (error) {
-                        console.error(`Invalid JSON config for section ${sec.sectionKey}`, error);
+                const merged = new Map<string, typeof rows[number]>();
+                for (const row of rows) {
+                    const existing = merged.get(row.sectionKey);
+                    if (!existing || row.locale === localeKey) {
+                        merged.set(row.sectionKey, row);
                     }
-                    
-                    const title = locale === 'en' ? (sec.title_en || sec.title) : sec.title;
-                    const subtitle = locale === 'en' ? (sec.subtitle_en || sec.subtitle) : sec.subtitle;
+                }
 
-                    return {
-                        id: sec.id,
-                        sectionKey: sec.sectionKey,
-                        title,
-                        subtitle,
-                        ...configObj,
-                    };
-                });
+                return Array.from(merged.values())
+                    .sort((a, b) => a.sortOrder - b.sortOrder)
+                    .map<HomepageSectionView>((section) => ({
+                        id: section.id,
+                        sectionKey: section.sectionKey,
+                        title: resolvedLocale === "en" ? section.title_en || section.title : section.title,
+                        subtitle: resolvedLocale === "en" ? section.subtitle_en || section.subtitle : section.subtitle,
+                        hasEnglishTitle: hasLocalizedText(section.title_en),
+                        hasEnglishSubtitle: hasLocalizedText(section.subtitle_en),
+                        isEnabled: section.isEnabled,
+                        sortOrder: section.sortOrder,
+                        config: parseConfig(section.config),
+                    }));
             } catch (error) {
-                console.error("Error fetching homepage sections:", error);
+                reportServerException(
+                    { area: "api-services.getHomepageSections", message: "Error fetching homepage sections.", extra: { locale } },
+                    error
+                );
                 return [];
             }
         },
@@ -349,5 +514,24 @@ export async function getHomepageSections(locale: Locale = 'vi') {
     );
 
     return fetchSections();
+}
+
+export async function fetchDataForSections(locale: Locale = "vi", sections: HomepageSectionView[] = []) {
+    const keys = new Set(sections.map((section) => section.sectionKey));
+    const [posts, courses, partners, reviews, services] = await Promise.all([
+        keys.has("news") ? getFeaturedPosts(locale, 4) : Promise.resolve([]),
+        keys.has("training") || keys.has("hero") ? getFeaturedCourses(locale, 9) : Promise.resolve([]),
+        keys.has("partners") ? getActivePartners(locale) : Promise.resolve([]),
+        keys.has("reviews") ? getActiveReviews(locale, 6) : Promise.resolve([]),
+        keys.has("services") ? getActiveServices(locale, 6) : Promise.resolve([]),
+    ]);
+
+    return {
+        posts,
+        courses,
+        partners,
+        reviews,
+        services,
+    };
 }
 

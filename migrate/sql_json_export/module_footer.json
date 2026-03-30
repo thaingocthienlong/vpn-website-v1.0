@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Module kiểu 1",
+    "trangthai": 0,
+    "hinhnen": "",
+    "thongtin1": "Dịch vụ",
+    "thongtin2": "Về Viện Phương Nam",
+    "thongtin3": "Các dịch vụ của Viện Phương Nam",
+    "thongtin4": "Về chúng tôi",
+    "thuoctinhbgd": "repeat",
+    "fullmanhinh": 0,
+    "mauchu": "",
+    "mauchutitle": "",
+    "mauchuhover": "",
+    "limitbgd": 0
+  },
+  {
+    "id": 3,
+    "name": "Bật module",
+    "trangthai": 1,
+    "hinhnen": "",
+    "thongtin1": "",
+    "thongtin2": "",
+    "thongtin3": "",
+    "thongtin4": "",
+    "thuoctinhbgd": "",
+    "fullmanhinh": 0,
+    "mauchu": "",
+    "mauchutitle": "",
+    "mauchuhover": "",
+    "limitbgd": 0
+  }
+]

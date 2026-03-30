@@ -1,0 +1,724 @@
+{
+  "summary": {
+    "total_tables": 102,
+    "passed": 90,
+    "failed": 0,
+    "skipped_empty": 12
+  },
+  "tables": [
+    {
+      "table": "attribute_product_advanced",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "attribute_product_advanced.json"
+    },
+    {
+      "table": "attribute_product_simple",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "attribute_product_simple.json"
+    },
+    {
+      "table": "bancovan",
+      "expected": 72,
+      "exported": 72,
+      "status": "PASS",
+      "file": "bancovan.json"
+    },
+    {
+      "table": "banlanhdao",
+      "expected": 23,
+      "exported": 23,
+      "status": "PASS",
+      "file": "banlanhdao.json"
+    },
+    {
+      "table": "banner_category",
+      "expected": 7,
+      "exported": 7,
+      "status": "PASS",
+      "file": "banner_category.json"
+    },
+    {
+      "table": "baochi",
+      "expected": 9,
+      "exported": 9,
+      "status": "PASS",
+      "file": "baochi.json"
+    },
+    {
+      "table": "category",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "category.json"
+    },
+    {
+      "table": "category_hosomoitruong",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "category_hosomoitruong.json"
+    },
+    {
+      "table": "category_post",
+      "expected": 5,
+      "exported": 5,
+      "status": "PASS",
+      "file": "category_post.json"
+    },
+    {
+      "table": "category_project",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "category_project.json"
+    },
+    {
+      "table": "category_service",
+      "expected": 5,
+      "exported": 5,
+      "status": "PASS",
+      "file": "category_service.json"
+    },
+    {
+      "table": "comment",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "comment.json"
+    },
+    {
+      "table": "comment_hosomoitruong",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "comment_hosomoitruong.json"
+    },
+    {
+      "table": "comment_post",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "comment_post.json"
+    },
+    {
+      "table": "comment_project",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "comment_project.json"
+    },
+    {
+      "table": "comment_service",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "comment_service.json"
+    },
+    {
+      "table": "configurations",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "configurations.json"
+    },
+    {
+      "table": "configuration_email",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "configuration_email.json"
+    },
+    {
+      "table": "customers",
+      "expected": 22,
+      "exported": 22,
+      "status": "PASS",
+      "file": "customers.json"
+    },
+    {
+      "table": "design",
+      "expected": 9,
+      "exported": 9,
+      "status": "PASS",
+      "file": "design.json"
+    },
+    {
+      "table": "detail_modulebanner",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "detail_modulebanner.json"
+    },
+    {
+      "table": "detail_moduleslider",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "detail_moduleslider.json"
+    },
+    {
+      "table": "detail_tags",
+      "expected": 23,
+      "exported": 23,
+      "status": "PASS",
+      "file": "detail_tags.json"
+    },
+    {
+      "table": "doitac",
+      "expected": 35,
+      "exported": 35,
+      "status": "PASS",
+      "file": "doitac.json"
+    },
+    {
+      "table": "donvilienket",
+      "expected": 35,
+      "exported": 35,
+      "status": "PASS",
+      "file": "donvilienket.json"
+    },
+    {
+      "table": "ecommerce",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "ecommerce.json"
+    },
+    {
+      "table": "feel",
+      "expected": 4,
+      "exported": 4,
+      "status": "PASS",
+      "file": "feel.json"
+    },
+    {
+      "table": "hltemplate",
+      "expected": 6,
+      "exported": 6,
+      "status": "PASS",
+      "file": "hltemplate.json"
+    },
+    {
+      "table": "hosomoitruong",
+      "expected": 19,
+      "exported": 19,
+      "status": "PASS",
+      "file": "hosomoitruong.json"
+    },
+    {
+      "table": "images",
+      "expected": 4,
+      "exported": 4,
+      "status": "PASS",
+      "file": "images.json"
+    },
+    {
+      "table": "info_website",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "info_website.json"
+    },
+    {
+      "table": "member",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "member.json"
+    },
+    {
+      "table": "menu",
+      "expected": 5,
+      "exported": 5,
+      "status": "PASS",
+      "file": "menu.json"
+    },
+    {
+      "table": "menufooter",
+      "expected": 10,
+      "exported": 10,
+      "status": "PASS",
+      "file": "menufooter.json"
+    },
+    {
+      "table": "menufooter2",
+      "expected": 7,
+      "exported": 7,
+      "status": "PASS",
+      "file": "menufooter2.json"
+    },
+    {
+      "table": "menufooter3",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "menufooter3.json"
+    },
+    {
+      "table": "menufooter4",
+      "expected": 4,
+      "exported": 4,
+      "status": "PASS",
+      "file": "menufooter4.json"
+    },
+    {
+      "table": "menumaincustom",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "menumaincustom.json"
+    },
+    {
+      "table": "menutopbar",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "menutopbar.json"
+    },
+    {
+      "table": "module_banner",
+      "expected": 9,
+      "exported": 9,
+      "status": "PASS",
+      "file": "module_banner.json"
+    },
+    {
+      "table": "module_baochi",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_baochi.json"
+    },
+    {
+      "table": "module_category",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_category.json"
+    },
+    {
+      "table": "module_cate_project",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_cate_project.json"
+    },
+    {
+      "table": "module_displaycategory",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_displaycategory.json"
+    },
+    {
+      "table": "module_doitac",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_doitac.json"
+    },
+    {
+      "table": "module_feel",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_feel.json"
+    },
+    {
+      "table": "module_footer",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_footer.json"
+    },
+    {
+      "table": "module_form_register_global",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_form_register_global.json"
+    },
+    {
+      "table": "module_images",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_images.json"
+    },
+    {
+      "table": "module_intro",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_intro.json"
+    },
+    {
+      "table": "module_introduce",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_introduce.json"
+    },
+    {
+      "table": "module_intro_1",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_intro_1.json"
+    },
+    {
+      "table": "module_loaihosomoitruong",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_loaihosomoitruong.json"
+    },
+    {
+      "table": "module_partner",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_partner.json"
+    },
+    {
+      "table": "module_policybox",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_policybox.json"
+    },
+    {
+      "table": "module_popup",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_popup.json"
+    },
+    {
+      "table": "module_post",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_post.json"
+    },
+    {
+      "table": "module_productnb",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_productnb.json"
+    },
+    {
+      "table": "module_productnew",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_productnew.json"
+    },
+    {
+      "table": "module_productsale",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_productsale.json"
+    },
+    {
+      "table": "module_project",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_project.json"
+    },
+    {
+      "table": "module_project_category_sidebar",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_project_category_sidebar.json"
+    },
+    {
+      "table": "module_project_sidebar",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_project_sidebar.json"
+    },
+    {
+      "table": "module_service_category_sidebar",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_service_category_sidebar.json"
+    },
+    {
+      "table": "module_sidebar_banner",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "module_sidebar_banner.json"
+    },
+    {
+      "table": "module_sidebar_category",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_sidebar_category.json"
+    },
+    {
+      "table": "module_sidebar_highlights",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_sidebar_highlights.json"
+    },
+    {
+      "table": "module_sidebar_post_new",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_sidebar_post_new.json"
+    },
+    {
+      "table": "module_sidebar_price",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_sidebar_price.json"
+    },
+    {
+      "table": "module_sidebar_productssale",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_sidebar_productssale.json"
+    },
+    {
+      "table": "module_sidebar_service",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_sidebar_service.json"
+    },
+    {
+      "table": "module_sidebar_theme",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_sidebar_theme.json"
+    },
+    {
+      "table": "module_sidebar_trademark",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_sidebar_trademark.json"
+    },
+    {
+      "table": "module_siteheader",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_siteheader.json"
+    },
+    {
+      "table": "module_slider",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_slider.json"
+    },
+    {
+      "table": "module_tabsproducts",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_tabsproducts.json"
+    },
+    {
+      "table": "module_tabsproduct_editing",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "module_tabsproduct_editing.json"
+    },
+    {
+      "table": "module_tags",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "module_tags.json"
+    },
+    {
+      "table": "module_video",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_video.json"
+    },
+    {
+      "table": "module_video_home",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "module_video_home.json"
+    },
+    {
+      "table": "order_detail",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "order_detail.json"
+    },
+    {
+      "table": "order_management",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "order_management.json"
+    },
+    {
+      "table": "page_all",
+      "expected": 16,
+      "exported": 16,
+      "status": "PASS",
+      "file": "page_all.json"
+    },
+    {
+      "table": "page_introduce",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "page_introduce.json"
+    },
+    {
+      "table": "partner",
+      "expected": 5,
+      "exported": 5,
+      "status": "PASS",
+      "file": "partner.json"
+    },
+    {
+      "table": "policy",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "policy.json"
+    },
+    {
+      "table": "post",
+      "expected": 113,
+      "exported": 113,
+      "status": "PASS",
+      "file": "post.json"
+    },
+    {
+      "table": "product",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "product.json"
+    },
+    {
+      "table": "project",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "project.json"
+    },
+    {
+      "table": "province",
+      "expected": 63,
+      "exported": 63,
+      "status": "PASS",
+      "file": "province.json"
+    },
+    {
+      "table": "robots",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "robots.json"
+    },
+    {
+      "table": "service",
+      "expected": 9,
+      "exported": 9,
+      "status": "PASS",
+      "file": "service.json"
+    },
+    {
+      "table": "setting",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "setting.json"
+    },
+    {
+      "table": "setting_sidebar_all",
+      "expected": 5,
+      "exported": 5,
+      "status": "PASS",
+      "file": "setting_sidebar_all.json"
+    },
+    {
+      "table": "sitemap",
+      "expected": 34,
+      "exported": 34,
+      "status": "PASS",
+      "file": "sitemap.json"
+    },
+    {
+      "table": "space_module_home",
+      "expected": 25,
+      "exported": 25,
+      "status": "PASS",
+      "file": "space_module_home.json"
+    },
+    {
+      "table": "tabsproducts",
+      "expected": 4,
+      "exported": 4,
+      "status": "PASS",
+      "file": "tabsproducts.json"
+    },
+    {
+      "table": "tags",
+      "expected": 0,
+      "exported": 0,
+      "status": "SKIP (0 records)",
+      "file": "tags.json"
+    },
+    {
+      "table": "topbar",
+      "expected": 2,
+      "exported": 2,
+      "status": "PASS",
+      "file": "topbar.json"
+    },
+    {
+      "table": "trademark",
+      "expected": 1,
+      "exported": 1,
+      "status": "PASS",
+      "file": "trademark.json"
+    },
+    {
+      "table": "user",
+      "expected": 3,
+      "exported": 3,
+      "status": "PASS",
+      "file": "user.json"
+    },
+    {
+      "table": "video",
+      "expected": 20,
+      "exported": 20,
+      "status": "PASS",
+      "file": "video.json"
+    }
+  ]
+}

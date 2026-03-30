@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "tenthuoctinh": "Màu vàng",
+    "anhdaidien": "/saigoncms/files/images/color_7.png",
+    "chihienthianh": 1,
+    "macdinh": 0
+  },
+  {
+    "id": 2,
+    "tenthuoctinh": "Màu trắng",
+    "anhdaidien": "/saigoncms/files/images/color_white.png",
+    "chihienthianh": 1,
+    "macdinh": 1
+  },
+  {
+    "id": 4,
+    "tenthuoctinh": "Xanh lam",
+    "anhdaidien": "/saigoncms/files/images/ccccff.png",
+    "chihienthianh": 1,
+    "macdinh": 0
+  }
+]
