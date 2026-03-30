@@ -22,6 +22,7 @@ interface Course {
     slug: string;
     excerpt?: string | null;
     excerpt_en?: string | null;
+    featuredImage?: string | null;
 }
 
 interface HeroSectionProps {
@@ -66,8 +67,6 @@ export function HeroSection({
               },
               labels: {
                   eyebrow: "Editorial institutional profile",
-                  programmeRail: "Selected programs",
-                  programmeFirst: "Programs first",
                   film: "Watch institutional film",
                   visual: "Institutional view",
                   imageCaption: "A closer look at the institute's programmes, partnerships, and public-interest work.",
@@ -84,8 +83,6 @@ export function HeroSection({
               },
               labels: {
                   eyebrow: "Chân dung hoạt động",
-                  programmeRail: "Chương trình chọn lọc",
-                  programmeFirst: "Ưu tiên chương trình",
                   film: "Xem phim giới thiệu",
                   visual: "Góc nhìn tổ chức",
                   imageCaption: "Một lát cắt trực diện về chương trình, hợp tác và định hướng phát triển nguồn lực xã hội của viện.",
@@ -106,6 +103,7 @@ export function HeroSection({
         title: isEn ? (program.title_en || program.title) : program.title,
         excerpt: isEn ? (program.excerpt_en || program.excerpt || "") : (program.excerpt || ""),
         href: isEn ? `/en/training/${program.slug}` : `/dao-tao/${program.slug}`,
+        featuredImage: program.featuredImage || featuredMedia?.thumbnailUrl || null,
     }));
     const heroSecondaryButtonClass = "rounded-[1.02rem] !border-[rgba(16,36,56,0.12)] !bg-[linear-gradient(180deg,rgba(228,236,243,0.88),rgba(214,225,236,0.76))] !text-[var(--accent-strong)] shadow-[0_14px_30px_-28px_rgba(8,20,33,0.28)] hover:!bg-[linear-gradient(180deg,rgba(236,243,248,0.94),rgba(222,232,241,0.84))] hover:!text-[var(--ink)]";
 
@@ -116,11 +114,11 @@ export function HeroSection({
 
             <Container className="relative">
                 <MotionGroup
-                    className="grid min-h-[100svh] items-end gap-9 pb-12 pt-[7.25rem] md:pb-16 md:pt-[8.8rem] xl:grid-cols-[minmax(0,0.84fr)_minmax(420px,0.96fr)] xl:gap-12"
+                    className="grid min-h-[100svh] items-start gap-9 pb-12 pt-[7.25rem] md:pb-16 md:pt-[8.8rem] xl:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] xl:items-end xl:gap-12"
                     stagger={0.1}
                 >
-                    <MotionItem preset="fade-right">
-                        <div className="flex h-full flex-col justify-end">
+                    <MotionItem preset="fade-right" className="xl:self-start">
+                        <div className="flex h-full flex-col justify-start">
                             <motion.div
                                 initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
                                 animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -133,10 +131,7 @@ export function HeroSection({
                                 </div>
 
                                 <div className="space-y-4">
-                                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-[var(--accent-strong)]">
-                                        {copy.labels.programmeFirst}
-                                    </p>
-                                    <h1 className="max-w-[8.2ch] font-heading text-[3.2rem] leading-[0.82] tracking-[-0.072em] text-[var(--ink)] md:text-[4.65rem] xl:text-[5.7rem]">
+                                    <h1 className="max-w-[9.8ch] font-heading text-[2.95rem] leading-[0.84] tracking-[-0.064em] text-[var(--ink)] md:max-w-[10.4ch] md:text-[3.95rem] xl:max-w-[9.2ch] xl:text-[4.9rem]">
                                         {resolvedTitle}
                                     </h1>
                                     <p className="max-w-[34rem] text-[0.98rem] leading-[1.95rem] text-[var(--ink-soft)] md:text-[1.02rem]">
@@ -182,25 +177,41 @@ export function HeroSection({
                                     transition={{ ...publicMotionTokens.sectionSpring, delay: 0.08 }}
                                     className="mt-9 border-t border-[rgba(16,40,70,0.1)] pt-5"
                                 >
-                                    <div className="mb-4 flex items-center gap-3">
-                                        <span className="editorial-caption text-[var(--ink-muted)]">{copy.labels.programmeRail}</span>
-                                    </div>
-                                    <div className="grid gap-3 xl:grid-cols-3">
-                                        {railItems.map((item, index) => (
+                                    <div className="grid grid-flow-col auto-cols-[minmax(16.5rem,82vw)] gap-4 overflow-x-auto pb-2 pr-1 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden xl:grid-flow-row xl:grid-cols-3 xl:auto-cols-fr xl:overflow-visible xl:pb-0">
+                                        {railItems.map((item) => (
                                             <Link
                                                 key={item.id}
                                                 href={item.href}
                                                 className={cn(
-                                                    "group border-t border-[rgba(16,40,70,0.08)] pt-3 transition-colors hover:border-[rgba(16,40,70,0.18)]",
-                                                    index > 0 && "hidden xl:block"
+                                                    "group relative block aspect-video snap-start overflow-hidden rounded-[1.25rem] border border-[rgba(16,40,70,0.1)] bg-[linear-gradient(160deg,#dde7f1_0%,#cedaea_48%,#e8eef4_100%)] shadow-[0_20px_36px_-28px_rgba(8,20,33,0.24)]",
+                                                    shouldReduceMotion ? "" : "transition-transform duration-300 xl:hover:-translate-y-1"
                                                 )}
                                             >
-                                                <p className="font-heading text-[1.18rem] leading-[1.02] text-[var(--ink)]">
-                                                    {item.title}
-                                                </p>
-                                                <p className="mt-1 line-clamp-1 text-sm leading-6 text-[var(--ink-soft)] transition-transform duration-300 group-hover:translate-x-1">
-                                                    {item.excerpt || (isEn ? "Structured learning route" : "Lộ trình học tập có cấu trúc")}
-                                                </p>
+                                                {item.featuredImage ? (
+                                                    <Image
+                                                        src={item.featuredImage}
+                                                        alt={item.title}
+                                                        fill
+                                                        className="object-cover transition-all duration-500 xl:group-hover:scale-[1.03] xl:group-hover:blur-[1.5px]"
+                                                        sizes="(max-width: 1279px) 82vw, 22vw"
+                                                    />
+                                                ) : (
+                                                    <div className="absolute inset-0 bg-[linear-gradient(160deg,#d8e3ef_0%,#c7d5e4_44%,#e7edf4_100%)]" />
+                                                )}
+                                                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,20,34,0.02),rgba(10,20,34,0.06),rgba(10,20,34,0.14))] transition-all duration-300 xl:bg-[linear-gradient(180deg,rgba(10,20,34,0.01),rgba(10,20,34,0.03),rgba(10,20,34,0.08))] xl:group-hover:bg-[linear-gradient(180deg,rgba(10,20,34,0.18),rgba(10,20,34,0.38),rgba(10,20,34,0.9))]" />
+                                                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
+                                                    <div className="space-y-1">
+                                                        <p className="max-w-[16ch] font-heading text-[1.02rem] leading-[1.02] text-white transition-all duration-300 xl:translate-y-3 xl:opacity-0 xl:group-hover:-translate-y-1 xl:group-hover:opacity-100 xl:group-hover:text-[rgba(255,255,255,0.98)]">
+                                                            {item.title}
+                                                        </p>
+                                                        <p className="line-clamp-1 text-xs uppercase tracking-[0.14em] text-white/72 transition-all duration-300 xl:translate-y-2 xl:opacity-0 xl:group-hover:translate-y-0 xl:group-hover:opacity-100">
+                                                            {isEn ? "Open programme" : "Mở chương trình"}
+                                                        </p>
+                                                    </div>
+                                                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/16 bg-white/10 text-white/82 transition-all duration-300 xl:translate-y-2 xl:opacity-0 xl:group-hover:translate-y-0 xl:group-hover:opacity-100">
+                                                        <ArrowRight className="h-4 w-4" weight="bold" />
+                                                    </span>
+                                                </div>
                                             </Link>
                                         ))}
                                     </div>
