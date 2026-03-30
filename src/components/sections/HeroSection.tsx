@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { motion, useReducedMotion } from "framer-motion";
@@ -58,6 +59,8 @@ export function HeroSection({
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
     const shouldReduceMotion = useReducedMotion();
+    const titleContainerRef = React.useRef<HTMLDivElement>(null);
+    const titleRef = React.useRef<HTMLHeadingElement>(null);
 
     const copy = isEn
         ? {
@@ -107,6 +110,57 @@ export function HeroSection({
     }));
     const heroSecondaryButtonClass = "rounded-[1.02rem] !border-[rgba(16,36,56,0.12)] !bg-[linear-gradient(180deg,rgba(228,236,243,0.88),rgba(214,225,236,0.76))] !text-[var(--accent-strong)] shadow-[0_14px_30px_-28px_rgba(8,20,33,0.28)] hover:!bg-[linear-gradient(180deg,rgba(236,243,248,0.94),rgba(222,232,241,0.84))] hover:!text-[var(--ink)]";
 
+    React.useEffect(() => {
+        const container = titleContainerRef.current;
+        const titleElement = titleRef.current;
+
+        if (!container || !titleElement) {
+            return;
+        }
+
+        let frameId = 0;
+
+        const fitTitle = () => {
+            cancelAnimationFrame(frameId);
+            frameId = requestAnimationFrame(() => {
+                const width = container.clientWidth;
+                if (!width) return;
+
+                const viewport = window.innerWidth;
+                const maxFontSize = viewport >= 1280 ? 78 : viewport >= 768 ? 64 : 56;
+                const minFontSize = viewport >= 1280 ? 36 : viewport >= 768 ? 30 : 20;
+
+                let low = minFontSize;
+                let high = maxFontSize;
+                let best = minFontSize;
+
+                while (low <= high) {
+                    const mid = Math.floor((low + high) / 2);
+                    titleElement.style.fontSize = `${mid}px`;
+
+                    if (titleElement.scrollWidth <= width) {
+                        best = mid;
+                        low = mid + 1;
+                    } else {
+                        high = mid - 1;
+                    }
+                }
+
+                titleElement.style.fontSize = `${best}px`;
+            });
+        };
+
+        fitTitle();
+
+        const resizeObserver = new ResizeObserver(fitTitle);
+        resizeObserver.observe(container);
+
+        return () => {
+            cancelAnimationFrame(frameId);
+            resizeObserver.disconnect();
+        };
+    }, [resolvedTitle]);
+
     return (
         <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f7fbfd_0%,#eef4f8_58%,#e7eef4_100%)] text-[var(--ink)]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(77,111,147,0.12),transparent_22%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.62),transparent_20%),linear-gradient(90deg,rgba(16,40,70,0.04)_1px,transparent_1px),linear-gradient(rgba(16,40,70,0.04)_1px,transparent_1px)] [background-size:auto,auto,32px_32px,32px_32px] opacity-80" />
@@ -131,9 +185,19 @@ export function HeroSection({
                                 </div>
 
                                 <div className="space-y-4">
-                                    <h1 className="max-w-[9.8ch] font-heading text-[2.95rem] leading-[0.84] tracking-[-0.064em] text-[var(--ink)] md:max-w-[10.4ch] md:text-[3.95rem] xl:max-w-[9.2ch] xl:text-[4.9rem]">
-                                        {resolvedTitle}
-                                    </h1>
+                                    <div ref={titleContainerRef} className="max-w-full overflow-hidden">
+                                        <h1
+                                            ref={titleRef}
+                                            className="w-full font-heading text-[clamp(2.5rem,10vw,4.9rem)] leading-[0.84] tracking-[-0.064em] text-[var(--ink)]"
+                                            style={{
+                                                whiteSpace: "nowrap",
+                                                wordBreak: "keep-all",
+                                                overflowWrap: "normal",
+                                            }}
+                                        >
+                                            {resolvedTitle}
+                                        </h1>
+                                    </div>
                                     <p className="max-w-[34rem] text-[0.98rem] leading-[1.95rem] text-[var(--ink-soft)] md:text-[1.02rem]">
                                         {resolvedSubtitle}
                                     </p>
