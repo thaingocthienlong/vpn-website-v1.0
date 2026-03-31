@@ -112,14 +112,14 @@ export function GallerySection({
                 />
             </MotionSection>
 
-            <MotionGroup className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.78fr)]" stagger={0.08}>
-                <MotionItem>
+            <MotionGroup className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.78fr)]" stagger={0.08}>
+                <MotionItem className="min-w-0">
                     <motion.div
                         whileHover={shouldReduceMotion ? undefined : { y: -2 }}
                         transition={publicMotionTokens.hoverSpring}
                         className="group relative block w-full overflow-hidden rounded-[1.65rem] border border-[rgba(16,40,70,0.12)] text-left"
                     >
-                        <div className="relative aspect-[5/4] min-h-[440px]">
+                        <div className="relative aspect-[5/4] min-h-[260px] sm:min-h-[320px] lg:min-h-[400px] xl:min-h-[440px]">
                             <Image
                                 src={activeImage.url}
                                 alt={activeImage.alt}
@@ -141,7 +141,7 @@ export function GallerySection({
                     </motion.div>
                 </MotionItem>
 
-                <MotionItem>
+                <MotionItem className="min-w-0">
                     <motion.aside
                         whileHover={shouldReduceMotion ? undefined : { y: -2 }}
                         transition={publicMotionTokens.hoverSpring}
@@ -151,7 +151,7 @@ export function GallerySection({
                             <p className="editorial-caption text-[var(--ink-muted)]">
                                 {isEn ? "Thumbnail selection" : "Lưới ảnh chọn nhanh"}
                             </p>
-                            <h3 className="max-w-[12ch] font-heading text-[1.9rem] text-[var(--ink)] md:text-[2.35rem]">
+                            <h3 className="max-w-[14ch] font-heading text-[1.55rem] leading-[0.98] text-[var(--ink)] sm:text-[1.75rem] lg:max-w-[12ch] lg:text-[2.1rem] xl:text-[2.35rem]">
                                 {isEn ? "Select a smaller frame to refresh the main image." : "Chọn khung hình nhỏ để đổi hình chính bên trái."}
                             </h3>
 

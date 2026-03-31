@@ -215,6 +215,11 @@ export function HomepageSectionsRenderer({
                 logo={layout.logo}
                 siteName={layout.siteName}
                 hotline={layout.hotline}
+                quickContact={{
+                    phone: layout.footer.contactInfo.phone,
+                    email: layout.footer.contactInfo.email,
+                    contactHref: layout.ctaUrl,
+                }}
                 ctaText={layout.ctaText}
                 ctaUrl={layout.ctaUrl}
                 menuItems={layout.menuItems}

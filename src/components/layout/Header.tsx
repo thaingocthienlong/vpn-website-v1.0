@@ -3,10 +3,11 @@
 import * as React from "react";
 import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpRight, CaretDown, List, PhoneCall, X } from "@phosphor-icons/react";
+import { ArrowUpRight, CaretDown, List, X } from "@phosphor-icons/react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui";
 import { Container } from "./Container";
+import { FloatingQuickContact } from "./FloatingQuickContact";
 import { Navbar, getDefaultMenuItems, type MenuItem } from "./Navbar";
 import { detectLocaleFromPath, getEquivalentRoute } from "@/lib/routes";
 import { cn } from "@/lib/utils";
@@ -15,6 +16,11 @@ import { FloatingAccent, publicMotionTokens } from "@/components/motion/PublicMo
 export interface HeaderProps {
     logo?: string;
     hotline?: string;
+    quickContact?: {
+        phone?: string;
+        email?: string;
+        contactHref?: string;
+    };
     ctaText?: string;
     ctaUrl?: string;
     siteName?: string;
@@ -95,6 +101,7 @@ function LocaleToggle({
 export function Header({
     logo = "https://res.cloudinary.com/drn3cqgz5/image/upload/v1769676877/vienphuongnam/restored/v8twn3w8uyhdqrzx8p3j.png",
     hotline,
+    quickContact,
     ctaText = "Liên hệ ngay",
     ctaUrl,
     siteName = "Viện Phương Nam",
@@ -111,7 +118,11 @@ export function Header({
     const homeUrl = locale === "en" ? "/en" : "/";
     const caption = locale === "en" ? "Social Resource Institute" : "Viện phát triển nguồn lực xã hội";
     const resolvedHotline = hotline?.trim() || (locale === "en" ? "+84 912 114 511" : "0912 114 511");
-    const hotlineHref = `tel:${resolvedHotline.replace(/[^+\d]/g, "")}`;
+    const resolvedQuickContact = {
+        phone: quickContact?.phone?.trim() || resolvedHotline,
+        email: quickContact?.email?.trim() || "vanphong@vienphuongnam.com.vn",
+        contactHref: quickContact?.contactHref?.trim() || resolvedCtaUrl,
+    };
     const quickDescriptor = locale === "en" ? "Public interest training and applied services" : "Đào tạo, nghiên cứu và dịch vụ vì cộng đồng";
     const isEditorialMode = mode === "homepage-editorial";
     const showFramedShell = !isEditorialMode || isScrolled;
@@ -203,28 +214,6 @@ export function Header({
                     </div>
 
                     <div className="relative z-[1] flex items-center justify-end gap-2 md:gap-3">
-                        <a
-                            href={hotlineHref}
-                            className={cn(
-                                "hidden min-h-[44px] items-center gap-2 rounded-[1.02rem] px-3 py-2 transition-colors 2xl:flex",
-                                showFramedShell
-                                    ? "border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.26)] text-[var(--accent-strong)] hover:bg-[rgba(248,251,253,0.44)]"
-                                    : "border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.22)] text-[var(--accent-strong)] hover:bg-[rgba(248,251,253,0.34)]"
-                            )}
-                        >
-                            <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-[rgba(19,44,71,0.08)] text-[var(--accent-strong)]">
-                                <PhoneCall className="h-4 w-4" weight="bold" />
-                            </span>
-                            <span className="min-w-0">
-                                <span className="editorial-caption block text-[rgba(16,36,56,0.7)]">
-                                    {locale === "en" ? "Advisory desk" : "Tư vấn nhanh"}
-                                </span>
-                                <span className="mt-1 block truncate text-sm font-semibold text-[var(--accent-strong)]">
-                                    {resolvedHotline}
-                                </span>
-                            </span>
-                        </a>
-
                         <LocaleToggle
                             locale={locale}
                             pathname={pathname}
@@ -401,6 +390,12 @@ export function Header({
                     )}
                 </AnimatePresence>
             </Container>
+            <FloatingQuickContact
+                locale={locale}
+                phone={resolvedQuickContact.phone}
+                email={resolvedQuickContact.email}
+                contactHref={resolvedQuickContact.contactHref}
+            />
         </header>
     );
 }

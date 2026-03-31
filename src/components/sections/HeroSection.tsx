@@ -59,8 +59,6 @@ export function HeroSection({
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
     const shouldReduceMotion = useReducedMotion();
-    const titleContainerRef = React.useRef<HTMLDivElement>(null);
-    const titleRef = React.useRef<HTMLHeadingElement>(null);
 
     const copy = isEn
         ? {
@@ -110,57 +108,6 @@ export function HeroSection({
     }));
     const heroSecondaryButtonClass = "rounded-[1.02rem] !border-[rgba(16,36,56,0.12)] !bg-[linear-gradient(180deg,rgba(228,236,243,0.88),rgba(214,225,236,0.76))] !text-[var(--accent-strong)] shadow-[0_14px_30px_-28px_rgba(8,20,33,0.28)] hover:!bg-[linear-gradient(180deg,rgba(236,243,248,0.94),rgba(222,232,241,0.84))] hover:!text-[var(--ink)]";
 
-    React.useEffect(() => {
-        const container = titleContainerRef.current;
-        const titleElement = titleRef.current;
-
-        if (!container || !titleElement) {
-            return;
-        }
-
-        let frameId = 0;
-
-        const fitTitle = () => {
-            cancelAnimationFrame(frameId);
-            frameId = requestAnimationFrame(() => {
-                const width = container.clientWidth;
-                if (!width) return;
-
-                const viewport = window.innerWidth;
-                const maxFontSize = viewport >= 1280 ? 78 : viewport >= 768 ? 64 : 56;
-                const minFontSize = viewport >= 1280 ? 36 : viewport >= 768 ? 30 : 20;
-
-                let low = minFontSize;
-                let high = maxFontSize;
-                let best = minFontSize;
-
-                while (low <= high) {
-                    const mid = Math.floor((low + high) / 2);
-                    titleElement.style.fontSize = `${mid}px`;
-
-                    if (titleElement.scrollWidth <= width) {
-                        best = mid;
-                        low = mid + 1;
-                    } else {
-                        high = mid - 1;
-                    }
-                }
-
-                titleElement.style.fontSize = `${best}px`;
-            });
-        };
-
-        fitTitle();
-
-        const resizeObserver = new ResizeObserver(fitTitle);
-        resizeObserver.observe(container);
-
-        return () => {
-            cancelAnimationFrame(frameId);
-            resizeObserver.disconnect();
-        };
-    }, [resolvedTitle]);
-
     return (
         <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f7fbfd_0%,#eef4f8_58%,#e7eef4_100%)] text-[var(--ink)]">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(77,111,147,0.12),transparent_22%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.62),transparent_20%),linear-gradient(90deg,rgba(16,40,70,0.04)_1px,transparent_1px),linear-gradient(rgba(16,40,70,0.04)_1px,transparent_1px)] [background-size:auto,auto,32px_32px,32px_32px] opacity-80" />
@@ -168,11 +115,11 @@ export function HeroSection({
 
             <Container className="relative">
                 <MotionGroup
-                    className="grid min-h-[100svh] items-start gap-9 pb-12 pt-[7.25rem] md:pb-16 md:pt-[8.8rem] xl:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] xl:items-end xl:gap-12"
+                    className="grid min-h-[100svh] grid-cols-[minmax(0,1fr)] items-start gap-9 pb-12 pt-[7.25rem] md:pb-16 md:pt-[8.8rem] xl:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] xl:items-end xl:gap-12"
                     stagger={0.1}
                 >
-                    <MotionItem preset="fade-right" className="xl:self-start">
-                        <div className="flex h-full flex-col justify-start">
+                    <MotionItem preset="fade-right" className="min-w-0 xl:self-start">
+                        <div className="flex h-full min-w-0 flex-col justify-start">
                             <motion.div
                                 initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
                                 animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
@@ -185,14 +132,11 @@ export function HeroSection({
                                 </div>
 
                                 <div className="space-y-4">
-                                    <div ref={titleContainerRef} className="max-w-full overflow-hidden">
+                                    <div className="max-w-full">
                                         <h1
-                                            ref={titleRef}
-                                            className="w-full font-heading text-[clamp(2.5rem,10vw,4.9rem)] leading-[0.84] tracking-[-0.064em] text-[var(--ink)]"
+                                            className="max-w-[9.5ch] font-heading text-[clamp(3.15rem,10vw,4.9rem)] leading-[0.86] tracking-[-0.064em] text-[var(--ink)] md:max-w-[10.6ch] md:text-[clamp(3.8rem,8vw,5.9rem)] xl:max-w-[9.8ch] xl:text-[clamp(4.6rem,6vw,5.85rem)]"
                                             style={{
-                                                whiteSpace: "nowrap",
-                                                wordBreak: "keep-all",
-                                                overflowWrap: "normal",
+                                                textWrap: "balance",
                                             }}
                                         >
                                             {resolvedTitle}
@@ -241,13 +185,14 @@ export function HeroSection({
                                     transition={{ ...publicMotionTokens.sectionSpring, delay: 0.08 }}
                                     className="mt-9 border-t border-[rgba(16,40,70,0.1)] pt-5"
                                 >
-                                    <div className="grid grid-flow-col auto-cols-[minmax(16.5rem,82vw)] gap-4 overflow-x-auto pb-2 pr-1 snap-x snap-mandatory [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden xl:grid-flow-row xl:grid-cols-3 xl:auto-cols-fr xl:overflow-visible xl:pb-0">
-                                        {railItems.map((item) => (
+                                    <div className="grid grid-cols-2 gap-4 pb-2 xl:grid-cols-3 xl:pb-0">
+                                        {railItems.map((item, index) => (
                                             <Link
                                                 key={item.id}
                                                 href={item.href}
                                                 className={cn(
-                                                    "group relative block aspect-video snap-start overflow-hidden rounded-[1.25rem] border border-[rgba(16,40,70,0.1)] bg-[linear-gradient(160deg,#dde7f1_0%,#cedaea_48%,#e8eef4_100%)] shadow-[0_20px_36px_-28px_rgba(8,20,33,0.24)]",
+                                                    "group relative block aspect-video overflow-hidden rounded-[1.25rem] border border-[rgba(16,40,70,0.1)] bg-[linear-gradient(160deg,#dde7f1_0%,#cedaea_48%,#e8eef4_100%)] shadow-[0_20px_36px_-28px_rgba(8,20,33,0.24)]",
+                                                    index === 0 ? "col-span-2 xl:col-span-1" : "",
                                                     shouldReduceMotion ? "" : "transition-transform duration-300 xl:hover:-translate-y-1"
                                                 )}
                                             >
@@ -284,11 +229,11 @@ export function HeroSection({
                         </div>
                     </MotionItem>
 
-                    <MotionItem preset="fade-left">
+                    <MotionItem preset="fade-left" className="min-w-0">
                         <motion.figure
                             whileHover={shouldReduceMotion ? undefined : { y: -4 }}
                             transition={publicMotionTokens.hoverSpring}
-                            className="relative overflow-hidden rounded-[1.8rem] border border-[rgba(16,40,70,0.1)] bg-[rgba(252,254,255,0.38)] shadow-[var(--shadow-sm)]"
+                            className="relative min-w-0 overflow-hidden rounded-[1.8rem] border border-[rgba(16,40,70,0.1)] bg-[rgba(252,254,255,0.38)] shadow-[var(--shadow-sm)]"
                         >
                             <div className="relative aspect-[4/5] min-h-[420px] w-full md:min-h-[540px]">
                                 {featuredMedia?.thumbnailUrl ? (
