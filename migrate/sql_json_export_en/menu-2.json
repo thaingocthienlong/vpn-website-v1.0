@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "tenmenu": "Trang chủ",
+    "url": "   trangchu.com",
+    "hien_thi_menu_con": 0
+  },
+  {
+    "id": 2,
+    "tenmenu": "Liên Hệ",
+    "url": "lienhe.com",
+    "hien_thi_menu_con": 1
+  },
+  {
+    "id": 3,
+    "tenmenu": "Giới thiệu",
+    "url": "gioithieu.com",
+    "hien_thi_menu_con": 0
+  },
+  {
+    "id": 4,
+    "tenmenu": "Sản Phẩm",
+    "url": "sanpham.com",
+    "hien_thi_menu_con": 0
+  },
+  {
+    "id": 5,
+    "tenmenu": "Tin tức",
+    "url": "baiviet.com.vn",
+    "hien_thi_menu_con": 0
+  }
+]

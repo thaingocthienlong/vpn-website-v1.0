@@ -43,7 +43,7 @@ export default function AdvisoryBoardPage() {
             id: advisor.id,
             name: advisor.name,
             title: advisor.title,
-            position: advisor.staffType.name,
+            position: null,
             bio: advisor.bio,
             avatar: advisor.avatar ? { url: advisor.avatar, secureUrl: advisor.avatar } : null,
         }));

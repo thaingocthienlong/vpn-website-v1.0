@@ -7,6 +7,7 @@ import {
     getLocale,
     buildPaginationMeta,
 } from "@/lib/api-response";
+import { normalizePreviewText } from "@/lib/preview-text";
 
 function isMissingSqliteTableError(error: unknown) {
     return error instanceof Error && error.message.includes("SQLITE_ERROR: no such table");
@@ -65,14 +66,16 @@ export async function GET(request: NextRequest) {
         // Transform posts based on locale
         const transformedPosts = posts.map((post) => ({
             id: post.id,
-            title: locale === "en" && post.title_en ? post.title_en : post.title,
+            title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
             slug: post.slug,
-            excerpt: locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt,
+            excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
             featuredImage: post.featuredImage?.url || null,
             category: {
-                name: locale === "en" && post.category.name_en
-                    ? post.category.name_en
-                    : post.category.name,
+                name: normalizePreviewText(
+                    locale === "en" && post.category.name_en
+                        ? post.category.name_en
+                        : post.category.name
+                ) || post.category.name,
                 slug: post.category.slug,
             },
             author: { name: post.author.name },

@@ -255,7 +255,7 @@ export function ServicesListPage({
     return (
         <div className="min-h-screen public-shell" data-locale={locale}>
             <Header />
-            <main id="main-content" className="flex-1 pb-20 pt-24 md:pt-28">
+            <main id="main-content" className="public-main-offset flex-1 pb-20">
                 <Container className="space-y-10 md:space-y-12">
                     <PublicRouteHero
                         badge={heroBadge}

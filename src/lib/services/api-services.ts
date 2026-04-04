@@ -4,6 +4,7 @@ import { optimizeCloudinaryUrl, ImageSizes } from "@/lib/cloudinary";
 import { reportServerException } from "@/lib/monitoring/report-server-exception";
 import { unstable_cache } from "next/cache";
 import { getServiceSummaries } from "@/lib/services/site-content";
+import { normalizePreviewText } from "@/lib/preview-text";
 
 type CourseType = "ADMISSION" | "SHORT_COURSE" | "STUDY_ABROAD";
 type HomepageSectionConfig = Record<string, unknown>;
@@ -53,6 +54,53 @@ function hasLocalizedText(...values: Array<string | null | undefined>) {
     return values.some((value) => typeof value === "string" && value.trim().length > 0);
 }
 
+type PostPreviewRecord = {
+    id: string;
+    title: string;
+    title_en: string | null;
+    slug: string;
+    excerpt: string | null;
+    excerpt_en: string | null;
+    publishedAt: Date | null;
+    viewCount: number;
+    isFeatured: boolean;
+    category: {
+        name: string;
+        name_en: string | null;
+        slug: string;
+    };
+    author: {
+        name: string;
+    };
+    featuredImage: {
+        url: string;
+        alt: string | null;
+    } | null;
+};
+
+function mapPostPreview(post: PostPreviewRecord, locale: Locale) {
+    return {
+        id: post.id,
+        title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+        slug: post.slug,
+        excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+        hasEnglishContent: hasLocalizedText(post.title_en, post.excerpt_en),
+        featuredImage: optimizeCloudinaryUrl(post.featuredImage?.url || null, ImageSizes.POST_THUMBNAIL),
+        category: {
+            name: normalizePreviewText(
+                locale === "en" && post.category.name_en
+                    ? post.category.name_en
+                    : post.category.name
+            ) || post.category.name,
+            slug: post.category.slug,
+        },
+        author: { name: post.author.name },
+        publishedAt: post.publishedAt,
+        viewCount: post.viewCount,
+        isFeatured: post.isFeatured,
+    };
+}
+
 /**
  * Service to fetch featured posts directly from the database for SSR
  * Retrieves localized data based on the provided locale
@@ -86,28 +134,77 @@ export async function getFeaturedPosts(locale: Locale = 'vi', limit: number = 4)
             },
         });
 
-        return posts.map((post) => ({
-            id: post.id,
-            title: locale === "en" && post.title_en ? post.title_en : post.title,
-            slug: post.slug,
-            excerpt: locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt,
-            hasEnglishContent: hasLocalizedText(post.title_en, post.excerpt_en),
-            featuredImage: optimizeCloudinaryUrl(post.featuredImage?.url || null, ImageSizes.POST_THUMBNAIL),
-            category: {
-                name: locale === "en" && post.category.name_en
-                    ? post.category.name_en
-                    : post.category.name,
-                slug: post.category.slug,
-            },
-            author: { name: post.author.name },
-            publishedAt: post.publishedAt,
-            viewCount: post.viewCount,
-            isFeatured: post.isFeatured,
-        }));
+        return posts.map((post) => mapPostPreview(post as PostPreviewRecord, locale));
     } catch (error) {
         if (!isMissingSqliteTableError(error)) {
             reportServerException(
                 { area: "api-services.getFeaturedPosts", message: "Error fetching featured posts via service." },
+                error
+            );
+        }
+        return [];
+    }
+}
+
+export async function getHomepageNewsPosts(locale: Locale = "vi", limit: number = 12) {
+    try {
+        if (!(await hasSqliteTable("posts"))) {
+            return [];
+        }
+
+        const featuredPosts = await prisma.post.findMany({
+            where: {
+                isPublished: true,
+                isFeatured: true,
+            },
+            take: limit,
+            orderBy: [{ publishedAt: "desc" }],
+            include: {
+                category: {
+                    select: { name: true, name_en: true, slug: true },
+                },
+                author: {
+                    select: { name: true },
+                },
+                featuredImage: {
+                    select: { url: true, alt: true },
+                },
+            },
+        });
+
+        if (featuredPosts.length >= limit) {
+            return featuredPosts.map((post) => mapPostPreview(post as PostPreviewRecord, locale));
+        }
+
+        const remaining = limit - featuredPosts.length;
+        const featuredIds = featuredPosts.map((post) => post.id);
+        const latestPosts = await prisma.post.findMany({
+            where: {
+                isPublished: true,
+                ...(featuredIds.length > 0 ? { id: { notIn: featuredIds } } : {}),
+            },
+            take: remaining,
+            orderBy: [{ publishedAt: "desc" }],
+            include: {
+                category: {
+                    select: { name: true, name_en: true, slug: true },
+                },
+                author: {
+                    select: { name: true },
+                },
+                featuredImage: {
+                    select: { url: true, alt: true },
+                },
+            },
+        });
+
+        return [...featuredPosts, ...latestPosts].map((post) =>
+            mapPostPreview(post as PostPreviewRecord, locale)
+        );
+    } catch (error) {
+        if (!isMissingSqliteTableError(error)) {
+            reportServerException(
+                { area: "api-services.getHomepageNewsPosts", message: "Error fetching homepage news posts via service." },
                 error
             );
         }
@@ -519,7 +616,7 @@ export async function getHomepageSections(locale: Locale = 'vi') {
 export async function fetchDataForSections(locale: Locale = "vi", sections: HomepageSectionView[] = []) {
     const keys = new Set(sections.map((section) => section.sectionKey));
     const [posts, courses, partners, reviews, services] = await Promise.all([
-        keys.has("news") ? getFeaturedPosts(locale, 4) : Promise.resolve([]),
+        keys.has("news") ? getHomepageNewsPosts(locale, 12) : Promise.resolve([]),
         keys.has("training") || keys.has("hero") ? getFeaturedCourses(locale, 9) : Promise.resolve([]),
         keys.has("partners") ? getActivePartners(locale) : Promise.resolve([]),
         keys.has("reviews") ? getActiveReviews(locale, 6) : Promise.resolve([]),

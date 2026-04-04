@@ -1,0 +1,289 @@
+{
+    "slug": "dau-thau",
+    "name": "ÔN THI NGHIỆP VỤ ĐẤU THẦU",
+    "shortName": "Bồi dưỡng & Ôn thi nghiệp vụ đấu thầu",
+    "heritage": "Viện Phương Nam tổ chức",
+    "defaultProgram": "nvdt",
+    "seo": {
+        "title": "Bồi dưỡng & Ôn thi nghiệp vụ đấu thầu - Viện Phương Nam",
+        "description": "Nhằm hệ thống hoá kiến thức pháp luật đấu thầu theo Luật Đấu thầu 2025 và ôn thi nghiệp vụ chuyên môn. Giảng viên: TS. Đỗ Kiến Vọng. 3 ngày, khai giảng 20/3/2026.",
+        "keywords": "đấu thầu, ôn thi nghiệp vụ đấu thầu, bồi dưỡng đấu thầu, viện phương nam, Luật Đấu thầu 2025"
+    },
+    "programs": {
+        "nvdt": {
+            "title": "<span class=\"lp-hero-title-gold\">BỒI DƯỠNG KIẾN THỨC VÀ ÔN THI NGHIỆP VỤ CHUYÊN MÔN VỀ ĐẤU THẦU</span>",
+            "titlePlain": "Bồi dưỡng & Ôn thi nghiệp vụ đấu thầu",
+            "subtitle": "Khai giảng: 20/3/2026 (thứ 6)",
+            "courseId": "Bồi dưỡng nghiệp vụ đấu thầu",
+            "curriculumTitle": "BỒI DƯỠNG KIẾN THỨC VÀ ÔN THI NGHIỆP VỤ CHUYÊN MÔN VỀ ĐẤU THẦU",
+            "curriculumDesc": "Lớp bồi dưỡng kiến thức pháp luật đấu thầu theo Luật Đấu thầu 2025 & ôn thi nghiệp vụ chuyên môn. Giảng viên: TS. Đỗ Kiến Vọng.",
+            "meta": [
+                {
+                    "icon": "fa-gavel",
+                    "label": "Bồi dưỡng & Ôn thi nghiệp vụ đấu thầu"
+                },
+                {
+                    "icon": "fa-calendar-check",
+                    "label": "Khai giảng: 20/3/2026"
+                },
+                {
+                    "icon": "fa-clock",
+                    "label": "Thời lượng: 3 ngày"
+                },
+                {
+                    "icon": "fa-money-bill-wave",
+                    "label": "Học phí: 2.300.000 đồng"
+                }
+            ],
+            "curriculum": [
+                {
+                    "num": "1",
+                    "title": "Thông tin chung",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li><strong>Khai giảng:</strong> 08h00, <span style=\"color: var(--lp-gold-light); font-weight: 600;\">ngày 20/3/2026 (thứ 6).</span></li>",
+                        "<li><strong>Thời lượng:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">3 ngày</span>, từ 20/3 đến 22/3/2026.</li>",
+                        "<li><strong>Hình thức:</strong> Trực tuyến kết hợp trực tiếp<ul style=\"padding-left: 15px; margin: 5px 0;\"><li>Trực tuyến (online) qua nền tảng Zoom (20/3 và 21/3/2026)</li><li>Trực tiếp (offline) tại Viện Phương Nam (22/3/2026)</li></ul></li>",
+                        "<li><strong>Địa điểm:</strong> 45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. HCM (dự kiến).</li>",
+                        "<li><strong>Giảng viên/Chuyên gia:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">TS. Đỗ Kiến Vọng - Chuyên gia đấu thầu</span>, Viện Chính sách công; Học viện Chính sách và Phát triển, Bộ Tài chính (Giảng viên giàu kinh nghiệm giảng dạy và luyện thi chứng chỉ đấu thầu); Nguyên Phó trưởng Khoa Kinh tế, Trưởng Bộ môn Đấu thầu và Quản lý dự án thuộc Học viện Chính sách và Phát triển - Bộ Tài chính.</li>"
+                    ]
+                },
+                {
+                    "num": "2",
+                    "title": "Học phí, Ưu đãi & Thanh toán",
+                    "items": [
+                        "<li><strong>Học phí:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">2.300.000 đồng/ học viên.</span></li>",
+                        "<li><strong>Ưu đãi:</strong><ul style=\"padding-left: 15px; margin: 5px 0;\"><li>Hoàn tất học phí <strong>trước 03/3/2026:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">giảm 10% học phí.</span></li><li>Hoàn tất học phí theo nhóm <strong>từ 5 người trở lên:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">giảm 5% học phí.</span></li></ul></li>",
+                        "<li><strong>Thanh toán:</strong> Chuyển khoản<div style=\"background-color: rgba(212, 175, 55, 0.05); padding: 15px; border-left: 4px solid var(--lp-gold-light); border-radius: 4px; margin-top: 10px;\">Tên tài khoản: <strong style=\"color: var(--lp-gold-light);\">VIEN PHAT TRIEN NGUON LUC XA HOI PHUONG NAM</strong><br>Số tài khoản: <strong style=\"color: var(--lp-gold-light); font-size: 1.1em; letter-spacing: 1px;\">2242 6789</strong> - Ngân hàng TMCP Phương Đông (OCB), CN Tân Thuận<br>Nội dung chuyển khoản: <strong style=\"color: var(--lp-gold-light);\"><em>Họ tên - SĐT - NVDT01.26</em></strong></div></li>",
+                        "<li><em style=\"opacity: 0.8; font-size: 0.85rem;\">*Lưu ý: Học phí sẽ không được hoàn lại sau khi lớp học đã khai giảng hoặc có kế hoạch học tập.</em></li>"
+                    ]
+                },
+                {
+                    "num": "3",
+                    "title": "Đối tượng tham gia",
+                    "items": [
+                        "<li>Cá nhân tham gia hoạt động đấu thầu tại cơ quan có thẩm quyền, chủ đầu tư, bên mời thầu, bên mời quan tâm; Hội đồng tư vấn giải quyết kiến nghị; cơ quan kiểm tra, giám sát;</li>",
+                        "<li>Nhân sự Ban quản lý dự án;</li>",
+                        "<li>Cá nhân thuộc đơn vị mua sắm tập trung chuyên trách;</li>",
+                        "<li>Thành viên tổ chuyên gia, tổ thẩm định trong lựa chọn nhà thầu, nhà đầu tư;</li>",
+                        "<li>Người có thẩm quyền trong đấu thầu: ký tờ trình, thẩm định, phê duyệt hồ sơ mời thầu, hồ sơ yêu cầu, quyết định chỉ định thầu, phê duyệt kết quả lựa chọn nhà thầu;</li>",
+                        "<li>Cá nhân khác có nhu cầu bồi dưỡng kiến thức và dự thi cấp chứng chỉ nghiệp vụ chuyên môn về đấu thầu.</li>"
+                    ]
+                },
+                {
+                    "num": "4",
+                    "title": "Nội dung chuyên đề",
+                    "items": [
+                        "<li>Nội dung gồm <span style=\"color: var(--lp-gold-light); font-weight: 600;\">09 chuyên đề</span>, chi tiết xem tại <a href=\"https://drive.google.com/file/d/1PlCfXPL1m8651gdcwle20IKBoO9oGx7c/view?usp=sharing\" target=\"_blank\" style=\"color: var(--lp-gold-light);\">Thông báo chính thức</a>.</li>",
+                        "<li>Phụ lục đính kèm bên dưới trang.</li>",
+                        "<li><strong>Đặc biệt:</strong> Học viên được giảng viên hướng dẫn giải đáp ngân hàng đề thi, thực hành luyện đề thi, sát với nội dung đề thi cấp Chứng chỉ chuyên môn nghiệp vụ đấu thầu của Bộ Tài chính.</li>"
+                    ]
+                },
+                {
+                    "num": "5",
+                    "title": "Hình thức đăng ký",
+                    "items": [
+                        "<li>Đăng ký trực tiếp tại Viện Phương Nam - Số 45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. Hồ Chí Minh.</li>",
+                        "<li>Hoặc điền thông tin đăng ký tư vấn miễn phí bên dưới.</li>",
+                        "<li><strong>Hạn chót đăng ký và hoàn tất học phí:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Ngày 12/3/2026.</span></li>"
+                    ]
+                },
+                {
+                    "num": "6",
+                    "title": "Liên hệ tư vấn",
+                    "items": [
+                        "<li>Liên hệ: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">0912 114 511 (cô Thảo) - 0949 761 636 (cô Vy)</span></li>",
+                        "<li>Website: <a href=\"http://www.vienphuongnam.com.vn\" target=\"_blank\" style=\"color: var(--lp-gold-light);\">www.vienphuongnam.com.vn</a></li>"
+                    ]
+                }
+            ],
+            "faq": [
+                {
+                    "q": "Khoá học này dành cho ai?",
+                    "a": "Dành cho cá nhân tham gia hoạt động đấu thầu, nhân sự Ban QLDA, thành viên tổ chuyên gia thẩm định, người có thẩm quyền phê duyệt HSMT/HSYC, và bất kỳ ai cần chứng chỉ NV đấu thầu."
+                },
+                {
+                    "q": "Thời gian và hình thức học?",
+                    "a": "3 ngày, từ 20/3 đến 22/3/2026. Ngày 20-21: Trực tuyến. Ngày 22: Trực tiếp tại Viện Phương Nam, TP.HCM."
+                },
+                {
+                    "q": "Học phí và ưu đãi?",
+                    "a": "2.300.000 đồng/ học viên (Chưa bao gồm lệ phí thi cấp chứng chỉ). Giảm 10% học phí nếu hoàn tất trước 03/3/2026. Giảm 5% học phí cho nhóm từ 5 người trở lên."
+                },
+                {
+                    "q": "Giảng viên là ai?",
+                    "a": "TS. Đỗ Kiến Vọng - Chuyên gia đấu thầu, Viện Chính sách công; Học viện Chính sách và Phát triển, Bộ Tài chính. Giảng viên giàu kinh nghiệm giảng dạy và luyện thi chứng chỉ đấu thầu."
+                }
+            ],
+            "phuluc": {
+                "title": "CHƯƠNG TRÌNH BỒI DƯỠNG KIẾN THỨC VÀ ÔN THI CHỨNG CHỈ CHUYÊN MÔN NGHIỆP VỤ ĐẤU THẦU",
+                "description": "Đính kèm Thông báo số 02/2026/TB-VPN ngày 12 tháng 02 năm 2026",
+                "sections": [
+                    {
+                        "num": "1",
+                        "title": "Chuyên đề 1: Quy định chung về Chứng chỉ Bồi dưỡng Chuyên môn nghiệp vụ đấu thầu và Lưu ý đối với học viên tham dự thi",
+                        "items": [
+                            "Khái quát về Chứng chỉ Bồi dưỡng Chuyên môn nghiệp vụ đấu thầu",
+                            "Tổng quan về Nội dung, hình thức tổ chức thi cấp Chứng chỉ chuyên môn nghiệp vụ đấu thầu",
+                            "Quy định và yêu cầu đối với học viên tham dự khoá học và kỳ thi",
+                            "Hướng dẫn quy trình và đăng ký tham dự kỳ thi Chứng chỉ chuyên môn nghiệp vụ đấu thầu",
+                            "Giới thiệu Ngân hàng Đề thi ôn thi chứng chỉ chuyên môn nghiệp vụ về đấu thầu lựa chọn nhà thầu và Phần mềm, tài liệu phục vụ luyện thi theo Ngân hàng đề thi của Cục Quản lý đấu thầu",
+                            "Lưu ý đối với học viên tham dự thi"
+                        ]
+                    },
+                    {
+                        "num": "2",
+                        "title": "Chuyên đề 2: Tổng hợp kiến thức chung về đấu thầu",
+                        "items": [
+                            "Hướng dẫn các quy định liên quan đến kỳ thi: hướng dẫn đăng ký thi, cách thức thi, nội dung ôn tập...",
+                            "Khung pháp lý về đấu thầu;",
+                            "Các quy định chung trong lựa chọn nhà thầu:<ul><li>Trách nhiệm của các bên tham gia vào quá trình tổ chức lựa chọn nhà thầu;</li><li>Bảo đảm cạnh tranh trong đấu thầu;</li><li>Các hành vi bị cấm và xử lý vi phạm trong đấu thầu;</li><li>Trao đổi, thảo luận.</li></ul>"
+                        ],
+                        "testNote": "Bài thi thử số 01"
+                    },
+                    {
+                        "num": "3",
+                        "title": "Chuyên đề 3: Kế hoạch lựa chọn nhà thầu",
+                        "items": [
+                            "Nguyên tắc lập kế hoạch lựa chọn nhà thầu",
+                            "Hướng dẫn lập, trình, thẩm định, phê duyệt Kế hoạch lựa chọn nhà thầu",
+                            "Hướng dẫn đăng tải kế hoạch lựa chọn nhà thầu",
+                            "Trao đổi, thảo luận"
+                        ],
+                        "testNote": "Bài thi thử số 02"
+                    },
+                    {
+                        "num": "4",
+                        "title": "Chuyên đề 4: Quy trình tổ chức lựa chọn nhà thầu, lập Hồ sơ mời thầu, đánh giá Hồ sơ dự thầu",
+                        "items": [
+                            "Quy trình đấu thầu rộng rãi, đấu thầu hạn chế theo phương thức 1 giai đoạn 1 túi hồ sơ; quy trình chào hàng cạnh tranh.",
+                            "Quy trình đấu thầu rộng rãi, đấu thầu hạn chế theo phương thức 1 giai đoạn 2 túi hồ sơ.",
+                            "Các quy trình khác: Chỉ định thầu, mua sắm trực tiếp, tự thực hiện, chào giá trực tuyến, mua sắm trực tuyến, lựa chọn nhà thầu tư vấn cá nhân.",
+                            "Những nội dung cần lưu ý trong quá trình lập Hồ sơ mời thầu.",
+                            "Lưu ý khi thẩm định và phê duyệt Hồ sơ mời thầu.",
+                            "Những nội dung cần lưu ý trong quá trình đánh giá hồ sơ dự thầu",
+                            "Trao đổi thảo luận"
+                        ],
+                        "testNote": "Bài thi thử số 03"
+                    },
+                    {
+                        "num": "5",
+                        "title": "Chuyên đề 5: Hệ thống các quy định về:",
+                        "items": [
+                            "Mua sắm tập trung",
+                            "Mua sắm thuộc dự toán mua sắm",
+                            "Mua sắm lĩnh vực y tế",
+                            "Trao đổi, thảo luận"
+                        ],
+                        "testNote": "Bài thi thử số 04"
+                    },
+                    {
+                        "num": "6",
+                        "title": "Chuyên đề 6: Đấu thầu qua mạng",
+                        "items": [
+                            "Giới thiệu Hệ thống mạng đấu thầu quốc gia",
+                            "Tổng quan về đấu thầu qua mạng tổ chức lựa chọn nhà thầu trên Hệ thống mạng đấu thầu quốc gia",
+                            "Hệ thống các quy định về đấu thầu qua mạng",
+                            "Trao đổi, thảo luận"
+                        ],
+                        "testNote": "Bài thi thử số 05"
+                    },
+                    {
+                        "num": "7",
+                        "title": "Chuyên đề 7: Hợp đồng",
+                        "items": [
+                            "Các loại hợp đồng",
+                            "Điều kiện ký kết hợp đồng",
+                            "Nguyên tắc thực hiện hợp đồng",
+                            "Sửa đổi hợp đồng",
+                            "Điều chỉnh giá hợp đồng",
+                            "Quản lý thực hiện hợp đồng",
+                            "Thanh toán hợp đồng",
+                            "Thanh lý hợp đồng",
+                            "Uy tín của nhà thầu trong việc tham dự thầu, kết quả thực hiện hợp đồng của nhà thầu, đánh giá chất lượng hàng hóa đã sử dụng."
+                        ],
+                        "testNote": "Bài thi thử số 06"
+                    },
+                    {
+                        "num": "8",
+                        "title": "Chuyên đề 8: Xử lý tình huống trong đấu thầu",
+                        "items": [
+                            "Các quy định về xử lý tình huống trong đấu thầu",
+                            "Nguyên tắc xử lý tình huống trong đấu thầu",
+                            "Một số tình huống thường gặp trong đấu thầu"
+                        ],
+                        "testNote": "Bài thi thử số 07"
+                    },
+                    {
+                        "num": "9",
+                        "title": "Chuyên đề 9: Thanh tra, kiểm tra, giám sát hoạt động đấu thầu và giải quyết kiến nghị trong đấu thầu",
+                        "items": [
+                            "Tổng quan về thanh tra, kiểm tra, giám sát hoạt động đấu thầu",
+                            "Kiểm tra hoạt động đấu thầu",
+                            "Giám sát hoạt động đấu thầu",
+                            "Giải quyết kiến nghị trong đấu thầu",
+                            "Quy trình giải quyết kiến nghị về lựa chọn nhà thầu"
+                        ],
+                        "testNote": "Bài thi thử số 08"
+                    },
+                    {
+                        "num": "★",
+                        "title": "* Chuyên đề đặc biệt",
+                        "special": true,
+                        "items": [
+                            "Chữa và giải đáp các vấn đề liên quan đến câu hỏi thi thuộc Ngân hàng đề thi chứng chỉ nghiệp vụ chuyên môn về đấu thầu lựa chọn nhà thầu.",
+                            "Trao đổi, thảo luận và giải đáp thắc mắc, xử lý tình huống Đấu thầu gặp phải trong thực tế.",
+                            "Làm bài kiểm tra trắc nghiệm cuối khoá."
+                        ]
+                    }
+                ]
+            },
+            "contact": {
+                "phones": [
+                    {
+                        "number": "0912114511",
+                        "display": "0912 114 511",
+                        "name": "cô Thảo"
+                    },
+                    {
+                        "number": "0949761636",
+                        "display": "0949 761 636",
+                        "name": "cô Vy"
+                    }
+                ]
+            }
+        }
+    },
+    "benefits": [
+        {
+            "icon": "fa-user-tie",
+            "title": "Chuyên gia hàng đầu",
+            "desc": "TS. Đỗ Kiến Vọng - Chuyên gia đấu thầu, giàu kinh nghiệm luyện thi chứng chỉ tại Bộ Tài chính."
+        },
+        {
+            "icon": "fa-gavel",
+            "title": "Nội dung sát thực tế",
+            "desc": "Hệ thống hoá kiến thức theo Luật Đấu thầu 2025, Nghị định và Thông tư mới nhất."
+        },
+        {
+            "icon": "fa-pen-to-square",
+            "title": "Luyện thi hiệu quả",
+            "desc": "Thực hành luyện đề thi sát nội dung đề thi cấp Chứng chỉ chuyên môn nghiệp vụ đấu thầu của Bộ Tài chính."
+        },
+        {
+            "icon": "fa-clock",
+            "title": "Chương trình cô đọng",
+            "desc": "Tổng hợp 09 chuyên đề trong 3 ngày, tiết kiệm thời gian tối đa."
+        },
+        {
+            "icon": "fa-hand-holding-dollar",
+            "title": "Ưu đãi hấp dẫn",
+            "desc": "Giảm 10% khi đóng sớm trước 03/3/2026. Giảm 5% khi đăng ký theo nhóm 5 người."
+        },
+        {
+            "icon": "fa-laptop",
+            "title": "Học trực tuyến kết hợp trực tiếp",
+            "desc": "2 ngày học trực tuyến qua Zoom và 1 ngày học trực tiếp tại Viện Phương Nam."
+        }
+    ]
+}

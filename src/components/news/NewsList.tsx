@@ -22,12 +22,23 @@ interface NewsListProps {
     posts: Post[];
     showFeatured?: boolean;
     locale?: "vi" | "en";
+    columns?: 2 | 3;
+    layout?: "grid" | "rows";
 }
 
-export function NewsList({ posts, showFeatured = true, locale = "vi" }: NewsListProps) {
+export function NewsList({
+    posts,
+    showFeatured = true,
+    locale = "vi",
+    columns = 3,
+    layout = "grid",
+}: NewsListProps) {
     const isEn = locale === "en";
     const featured = showFeatured ? posts.filter((p) => p.isFeatured) : [];
     const regular = showFeatured ? posts.filter((p) => !p.isFeatured) : posts;
+    const regularGridClass = columns === 2
+        ? "grid grid-cols-1 gap-5 md:grid-cols-2"
+        : "grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3";
 
     if (posts.length === 0) {
         return (
@@ -47,6 +58,18 @@ export function NewsList({ posts, showFeatured = true, locale = "vi" }: NewsList
 
     const leadFeatured = featured[0];
     const otherFeatured = featured.slice(1);
+
+    if (layout === "rows") {
+        return (
+            <div className="public-panel rounded-[2.2rem] px-5 py-6 sm:px-7 sm:py-8 lg:px-9">
+                <div className="divide-y divide-[rgba(26,72,164,0.14)]">
+                    {posts.map((post) => (
+                        <NewsCard key={post.id} post={post} variant="row" locale={locale} />
+                    ))}
+                </div>
+            </div>
+        );
+    }
 
     return (
         <div className="space-y-10">
@@ -73,7 +96,7 @@ export function NewsList({ posts, showFeatured = true, locale = "vi" }: NewsList
                             {isEn ? "Latest Posts" : "Bài viết mới nhất"}
                         </h2>
                     )}
-                    <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+                    <div className={regularGridClass}>
                         {regular.map((post) => (
                             <NewsCard key={post.id} post={post} locale={locale} />
                         ))}

@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 0,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "tieude": "Sign up for consultation",
+    "mieutangan": "<p style=\"text-align:center\">Please leave your information below, a consultant from Phuong Nam Institute will contact you for detailed advice as soon as possible.</p>\r\n",
+    "hinhnen": "",
+    "mauchu": "",
+    "thuoctinhbgd": "repeat",
+    "limitbgd": 0
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "hinhnen": "",
+    "mauchu": "",
+    "thuoctinhbgd": "",
+    "limitbgd": 0
+  }
+]

@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "tieude": "Mission ",
+    "mieutangan": "<p>HL1711366438</p>\r\n",
+    "lienket": "",
+    "anhdaidien": "",
+    "hinhnen": "",
+    "thuoctinhbgd": "repeat",
+    "mauchu": "",
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "limitbgd": 0,
+    "subtieude": "",
+    "titlelienket": "",
+    "mieutathem": ""
+  },
+  {
+    "id": 3,
+    "name": "Bật module",
+    "trangthai": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "lienket": "",
+    "anhdaidien": "",
+    "hinhnen": "",
+    "thuoctinhbgd": "",
+    "mauchu": "",
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "limitbgd": 0,
+    "subtieude": "",
+    "titlelienket": "",
+    "mieutathem": ""
+  }
+]

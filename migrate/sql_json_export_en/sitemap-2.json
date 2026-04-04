@@ -1,0 +1,209 @@
+[
+  {
+    "id": 1,
+    "loc": "training-facility",
+    "duongdan_cuoi": "training-facility",
+    "lastmod": "2024-12-06T11:44:48+01:00",
+    "priority": 0.5,
+    "name": "Training facility",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 2,
+    "loc": "scientific-advisory-council",
+    "duongdan_cuoi": "scientific-advisory-council",
+    "lastmod": "2024-12-06T11:16:09+01:00",
+    "priority": 0.5,
+    "name": "Scientific Advisory Council",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 3,
+    "loc": "human-resources-institute-of-the-south",
+    "duongdan_cuoi": "human-resources-institute-of-the-south",
+    "lastmod": "2024-12-06T11:44:14+01:00",
+    "priority": 0.5,
+    "name": "Human Resources Institute of the South",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 4,
+    "loc": "message-from-the-director",
+    "duongdan_cuoi": "message-from-the-director",
+    "lastmod": "2024-12-06T11:43:31+01:00",
+    "priority": 0.5,
+    "name": "Message from the Director",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 5,
+    "loc": "general-introduction",
+    "duongdan_cuoi": "general-introduction",
+    "lastmod": "2024-12-06T11:43:05+01:00",
+    "priority": 0.5,
+    "name": "General introduction",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 6,
+    "loc": "about-phuong-nam",
+    "duongdan_cuoi": "about-phuong-nam",
+    "lastmod": "2024-03-26T14:38:24+01:00",
+    "priority": 0.5,
+    "name": "About Phuong Nam",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 7,
+    "loc": "training-program",
+    "duongdan_cuoi": "training-program",
+    "lastmod": "2024-03-13T12:44:21+01:00",
+    "priority": 0.5,
+    "name": "Training program",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 8,
+    "loc": "author",
+    "duongdan_cuoi": "author",
+    "lastmod": "2024-12-06T11:40:45+01:00",
+    "priority": 0.5,
+    "name": "Author",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 9,
+    "loc": "support",
+    "duongdan_cuoi": "support",
+    "lastmod": "2024-12-06T11:20:34+01:00",
+    "priority": 0.5,
+    "name": "Support",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 10,
+    "loc": "",
+    "duongdan_cuoi": "",
+    "lastmod": "2023-05-14T23:16:14+02:00",
+    "priority": 0.5,
+    "name": "Trang chủ",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 11,
+    "loc": "privacy-policy",
+    "duongdan_cuoi": "privacy-policy",
+    "lastmod": "2024-12-06T11:19:58+01:00",
+    "priority": 0.5,
+    "name": "Privacy policy",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 12,
+    "loc": "contact",
+    "duongdan_cuoi": "contact",
+    "lastmod": "2024-04-07T10:34:16+02:00",
+    "priority": 0.5,
+    "name": "Contact",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 13,
+    "loc": "video",
+    "duongdan_cuoi": "video",
+    "lastmod": "2023-10-31T18:27:52+01:00",
+    "priority": 0.5,
+    "name": "Video",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 14,
+    "loc": "article",
+    "duongdan_cuoi": "article",
+    "lastmod": "2023-05-14T23:16:14+02:00",
+    "priority": 0.5,
+    "name": "Article",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 15,
+    "loc": "service",
+    "duongdan_cuoi": "service",
+    "lastmod": "2024-02-28T16:50:46+01:00",
+    "priority": 0.5,
+    "name": "Service",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 16,
+    "loc": "news/nam-bo-oc-kiet-xuat-se-toi-viet-nam-vao-thang-12",
+    "duongdan_cuoi": "nam-bo-oc-kiet-xuat-se-toi-viet-nam-vao-thang-12",
+    "lastmod": "2024-11-27T17:49:18+01:00",
+    "priority": 0.5,
+    "name": "Năm bộ óc kiệt xuất sẽ tới Việt Nam vào tháng 12",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 17,
+    "loc": "news/xep-hang-thanh-tuu-bai-bao-nghien-cuu-cua-cac-dai-hoc-viet-nam-trong-nua-dau-nam-2024",
+    "duongdan_cuoi": "xep-hang-thanh-tuu-bai-bao-nghien-cuu-cua-cac-dai-hoc-viet-nam-trong-nua-dau-nam-2024",
+    "lastmod": "2024-11-27T11:30:39+01:00",
+    "priority": 0.5,
+    "name": "Xếp hạng thành tựu bài báo nghiên cứu của các đại học Việt Nam trong nửa đầu năm 2024",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 18,
+    "loc": "news/vai-tro-cua-doi-ngu-tri-thuc-o-co-so-gddh-voi-cuoc-cach-mang-chuyen-doi-so",
+    "duongdan_cuoi": "vai-tro-cua-doi-ngu-tri-thuc-o-co-so-gddh-voi-cuoc-cach-mang-chuyen-doi-so",
+    "lastmod": "2024-11-25T11:37:01+01:00",
+    "priority": 0.5,
+    "name": "Vai trò của đội ngũ trí thức ở cơ sở GDĐH với cuộc cách mạng chuyển đổi số",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 19,
+    "loc": "news/khoa-hoc-ve-phuong-phap-nghien-cuu-khoa-hoc-va-cong-bo-quoc-te-1",
+    "duongdan_cuoi": "khoa-hoc-ve-phuong-phap-nghien-cuu-khoa-hoc-va-cong-bo-quoc-te-1",
+    "lastmod": "2024-11-26T15:03:12+01:00",
+    "priority": 0.5,
+    "name": "Khóa học về phương pháp nghiên cứu khoa học và công bố quốc tế",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 20,
+    "loc": "news/-ky-niem-42-nam-ngay-nha-giao-viet-nam-2011-",
+    "duongdan_cuoi": "-ky-niem-42-nam-ngay-nha-giao-viet-nam-2011-",
+    "lastmod": "2024-11-16T11:41:08+01:00",
+    "priority": 0.5,
+    "name": "KỶ NIỆM 42 NĂM NGÀY NHÀ GIÁO VIỆT NAM 20/11",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 21,
+    "loc": "news/keo-dai-thoi-gian-lam-viec-cua-gs-pgs-thuan-loi-cho-ca-nguoi-hoc-va-nha-truong",
+    "duongdan_cuoi": "keo-dai-thoi-gian-lam-viec-cua-gs-pgs-thuan-loi-cho-ca-nguoi-hoc-va-nha-truong",
+    "lastmod": "2024-11-15T09:10:46+01:00",
+    "priority": 0.5,
+    "name": "Kéo dài thời gian làm việc của GS, PGS thuận lợi cho cả người học và nhà trường",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 22,
+    "loc": "news/khoa-hoc-ve-phuong-phap-nghien-cuu-khoa-hoc-va-cong-bo-quoc-te",
+    "duongdan_cuoi": "khoa-hoc-ve-phuong-phap-nghien-cuu-khoa-hoc-va-cong-bo-quoc-te",
+    "lastmod": "2024-11-12T14:58:59+01:00",
+    "priority": 0.5,
+    "name": "Khoá học về “Phương Pháp Nghiên Cứu Khoa Học và Công Bố Quốc Tế”",
+    "changefreq": "weekly"
+  },
+  {
+    "id": 23,
+    "loc": "news/giai-phap-xu-ly-tinh-huong-bai-bao-khoa-hoc-quoc-te-bi-rut",
+    "duongdan_cuoi": "giai-phap-xu-ly-tinh-huong-bai-bao-khoa-hoc-quoc-te-bi-rut",
+    "lastmod": "2024-10-30T10:03:16+01:00",
+    "priority": 0.5,
+    "name": "Giải pháp xử lý tình huống bài báo khoa học quốc tế bị rút",
+    "changefreq": "weekly"
+  }
+]

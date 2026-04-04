@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { requireAdmin, jsonSuccess, jsonError } from "@/lib/admin-auth";
+import { revalidateSiteConfig } from "@/lib/admin/revalidation";
 
 /**
  * GET /api/admin/settings
@@ -83,6 +84,7 @@ export async function POST(request: NextRequest) {
 
         await prisma.$transaction(updates);
 
+        revalidateSiteConfig();
         return jsonSuccess({ message: "Settings updated successfully" });
     } catch (error) {
         console.error("Error updating settings:", error);

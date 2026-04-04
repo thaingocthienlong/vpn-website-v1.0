@@ -15,14 +15,26 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "images.unsplash.com",
+        pathname: "/**",
+        search: "",
       },
       {
         protocol: "https",
         hostname: "i.ibb.co",
+        pathname: "/**",
+        search: "",
       },
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
+        pathname: "/**",
+        search: "",
+      },
+      {
+        protocol: "https",
+        hostname: "cafefcdn.com",
+        pathname: "/**",
+        search: "",
       },
     ],
   },

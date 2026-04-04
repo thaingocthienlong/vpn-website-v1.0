@@ -181,11 +181,15 @@ export function NewsArticlePageClient({
             icon={WarningCircle}
             title={errorTitle}
             description={errorDescription}
+            density="compact"
+            className="mx-auto max-w-2xl"
         />
     ) : !post ? (
         <PublicStatePanel
             icon={MagnifyingGlass}
             title={notFoundTitle}
+            density="compact"
+            className="mx-auto max-w-2xl"
             action={(
                 <Button asChild>
                     <Link href={basePath}>{backToNewsLabel}</Link>

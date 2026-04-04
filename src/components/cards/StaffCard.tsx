@@ -23,7 +23,7 @@ interface StaffCardProps {
 
 export function StaffCard({ person, variant = "default", className }: StaffCardProps) {
     const isLarge = variant === "large";
-    const roleLabel = person.position || person.title;
+    const roleLabel = person.position && person.position !== person.title ? person.position : null;
     const avatarUrl = person.avatar?.secureUrl || person.avatar?.url;
 
     return (

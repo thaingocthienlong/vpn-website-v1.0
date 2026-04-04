@@ -134,8 +134,8 @@
     },
     {
       "table": "customers",
-      "expected": 22,
-      "exported": 22,
+      "expected": 23,
+      "exported": 23,
       "status": "PASS",
       "file": "customers.json"
     },
@@ -169,15 +169,15 @@
     },
     {
       "table": "doitac",
-      "expected": 35,
-      "exported": 35,
+      "expected": 36,
+      "exported": 36,
       "status": "PASS",
       "file": "doitac.json"
     },
     {
       "table": "donvilienket",
-      "expected": 35,
-      "exported": 35,
+      "expected": 36,
+      "exported": 36,
       "status": "PASS",
       "file": "donvilienket.json"
     },
@@ -204,8 +204,8 @@
     },
     {
       "table": "hosomoitruong",
-      "expected": 19,
-      "exported": 19,
+      "expected": 23,
+      "exported": 23,
       "status": "PASS",
       "file": "hosomoitruong.json"
     },
@@ -610,8 +610,8 @@
     },
     {
       "table": "post",
-      "expected": 113,
-      "exported": 113,
+      "expected": 117,
+      "exported": 117,
       "status": "PASS",
       "file": "post.json"
     },
@@ -715,8 +715,8 @@
     },
     {
       "table": "video",
-      "expected": 20,
-      "exported": 20,
+      "expected": 22,
+      "exported": 22,
       "status": "PASS",
       "file": "video.json"
     }

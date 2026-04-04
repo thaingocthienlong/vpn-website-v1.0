@@ -126,13 +126,11 @@ export default async function CourseDetailPage({ params }: PageProps) {
                         </h2>
                     </div>
                     <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {relatedCourses.map((related, index) => (
+                        {relatedCourses.map((related) => (
                             <Link
                                 key={related.id}
                                 href={`/dao-tao/${related.slug}`}
-                                className={`public-panel interactive-card group overflow-hidden rounded-[2rem] ${
-                                    index % 3 === 1 ? "xl:translate-y-6" : ""
-                                }`}
+                                className="public-panel interactive-card group overflow-hidden rounded-[2rem]"
                             >
                                 <div className="relative aspect-[16/10] overflow-hidden rounded-[1.5rem] bg-[rgba(23,88,216,0.08)]">
                                     {related.featuredImage ? (

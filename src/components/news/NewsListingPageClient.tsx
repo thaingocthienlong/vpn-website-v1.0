@@ -51,6 +51,10 @@ interface NewsListingPageClientProps {
     errorTitle: string;
     errorDescription?: string;
     filterMode?: "links" | "state";
+    postsPerPage?: number;
+    showFeatured?: boolean;
+    gridColumns?: 2 | 3;
+    listLayout?: "grid" | "rows";
 }
 
 function createPageUrl(basePath: string, page: number) {
@@ -70,6 +74,10 @@ export function NewsListingPageClient({
     errorTitle,
     errorDescription,
     filterMode = "links",
+    postsPerPage: postsPerPageProp,
+    showFeatured: showFeaturedProp,
+    gridColumns = 3,
+    listLayout = "grid",
 }: NewsListingPageClientProps) {
     const searchParams = useSearchParams();
     const router = useRouter();
@@ -83,7 +91,8 @@ export function NewsListingPageClient({
     const [page, setPage] = useState(Number.isFinite(initialPage) && initialPage > 0 ? initialPage : 1);
     const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
     const [totalPages, setTotalPages] = useState(1);
-    const postsPerPage = filterMode === "state" ? 9 : 12;
+    const postsPerPage = postsPerPageProp ?? (filterMode === "state" ? 9 : 12);
+    const showFeatured = showFeaturedProp ?? filterMode !== "state";
 
     useEffect(() => {
         const nextPage = Number(searchParams.get("page") || "1");
@@ -270,7 +279,7 @@ export function NewsListingPageClient({
     );
 
     const main = loading ? (
-        <NewsCardSkeleton count={postsPerPage} />
+        <NewsCardSkeleton count={postsPerPage} columns={gridColumns} layout={listLayout} />
     ) : hasError ? (
         <PublicStatePanel
             icon={WarningCircle}
@@ -285,7 +294,13 @@ export function NewsListingPageClient({
         />
     ) : (
         <div className="space-y-8">
-            <NewsList posts={posts} showFeatured={filterMode !== "state"} locale={locale} />
+            <NewsList
+                posts={posts}
+                showFeatured={showFeatured}
+                locale={locale}
+                columns={gridColumns}
+                layout={listLayout}
+            />
             {totalPages > 1 && (
                 <NewsPagination
                     currentPage={page}

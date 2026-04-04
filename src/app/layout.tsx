@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { OptionalClerkProvider } from "@/components/providers/OptionalClerkProvider";
+import { SiteLayoutProvider } from "@/components/providers/SiteLayoutProvider";
+import { getSiteLayout } from "@/lib/services/site-content";
 import "./globals.css";
 
 // Momo Trust Sans — body text (variable font)
@@ -36,11 +38,16 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const [viSiteLayout, enSiteLayout] = await Promise.all([
+    getSiteLayout("vi"),
+    getSiteLayout("en"),
+  ]);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -80,9 +87,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
         <OptionalClerkProvider>
-          <div className="public-shell relative z-10">
-            {children}
-          </div>
+          <SiteLayoutProvider value={{ vi: viSiteLayout, en: enSiteLayout }}>
+            <div className="public-shell relative z-10">
+              {children}
+            </div>
+          </SiteLayoutProvider>
         </OptionalClerkProvider>
       </body>
     </html>

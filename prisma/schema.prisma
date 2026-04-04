@@ -329,6 +329,90 @@ model ContactForm {
   @@map("contact_forms")
 }
 
+model LandingCampaign {
+  id                  String           @id @default(uuid())
+  slug                String           @unique
+  name                String
+  shortName           String?
+  heritage            String?
+  selectorDescription String?
+  selectorTag         String?
+  logoUrl             String?
+  hotline             String?
+  contactEmail        String?
+  contactAddress      String?
+  seoTitle            String?
+  seoDescription      String?
+  seoKeywords         String?
+  defaultProgramSlug  String?
+  socialJson          String?
+  contentJson         String?
+  isSelectorVisible   Boolean          @default(true)
+  isPublished         Boolean          @default(false)
+  sortOrder           Int              @default(0)
+  createdAt           DateTime         @default(now())
+  updatedAt           DateTime         @updatedAt
+
+  programs LandingProgram[]
+  leads    LandingLead[]
+
+  @@map("landing_campaigns")
+}
+
+model LandingProgram {
+  id          String          @id @default(uuid())
+  campaignId  String
+  slug        String
+  title       String
+  titlePlain  String?
+  subtitle    String?
+  courseLabel String?
+  contentJson String
+  sortOrder   Int             @default(0)
+  isDefault   Boolean         @default(false)
+  isPublished Boolean         @default(true)
+  createdAt   DateTime        @default(now())
+  updatedAt   DateTime        @updatedAt
+
+  campaign LandingCampaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  leads    LandingLead[]
+
+  @@unique([campaignId, slug])
+  @@map("landing_programs")
+}
+
+model LandingLead {
+  id                   String          @id @default(uuid())
+  campaignId           String
+  programId            String
+  fullName             String
+  firstName            String
+  lastName             String
+  phone                String
+  email                String
+  gender               String?
+  birthday             String?
+  province             String?
+  position             String?
+  workplace            String?
+  discoverySource      String?
+  discoverySourceOther String?
+  certificatesJson     String?
+  sourceUrl            String?
+  status               String          @default("NEW")
+  sheetsSyncStatus     String          @default("PENDING")
+  submittedAt          DateTime        @default(now())
+  createdAt            DateTime        @default(now())
+  updatedAt            DateTime        @updatedAt
+
+  campaign LandingCampaign @relation(fields: [campaignId], references: [id], onDelete: Cascade)
+  program  LandingProgram  @relation(fields: [programId], references: [id], onDelete: Cascade)
+
+  @@index([campaignId, submittedAt])
+  @@index([programId, submittedAt])
+  @@map("landing_leads")
+}
+
 model Media {
   id           String   @id @default(uuid())
   publicId     String?  @unique

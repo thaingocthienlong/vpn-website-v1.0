@@ -1,0 +1,6 @@
+[
+  {
+    "id": 1,
+    "noidung": "User-agent: *\r\nDisallow: /cgi-bin/\r\nDisallow: /?sort-product=*\r\nDisallow: /?sort\r\nDisallow: /?page=\r\nDisallow: /?page=*\r\nDisallow: /admin/\r\nDisallow: /cnv/\r\nAllow: /uploads/*\r\nAllow: /saigoncms/*\r\nSitemap: https://en.vienphuongnam.com.vn/sitemap.xml"
+  }
+]

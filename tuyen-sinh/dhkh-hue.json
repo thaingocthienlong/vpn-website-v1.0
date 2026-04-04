@@ -1,0 +1,272 @@
+{
+    "slug": "dhkh-hue",
+    "name": "CÔNG TÁC XÃ HỘI & QUẢN LÝ VĂN HOÁ",
+    "shortName": "ĐHKH Huế",
+    "heritage": "Đại học Khoa học, Đại học Huế & Viện Phương Nam",
+    "defaultProgram": "ctxh",
+    "seo": {
+        "title": "Tuyển sinh Thạc Sĩ – Trường Đại học Khoa học, Đại học Huế & Viện Phương Nam",
+        "description": "Tuyển sinh Thạc sĩ 2 chuyên ngành: Công tác xã hội, Quản lý văn hoá – Trường Đại học Khoa học, Đại học Huế & Viện Phương Nam. Xét tuyển hồ sơ.",
+        "keywords": "thạc sĩ công tác xã hội, thạc sĩ quản lý văn hoá, Trường Đại học Khoa học, Đại học Huế, Viện Phương Nam, tuyển sinh thạc sĩ"
+    },
+    "programs": {
+        "ctxh": {
+            "title": "<span class=\"lp-hero-title-gold\">THẠC SĨ CÔNG TÁC XÃ HỘI</span>",
+            "titlePlain": "Thạc Sĩ Công Tác Xã Hội",
+            "subtitle": "Tuyển sinh năm 2026 – Xét tuyển hồ sơ",
+            "courseId": "Thạc Sĩ Công Tác Xã Hội (ĐHKH Huế)",
+            "curriculumTitle": "Thạc Sĩ Công Tác Xã Hội",
+            "curriculumDesc": "Tuyển sinh chương trình đào tạo thạc sĩ ngành Công tác xã hội – Trường Đại học Khoa học, Đại học Huế & Viện Phương Nam.",
+            "meta": [
+                {
+                    "icon": "fa-university",
+                    "label": "Bằng Thạc sĩ – Đại học Khoa học, Đại học Huế"
+                },
+                {
+                    "icon": "fa-clock",
+                    "label": "Thời gian đào tạo 1,5 – 2 năm"
+                },
+                {
+                    "icon": "fa-file-signature",
+                    "label": "Xét tuyển hồ sơ"
+                },
+                {
+                    "icon": "fa-graduation-cap",
+                    "label": "Hình thức chính quy"
+                }
+            ],
+            "curriculum": [
+                {
+                    "num": "I",
+                    "title": "THÔNG TIN CHUNG",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li><strong>Chuyên ngành tuyển sinh:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Công tác xã hội.</span></li>",
+                        "<li><strong>Đơn vị đào tạo và cấp bằng:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Trường Đại học Khoa học, Đại học Huế.</span></li>",
+                        "<li><strong>Thời gian đào tạo:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">1,5 – 2 năm</span>, tùy theo chương trình của ngành đào tạo.</li>",
+                        "<li><strong>Hình thức đào tạo:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Chính quy.</span></li>"
+                    ]
+                },
+                {
+                    "num": "II",
+                    "title": "ĐỐI TƯỢNG VÀ ĐIỀU KIỆN CHUNG DỰ TUYỂN",
+                    "items": [
+                        "<li>Đã tốt nghiệp hoặc đã đủ điều kiện công nhận tốt nghiệp đại học (hoặc trình độ tương đương trở lên) thuộc ngành phù hợp; đối với chương trình định hướng nghiên cứu yêu cầu hạng tốt nghiệp từ Khá trở lên hoặc có công bố khoa học liên quan đến lĩnh vực học tập, nghiên cứu;</li>",
+                        "<li>Đáp ứng yêu cầu về năng lực ngoại ngữ được minh chứng bằng một trong các văn bằng, chứng chỉ, chứng nhận;</li>",
+                        "<li>Lý lịch bản thân rõ ràng, không trong thời gian thi hành kỷ luật từ mức cảnh cáo trở lên và không trong thời gian thi hành án hình sự, được cơ quan quản lý nhân sự nơi đang làm việc hoặc chính quyền địa phương nơi cư trú xác nhận;</li>",
+                        "<li>Có đủ sức khỏe để học tập;</li>",
+                        "<li>Đáp ứng yêu cầu năng lực ngoại ngữ từ <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Bậc 3 trở lên</span> theo Khung năng lực ngoại ngữ 6 bậc dùng cho Việt Nam;</li>",
+                        "<li>Đáp ứng các yêu cầu khác của chuẩn chương trình đào tạo do Bộ Giáo dục và Đào tạo, Đại học Huế ban hành và theo quy định của chương trình đào tạo.</li>"
+                    ]
+                },
+                {
+                    "num": "IV",
+                    "title": "THÔNG TIN HỌC BỔ SUNG KIẾN THỨC",
+                    "items": [
+                        "<li><strong>Ngành phù hợp:</strong> Công tác xã hội.</li>",
+                        "<li><strong>Ngành gần:</strong> Xã hội học, Tâm lý học, Tâm lý giáo dục, Giáo dục đặc biệt, Nhân học, Phát triển cộng đồng. Thí sinh thuộc nhóm ngành này sẽ học bổ sung <span style=\"color: var(--lp-gold-light); font-weight: 600;\">2 học phần (4 tín chỉ)</span>.</li>",
+                        "<li><strong>Danh mục ngành gần:</strong> Điều dưỡng, Y tế cộng đồng, Sư phạm các ngành khoa học xã hội nhân văn, Dân tộc học, Luật. Thí sinh thuộc nhóm ngành này sẽ học bổ sung <span style=\"color: var(--lp-gold-light); font-weight: 600;\">3 học phần (6 tín chỉ)</span>.</li>",
+                        "<li><strong>Ngành khác:</strong> Bao gồm các ngành như Quản lý nhà nước, Báo chí, Chính trị học, Văn học, Ngôn ngữ, Kế toán, Giáo dục Mầm non, Sư phạm nghệ thuật... Thí sinh thuộc nhóm ngành này sẽ học bổ sung <span style=\"color: var(--lp-gold-light); font-weight: 600;\">5 học phần (10 tín chỉ)</span>.</li>",
+                        "<li><strong>Học phí học bổ sung kiến thức:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Miễn phí.</span></li>",
+                        "<li><strong>Hình thức học bổ sung kiến thức:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Online.</span></li>"
+                    ]
+                },
+                {
+                    "num": "★",
+                    "title": "DANH MỤC HỌC BỔ SUNG KIẾN THỨC",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li>Nhập môn công tác xã hội</li>",
+                        "<li>Lý thuyết công tác xã hội</li>",
+                        "<li>Phương pháp và kỹ năng công tác xã hội</li>",
+                        "<li>Quy điều đạo đức và tiêu chuẩn thực hành nghề nghiệp</li>",
+                        "<li>Hành vi con người và môi trường xã hội</li>"
+                    ]
+                },
+                {
+                    "num": "III",
+                    "title": "HỒ SƠ ĐĂNG KÝ DỰ TUYỂN",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">1. Đơn xin dự tuyển <a href=\"https://docs.google.com/document/d/1nEAW1pAGyjXdpuLUpYw_bUK7lmI2DUtt/edit?usp=sharing&ouid=111434989687655318902&rtpof=true&sd=true\" target=\"_blank\" style=\"color: var(--lp-gold-light);\">theo mẫu</a>.</li>",
+                        "<li class=\"lp-no-bullet\">2. Bản sao bằng tốt nghiệp đại học, bảng điểm (có chứng thực).</li>",
+                        "<li class=\"lp-no-bullet\">3. Bản sao văn bằng hoặc chứng chỉ ngoại ngữ (có chứng thực).</li>",
+                        "<li class=\"lp-no-bullet\">4. Giấy xác nhận đối tượng ưu tiên (nếu có).</li>",
+                        "<li class=\"lp-no-bullet\">5. Sơ yếu lý lịch được cơ quan quản lý nhân sự nơi người dự tuyển đang làm việc hoặc chính quyền địa phương nơi cư trú xác nhận. (Mẫu <a href=\"https://docs.google.com/document/d/1VNxJHHVEoEDbXvT8yxkV0EeYWAisdPVq/edit?usp=sharing&ouid=111434989687655318902&rtpof=true&sd=true\" target=\"_blank\" style=\"color: var(--lp-gold-light);\">tại đây</a>)</li>",
+                        "<li class=\"lp-no-bullet\">6. Giấy chứng nhận đủ sức khoẻ để học tập.</li>"
+                    ]
+                },
+                {
+                    "num": "V",
+                    "title": "CÁCH THỨC ĐĂNG KÝ VÀ LIÊN HỆ",
+                    "items": [
+                        "<li><strong>Đăng ký thông tin tư vấn:</strong> <a href=\"#lp-form\" style=\"color: var(--lp-gold-light); font-weight: 600;\">tại đây</a>.</li>",
+                        "<li><strong>Nộp hồ sơ trực tiếp hoặc gửi bưu điện theo địa chỉ:</strong><div style=\"margin-top: 15px;\">Văn phòng Viện phát triển nguồn lực xã hội Phương Nam<br><strong>Địa chỉ:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. Hồ Chí Minh</span><br><strong>Điện thoại:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(028) 2242 6789 – 0857 129 757 (cô Thảo)</span></div></li>"
+                    ]
+                },
+                {
+                    "num": "VI",
+                    "title": "THÔNG TIN LIÊN HỆ VÀ TƯ VẤN",
+                    "items": [
+                        "<li>Mọi thắc mắc về khóa học, xin vui lòng liên hệ:</li>",
+                        "<li><strong>SĐT:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(028) 2242 6789 – 0857 129 757 (cô Thảo)</span></li>",
+                        "<li><strong>Email:</strong> <a href=\"mailto:vanphong@vienphuongnam.com.vn\" style=\"color: var(--lp-gold-light);\">vanphong@vienphuongnam.com.vn</a></li>"
+                    ]
+                }
+            ],
+            "faq": [],
+            "contact": {
+                "phones": [
+                    {
+                        "number": "0857129757",
+                        "display": "0857 129 757",
+                        "name": "cô Thảo"
+                    }
+                ]
+            }
+        },
+        "qlvh": {
+            "title": "<span class=\"lp-hero-title-gold\">THẠC SĨ QUẢN LÝ VĂN HOÁ</span>",
+            "titlePlain": "Thạc Sĩ Quản Lý Văn Hoá",
+            "subtitle": "Tuyển sinh năm 2026 – Xét tuyển hồ sơ",
+            "courseId": "Thạc Sĩ Quản Lý Văn Hoá (ĐHKH Huế)",
+            "curriculumTitle": "Thạc Sĩ Quản Lý Văn Hoá",
+            "curriculumDesc": "Tuyển sinh chương trình đào tạo thạc sĩ ngành Quản lý văn hoá – Trường Đại học Khoa học, Đại học Huế & Viện Phương Nam.",
+            "meta": [
+                {
+                    "icon": "fa-university",
+                    "label": "Bằng Thạc sĩ – Đại học Khoa học, Đại học Huế"
+                },
+                {
+                    "icon": "fa-clock",
+                    "label": "Thời gian đào tạo 1,5 – 2 năm"
+                },
+                {
+                    "icon": "fa-file-signature",
+                    "label": "Xét tuyển hồ sơ"
+                },
+                {
+                    "icon": "fa-graduation-cap",
+                    "label": "Hình thức chính quy"
+                }
+            ],
+            "curriculum": [
+                {
+                    "num": "I",
+                    "title": "THÔNG TIN CHUNG",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li><strong>Chuyên ngành tuyển sinh:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Quản lý văn hoá.</span></li>",
+                        "<li><strong>Đơn vị đào tạo và cấp bằng:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Trường Đại học Khoa học, Đại học Huế.</span></li>",
+                        "<li><strong>Thời gian đào tạo:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">1,5 – 2 năm</span>, tùy theo chương trình của ngành đào tạo.</li>",
+                        "<li><strong>Hình thức đào tạo:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Chính quy.</span></li>"
+                    ]
+                },
+                {
+                    "num": "II",
+                    "title": "ĐỐI TƯỢNG VÀ ĐIỀU KIỆN CHUNG DỰ TUYỂN",
+                    "items": [
+                        "<li>Đã tốt nghiệp hoặc đã đủ điều kiện công nhận tốt nghiệp đại học (hoặc trình độ tương đương trở lên) thuộc ngành phù hợp; đối với chương trình định hướng nghiên cứu yêu cầu hạng tốt nghiệp từ Khá trở lên hoặc có công bố khoa học liên quan đến lĩnh vực học tập, nghiên cứu;</li>",
+                        "<li>Đáp ứng yêu cầu về năng lực ngoại ngữ được minh chứng bằng một trong các văn bằng, chứng chỉ, chứng nhận;</li>",
+                        "<li>Lý lịch bản thân rõ ràng, không trong thời gian thi hành kỷ luật từ mức cảnh cáo trở lên và không trong thời gian thi hành án hình sự, được cơ quan quản lý nhân sự nơi đang làm việc hoặc chính quyền địa phương nơi cư trú xác nhận;</li>",
+                        "<li>Có đủ sức khỏe để học tập;</li>",
+                        "<li>Đáp ứng yêu cầu năng lực ngoại ngữ từ <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Bậc 3 trở lên</span> theo Khung năng lực ngoại ngữ 6 bậc dùng cho Việt Nam;</li>",
+                        "<li>Đáp ứng các yêu cầu khác của chuẩn chương trình đào tạo do Bộ Giáo dục và Đào tạo, Đại học Huế ban hành và theo quy định của chương trình đào tạo.</li>"
+                    ]
+                },
+                {
+                    "num": "IV",
+                    "title": "THÔNG TIN HỌC BỔ SUNG KIẾN THỨC",
+                    "items": [
+                        "<li><strong>Ngành phù hợp:</strong> Quản lý văn hoá, văn hoá học.</li>",
+                        "<li><strong>Ngành gần:</strong> Gồm các ngành thuộc Văn hóa Xã hội học, Nhân học, Lịch sử, Phát triển cộng đồng, Quản lý xã hội, Quản lý nhà nước, Quản lý chính sách công, Chính trị học/Sư phạm giáo dục chính trị, Sư phạm Lịch sử, Nghệ thuật trình diễn, Ngôn ngữ và văn hóa Việt Nam, Khu vực học và văn hóa học, Báo chí và truyền thông, Văn thư – Lưu trữ - Bảo tàng, Xuất bản – phát hành, Hán Nôm, Việt Nam học, Triết học, Quan hệ quốc tế, Châu Á học, Đông phương học. Thí sinh thuộc nhóm ngành này sẽ học bổ sung <span style=\"color: var(--lp-gold-light); font-weight: 600;\">2 học phần (4 tín chỉ)</span>.</li>",
+                        "<li><strong>Ngành khác:</strong> Những người có bằng đại học các ngành khác (cụ thể: Quản lý dự án, Phát triển nông thôn, Gia đình học, Kinh tế chính trị, Truyền thông đại chúng …)Thí sinh thuộc nhóm ngành này sẽ học bổ sung <span style=\"color: var(--lp-gold-light); font-weight: 600;\">4 học phần (8 tín chỉ)</span>.</li>",
+                        "<li><strong>Học phí học bổ sung kiến thức:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Miễn phí</span></li>",
+                        "<li><strong>Hình thức học bổ sung kiến thức:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Online</span></li>"
+                    ]
+                },
+                {
+                    "num": "★",
+                    "title": "DANH MỤC HỌC BỔ SUNG KIẾN THỨC",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li>Cơ sở văn hóa Việt Nam</li>",
+                        "<li>Tiến trình lịch sử Việt Nam</li>",
+                        "<li>Quản lý di sản văn hóa</li>",
+                        "<li>Chính sách văn hóa</li>"
+                    ]
+                },
+                {
+                    "num": "III",
+                    "title": "HỒ SƠ ĐĂNG KÝ DỰ TUYỂN",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">1. Đơn xin dự tuyển <a href=\"https://docs.google.com/document/d/1nEAW1pAGyjXdpuLUpYw_bUK7lmI2DUtt/edit?usp=sharing&ouid=111434989687655318902&rtpof=true&sd=true\" target=\"_blank\" style=\"color: var(--lp-gold-light);\">theo mẫu</a>.</li>",
+                        "<li class=\"lp-no-bullet\">2. Bản sao bằng tốt nghiệp đại học, bảng điểm (có chứng thực).</li>",
+                        "<li class=\"lp-no-bullet\">3. Bản sao văn bằng hoặc chứng chỉ ngoại ngữ (có chứng thực).</li>",
+                        "<li class=\"lp-no-bullet\">4. Giấy xác nhận đối tượng ưu tiên (nếu có).</li>",
+                        "<li class=\"lp-no-bullet\">5. Sơ yếu lý lịch được cơ quan quản lý nhân sự nơi người dự tuyển đang làm việc hoặc chính quyền địa phương nơi cư trú xác nhận. (Mẫu <a href=\"https://docs.google.com/document/d/1VNxJHHVEoEDbXvT8yxkV0EeYWAisdPVq/edit?usp=sharing&ouid=111434989687655318902&rtpof=true&sd=true\" target=\"_blank\" style=\"color: var(--lp-gold-light);\">tại đây</a>)</li>",
+                        "<li class=\"lp-no-bullet\">6. Giấy chứng nhận đủ sức khoẻ để học tập.</li>"
+                    ]
+                },
+                {
+                    "num": "V",
+                    "title": "CÁCH THỨC ĐĂNG KÝ VÀ LIÊN HỆ",
+                    "items": [
+                        "<li><strong>Đăng ký thông tin tư vấn:</strong> <a href=\"#lp-form\" style=\"color: var(--lp-gold-light); font-weight: 600;\">tại đây</a>.</li>",
+                        "<li><strong>Nộp hồ sơ trực tiếp hoặc gửi bưu điện theo địa chỉ:</strong><div style=\"margin-top: 15px;\">Văn phòng Viện phát triển nguồn lực xã hội Phương Nam<br><strong>Địa chỉ:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. Hồ Chí Minh</span><br><strong>Điện thoại:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(028) 2242 6789 – 0857 129 757 (cô Thảo)</span></div></li>"
+                    ]
+                },
+                {
+                    "num": "VI",
+                    "title": "THÔNG TIN LIÊN HỆ VÀ TƯ VẤN",
+                    "items": [
+                        "<li>Mọi thắc mắc về khóa học, xin vui lòng liên hệ:</li>",
+                        "<li><strong>SĐT:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(028) 2242 6789 – 0857 129 757 (cô Thảo)</span></li>",
+                        "<li><strong>Email:</strong> <a href=\"mailto:vanphong@vienphuongnam.com.vn\" style=\"color: var(--lp-gold-light);\">vanphong@vienphuongnam.com.vn</a></li>"
+                    ]
+                }
+            ],
+            "faq": [],
+            "contact": {
+                "phones": [
+                    {
+                        "number": "0857129757",
+                        "display": "0857 129 757",
+                        "name": "cô Thảo"
+                    }
+                ]
+            }
+        }
+    },
+    "benefits": [
+        {
+            "icon": "fa-user-tie",
+            "title": "Đội ngũ chuyên gia",
+            "desc": "Học hỏi và nghiên cứu cùng các giáo sư, phó giáo sư, tiến sĩ giàu kinh nghiệm."
+        },
+        {
+            "icon": "fa-award",
+            "title": "Bằng Thạc sĩ chính quy",
+            "desc": "Bằng thạc sĩ do Trường Đại học Khoa học – Đại học Huế cấp, được Bộ GD&ĐT công nhận toàn quốc."
+        },
+        {
+            "icon": "fa-clock",
+            "title": "Thời gian học linh hoạt",
+            "desc": "Phù hợp cho quý anh/chị đi làm những vẫn muốn nâng cao kiến thức chuyên môn."
+        },
+        {
+            "icon": "fa-hand-holding-dollar",
+            "title": "Học bổ sung miễn phí",
+            "desc": "Chương trình học bổ sung kiến thức hoàn toàn miễn phí, học online linh hoạt."
+        },
+        {
+            "icon": "fa-handshake",
+            "title": "Mạng lưới kết nối",
+            "desc": "Mở rộng cơ hội giao lưu, hợp tác với học viên và chuyên gia cả nước."
+        },
+        {
+            "icon": "fa-headset",
+            "title": "Hỗ trợ tận tâm",
+            "desc": "Hỗ trợ hồ sơ, giải đáp thắc mắc và hướng dẫn thủ tục đăng ký nhiệt tình."
+        }
+    ]
+}

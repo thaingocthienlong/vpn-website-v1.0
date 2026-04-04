@@ -138,5 +138,19 @@
     "tieude": "BẾ GIẢNG KHOÁ HỌC CHUYÊN GIA “THIẾT KẾ NGHIÊN CỨU VÀ ĐẠO ĐỨC KHOA HỌC”",
     "duongdan": "https://youtu.be/swqyijceNg0",
     "noibat": 1
+  },
+  {
+    "id": 54,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1775094442/vienphuongnam/j1pdia3a4zncu6ijoqr2.png",
+    "tieude": "Phim tài liệu \"Giáo sư Nguyễn Văn Tuấn\" - HTV9",
+    "duongdan": "https://youtu.be/ZOQhXviMN2c",
+    "noibat": 1
+  },
+  {
+    "id": 55,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1775095034/vienphuongnam/vcmz9vctqgiwbspg6nwy.png",
+    "tieude": "GS NGUYỄN VĂN TUẤN - \"AI TRONG PHÂN TÍCH DỮ LIỆU VÀ CÔNG BỐ QUỐC TẾ\"",
+    "duongdan": "https://youtu.be/ZOQhXviMN2c",
+    "noibat": 1
   }
 ]

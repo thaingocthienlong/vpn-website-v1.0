@@ -1,6 +1,13 @@
 import { NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireAdmin, jsonSuccess, jsonError } from "@/lib/admin-auth";
+import {
+    createDefaultHomepageSections,
+    toAdminHomepageSections,
+    toHomepageSectionUpserts,
+    type AdminHomepageSectionInput,
+} from "@/lib/admin/homepage-sections";
+import { revalidateHomepage } from "@/lib/admin/revalidation";
 
 /**
  * GET /api/admin/homepage - Get all homepage sections
@@ -10,10 +17,18 @@ export async function GET() {
     if ("error" in authResult) return authResult.error;
 
     try {
-        const sections = await prisma.homepageSection.findMany({
+        const rows = await prisma.homepageSection.findMany({
             orderBy: { sortOrder: "asc" },
         });
-        return jsonSuccess(sections);
+        const sections = toAdminHomepageSections(rows);
+        const defaults = createDefaultHomepageSections();
+        const missingDefaults = defaults.filter(
+            (candidate) => !sections.some((section) => section.sectionKey === candidate.sectionKey),
+        );
+
+        return jsonSuccess({
+            sections: [...sections, ...missingDefaults],
+        });
     } catch (error) {
         console.error("Error fetching homepage sections:", error);
         return jsonError("Failed to fetch homepage sections", 500);
@@ -21,7 +36,7 @@ export async function GET() {
 }
 
 /**
- * PUT /api/admin/homepage - Update a homepage section
+ * PUT /api/admin/homepage - Update homepage sections in logical pairs
  */
 export async function PUT(request: NextRequest) {
     const authResult = await requireAdmin();
@@ -29,45 +44,26 @@ export async function PUT(request: NextRequest) {
 
     try {
         const body = await request.json();
-        const { id, sectionKey, locale, isEnabled, sortOrder, config, title, subtitle } = body;
+        const sections = Array.isArray(body?.sections)
+            ? body.sections as AdminHomepageSectionInput[]
+            : [];
 
-        if (id) {
-            const section = await prisma.homepageSection.update({
-                where: { id },
-                data: {
-                    ...(isEnabled !== undefined && { isEnabled }),
-                    ...(sortOrder !== undefined && { sortOrder }),
-                    ...(config !== undefined && { config: typeof config === "string" ? config : JSON.stringify(config) }),
-                    ...(title !== undefined && { title }),
-                    ...(subtitle !== undefined && { subtitle }),
-                },
-            });
-            return jsonSuccess(section);
+        if (sections.length === 0) {
+            return jsonError("sections array is required", 422);
         }
 
-        if (sectionKey && locale) {
-            const section = await prisma.homepageSection.upsert({
-                where: { sectionKey_locale: { sectionKey, locale } },
-                update: {
-                    ...(isEnabled !== undefined && { isEnabled }),
-                    ...(sortOrder !== undefined && { sortOrder }),
-                    ...(config !== undefined && { config: typeof config === "string" ? config : JSON.stringify(config) }),
-                    ...(title !== undefined && { title }),
-                    ...(subtitle !== undefined && { subtitle }),
-                },
-                create: {
-                    sectionKey,
-                    locale,
-                    title: title || sectionKey,
-                    isEnabled: isEnabled ?? true,
-                    sortOrder: sortOrder ?? 0,
-                    config: config ? (typeof config === "string" ? config : JSON.stringify(config)) : null,
-                },
-            });
-            return jsonSuccess(section);
-        }
+        const upserts = toHomepageSectionUpserts(sections);
 
-        return jsonError("Either id or sectionKey+locale is required", 422);
+        await prisma.$transaction(
+            upserts.flatMap((pair) => [
+                prisma.homepageSection.upsert(pair.vi),
+                prisma.homepageSection.upsert(pair.en),
+            ]),
+        );
+
+        revalidateHomepage();
+
+        return jsonSuccess({ updated: true });
     } catch (error) {
         console.error("Error updating homepage section:", error);
         return jsonError("Failed to update homepage section", 500);

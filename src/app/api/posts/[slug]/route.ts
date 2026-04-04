@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { successResponse, errors, getLocale } from "@/lib/api-response";
+import { normalizePreviewText } from "@/lib/preview-text";
 
 interface RouteParams {
     params: Promise<{ slug: string }>;
@@ -75,18 +76,23 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         // Transform post based on locale
         const transformedPost = {
             id: post.id,
-            title: locale === "en" && post.title_en ? post.title_en : post.title,
+            title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
             slug: post.slug,
             content: locale === "en" && post.content_en ? post.content_en : post.content,
-            excerpt: locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt,
+            excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
             featuredImage: post.featuredImage ? { url: post.featuredImage.url, alt: post.featuredImage.alt } : null,
             category: {
-                name: locale === "en" && post.category.name_en
-                    ? post.category.name_en
-                    : post.category.name,
+                name: normalizePreviewText(
+                    locale === "en" && post.category.name_en
+                        ? post.category.name_en
+                        : post.category.name
+                ) || post.category.name,
                 slug: post.category.slug,
             },
-            tags: post.tags.map((pt) => pt.tag.name),
+            tags: post.tags.map((pt) => ({
+                name: pt.tag.name,
+                slug: pt.tag.slug,
+            })),
             author: {
                 name: post.author.name,
                 avatar: post.author.avatar,
@@ -96,14 +102,14 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             type: post.type,
             sourceUrl: post.sourceUrl,
             seo: {
-                metaTitle: post.metaTitle || post.title,
-                metaDescription: post.metaDescription || post.excerpt,
+                metaTitle: normalizePreviewText(post.metaTitle) || normalizePreviewText(post.title) || post.title,
+                metaDescription: normalizePreviewText(post.metaDescription) || normalizePreviewText(post.excerpt),
             },
             relatedPosts: relatedPosts.map((rp) => ({
                 id: rp.id,
-                title: locale === "en" && rp.title_en ? rp.title_en : rp.title,
+                title: normalizePreviewText(locale === "en" && rp.title_en ? rp.title_en : rp.title) || rp.title,
                 slug: rp.slug,
-                excerpt: locale === "en" && rp.excerpt_en ? rp.excerpt_en : rp.excerpt,
+                excerpt: normalizePreviewText(locale === "en" && rp.excerpt_en ? rp.excerpt_en : rp.excerpt),
                 featuredImage: rp.featuredImage?.url || null,
                 publishedAt: rp.publishedAt,
             })),

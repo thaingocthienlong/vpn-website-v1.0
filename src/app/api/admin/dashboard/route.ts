@@ -13,6 +13,9 @@ export async function GET(request: NextRequest) {
         const [
             totalPosts,
             totalCourses,
+            totalServices,
+            totalReviews,
+            totalTags,
             totalRegistrations,
             pendingContacts,
             totalStaff,
@@ -22,6 +25,9 @@ export async function GET(request: NextRequest) {
         ] = await Promise.all([
             prisma.post.count(),
             prisma.course.count(),
+            prisma.page.count({ where: { template: "service" } }),
+            prisma.review.count(),
+            prisma.tag.count(),
             prisma.registration.count(),
             prisma.contactForm.count({ where: { status: "NEW" } }),
             prisma.staff.count({ where: { isActive: true } }),
@@ -43,6 +49,9 @@ export async function GET(request: NextRequest) {
             stats: {
                 totalPosts,
                 totalCourses,
+                totalServices,
+                totalReviews,
+                totalTags,
                 totalRegistrations,
                 pendingContacts,
                 totalStaff,

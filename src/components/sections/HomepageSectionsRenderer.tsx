@@ -211,7 +211,6 @@ export function HomepageSectionsRenderer({
     return (
         <div className="public-shell min-h-screen flex flex-col">
             <Header
-                mode="homepage-editorial"
                 logo={layout.logo}
                 siteName={layout.siteName}
                 hotline={layout.hotline}

@@ -1,0 +1,36 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "fullmanhinh": 0,
+    "hinhnen": "",
+    "sdt": "",
+    "trangthai": 0,
+    "angiohang": 0,
+    "thuoctinhbgd": "cover",
+    "mauchu": "",
+    "mauchuhover": "",
+    "hiddenmobile": 1,
+    "showcartinmenumobile": 0,
+    "limitbgd": 0,
+    "altbanner": "Banner",
+    "urlbanner": "#"
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "fullmanhinh": 0,
+    "hinhnen": "",
+    "sdt": "",
+    "trangthai": 1,
+    "angiohang": 0,
+    "thuoctinhbgd": "",
+    "mauchu": "",
+    "mauchuhover": "",
+    "hiddenmobile": 0,
+    "showcartinmenumobile": 0,
+    "limitbgd": 0,
+    "altbanner": "",
+    "urlbanner": ""
+  }
+]

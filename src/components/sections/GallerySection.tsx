@@ -101,7 +101,7 @@ export function GallerySection({
     }
 
     return (
-        <SectionWrapper padding="lg">
+        <SectionWrapper padding="sm">
             <MotionSection>
                 <SectionHeader
                     badge={isEn ? "Image essay" : "Hình ảnh"}
@@ -112,20 +112,20 @@ export function GallerySection({
                 />
             </MotionSection>
 
-            <MotionGroup className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1fr)_minmax(360px,0.78fr)]" stagger={0.08}>
+            <MotionGroup className="grid min-w-0 gap-6 xl:grid-cols-[minmax(0,1.12fr)_minmax(320px,0.62fr)]" stagger={0.08}>
                 <MotionItem className="min-w-0">
                     <motion.div
                         whileHover={shouldReduceMotion ? undefined : { y: -2 }}
                         transition={publicMotionTokens.hoverSpring}
                         className="group relative block w-full overflow-hidden rounded-[1.65rem] border border-[rgba(16,40,70,0.12)] text-left"
                     >
-                        <div className="relative aspect-[5/4] min-h-[260px] sm:min-h-[320px] lg:min-h-[400px] xl:min-h-[440px]">
+                        <div className="relative aspect-[4/3] min-h-[300px] sm:min-h-[360px] lg:min-h-[460px] xl:min-h-[520px]">
                             <Image
                                 src={activeImage.url}
                                 alt={activeImage.alt}
                                 fill
                                 unoptimized={activeImage.url.startsWith("data:")}
-                                sizes="(max-width: 1280px) 100vw, 58vw"
+                                sizes="(max-width: 1280px) 100vw, 64vw"
                                 className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
                             />
                             <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,34,53,0.04),rgba(20,34,53,0.12),rgba(20,34,53,0.52))]" />
@@ -148,13 +148,6 @@ export function GallerySection({
                         className="border-t border-[rgba(16,40,70,0.12)] pt-5"
                     >
                         <div className="space-y-4">
-                            <p className="editorial-caption text-[var(--ink-muted)]">
-                                {isEn ? "Thumbnail selection" : "Lưới ảnh chọn nhanh"}
-                            </p>
-                            <h3 className="max-w-[14ch] font-heading text-[1.55rem] leading-[0.98] text-[var(--ink)] sm:text-[1.75rem] lg:max-w-[12ch] lg:text-[2.1rem] xl:text-[2.35rem]">
-                                {isEn ? "Select a smaller frame to refresh the main image." : "Chọn khung hình nhỏ để đổi hình chính bên trái."}
-                            </h3>
-
                             {resolvedImages.length > pageSize ? (
                                 <div className="flex items-center justify-between gap-3">
                                         <span className="text-sm text-[var(--ink-soft)]">

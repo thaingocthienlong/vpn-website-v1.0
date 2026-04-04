@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 0,
+    "duongvien": 0,
+    "hinhnen": "",
+    "thuoctinhbgd": "repeat",
+    "tieude": "<span>Phuong Nam Institute’s</span> valuable contributions",
+    "mieutangan": "",
+    "mauchu": "",
+    "fullmanhinh": 0,
+    "limitbgd": 0,
+    "subtitle": "",
+    "txtbtn": "",
+    "linkbtn": ""
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "hinhnen": "",
+    "thuoctinhbgd": "",
+    "tieude": "",
+    "mieutangan": "",
+    "mauchu": "",
+    "fullmanhinh": 0,
+    "limitbgd": 0,
+    "subtitle": "",
+    "txtbtn": "",
+    "linkbtn": ""
+  }
+]

@@ -1,0 +1,317 @@
+[
+  {
+    "id": 2,
+    "tentinh": "Bà Rịa - Vũng Tàu",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 4,
+    "tentinh": "An Giang",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 5,
+    "tentinh": "Hải Phòng",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 6,
+    "tentinh": "Đà Nẵng",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 7,
+    "tentinh": "Cần Thơ",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 8,
+    "tentinh": "TP Hồ Chí Minh",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 9,
+    "tentinh": "Hà Nội",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 10,
+    "tentinh": "Bạc Liêu",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 11,
+    "tentinh": "Bắc Kạn",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 12,
+    "tentinh": "Bắc Giang",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 13,
+    "tentinh": "Bắc Ninh",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 14,
+    "tentinh": "Bến Tre",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 15,
+    "tentinh": "Bình Thuận",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 16,
+    "tentinh": "Bình Dương",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 17,
+    "tentinh": "Bình Phước",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 18,
+    "tentinh": "Bình Định",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 19,
+    "tentinh": "Cao Bằng",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 20,
+    "tentinh": "Cà Mau",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 21,
+    "tentinh": "Đắk Lắk",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 22,
+    "tentinh": "Đắk Nông",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 23,
+    "tentinh": "Điện Biên",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 24,
+    "tentinh": "Đồng Nai",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 25,
+    "tentinh": "Đồng Tháp",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 26,
+    "tentinh": "Hà Giang",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 27,
+    "tentinh": "Hà Tĩnh",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 28,
+    "tentinh": "Gia Lai",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 29,
+    "tentinh": "Hà Nam",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 30,
+    "tentinh": "Hải Dương",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 31,
+    "tentinh": "Hậu Giang",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 32,
+    "tentinh": "Hòa Bình",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 33,
+    "tentinh": "Hưng Yên",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 34,
+    "tentinh": "Kiên Giang",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 35,
+    "tentinh": "Khánh Hòa",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 36,
+    "tentinh": "Kon Tum",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 37,
+    "tentinh": "Lào Cai",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 38,
+    "tentinh": "Lai Châu",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 39,
+    "tentinh": "Lâm Đồng",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 40,
+    "tentinh": "Lạng Sơn",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 41,
+    "tentinh": "Long An",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 42,
+    "tentinh": "Nam Định",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 43,
+    "tentinh": "Nghệ An",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 44,
+    "tentinh": "Ninh Thuận",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 45,
+    "tentinh": "Ninh Bình",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 46,
+    "tentinh": "Phú Thọ",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 47,
+    "tentinh": "Phú Yên",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 48,
+    "tentinh": "Quảng Bình",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 49,
+    "tentinh": "Quảng Trị",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 50,
+    "tentinh": "Quảng Nam",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 51,
+    "tentinh": "Quảng Ninh",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 52,
+    "tentinh": "Quảng Ngãi",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 53,
+    "tentinh": "Sơn La",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 54,
+    "tentinh": "Sóc Trăng",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 55,
+    "tentinh": "Thừa Thiên Huế",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 56,
+    "tentinh": "Thanh Hóa",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 57,
+    "tentinh": "Tây Ninh",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 58,
+    "tentinh": "Tiền Giang",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 59,
+    "tentinh": "Thái Bình",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 60,
+    "tentinh": "Thái Nguyên",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 61,
+    "tentinh": "Trà Vinh",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 62,
+    "tentinh": "Tuyên Quang",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 63,
+    "tentinh": "Vĩnh Long",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 64,
+    "tentinh": "Vĩnh Phúc",
+    "phivanchuyen": 0
+  },
+  {
+    "id": 65,
+    "tentinh": "Yên Bái",
+    "phivanchuyen": 0
+  }
+]

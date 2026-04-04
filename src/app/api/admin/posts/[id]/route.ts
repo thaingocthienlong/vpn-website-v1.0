@@ -1,18 +1,42 @@
 import { NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
-import { requireAdmin, ensureUserExists, jsonSuccess, jsonError } from "@/lib/admin-auth";
+import { ensureUserExists, requireAdmin } from "@/lib/admin-auth";
+import { successResponse, errors } from "@/lib/api-response";
+import { validateBody } from "@/lib/validators";
+import { adminPostEditorSchema } from "@/lib/admin/schemas";
+import { revalidatePostPaths } from "@/lib/admin/revalidation";
 
 type RouteParams = { params: Promise<{ id: string }> };
 
-/**
- * GET /api/admin/posts/[id] - Get single post for editing
- */
-export async function GET(request: NextRequest, { params }: RouteParams) {
+async function resolveImageId(
+    imageValue: string | null | undefined,
+    userId: string,
+): Promise<string | null | undefined> {
+    if (imageValue === undefined) return undefined;
+    if (!imageValue) return null;
+    if (!imageValue.startsWith("http") && !imageValue.startsWith("/")) {
+        return imageValue;
+    }
+
+    const localUserId = await ensureUserExists(userId);
+    const media = await prisma.media.create({
+        data: {
+            filename: imageValue.split("/").pop() || "image",
+            url: imageValue,
+            mimeType: "image/webp",
+            size: 0,
+            uploadedById: localUserId,
+        },
+    });
+
+    return media.id;
+}
+
+export async function GET(_request: NextRequest, { params }: RouteParams) {
     const authResult = await requireAdmin();
     if ("error" in authResult) return authResult.error;
 
     const { id } = await params;
-
     const post = await prisma.post.findUnique({
         where: { id },
         include: {
@@ -21,148 +45,149 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
             featuredImage: { select: { id: true, url: true, alt: true } },
             featuredImage_en: { select: { id: true, url: true, alt: true } },
             tags: {
-                include: { tag: { select: { id: true, name: true } } },
+                include: { tag: { select: { id: true, name: true, slug: true } } },
             },
         },
     });
 
     if (!post) {
-        return jsonError("Post not found", 404);
+        return errors.notFound("Post");
     }
 
-    return jsonSuccess(post);
+    return successResponse(post);
 }
 
-/**
- * PUT /api/admin/posts/[id] - Update post
- */
 export async function PUT(request: NextRequest, { params }: RouteParams) {
     const authResult = await requireAdmin();
     if ("error" in authResult) return authResult.error;
 
     const { id } = await params;
+    const existing = await prisma.post.findUnique({
+        where: { id },
+        include: {
+            category: { select: { slug: true } },
+        },
+    });
 
-    try {
-        const body = await request.json();
-        const {
-            title,
-            title_en,
-            slug,
-            excerpt,
-            excerpt_en,
-            content,
-            content_en,
-            categoryId,
-            featuredImage: featuredImageId,
-            featuredImage_en: featuredImageIdEn,
-            isFeatured,
-            isPublished,
-            metaTitle,
-            metaTitle_en,
-            metaDescription,
-            metaDescription_en,
-        } = body;
+    if (!existing) {
+        return errors.notFound("Post");
+    }
 
-        // Check post exists
-        const existing = await prisma.post.findUnique({ where: { id } });
-        if (!existing) {
-            return jsonError("Post not found", 404);
+    const validation = await validateBody(request, adminPostEditorSchema);
+    if (!validation.success) {
+        return errors.validationError(validation.errors);
+    }
+
+    const {
+        title,
+        title_en,
+        slug,
+        excerpt,
+        excerpt_en,
+        content,
+        content_en,
+        categoryId,
+        featuredImage,
+        featuredImage_en,
+        isFeatured,
+        isPublished,
+        metaTitle,
+        metaTitle_en,
+        metaDescription,
+        metaDescription_en,
+        tagIds,
+    } = validation.data;
+
+    if (slug !== existing.slug) {
+        const slugExists = await prisma.post.findUnique({ where: { slug } });
+        if (slugExists) {
+            return errors.badRequest("A post with the same slug already exists.");
         }
+    }
 
-        // Check slug uniqueness (if changed)
-        if (slug && slug !== existing.slug) {
-            const slugExists = await prisma.post.findUnique({ where: { slug } });
-            if (slugExists) {
-                return jsonError("Slug already exists", 409);
-            }
-        }
+    const category = await prisma.category.findUnique({ where: { id: categoryId } });
+    if (!category) {
+        return errors.badRequest("Category not found.");
+    }
 
-        // Set publishedAt when first published
-        let publishedAt = existing.publishedAt;
-        if (isPublished && !existing.isPublished) {
-            publishedAt = new Date();
-        }
+    let publishedAt = existing.publishedAt;
+    if (isPublished && !existing.isPublished) {
+        publishedAt = new Date();
+    }
 
-        // Helper to resolve image: could be Media ID (UUID) or URL string
-        const resolveImage = async (imageVal: string | null | undefined): Promise<string | null | undefined> => {
-            if (imageVal === undefined) return undefined;
-            if (!imageVal) return null;
-            if (imageVal.startsWith("http") || imageVal.startsWith("/")) {
-                const userId = await ensureUserExists(authResult.userId);
-                const media = await prisma.media.create({
-                    data: {
-                        filename: imageVal.split("/").pop() || "image",
-                        url: imageVal,
-                        mimeType: "image/webp",
-                        size: 0,
-                        uploadedById: userId,
-                    },
-                });
-                return media.id;
-            }
-            return imageVal;
-        };
+    const [featuredImageId, featuredImageIdEn] = await Promise.all([
+        resolveImageId(featuredImage, authResult.userId),
+        resolveImageId(featuredImage_en, authResult.userId),
+    ]);
 
-        const resolvedImageId = await resolveImage(featuredImageId);
-        const resolvedImageIdEn = await resolveImage(featuredImageIdEn);
-
-        const post = await prisma.post.update({
+    const post = await prisma.$transaction(async (tx) => {
+        const updated = await tx.post.update({
             where: { id },
             data: {
-                ...(title !== undefined && { title }),
-                ...(title_en !== undefined && { title_en: title_en || null }),
-                ...(slug !== undefined && { slug }),
-                ...(excerpt !== undefined && { excerpt }),
-                ...(excerpt_en !== undefined && { excerpt_en: excerpt_en || null }),
-                ...(content !== undefined && { content }),
-                ...(content_en !== undefined && { content_en: content_en || null }),
-                ...(categoryId !== undefined && { categoryId: categoryId || null }),
-                ...(resolvedImageId !== undefined && { featuredImageId: resolvedImageId }),
-                ...(resolvedImageIdEn !== undefined && { featuredImageId_en: resolvedImageIdEn }),
-                ...(isFeatured !== undefined && { isFeatured }),
-                ...(isPublished !== undefined && { isPublished }),
+                title,
+                title_en: title_en || null,
+                slug,
+                excerpt: excerpt || "",
+                excerpt_en: excerpt_en || null,
+                content,
+                content_en: content_en || null,
+                categoryId,
+                ...(featuredImageId !== undefined && { featuredImageId }),
+                ...(featuredImageIdEn !== undefined && { featuredImageId_en: featuredImageIdEn }),
+                isFeatured,
+                isPublished,
                 publishedAt,
-                ...(metaTitle !== undefined && { metaTitle: metaTitle || null }),
-                ...(metaTitle_en !== undefined && { metaTitle_en: metaTitle_en || null }),
-                ...(metaDescription !== undefined && { metaDescription: metaDescription || null }),
-                ...(metaDescription_en !== undefined && { metaDescription_en: metaDescription_en || null }),
+                metaTitle: metaTitle || null,
+                metaTitle_en: metaTitle_en || null,
+                metaDescription: metaDescription || null,
+                metaDescription_en: metaDescription_en || null,
             },
             include: {
                 category: { select: { id: true, name: true, slug: true } },
             },
         });
 
-        return jsonSuccess(post);
-    } catch (error) {
-        console.error("Error updating post:", error);
-        return jsonError("Failed to update post", 500);
-    }
+        await tx.postTag.deleteMany({ where: { postId: id } });
+        if (tagIds.length > 0) {
+            await tx.postTag.createMany({
+                data: tagIds.map((tagId) => ({
+                    postId: id,
+                    tagId,
+                })),
+            });
+        }
+
+        return updated;
+    });
+
+    revalidatePostPaths(existing.slug, existing.category?.slug);
+    revalidatePostPaths(post.slug, post.category?.slug);
+
+    return successResponse(post);
 }
 
-/**
- * DELETE /api/admin/posts/[id] - Delete post
- */
-export async function DELETE(request: NextRequest, { params }: RouteParams) {
+export async function DELETE(_request: NextRequest, { params }: RouteParams) {
     const authResult = await requireAdmin();
     if ("error" in authResult) return authResult.error;
 
     const { id } = await params;
+    const existing = await prisma.post.findUnique({
+        where: { id },
+        include: {
+            category: { select: { slug: true } },
+        },
+    });
 
-    try {
-        const existing = await prisma.post.findUnique({ where: { id } });
-        if (!existing) {
-            return jsonError("Post not found", 404);
-        }
-
-        // Delete related PostTag records first
-        await prisma.postTag.deleteMany({ where: { postId: id } });
-
-        // Delete the post
-        await prisma.post.delete({ where: { id } });
-
-        return jsonSuccess({ message: "Post deleted" });
-    } catch (error) {
-        console.error("Error deleting post:", error);
-        return jsonError("Failed to delete post", 500);
+    if (!existing) {
+        return errors.notFound("Post");
     }
+
+    await prisma.$transaction([
+        prisma.postTag.deleteMany({ where: { postId: id } }),
+        prisma.post.delete({ where: { id } }),
+    ]);
+
+    revalidatePostPaths(existing.slug, existing.category?.slug);
+
+    return successResponse({ deleted: true });
 }

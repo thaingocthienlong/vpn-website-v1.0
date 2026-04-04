@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "tieude": "Album ảnh 1",
+    "anhdaidien": "https://i.ibb.co/W4vKPLK4/migr-56a15a6e9dd27f3c.jpg",
+    "gallery_image": "https://i.ibb.co/nsTKMfvn/migr-8b2f2925a7f01d11.jpg,https://i.ibb.co/RGTNhKnF/migr-8ebfee893becbc80.jpg,https://i.ibb.co/W4vKPLK4/migr-56a15a6e9dd27f3c.jpg,https://i.ibb.co/NRWs7mP/migr-5d5d076b6e9dc814.jpg",
+    "mieutangan": "",
+    "noibat": 1
+  },
+  {
+    "id": 2,
+    "tieude": "Album ảnh 2",
+    "anhdaidien": "https://i.ibb.co/RGTNhKnF/migr-8ebfee893becbc80.jpg",
+    "gallery_image": "https://i.ibb.co/nsTKMfvn/migr-8b2f2925a7f01d11.jpg,https://i.ibb.co/RGTNhKnF/migr-8ebfee893becbc80.jpg,https://i.ibb.co/W4vKPLK4/migr-56a15a6e9dd27f3c.jpg,https://i.ibb.co/NRWs7mP/migr-5d5d076b6e9dc814.jpg,",
+    "mieutangan": "",
+    "noibat": 1
+  },
+  {
+    "id": 3,
+    "tieude": "Album ảnh 3",
+    "anhdaidien": "https://i.ibb.co/nsTKMfvn/migr-8b2f2925a7f01d11.jpg",
+    "gallery_image": "https://i.ibb.co/nsTKMfvn/migr-8b2f2925a7f01d11.jpg,https://i.ibb.co/RGTNhKnF/migr-8ebfee893becbc80.jpg,https://i.ibb.co/W4vKPLK4/migr-56a15a6e9dd27f3c.jpg,https://i.ibb.co/NRWs7mP/migr-5d5d076b6e9dc814.jpg,",
+    "mieutangan": "",
+    "noibat": 1
+  },
+  {
+    "id": 4,
+    "tieude": "Album ảnh 4",
+    "anhdaidien": "https://i.ibb.co/NRWs7mP/migr-5d5d076b6e9dc814.jpg",
+    "gallery_image": "https://i.ibb.co/nsTKMfvn/migr-8b2f2925a7f01d11.jpg,https://i.ibb.co/RGTNhKnF/migr-8ebfee893becbc80.jpg,https://i.ibb.co/W4vKPLK4/migr-56a15a6e9dd27f3c.jpg,https://i.ibb.co/NRWs7mP/migr-5d5d076b6e9dc814.jpg,",
+    "mieutangan": "",
+    "noibat": 0
+  }
+]

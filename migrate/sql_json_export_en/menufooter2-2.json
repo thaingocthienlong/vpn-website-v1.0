@@ -1,0 +1,37 @@
+[
+  {
+    "id": 12,
+    "tukhoa": "Introduction",
+    "duongdan": "//en.vienphuongnam.com.vn/general-introduction/"
+  },
+  {
+    "id": 16,
+    "tukhoa": "Scientific Advisory Board",
+    "duongdan": "//en.vienphuongnam.com.vn/scientific-advisory-board/"
+  },
+  {
+    "id": 17,
+    "tukhoa": "Our team",
+    "duongdan": "//en.vienphuongnam.com.vn/human-resources-institute-of-the-south/"
+  },
+  {
+    "id": 22,
+    "tukhoa": "News",
+    "duongdan": "//en.vienphuongnam.com.vn/article/news/"
+  },
+  {
+    "id": 24,
+    "tukhoa": "Seminars",
+    "duongdan": "//en.vienphuongnam.com.vn/article/seminars/"
+  },
+  {
+    "id": 25,
+    "tukhoa": "Events",
+    "duongdan": "//en.vienphuongnam.com.vn/article/events/"
+  },
+  {
+    "id": 26,
+    "tukhoa": "Contact us",
+    "duongdan": "//en.vienphuongnam.com.vn/contact/"
+  }
+]

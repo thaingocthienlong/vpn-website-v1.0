@@ -1,0 +1,138 @@
+{
+    "slug": "dh-dong-thap",
+    "name": "QUẢN LÝ GIÁO DỤC",
+    "shortName": "Thạc Sĩ Quản Lý Giáo Dục",
+    "heritage": "Đại học Đồng Tháp & Viện Phương Nam",
+    "defaultProgram": "qlgd",
+    "seo": {
+        "title": "Tuyển sinh Thạc Sĩ Quản Lý Giáo Dục – Trường Đại học Đồng Tháp & Viện Phương Nam",
+        "description": "Tuyển sinh chương trình đào tạo Thạc sĩ ngành Quản lý Giáo dục – Trường Đại học Đồng Tháp (tiền thân là Trường Cao đẳng Sư phạm Đồng Tháp). Xét tuyển hồ sơ, thời gian đào tạo 2 năm.",
+        "keywords": "thạc sĩ quản lý giáo dục, tuyển sinh thạc sĩ, Trường Đại học Đồng Tháp, Viện Phương Nam, Quản lý Giáo dục, xét tuyển hồ sơ"
+    },
+    "programs": {
+        "qlgd": {
+            "title": "<span class=\"lp-hero-title-gold\">THẠC SĨ QUẢN LÝ GIÁO DỤC</span>",
+            "titlePlain": "Thạc Sĩ Quản Lý Giáo Dục",
+            "subtitle": "Tuyển sinh năm 2026 – Xét tuyển hồ sơ",
+            "courseId": "Thạc Sĩ Quản Lý Giáo Dục",
+            "curriculumTitle": "Thạc Sĩ Quản Lý Giáo Dục",
+            "curriculumDesc": "Tuyển sinh chương trình đào tạo thạc sĩ ngành Quản lý giáo dục – Trường Đại học Đồng Tháp (tiền thân là Trường Cao đẳng Sư phạm Đồng Tháp) & Viện Phương Nam.",
+            "meta": [
+                {
+                    "icon": "fa-university",
+                    "label": "Bằng Thạc sĩ – Đại học Đồng Tháp"
+                },
+                {
+                    "icon": "fa-clock",
+                    "label": "Thời gian đào tạo 2 năm"
+                },
+                {
+                    "icon": "fa-file-signature",
+                    "label": "Xét tuyển hồ sơ"
+                },
+                {
+                    "icon": "fa-briefcase",
+                    "label": "Linh hoạt cho người đi làm"
+                }
+            ],
+            "curriculum": [
+                {
+                    "num": "1",
+                    "title": "THÔNG TIN CHUNG",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li class=\"lp-no-bullet\"><strong>1. Chuyên ngành tuyển sinh:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Quản lý giáo dục.</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>2. Đơn vị đào tạo và cấp bằng:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Trường Đại học Đồng Tháp.</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>3. Thời gian đào tạo:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">2 năm.</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>4. Phương thức xét tuyển:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Xét tuyển hồ sơ.</span></li>"
+                    ]
+                },
+                {
+                    "num": "2",
+                    "title": "ĐỐI TƯỢNG VÀ ĐIỀU KIỆN CHUNG DỰ TUYỂN",
+                    "items": [
+                        "<li><strong>Về văn bằng đã tốt nghiệp:</strong> Ứng viên dự tuyển phải có bằng tốt nghiệp đại học hoặc đã đủ điều kiện công nhận tốt nghiệp đại học ngành đúng, ngành phù hợp với ngành đăng ký dự tuyển; đối với ngành gần với ngành đăng ký dự tuyển, ứng viên phải học bổ sung kiến thức.</li>",
+                        "<li>Ứng viên đáp ứng yêu cầu năng lực ngoại ngữ từ <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Bậc 3 trở lên</span> theo Khung năng lực ngoại ngữ 6 bậc dùng cho Việt Nam</li>",
+                        "<li><strong>Về kinh nghiệm công tác chuyên môn:</strong> Ứng viên dự tuyển có bằng tốt nghiệp đại học ngành gần thì phải có tối thiểu <span style=\"color: var(--lp-gold-light); font-weight: 600;\">02 (hai) năm</span> kinh nghiệm làm việc trong lĩnh vực giáo dục và đào tạo.</li>",
+                        "<li>Có đủ sức khoẻ để học tập.</li>",
+                        "<li>Nộp hồ sơ đầy đủ, đúng thời hạn theo quy định.</li>"
+                    ]
+                },
+                {
+                    "num": "3",
+                    "title": "THÔNG TIN HỌC BỔ SUNG KIẾN THỨC",
+                    "items": [
+                        "<li>Chương trình Thạc sĩ Quản lý giáo dục tuyển sinh theo 02 nhóm ngành:</li>",
+                        "<li><strong>Ngành đúng, ngành phù hợp:</strong> Quản lý giáo dục</li>",
+                        "<li><strong>Ngành gần:</strong> Tốt nghiệp trình độ đại học trở lên ở tất cả các ngành không thuộc các ngành đúng, ngành phù hợp. Yêu cầu tối thiểu 2 năm thâm niên công tác trong lĩnh vực giáo dục</li>",
+                        "<li><strong>Các học phần bổ sung kiến thức (Tổng cộng <span style=\"color: var(--lp-gold-light); font-weight: 600;\">6 tín chỉ</span>):</strong><ul style=\"padding-left: 15px; margin: 5px 0; list-style-type: none;\"><li class=\"lp-no-bullet\">1. Đại cương khoa học quản lý <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(2 tín chỉ)</span>.</li><li class=\"lp-no-bullet\">2. Xã hội học giáo dục <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(2 tín chỉ)</span>.</li><li class=\"lp-no-bullet\">3. Giáo dục học <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(2 tín chỉ)</span>.</li></ul></li>"
+                    ]
+                },
+                {
+                    "num": "4",
+                    "title": "ĐĂNG KÝ DỰ TUYỂN VÀ HỒ SƠ",
+                    "items": [
+                        "<li class=\"lp-no-bullet\"><strong>1. Đăng ký nhận thông tin tư vấn</strong><ul style=\"padding-left: 15px; margin: 5px 0;\"><li>Đăng ký nhận thông tin tư vấn <a href=\"#lp-form\" style=\"color: var(--lp-gold-light);\">tại đây</a>.</li><li>Địa điểm đăng ký dự tuyển và thu nhận hồ sơ:<div style=\"margin-top: 15px;\"><strong><em>Văn phòng Viện phát triển nguồn lực xã hội Phương Nam</em></strong><br><em>Địa chỉ:</em> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. Hồ Chí Minh.</span><br><em>Điện thoại:</em> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">028 2242 6789 – 0767 013 324 (cô Hà) – 0912 114 511 (cô Thảo)</span></div></li></ul></li>",
+                        "<li class=\"lp-no-bullet\"><strong>2. Hồ sơ xét tuyển</strong><ul style=\"padding-left: 15px; margin: 5px 0;\"><li>01 Phiếu đăng ký dự thi (<a href=\"https://docs.google.com/document/d/1KhRzaAiUPYUnfWTnVqbhouEWxpjkpTIm/edit?usp=sharing&ouid=111434989687655318902&rtpof=true&sd=true\" target=\"_blank\">theo mẫu</a>) có xác nhận của chính quyền địa phương (đối với thí sinh tự do) hoặc của thủ trưởng cơ quan (đối với thí sinh do cơ quan cử đi dự thi).</li><li>01 bản sơ yếu lý lịch (<a href=\"https://docs.google.com/document/d/1LwsO4W4gcguJcS4u70fjKPxgMOkoHHmm/edit?usp=sharing&ouid=111434989687655318902&rtpof=true&sd=true\" target=\"_blank\">theo mẫu</a>) có xác nhận của chính quyền địa phương (đối với thí sinh tự do) hoặc của thủ trưởng cơ quan (đối với thí sinh do cơ quan cử đi dự thi).</li><li>01 công văn (<a href=\"https://docs.google.com/document/d/19IqWWQK6MLvgwK0kPwrMJ94sodC-2rae/edit?usp=sharing&ouid=111434989687655318902&rtpof=true&sd=true\" target=\"_blank\">theo mẫu</a>) giới thiệu đi dự thi của thủ trưởng cơ quan (đối với thí sinh do cơ quan cử đi dự thi).</li><li>01 Bản sao CC/CCCD có chứng thực.</li><li>01 Bản sao bằng tốt nghiệp Đại học có chứng thực (đối với thí sinh mới tốt nghiệp chưa có bằng Đại học thì nộp giấy chứng nhận tốt nghiệp tạm thời).</li><li>01 Bản sao bảng điểm toàn khoá học có chứng thực.</li><li>01 Giấy chứng nhận đủ sức khỏe học tập của cơ quan y tế cấp huyện trở lên (thời gian không quá 06 tháng tính đến ngày nộp hồ sơ).</li><li>Bản sao có chứng thực các giấy tờ hợp lệ về đối tượng ưu tiên (nếu có).</li><li>Bản sao có chứng thực các chứng chỉ đã học bổ sung kiến thức (nếu có).</li><li>Bản sao có chứng thực các văn bằng hoặc chứng chỉ nếu thuộc diện miễn thi ngoại ngữ.</li><li>03 phong bì dán tem và ghi sẵn địa chỉ nhận thư của thí sinh.</li><li>04 ảnh cỡ 3x4 (ghi rõ họ tên, ngày sinh và chuyên ngành dự thi vào mặt sau ảnh). Thời gian chụp ảnh không quá 06 tháng tính đến ngày nộp hồ sơ.</li></ul></li>"
+                    ]
+                },
+                {
+                    "num": "5",
+                    "title": "LIÊN HỆ TƯ VẤN",
+                    "items": [
+                        "<li><strong>Xin vui lòng liên hệ tư vấn:</strong></li>",
+                        "<li>SĐT: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(028) 2242 6789 – 0767 013 324 (cô Hà) – 0912 114 511 (cô Thảo).</span></li>",
+                        "<li>Email: <a href=\"mailto:vanphong@vienphuongnam.com.vn\" style=\"color: var(--lp-gold-light);\">vanphong@vienphuongnam.com.vn</a></li>"
+                    ]
+                }
+            ],
+            "faq": [],
+            "contact": {
+                "phones": [
+                    {
+                        "number": "0767013324",
+                        "display": "0767 013 324",
+                        "name": "cô Hà"
+                    },
+                    {
+                        "number": "0912114511",
+                        "display": "0912 114 511",
+                        "name": "cô Thảo"
+                    }
+                ]
+            }
+        }
+    },
+    "benefits": [
+        {
+            "icon": "fa-user-tie",
+            "title": "Giảng viên chất lượng cao",
+            "desc": "Đội ngũ giảng viên là chuyên gia đầu ngành, nhiều kinh nghiệm thực tiễn trong lĩnh vực giáo dục và quản lý."
+        },
+        {
+            "icon": "fa-award",
+            "title": "Bằng Thạc sĩ chính quy",
+            "desc": "Bằng thạc sĩ do Trường ĐH Đồng Tháp cấp, được Bộ GD&ĐT công nhận toàn quốc."
+        },
+        {
+            "icon": "fa-book-open-reader",
+            "title": "Nội dung cập nhật",
+            "desc": "Chương trình liên tục cập nhật theo quy định mới nhất, đảm bảo tính ứng dụng cao."
+        },
+        {
+            "icon": "fa-handshake",
+            "title": "Mạng lưới kết nối",
+            "desc": "Mở rộng cơ hội giao lưu, hợp tác với học viên và chuyên gia giáo dục cả nước."
+        },
+        {
+            "icon": "fa-clock",
+            "title": "Thời gian học linh hoạt",
+            "desc": "Phù hợp cho quý anh/chị đi làm những vẫn muốn nâng cao kiến thức chuyên môn."
+        },
+        {
+            "icon": "fa-headset",
+            "title": "Hỗ trợ tận tâm",
+            "desc": "Hỗ trợ hồ sơ, giải đáp thắc mắc và hướng dẫn thủ tục đăng ký nhiệt tình."
+        }
+    ]
+}

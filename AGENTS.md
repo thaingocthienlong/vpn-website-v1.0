@@ -25,6 +25,14 @@
 - Use `notion` or `linear` only when the task needs durable planning, notes, or issue updates.
 - Do not document or require MCP servers that are not actually configured in the current environment.
 
+## Installed Codex Plugin
+
+- A home-local Codex plugin, `everything-claude-code`, is installed at `~/plugins/everything-claude-code` and enabled through `~/.codex/config.toml`.
+- Treat the plugin as an additional source of Codex skills and MCP definitions, not as a replacement for the repo-specific rules in this file.
+- Prefer the plugin's workflow skills when they clearly fit the task, especially for TDD, security review, verification, repo scanning, documentation lookup, E2E testing, and framework-specific implementation work.
+- Do not assume every MCP server declared by the plugin is active in the current session. Verify active servers from the current Codex config or runtime before documenting them in task output.
+- When plugin guidance conflicts with this repo's instructions, follow this `AGENTS.md` file and the currently configured environment.
+
 ## Delivery Lifecycle
 
 ### Analyze

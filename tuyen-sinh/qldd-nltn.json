@@ -1,0 +1,169 @@
+{
+    "slug": "qldd-nltn",
+    "name": "QUẢN LÝ ĐẤT ĐAI",
+    "shortName": "ĐH Nông Lâm TN",
+    "heritage": "Đại học Nông Lâm, Đại học Thái Nguyên & Viện Phương Nam",
+    "defaultProgram": "qldd",
+    "seo": {
+        "title": "Tuyển sinh Thạc sĩ Quản lý đất đai, Trường Đại học Nông Lâm, Đại học Thái Nguyên & Viện Phương Nam",
+        "description": "Tuyển sinh chương trình Thạc sĩ Quản lý đất đai – Trường Đại học Nông Lâm, Đại học Thái Nguyên & Viện Phương Nam. Thời gian đào tạo 1,5 – 2 năm. Thi tuyển kết hợp xét tuyển.",
+        "keywords": "thạc sĩ quản lý đất đai, Đại học Nông Lâm Thái Nguyên, Viện Phương Nam, tuyển sinh thạc sĩ, quản lý đất đai"
+    },
+    "programs": {
+        "qldd": {
+            "title": "<span class=\"lp-hero-title-gold\">THẠC SĨ QUẢN LÝ ĐẤT ĐAI</span>",
+            "titlePlain": "Thạc Sĩ Quản Lý Đất Đai",
+            "subtitle": "Tuyển sinh năm 2026 – Thi tuyển kết hợp xét tuyển",
+            "courseId": "Thạc Sĩ Quản Lý Đất Đai (Đại học Nông Lâm, Đại học Thái Nguyên)",
+            "curriculumTitle": "Thạc Sĩ Quản Lý Đất Đai",
+            "curriculumDesc": "Tuyển sinh chương trình đào tạo thạc sĩ ngành Quản lý đất đai – Trường Đại học Nông Lâm, Đại học Thái Nguyên & Viện Phương Nam.",
+            "meta": [
+                {
+                    "icon": "fa-university",
+                    "label": "Bằng Thạc sĩ – Trường Đại học Nông Lâm, Đại học Thái Nguyên"
+                },
+                {
+                    "icon": "fa-clock",
+                    "label": "Thời gian đào tạo 1,5 – 2 năm"
+                },
+                {
+                    "icon": "fa-pen-to-square",
+                    "label": "Thi tuyển kết hợp xét tuyển"
+                },
+                {
+                    "icon": "fa-graduation-cap",
+                    "label": "Hình thức chính quy"
+                }
+            ],
+            "curriculum": [
+                {
+                    "num": "1",
+                    "title": "THÔNG TIN CHUNG",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li class=\"lp-no-bullet\"><strong>Chuyên ngành tuyển sinh:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Quản lý đất đai</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>Đơn vị đào tạo và cấp bằng:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Trường Đại học Nông Lâm, Đại học Thái Nguyên</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>Thời gian đào tạo:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">1,5 – 2 năm.</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>Phương thức xét tuyển:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Thi tuyển</span> kết hợp với <span style=\"color: var(--lp-gold-light); font-weight: 600;\">xét tuyển</span></li>"
+                    ]
+                },
+                {
+                    "num": "2",
+                    "title": "ĐỐI TƯỢNG VÀ ĐIỀU KIỆN DỰ TUYỂN",
+                    "items": [
+                        "<li>Đã tốt nghiệp hoặc đã đủ điều kiện công nhận tốt nghiệp đại học (hoặc trình độ tương đương trở lên) ngành phù hợp.</li>",
+                        "<li>Có năng lực ngoại ngữ từ <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Bậc 3 trở lên</span> theo Khung năng lực ngoại ngữ 6 bậc dùng cho Việt Nam.</li>",
+                        "<li>Đối với chương trình định hướng nghiên cứu yêu cầu hạng tốt nghiệp từ khá trở lên hoặc có công bố khoa học liên quan đến lĩnh vực sẽ học tập, nghiên cứu.</li>",
+                        "<li>Có lý lịch bản thân rõ ràng, không trong thời gian thi hành kỷ luật từ mức cảnh cáo trở lên và không trong thời gian thi hành án hình sự, được cơ quan quản lý nhân sự nơi đang làm việc hoặc chính quyền địa phương nơi cư trú xác nhận.</li>",
+                        "<li>Nộp hồ sơ, lệ phí đăng ký dự tuyển đầy đủ, đúng thời hạn theo thông báo tuyển sinh của Đại học Thái Nguyên và Trường Đại học Nông Lâm.</li>"
+                    ]
+                },
+                {
+                    "num": "3",
+                    "title": "THÔNG TIN HỌC BỔ SUNG KIẾN THỨC",
+                    "items": [
+                        "<li class=\"lp-no-bullet\"><strong>- Thí sinh tốt nghiệp các ngành đúng không phải học bổ sung kiến thức:</strong> Quản lý đất đai; Địa chính; Quản lý ruộng đất, Địa chính – môi trường.</li>",
+                        "<li class=\"lp-no-bullet\"><strong>- Thí sinh tốt nghiệp các ngành phải bổ sung kiến thức:</strong><ul style=\"padding-left: 15px; margin: 5px 0;\"><li><em>Nhóm ngành học bổ sung kiến thức từ <span style=\"color: var(--lp-gold-light); font-weight: 600;\">1-3 môn</span> (tùy vào bảng điểm đại học của thí sinh dự tuyển):</em> Quản lý tài nguyên và môi trường; Kinh tế tài nguyên thiên nhiên; Khoa học môi trường; Bản đồ; Kỹ thuật trắc địa bản đồ; Trắc địa – bản đồ; Trắc địa mỏ; Tin học trắc địa, trắc địa công trình.</li><li><em>Nhóm ngành học bổ sung kiến thức từ <span style=\"color: var(--lp-gold-light); font-weight: 600;\">3-5 môn</span> (tùy vào bảng điểm đại học của thí sinh dự tuyển):</em> Khuyến nông; Khoa học đất; Chăn nuôi; Lâm sinh; Nông học; Kinh tế nông nghiệp; Phát triển nông thông; Luật (Luật học); Luật kinh tế; Công nghệ sinh học…</li></ul></li>"
+                    ]
+                },
+                {
+                    "num": "4",
+                    "title": "DANH MỤC CÁC HỌC PHẦN BỔ SUNG KIẾN THỨC",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">1. Trắc địa <span style=\"color: var(--lp-gold-light); font-weight: 600;\">03</span></li>",
+                        "<li class=\"lp-no-bullet\">2. Bản đồ địa chính <span style=\"color: var(--lp-gold-light); font-weight: 600;\">03</span></li>",
+                        "<li class=\"lp-no-bullet\">3. Thổ nhưỡng <span style=\"color: var(--lp-gold-light); font-weight: 600;\">04</span></li>",
+                        "<li class=\"lp-no-bullet\">4. Đánh giá đất <span style=\"color: var(--lp-gold-light); font-weight: 600;\">03</span></li>",
+                        "<li class=\"lp-no-bullet\">5. Quy hoạch sử dụng đất <span style=\"color: var(--lp-gold-light); font-weight: 600;\">04</span></li>",
+                        "<li class=\"lp-no-bullet\">6. Tin học chuyên ngành <span style=\"color: var(--lp-gold-light); font-weight: 600;\">03</span></li>",
+                        "<li class=\"lp-no-bullet\">7. Định giá đất và bất động sản <span style=\"color: var(--lp-gold-light); font-weight: 600;\">03</span></li>",
+                        "<li class=\"lp-no-bullet\">8. Quản lý nhà nước về đất đai <span style=\"color: var(--lp-gold-light); font-weight: 600;\">04</span></li>",
+                        "<li class=\"lp-no-bullet\">9. Kinh tế Tài nguyên và môi trường <span style=\"color: var(--lp-gold-light); font-weight: 600;\">03</span></li>",
+                        "<li class=\"lp-no-bullet\">10. Thị trường bất động sản <span style=\"color: var(--lp-gold-light); font-weight: 600;\">03</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>Tổng số</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">33</span></li>"
+                    ]
+                },
+                {
+                    "num": "5",
+                    "title": "HỒ SƠ DỰ TUYỂN",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">1. Phiếu đăng ký dự tuyển. (<a href=\"https://docs.google.com/document/d/1OCVRQaTWoxhbNvG1d6fJhzUU31sx52Ea/edit\" target=\"_blank\">Theo mẫu</a>)</li>",
+                        "<li class=\"lp-no-bullet\">2. Bản sao có công chứng bằng tốt nghiệp đại học; bảng điểm đại học và phụ lục văn bằng kèm theo; các bằng cấp liên quan, chứng chỉ ngoại ngữ theo quy định.</li>",
+                        "<li class=\"lp-no-bullet\">3. Sơ yếu lý lịch trong thời hạn 06 tháng tính đến ngày nộp hồ sơ đăng ký dự tuyển, dán ảnh, đóng dấu giáp lai, có xác nhận của thủ trưởng cơ quan, tổ chức quản lý nhân sự hoặc chính quyền địa phương nơi người dự tuyển cư trú. (<a href=\"https://docs.google.com/document/d/1nmgZxWvyoI3Qq1EnX2YyyHg-R8CapopJ/edit?usp=drive_link&ouid=116875512053688975626&rtpof=true&sd=true\" target=\"_blank\">Theo mẫu</a>)</li>",
+                        "<li class=\"lp-no-bullet\">4. Công văn cử đi dự tuyển đào tạo trình độ thạc sĩ của cơ quan quản lý trực tiếp theo quy định hiện hành về việc đào tạo và bồi dưỡng công chức, viên chức (nếu người dự tuyển là công chức, viên chức).</li>",
+                        "<li class=\"lp-no-bullet\">5. Giấy khai sinh (bản sao công chứng)</li>",
+                        "<li class=\"lp-no-bullet\">6. Giấy khám sức khỏe của bệnh viện trong vòng 06 tháng tính đến ngày đăng ký dự tuyển</li>",
+                        "<li class=\"lp-no-bullet\">7. 03 (ba) ảnh chân dung mới chụp cỡ 4cm x 6cm và 02 (hai) phong bì có dán tem và ghi địa chỉ của người nhận.</li>",
+                        "<li class=\"lp-no-bullet\">8. Bản sao chụp bìa, mục lục và toàn văn công bố khoa học. Minh chứng kinh nghiệm nghiên cứu khoa học và thâm niên công tác <em>(nếu có).</em></li>",
+                        "<li class=\"lp-no-bullet\">9. Giấy tờ hợp pháp về đối tượng ưu tiên <em>(nếu có).</em><ul style=\"padding-left: 15px; margin: 5px 0;\"><li>Giấy xác nhận ưu tiên <em>(Dành cho đối tượng được hưởng ưu tiên là người dân tộc thiểu số sinh sống ở vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn)</em> (<a href=\"https://docs.google.com/document/d/1FbdMjAKpch4Any1iMqSnurJVOrT7LUK-/edit\" target=\"_blank\">Theo mẫu</a>)</li><li>Giấy xác nhận ưu tiên <em>(Người có thời gian công tác liên tục hai năm trở lên tại các xã thuộc vùng có điều kiện kinh tế - xã hội đặc biệt khó khăn)</em> (<a href=\"https://docs.google.com/document/d/1HsGwzTBXg6sVFgeWdLzj_9ti_JeGOQLO/edit\" target=\"_blank\">Theo mẫu</a>)</li></ul></li>",
+                        "<li class=\"lp-no-bullet\">10. Bản sao có công chứng văn bằng tốt nghiệp trình độ đại học các ngành ngôn ngữ nước ngoài, chứng chỉ ngoại ngữ; <em>(nếu có).</em></li>",
+                        "<li class=\"lp-no-bullet\">11. Người có bằng tốt nghiệp đại học hoặc bằng thạc sĩ do cơ sở đào tạo nước ngoài cấp cần có minh chứng về học toàn thời gian ở nước ngoài, gồm một trong các tài liệu liên quan sau: (i) xác nhận của cơ quan đại diện ngoại giao của Việt Nam ở nước sở tại đã theo học; (ii) xác nhận của cơ sở giáo dục nước ngoài nơi đã học tập; (iii) bản sao hợp lệ hộ chiếu có đóng dấu ngày xuất, nhập cảnh; (iv) minh chứng đã đăng ký vào hệ thống cơ sở dữ liệu điện tử quản lý lưu học sinh của Bộ Giáo dục và Đào tạo; <em>(nếu có).</em></li>",
+                        "<li class=\"lp-no-bullet\"><strong><em>Ghi chú:</em></strong><ul style=\"padding-left: 15px; margin: 5px 0;\"><li>Người đăng ký dự tuyển cần mang theo các bản chính của giấy tờ trong hồ sơ để xuất trình, kiểm tra khi nộp hồ sơ đăng ký dự tuyển.</li><li>Số lượng hồ sơ đăng ký dự tuyển: <strong>02 (hai) bộ hồ sơ</strong>, trong đó 01 (một) bộ báo cáo ĐHTN, 01 (một) bộ lưu tại đơn vị đào tạo.</li></ul></li>"
+                    ]
+                },
+                {
+                    "num": "5",
+                    "title": "CÁCH THỨC ĐĂNG KÝ",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">1. Đăng ký trực tuyến <strong><a href=\"#lp-form\" style=\"color: var(--lp-gold-light);\">tại đây.</a></strong></li>",
+                        "<li class=\"lp-no-bullet\">2. Nộp hồ sơ trực tiếp hoặc gửi bưu điện theo địa chỉ:<div style=\"margin-top: 15px;\"><strong><em>Văn phòng Viện phát triển nguồn lực xã hội Phương Nam</em></strong><br><em>Địa chỉ:</em> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. Hồ Chí Minh</span><br><em>Điện thoại:</em> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">0932 123 062 (cô Trân)</span></div></li>"
+                    ]
+                },
+                {
+                    "num": "6",
+                    "title": "THÔNG TIN LIÊN HỆ VÀ TƯ VẤN",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">Mọi thắc mắc về khóa học, xin vui lòng liên hệ:<ul style=\"padding-left: 15px; margin: 5px 0;\"><li>SĐT: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">0932 123 062 (cô Trân) - 0949 761 636 (cô Vy)</span></li><li>Email: <a href=\"mailto:vanphong@vienphuongnam.com.vn\" style=\"color: var(--lp-gold-light);\">vanphong@vienphuongnam.com.vn</a></li></ul></li>"
+                    ]
+                }
+            ],
+            "faq": [],
+            "contact": {
+                "phones": [
+                    {
+                        "number": "0932123062",
+                        "display": "0932 123 062",
+                        "name": "cô Trân"
+                    },
+                    {
+                        "number": "0949761636",
+                        "display": "0949 761 636",
+                        "name": "cô Vy"
+                    }
+                ]
+            }
+        }
+    },
+    "benefits": [
+        {
+            "icon": "fa-university",
+            "title": "Bằng Thạc sĩ chính quy",
+            "desc": "Bằng Thạc sĩ do Trường Đại học Nông Lâm – Đại học Thái Nguyên cấp, được Bộ GD&ĐT công nhận toàn quốc."
+        },
+        {
+            "icon": "fa-map",
+            "title": "Chuyên ngành nổi bật",
+            "desc": "Chuyên ngành nhu cầu cao, phù hợp cho cán bộ, công chức ngành tài nguyên và môi trường."
+        },
+        {
+            "icon": "fa-users",
+            "title": "Đầu vào đa dạng",
+            "desc": "Nhận nhiều ngành từ Địa chính, Môi trường, Trắc địa đến Nông học, Luật, Kinh tế nông nghiệp."
+        },
+        {
+            "icon": "fa-user-tie",
+            "title": "Đội ngũ chuyên gia",
+            "desc": "Học hỏi và nghiên cứu cùng các giáo sư, phó giáo sư, tiến sĩ giàu kinh nghiệm."
+        },
+        {
+            "icon": "fa-clock",
+            "title": "Thời gian học linh hoạt",
+            "desc": "Phù hợp cho quý anh/chị đi làm những vẫn muốn nâng cao kiến thức chuyên môn."
+        },
+        {
+            "icon": "fa-headset",
+            "title": "Tư vấn tận tâm",
+            "desc": "Đội ngũ tư vấn hỗ trợ nhiệt tình, giải đáp thắc mắc và hướng dẫn đăng ký."
+        }
+    ]
+}

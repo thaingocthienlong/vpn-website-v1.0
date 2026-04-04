@@ -8,7 +8,8 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui";
 import { Container } from "./Container";
 import { FloatingQuickContact } from "./FloatingQuickContact";
-import { Navbar, getDefaultMenuItems, type MenuItem } from "./Navbar";
+import { Navbar, getDefaultMenuItems, normalizeHeaderMenuItems, type MenuItem } from "./Navbar";
+import { useSiteLayouts } from "@/components/providers/SiteLayoutProvider";
 import { detectLocaleFromPath, getEquivalentRoute } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import { FloatingAccent, publicMotionTokens } from "@/components/motion/PublicMotion";
@@ -25,7 +26,6 @@ export interface HeaderProps {
     ctaUrl?: string;
     siteName?: string;
     menuItems?: MenuItem[];
-    mode?: "default" | "homepage-editorial";
 }
 
 interface LocaleToggleProps {
@@ -99,36 +99,45 @@ function LocaleToggle({
 }
 
 export function Header({
-    logo = "https://res.cloudinary.com/drn3cqgz5/image/upload/v1769676877/vienphuongnam/restored/v8twn3w8uyhdqrzx8p3j.png",
+    logo,
     hotline,
     quickContact,
-    ctaText = "Liên hệ ngay",
+    ctaText,
     ctaUrl,
-    siteName = "Viện Phương Nam",
+    siteName,
     menuItems,
-    mode = "default",
 }: HeaderProps) {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
-    const items = React.useMemo(() => menuItems ?? getDefaultMenuItems(locale), [locale, menuItems]);
+    const siteLayouts = useSiteLayouts();
+    const sharedLayout = siteLayouts?.[locale];
+    const resolvedLogo = logo
+        ?? sharedLayout?.logo
+        ?? "https://res.cloudinary.com/drn3cqgz5/image/upload/v1769676877/vienphuongnam/restored/v8twn3w8uyhdqrzx8p3j.png";
+    const resolvedSiteName = siteName ?? sharedLayout?.siteName ?? "Viện Phương Nam";
+    const resolvedCtaText = ctaText ?? sharedLayout?.ctaText ?? (locale === "en" ? "Contact Us" : "Liên hệ tư vấn");
+    const items = React.useMemo(
+        () => normalizeHeaderMenuItems(menuItems ?? sharedLayout?.menuItems ?? getDefaultMenuItems(locale)),
+        [locale, menuItems, sharedLayout],
+    );
     const [isOpen, setIsOpen] = React.useState(false);
     const [expandedItem, setExpandedItem] = React.useState<string | null>(null);
-    const [isScrolled, setIsScrolled] = React.useState(mode !== "homepage-editorial");
-    const resolvedCtaUrl = ctaUrl ?? (locale === "en" ? "/en/contact" : "/lien-he");
+    const headerRef = React.useRef<HTMLElement | null>(null);
+    const shellRef = React.useRef<HTMLDivElement | null>(null);
+    const resolvedCtaUrl = ctaUrl ?? sharedLayout?.ctaUrl ?? (locale === "en" ? "/en/contact" : "/lien-he");
     const homeUrl = locale === "en" ? "/en" : "/";
-    const caption = locale === "en" ? "Social Resource Institute" : "Viện phát triển nguồn lực xã hội";
-    const resolvedHotline = hotline?.trim() || (locale === "en" ? "+84 912 114 511" : "0912 114 511");
+    const displaySiteName = resolvedSiteName === "Viện Phương Nam"
+        ? "Viện phát triển nguồn lực xã hội Phương Nam"
+        : resolvedSiteName;
+    const resolvedHotline = hotline?.trim()
+        || sharedLayout?.hotline?.trim()
+        || (locale === "en" ? "+84 912 114 511" : "0912 114 511");
     const resolvedQuickContact = {
-        phone: quickContact?.phone?.trim() || resolvedHotline,
-        email: quickContact?.email?.trim() || "vanphong@vienphuongnam.com.vn",
-        contactHref: quickContact?.contactHref?.trim() || resolvedCtaUrl,
+        phone: quickContact?.phone?.trim() || sharedLayout?.footer.contactInfo.phone || resolvedHotline,
+        email: quickContact?.email?.trim() || sharedLayout?.footer.contactInfo.email || "vanphong@vienphuongnam.com.vn",
+        contactHref: quickContact?.contactHref?.trim() || sharedLayout?.ctaUrl || resolvedCtaUrl,
     };
-    const quickDescriptor = locale === "en" ? "Public interest training and applied services" : "Đào tạo, nghiên cứu và dịch vụ vì cộng đồng";
-    const isEditorialMode = mode === "homepage-editorial";
-    const showFramedShell = !isEditorialMode || isScrolled;
     const textTone = "text-[var(--ink)]";
-    const softTextTone = "text-[var(--ink-soft)]";
-    const mutedTextTone = "text-[var(--ink-muted)]";
 
     React.useEffect(() => {
         setIsOpen(false);
@@ -136,66 +145,82 @@ export function Header({
     }, [pathname]);
 
     React.useEffect(() => {
-        if (!isEditorialMode) {
-            setIsScrolled(true);
+        if (typeof window === "undefined") {
             return;
         }
 
-        const updateScrollState = () => {
-            setIsScrolled(window.scrollY > 36);
+        const updateHeaderOffset = () => {
+            const header = headerRef.current;
+            const shell = shellRef.current;
+            if (!header && !shell) {
+                return;
+            }
+
+            const occupiedHeight = Math.ceil(Math.max(
+                header?.getBoundingClientRect().bottom ?? 0,
+                shell?.getBoundingClientRect().bottom ?? 0
+            ));
+            document.documentElement.style.setProperty("--public-header-height", `${occupiedHeight}px`);
         };
 
-        updateScrollState();
-        window.addEventListener("scroll", updateScrollState, { passive: true });
-        return () => window.removeEventListener("scroll", updateScrollState);
-    }, [isEditorialMode]);
+        updateHeaderOffset();
+
+        const header = headerRef.current;
+        const shell = shellRef.current;
+        const resizeObserver = typeof ResizeObserver !== "undefined"
+            ? new ResizeObserver(() => updateHeaderOffset())
+            : null;
+
+        if (header && resizeObserver) {
+            resizeObserver.observe(header);
+        }
+
+        if (shell && resizeObserver) {
+            resizeObserver.observe(shell);
+        }
+
+        window.addEventListener("resize", updateHeaderOffset, { passive: true });
+
+        return () => {
+            resizeObserver?.disconnect();
+            window.removeEventListener("resize", updateHeaderOffset);
+        };
+    }, [locale, pathname]);
 
     return (
-        <header className="fixed inset-x-0 top-0 z-40">
-            <Container className={cn("transition-[padding] duration-300", isEditorialMode ? "pt-3 md:pt-4" : "pt-4 md:pt-5")}>
+        <header ref={headerRef} className="fixed inset-x-0 top-0 z-40">
+            <Container className="pt-4 transition-[padding] duration-300 md:pt-5">
                 <motion.div
+                    ref={shellRef}
                     initial={{ opacity: 0, y: -28, scale: 0.985 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={publicMotionTokens.sectionSpring}
                     className={cn(
-                        "relative grid grid-cols-[auto_1fr_auto] items-center gap-2.5 transition-all duration-300 md:gap-4",
-                        isEditorialMode
-                            ? "public-island-nav px-2.5 py-2 md:px-4 md:py-3"
-                            : "public-island-nav px-4 py-3 md:px-5 md:py-3.5",
-                        isEditorialMode && !isScrolled && "!border-[rgba(16,36,56,0.12)] !bg-[linear-gradient(180deg,rgba(248,251,253,0.74),rgba(236,243,248,0.54))] !backdrop-blur-xl !shadow-[0_18px_36px_-30px_rgba(8,20,33,0.2)]",
-                        isEditorialMode && isScrolled && "!border-[rgba(16,36,56,0.08)] !bg-[linear-gradient(180deg,rgba(248,251,253,0.5),rgba(236,243,248,0.34))]"
+                        "public-island-nav relative grid grid-cols-[auto_1fr_auto] items-center gap-2.5 px-4 py-3 transition-all duration-300 md:gap-4 md:px-5 md:py-3.5"
                     )}
                 >
                     <div className="pointer-events-none absolute inset-px overflow-hidden rounded-[calc(2.25rem-1px)]">
                         <FloatingAccent className="right-8 top-0 h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(94,130,166,0.12),transparent_72%)]" variant="halo" />
                     </div>
 
-                    <Link href={homeUrl} className="relative z-[1] flex min-w-0 items-center" title={siteName}>
+                    <Link href={homeUrl} className="relative z-[1] flex min-w-0 items-center" title={displaySiteName}>
                         <div
                             className={cn(
-                                "relative flex min-w-0 items-center gap-2 px-1.5 py-1 transition-all duration-300 md:gap-3 md:px-3 md:py-1.5",
-                                showFramedShell
-                                    ? "rounded-[1.15rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.42)]"
-                                    : "rounded-[1.15rem] border border-transparent bg-transparent"
+                                "relative flex min-w-0 items-center gap-2 px-1.5 py-1 transition-all duration-300 md:gap-2.5 md:px-3 md:py-1.5",
+                                "rounded-[1.15rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.42)]"
                             )}
                         >
-                            <div className="relative flex h-[42px] w-[118px] shrink-0 items-center md:h-[58px] md:w-[160px]">
+                            <div className="relative flex h-[42px] w-auto max-w-[112px] shrink-0 items-center md:h-[54px] md:max-w-[138px] lg:max-w-[146px]">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src={logo}
-                                    alt={siteName}
-                                    className="!h-full !w-full object-contain object-left object-center"
+                                    src={resolvedLogo}
+                                    alt={displaySiteName}
+                                    className="!h-full !w-auto !max-w-full object-contain object-left object-center"
                                 />
                             </div>
                             <div className="hidden min-w-0 xl:block">
-                                <p className={cn("editorial-caption", mutedTextTone)}>
-                                    {caption}
-                                </p>
                                 <p className={cn("mt-1 truncate text-sm font-medium", textTone)}>
-                                    {siteName}
-                                </p>
-                                <p className={cn("mt-1 max-w-[20rem] truncate text-xs", softTextTone)}>
-                                    {quickDescriptor}
+                                    {displaySiteName}
                                 </p>
                             </div>
                         </div>
@@ -204,12 +229,7 @@ export function Header({
                     <div className="relative z-[1] flex min-w-0 items-center justify-center gap-3">
                         <Navbar
                             items={items}
-                            className={cn(
-                                "min-w-0 justify-center rounded-[1.1rem] px-2 py-1 transition-all duration-300",
-                                showFramedShell
-                                    ? "border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.32)]"
-                                    : "border border-transparent bg-transparent"
-                            )}
+                            className="min-w-0 justify-center rounded-[1.1rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.32)] px-2 py-1 transition-all duration-300"
                         />
                     </div>
 
@@ -217,30 +237,21 @@ export function Header({
                         <LocaleToggle
                             locale={locale}
                             pathname={pathname}
-                            transparent={!showFramedShell}
                             className="hidden xl:inline-flex"
                         />
 
                         <div className="hidden xl:block">
                             <Button
                                 asChild
-                                variant={showFramedShell ? "primary" : "outline"}
+                                variant="primary"
                                 size="md"
                                 motion="magnetic"
-                                className={cn(
-                                    "min-w-[158px] rounded-[1.02rem] shadow-[var(--shadow-xs)]",
-                                    showFramedShell
-                                        ? "border-[rgba(77,111,147,0.16)] bg-[linear-gradient(135deg,#132c47,#244666_62%,#56718b)] text-white hover:bg-[linear-gradient(135deg,#10263d,#1f3f5c_62%,#4c657f)]"
-                                        : "!border-white/28 !bg-[linear-gradient(180deg,rgba(252,254,255,0.22),rgba(241,247,251,0.12))] !text-[var(--accent-strong)] shadow-[0_14px_30px_-28px_rgba(8,20,33,0.42)] hover:!bg-[linear-gradient(180deg,rgba(252,254,255,0.3),rgba(241,247,251,0.18))] hover:!text-[var(--ink)]"
-                                )}
+                                className="min-w-[158px] rounded-[1.02rem] border-[rgba(77,111,147,0.16)] bg-[linear-gradient(135deg,#132c47,#244666_62%,#56718b)] text-white shadow-[var(--shadow-xs)] hover:bg-[linear-gradient(135deg,#10263d,#1f3f5c_62%,#4c657f)]"
                             >
-                                <Link href={resolvedCtaUrl} className={cn("inline-flex items-center gap-3 whitespace-nowrap", showFramedShell ? "text-white" : "!text-[var(--accent-strong)]")}>
-                                    <span>{ctaText}</span>
+                                <Link href={resolvedCtaUrl} className="inline-flex items-center gap-3 whitespace-nowrap text-white">
+                                    <span>{resolvedCtaText}</span>
                                     <span
-                                        className={cn(
-                                            "inline-flex h-7 w-7 items-center justify-center rounded-full",
-                                            showFramedShell ? "bg-white/14 text-white" : "bg-[rgba(19,44,71,0.1)] text-[var(--accent-strong)]"
-                                        )}
+                                        className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/14 text-white"
                                     >
                                         <ArrowUpRight className="h-4 w-4" weight="bold" />
                                     </span>
@@ -253,18 +264,12 @@ export function Header({
                                 locale={locale}
                                 pathname={pathname}
                                 compact
-                                transparent={!showFramedShell}
                             />
 
                             <button
                                 type="button"
                                 onClick={() => setIsOpen((value) => !value)}
-                                className={cn(
-                                    "inline-flex rounded-[0.92rem] p-2 transition-colors",
-                                    showFramedShell
-                                        ? "border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.36)] text-[var(--ink)] hover:bg-[rgba(248,251,253,0.52)]"
-                                        : "border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.18)] text-[var(--ink)] hover:bg-[rgba(248,251,253,0.3)]"
-                                )}
+                                className="inline-flex rounded-[0.92rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.36)] p-2 text-[var(--ink)] transition-colors hover:bg-[rgba(248,251,253,0.52)]"
                                 aria-label={isOpen ? "Close navigation" : "Open navigation"}
                             >
                                 {isOpen ? <X className="h-5 w-5" weight="bold" /> : <List className="h-5 w-5" weight="bold" />}

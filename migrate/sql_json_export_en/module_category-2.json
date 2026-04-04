@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "gioihan": 8,
+    "fullmanhinh": 0,
+    "duongvien": 0,
+    "hinhnen": "https://i.ibb.co/Q7tgBkq0/migr-1e9764057ea38b6a.png",
+    "mauchu": "",
+    "thuoctinhbgd": "cover",
+    "limitbgd": 0
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 0,
+    "gioihan": 0,
+    "fullmanhinh": 0,
+    "duongvien": 0,
+    "hinhnen": "",
+    "mauchu": "",
+    "thuoctinhbgd": "",
+    "limitbgd": 0
+  }
+]

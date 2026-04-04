@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "tieude": "",
+    "anhdaidien": "https://i.ibb.co/ZRH8Yggt/migr-83aed5a6f3119a9c.png",
+    "duongdan": "",
+    "thoigian": 1000,
+    "onlyhome": "onlyhome"
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 0,
+    "tieude": "",
+    "anhdaidien": "",
+    "duongdan": "",
+    "thoigian": 0,
+    "onlyhome": "0"
+  }
+]

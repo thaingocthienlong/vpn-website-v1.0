@@ -72,12 +72,12 @@ export function Footer({
     const resolvedDescription =
         description ||
         (isEn
-            ? "Vien Phuong Nam Institute for social resource development, training, research, and community connection."
+            ? "Phuong Nam Institute for social resource development, training, research, and community connection."
             : "Viện Phát triển nguồn lực xã hội Phương Nam, kết nối đào tạo, nghiên cứu và phát triển nguồn lực xã hội.");
     const resolvedCopyright =
         copyright ||
-        `© ${new Date().getFullYear()} ${isEn ? "Vien Phuong Nam. All rights reserved." : "Viện Phương Nam. Tất cả quyền được bảo lưu."}`;
-    const orgName = isEn ? "Vien Phuong Nam" : "Viện Phương Nam";
+        `© ${new Date().getFullYear()} ${isEn ? "Phuong Nam Institute. All rights reserved." : "Viện Phương Nam. Tất cả quyền được bảo lưu."}`;
+    const orgName = isEn ? "Phuong Nam Institute" : "Viện Phương Nam";
     const resolvedLegalLinks = legalLinks || [
         {
             label: isEn ? "Privacy Policy" : "Chính sách bảo mật",
@@ -93,7 +93,7 @@ export function Footer({
         <footer className="relative overflow-hidden pb-8 pt-8 md:pb-10 md:pt-10">
             <div className="pointer-events-none absolute inset-x-0 top-0 h-full bg-[radial-gradient(circle_at_16%_12%,rgba(77,111,147,0.08),transparent_22%),radial-gradient(circle_at_84%_18%,rgba(255,255,255,0.44),transparent_18%),linear-gradient(180deg,rgba(248,251,253,0.42),rgba(228,235,241,0.14))]" />
             <div className="pointer-events-none absolute inset-x-0 top-0 h-full opacity-[0.2]" style={{ backgroundImage: "linear-gradient(rgba(77,111,147,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(77,111,147,0.08) 1px, transparent 1px)", backgroundSize: "34px 34px", maskImage: "linear-gradient(180deg, rgba(0,0,0,0.28), transparent 92%)" }} />
-            <Container>
+            <Container> 
                 <MotionSection preset="footer">
                     <div className="relative overflow-hidden rounded-[2.7rem] border border-[rgba(16,36,56,0.1)] bg-[linear-gradient(180deg,rgba(248,251,253,0.28),rgba(242,245,247,0.18)_46%,rgba(228,235,241,0.08)_100%)] px-6 py-8 text-[var(--ink)] shadow-[0_22px_54px_-44px_rgba(8,20,33,0.16)] backdrop-blur-[10px] md:px-10 md:py-10">
                         <FloatingAccent className="right-[8%] top-[10%] h-24 w-24 rounded-full bg-[radial-gradient(circle,rgba(77,111,147,0.12),transparent_72%)]" variant="halo" />
@@ -102,12 +102,6 @@ export function Footer({
                         <MotionGroup className="relative grid gap-10 xl:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)]" stagger={0.1}>
                             <MotionItem className="space-y-6">
                                 <div className="space-y-4">
-                                    <div className="inline-flex items-center gap-3">
-                                        <span className="h-px w-10 bg-[rgba(16,36,56,0.12)]" />
-                                        <span className="editorial-caption text-[var(--ink-muted)]">
-                                            {orgName}
-                                        </span>
-                                    </div>
                                     <h2 className="max-w-[11ch] font-heading text-[2.35rem] tracking-[-0.05em] !text-[var(--ink)] md:text-[3.1rem]">
                                         {orgName}
                                     </h2>

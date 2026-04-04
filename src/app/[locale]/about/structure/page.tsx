@@ -1,74 +1,42 @@
-"use client";
-
-import { useEffect, useMemo, useState } from "react";
-import { useTranslations } from "next-intl";
+import { getTranslations, setRequestLocale } from "next-intl/server";
 import StaffDirectoryPage, { type StaffDirectoryGroup } from "@/components/about/StaffDirectoryPage";
 import type { StaffCardPerson } from "@/components/cards/StaffCard";
+import { getOrgStructureDirectoryModel } from "@/lib/services/org-structure";
 
-interface StaffMember {
-    id: string;
-    name: string;
-    title: string | null;
-    bio: string | null;
-    avatar: string | null;
-    email: string | null;
-    department: { id: string; name: string; slug: string } | null;
-    staffType: { id: string; name: string; level: number; isAdvisory: boolean };
+export const dynamic = "force-dynamic";
+
+interface PageProps {
+    params: Promise<{ locale: string }>;
 }
 
-export default function OrgStructurePage() {
-    const t = useTranslations("about.structure");
-    const tCommon = useTranslations("common");
-    const [staff, setStaff] = useState<StaffMember[]>([]);
-    const [loading, setLoading] = useState(true);
+export default async function OrgStructurePage({ params }: PageProps) {
+    const { locale } = await params;
+    const resolvedLocale = locale === "en" ? "en" : "vi";
 
-    useEffect(() => {
-        async function fetchStaff() {
-            try {
-                const res = await fetch("/api/staff?locale=en");
-                if (res.ok) {
-                    const data = await res.json();
-                    setStaff(data.data || []);
-                }
-            } catch (error) {
-                console.error("Error fetching staff:", error);
-            } finally {
-                setLoading(false);
-            }
-        }
+    setRequestLocale(locale);
 
-        fetchStaff();
-    }, []);
+    const [tStructure, tCommon] = await Promise.all([
+        getTranslations({ locale, namespace: "about.structure" }),
+        getTranslations({ locale, namespace: "common" }),
+    ]);
 
-    const groups = useMemo<StaffDirectoryGroup[]>(() => {
-        const mapped = staff.reduce<Record<string, StaffCardPerson[]>>((accumulator, member) => {
-            const departmentName = member.department?.name || "Leadership";
-            if (!accumulator[departmentName]) {
-                accumulator[departmentName] = [];
-            }
+    let featuredMembers: StaffCardPerson[] = [];
+    let groups: StaffDirectoryGroup[] = [];
 
-            accumulator[departmentName].push({
-                id: member.id,
-                name: member.name,
-                title: member.title,
-                position: member.staffType.name,
-                bio: member.bio,
-                avatar: member.avatar ? { url: member.avatar, secureUrl: member.avatar } : null,
-            });
-
-            return accumulator;
-        }, {});
-
-        return Object.entries(mapped).map(([title, members]) => ({ title, members }));
-    }, [staff]);
+    try {
+        ({ featuredMembers, groups } = await getOrgStructureDirectoryModel(resolvedLocale));
+    } catch (error) {
+        console.error("Failed to load about structure page data:", error);
+    }
 
     return (
         <StaffDirectoryPage
-            badge={t("title")}
-            title={t("title")}
-            description={t("description")}
+            badge={tStructure("title")}
+            title={tStructure("title")}
+            description={tStructure("description")}
+            featuredTitle={featuredMembers.length > 0 ? (resolvedLocale === "en" ? "Institute Leadership" : "Lãnh đạo viện") : undefined}
+            featuredMembers={featuredMembers}
             groups={groups}
-            loading={loading}
             emptyTitle={tCommon("updateSoon")}
         />
     );

@@ -16,6 +16,10 @@ export default function NewsListingPage() {
                 emptyDescription="Hiện tại chưa có bài viết trong danh mục này."
                 errorTitle="Đã xảy ra lỗi"
                 filterMode="links"
+                postsPerPage={10}
+                showFeatured={false}
+                gridColumns={2}
+                listLayout="rows"
             />
         </Suspense>
     );

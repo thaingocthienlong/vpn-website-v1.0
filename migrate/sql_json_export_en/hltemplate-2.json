@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "manhung": "HL1710136738",
+    "tieude": "GIỚI THIỆU CHUNG",
+    "id_design": 3,
+    "txt5": "",
+    "txt1": "GENERAL INTRODUCTION",
+    "txt2": "",
+    "txt3": "",
+    "txt4": ""
+  },
+  {
+    "id": 2,
+    "manhung": "HL1710137297",
+    "tieude": "Tiêu đề Tầm nhìn",
+    "id_design": 2,
+    "txt5": "",
+    "txt1": "VISION",
+    "txt2": "",
+    "txt3": "",
+    "txt4": ""
+  },
+  {
+    "id": 3,
+    "manhung": "HL1711366438",
+    "tieude": "MISSION ",
+    "id_design": 3,
+    "txt5": "",
+    "txt1": "Mission",
+    "txt2": "<ul>\r\n\t<li><span style=\"font-size:14px\"><span style=\"font-family:Tahoma,Geneva,sans-serif\"><span style=\"color:#3300ff\"><strong>“Researching scientific subjects, projects and transferring quality technology</strong>”</span>&nbsp;contributes to the development of social resources in the future.</span></span></li>\r\n\t<li><span style=\"font-size:14px\"><span style=\"font-family:Tahoma,Geneva,sans-serif\">Create&nbsp;an environment of<span style=\"color:#3300ff\"> “<strong>Training and consulting services for agencies, organizations and businesses”</strong></span> with professional resources.&nbsp;</span></span></li>\r\n\t<li><span style=\"font-size:14px\"><span style=\"font-family:Tahoma,Geneva,sans-serif\">Provide&nbsp;highly qualified scientists, experts, and lecturers from both domestic and international backgrounds, helping learners advance - promote their careers.</span></span></li>\r\n\t<li><span style=\"font-size:14px\"><span style=\"font-family:Tahoma,Geneva,sans-serif\">Build&nbsp;a creative, fair and happy workplace among scientists, experts, lecturers, team of consultants.</span></span></li>\r\n\t<li><span style=\"font-size:14px\"><span style=\"font-family:Tahoma,Geneva,sans-serif\">Provide&nbsp;society with quality resources.</span></span></li>\r\n</ul>\r\n",
+    "txt3": "https://i.ibb.co/CKFYxjmV/migr-73f4c6b7d02f7513.jpg",
+    "txt4": ""
+  },
+  {
+    "id": 5,
+    "manhung": "HL1711428184",
+    "tieude": "DỊCH VỤ",
+    "id_design": 2,
+    "txt5": "",
+    "txt1": "SERVICES",
+    "txt2": "",
+    "txt3": "",
+    "txt4": ""
+  },
+  {
+    "id": 6,
+    "manhung": "HL1711428237",
+    "tieude": "Sứ mệnh",
+    "id_design": 2,
+    "txt5": "",
+    "txt1": "MISSION",
+    "txt2": "",
+    "txt3": "",
+    "txt4": ""
+  },
+  {
+    "id": 7,
+    "manhung": "HL1711428266",
+    "tieude": "Giá trị",
+    "id_design": 2,
+    "txt5": "",
+    "txt1": "CORE VALUES",
+    "txt2": "",
+    "txt3": "",
+    "txt4": ""
+  }
+]

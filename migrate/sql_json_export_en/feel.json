@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "anhdaidien": "https://i.ibb.co/0Tcqxck/migr-b5780537bf9b75dc.jpg",
+    "name": "Lê Anh Hùng",
+    "chucvu": "Giám đốc",
+    "mieutangan": "Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500."
+  },
+  {
+    "id": 2,
+    "anhdaidien": "https://i.ibb.co/jvHK46Sx/migr-c26d4e300b28169e.jpg",
+    "name": "Nguyễn Cao Kỳ Duyên",
+    "chucvu": "Nhân Viên Kinh Doanh",
+    "mieutangan": "Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500."
+  },
+  {
+    "id": 5,
+    "anhdaidien": "https://i.ibb.co/HT8CzzDH/migr-143e6b4c1219661b.jpg",
+    "name": "Bảo Vy",
+    "chucvu": "Giám Đốc",
+    "mieutangan": "Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500."
+  },
+  {
+    "id": 7,
+    "anhdaidien": "https://i.ibb.co/jvHK46Sx/migr-c26d4e300b28169e.jpg",
+    "name": "Bảo Trâm",
+    "chucvu": "Học Viên 2002",
+    "mieutangan": "Lorem Ipsum chỉ đơn giản là một đoạn văn bản giả, được dùng vào việc trình bày và dàn trang phục vụ cho in ấn. Lorem Ipsum đã được sử dụng như một văn bản chuẩn cho ngành công nghiệp in ấn từ những năm 1500.\t"
+  }
+]

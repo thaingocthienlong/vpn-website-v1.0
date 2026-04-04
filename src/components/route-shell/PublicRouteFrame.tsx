@@ -26,7 +26,7 @@ export function PublicRouteFrame({
             <div className={cn("grid gap-8", hasAside ? "lg:grid-cols-[minmax(0,1fr)_320px]" : "grid-cols-1", className)}>
                 <div className={cn("min-w-0", mainClassName)}>{main}</div>
                 {hasAside && (
-                    <aside className={cn(asideSticky && "lg:sticky lg:top-28 lg:self-start", asideClassName)}>
+                    <aside className={cn(asideSticky && "public-sticky-offset lg:sticky lg:self-start", asideClassName)}>
                         {aside}
                     </aside>
                 )}

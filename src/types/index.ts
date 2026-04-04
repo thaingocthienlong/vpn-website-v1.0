@@ -137,3 +137,5 @@ export interface PartnerData {
     website: string | null;
     sortOrder: number;
 }
+
+export * from "./admin";

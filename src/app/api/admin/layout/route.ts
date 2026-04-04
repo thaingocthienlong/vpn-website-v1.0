@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import prisma from "@/lib/prisma";
 import { requireAdmin, jsonSuccess, jsonError } from "@/lib/admin-auth";
+import { revalidateSiteConfig } from "@/lib/admin/revalidation";
 
 /**
  * GET /api/admin/layout - Get layout configuration (header, footer, navbar)
@@ -76,6 +77,7 @@ export async function PUT(request: NextRequest) {
                     sortOrder: data.sortOrder,
                 },
             });
+            revalidateSiteConfig();
             return jsonSuccess(updated);
         }
 
@@ -89,6 +91,7 @@ export async function PUT(request: NextRequest) {
                 where: { id },
                 data: { isActive: !item.isActive },
             });
+            revalidateSiteConfig();
             return jsonSuccess(updated);
         }
 
@@ -105,6 +108,7 @@ export async function PUT(request: NextRequest) {
                     })
                 )
             );
+            revalidateSiteConfig();
             return jsonSuccess({ reordered: true });
         }
 
@@ -131,6 +135,7 @@ export async function PUT(request: NextRequest) {
         );
 
         await Promise.all(updates);
+        revalidateSiteConfig();
         return jsonSuccess({ updated: true });
     } catch (error) {
         console.error("Error updating layout config:", error);
@@ -173,6 +178,7 @@ export async function POST(request: NextRequest) {
             },
         });
 
+        revalidateSiteConfig();
         return jsonSuccess(menuItem, 201);
     } catch (error) {
         console.error("Error creating menu item:", error);
@@ -197,6 +203,7 @@ export async function DELETE(request: NextRequest) {
         await prisma.menuItem.deleteMany({ where: { parentId: id } });
         await prisma.menuItem.delete({ where: { id } });
 
+        revalidateSiteConfig();
         return jsonSuccess({ deleted: true });
     } catch (error) {
         console.error("Error deleting menu item:", error);

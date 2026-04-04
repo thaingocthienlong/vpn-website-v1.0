@@ -1,0 +1,23 @@
+[
+  {
+    "id": 46,
+    "anhdaidien1": "/uploads/images/WHO%20WE%20ARE.jpg",
+    "text1": "Who we are",
+    "text11": "Our Scientific Advisory Board and the Leadership profoundly understand that social human resource development along with science and technology application are core values that significantly contribute to socio-economic development of every country, agency, organization and business. Therefore, the Institute’s activities and mission consistently focus on these values. ",
+    "color": "rgb(3, 72, 129)"
+  },
+  {
+    "id": 47,
+    "anhdaidien1": "/uploads/images/ORIEENTED.jpg",
+    "text1": "Oriented development",
+    "text11": "Based on our mission, Phuong Nam Institute is oriented to operate as a non-profit organization, aiming to accommodate the highest core values for the development of quality social resources in the future.",
+    "color": "#990000"
+  },
+  {
+    "id": 48,
+    "anhdaidien1": "/uploads/images/ELEVATING.jpg",
+    "text1": "Elevating social resources for development",
+    "text11": "No matter who you are,  which organization you belong to or even what age you are, as long as you give us a choice, we ensure to bring you typical values that advance your future career.  ",
+    "color": "rgb(60, 61, 61)"
+  }
+]

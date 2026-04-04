@@ -1,0 +1,44 @@
+[
+  {
+    "id": 5,
+    "avatar": "/uploads/images/avatar.png",
+    "username": "vienphuongnam_en",
+    "fullname": "Admin",
+    "gioithieungan": "",
+    "mieutachitiet": "Full quyền",
+    "sdt": "0974250568",
+    "password": "cd774514ba25ac63bcc57d9527c5d680",
+    "security_hl": "ab8e139d3582ca808d445df851520589",
+    "created_time": "2023-05-12",
+    "last_updated": "2023-05-12",
+    "phanquyen": 2
+  },
+  {
+    "id": 11,
+    "avatar": "/uploads/images/avatar.png",
+    "username": "quanly",
+    "fullname": "Quản lý",
+    "gioithieungan": "Giới thiệu ngắn",
+    "mieutachitiet": "Đăng bài viết, đăng sản phẩm và kiểm duyệt",
+    "sdt": "0974250568",
+    "password": "25d55ad283aa400af464c76d713c07ad",
+    "security_hl": "25d55ad283aa400af464c76d713c07ad",
+    "created_time": "2023-05-12",
+    "last_updated": "2023-05-12",
+    "phanquyen": 1
+  },
+  {
+    "id": 12,
+    "avatar": "/uploads/images/avatar.png",
+    "username": "bientapvien",
+    "fullname": "Biên tập viên",
+    "gioithieungan": "Giới thiệu ngắn",
+    "mieutachitiet": "Đăng bài viết và đăng sản phẩm",
+    "sdt": "0974250568",
+    "password": "25d55ad283aa400af464c76d713c07ad",
+    "security_hl": "25d55ad283aa400af464c76d713c07ad",
+    "created_time": "2023-05-12",
+    "last_updated": "2023-05-12",
+    "phanquyen": 0
+  }
+]

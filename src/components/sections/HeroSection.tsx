@@ -59,6 +59,8 @@ export function HeroSection({
     const locale = detectLocaleFromPath(pathname);
     const isEn = locale === "en";
     const shouldReduceMotion = useReducedMotion();
+    const titleContainerRef = React.useRef<HTMLDivElement>(null);
+    const titleRef = React.useRef<HTMLHeadingElement>(null);
 
     const copy = isEn
         ? {
@@ -107,6 +109,101 @@ export function HeroSection({
         featuredImage: program.featuredImage || featuredMedia?.thumbnailUrl || null,
     }));
     const heroSecondaryButtonClass = "rounded-[1.02rem] !border-[rgba(16,36,56,0.12)] !bg-[linear-gradient(180deg,rgba(228,236,243,0.88),rgba(214,225,236,0.76))] !text-[var(--accent-strong)] shadow-[0_14px_30px_-28px_rgba(8,20,33,0.28)] hover:!bg-[linear-gradient(180deg,rgba(236,243,248,0.94),rgba(222,232,241,0.84))] hover:!text-[var(--ink)]";
+    const heroMediaFigure = (
+        <motion.figure
+            whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+            transition={publicMotionTokens.hoverSpring}
+            className="relative min-w-0 overflow-hidden rounded-[1.8rem] border border-[rgba(16,40,70,0.1)] bg-[rgba(252,254,255,0.38)] shadow-[var(--shadow-sm)]"
+        >
+            <div className="relative aspect-[4/5] min-h-[420px] w-full md:min-h-[540px]">
+                {featuredMedia?.thumbnailUrl ? (
+                    <Image
+                        src={featuredMedia.thumbnailUrl}
+                        alt={featuredMedia.title || resolvedTitle}
+                        fill
+                        className="object-cover"
+                        priority
+                        sizes="(max-width: 1280px) 100vw, 48vw"
+                    />
+                ) : (
+                    <div className="absolute inset-0 bg-[linear-gradient(160deg,#deebf6_0%,#cedeed_42%,#eaf1f5_100%)]" />
+                )}
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,34,53,0.02),rgba(20,34,53,0.12),rgba(20,34,53,0.34))]" />
+                <div className="absolute left-5 top-5 inline-flex items-center gap-3 rounded-full border border-white/32 bg-white/62 px-3 py-1.5 backdrop-blur-sm">
+                    <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
+                    <span className="editorial-caption text-[var(--accent-strong)]">{copy.labels.visual}</span>
+                </div>
+                <figcaption className="absolute inset-x-0 bottom-0 border-t border-white/18 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(14,28,46,0.6))] px-5 py-4 md:px-6">
+                    <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
+                        <p className="max-w-[30rem] text-sm leading-7 text-white/84 md:text-[0.96rem]">
+                            {featuredMedia?.description || copy.labels.imageCaption}
+                        </p>
+                        {filmHref ? (
+                            <Link href={filmHref} className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/76 transition-colors hover:text-white">
+                                <Play className="h-3.5 w-3.5" weight="fill" />
+                                <span>{copy.labels.film}</span>
+                            </Link>
+                        ) : null}
+                    </div>
+                </figcaption>
+            </div>
+        </motion.figure>
+    );
+
+    React.useEffect(() => {
+        const container = titleContainerRef.current;
+        const titleElement = titleRef.current;
+
+        if (!container || !titleElement) {
+            return;
+        }
+
+        let frameId = 0;
+
+        const fitTitle = () => {
+            cancelAnimationFrame(frameId);
+            frameId = requestAnimationFrame(() => {
+                const viewport = window.visualViewport?.width ?? window.innerWidth;
+
+                if (viewport < 1024) {
+                    titleElement.style.removeProperty("font-size");
+                    titleElement.style.removeProperty("white-space");
+                    return;
+                }
+
+                const availableWidth = container.getBoundingClientRect().width;
+                if (!availableWidth) {
+                    return;
+                }
+
+                const maxFontSize = viewport >= 1536 ? 96 : viewport >= 1280 ? 88 : 76;
+                titleElement.style.fontSize = `${maxFontSize}px`;
+                titleElement.style.whiteSpace = "nowrap";
+
+                const intrinsicWidth = titleElement.scrollWidth;
+                if (!intrinsicWidth) {
+                    return;
+                }
+
+                const scale = Math.min(1, availableWidth / intrinsicWidth);
+                titleElement.style.fontSize = `${(maxFontSize * scale).toFixed(2)}px`;
+            });
+        };
+
+        fitTitle();
+
+        const resizeObserver = new ResizeObserver(fitTitle);
+        resizeObserver.observe(container);
+        window.visualViewport?.addEventListener("resize", fitTitle);
+        window.addEventListener("resize", fitTitle);
+
+        return () => {
+            cancelAnimationFrame(frameId);
+            resizeObserver.disconnect();
+            window.visualViewport?.removeEventListener("resize", fitTitle);
+            window.removeEventListener("resize", fitTitle);
+        };
+    }, [resolvedTitle]);
 
     return (
         <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f7fbfd_0%,#eef4f8_58%,#e7eef4_100%)] text-[var(--ink)]">
@@ -132,11 +229,14 @@ export function HeroSection({
                                 </div>
 
                                 <div className="space-y-4">
-                                    <div className="max-w-full">
+                                    <div ref={titleContainerRef} className="max-w-full overflow-hidden">
                                         <h1
-                                            className="max-w-[9.5ch] font-heading text-[clamp(3.15rem,10vw,4.9rem)] leading-[0.86] tracking-[-0.064em] text-[var(--ink)] md:max-w-[10.6ch] md:text-[clamp(3.8rem,8vw,5.9rem)] xl:max-w-[9.8ch] xl:text-[clamp(4.6rem,6vw,5.85rem)]"
+                                            ref={titleRef}
+                                            className="inline-block max-w-full font-heading text-[clamp(3.15rem,10vw,4.9rem)] leading-[0.86] tracking-[-0.064em] text-[var(--ink)] md:text-[clamp(3.8rem,8vw,5.9rem)] xl:text-[clamp(4.6rem,6vw,5.85rem)]"
                                             style={{
                                                 textWrap: "balance",
+                                                wordBreak: "keep-all",
+                                                overflowWrap: "normal",
                                             }}
                                         >
                                             {resolvedTitle}
@@ -178,6 +278,10 @@ export function HeroSection({
                                 </div>
                             </motion.div>
 
+                            <div className="mt-9 xl:hidden">
+                                {heroMediaFigure}
+                            </div>
+
                             {railItems.length > 0 ? (
                                 <motion.div
                                     initial={shouldReduceMotion ? false : { opacity: 0, y: 18 }}
@@ -207,8 +311,8 @@ export function HeroSection({
                                                 ) : (
                                                     <div className="absolute inset-0 bg-[linear-gradient(160deg,#d8e3ef_0%,#c7d5e4_44%,#e7edf4_100%)]" />
                                                 )}
-                                                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(10,20,34,0.02),rgba(10,20,34,0.06),rgba(10,20,34,0.14))] transition-all duration-300 xl:bg-[linear-gradient(180deg,rgba(10,20,34,0.01),rgba(10,20,34,0.03),rgba(10,20,34,0.08))] xl:group-hover:bg-[linear-gradient(180deg,rgba(10,20,34,0.18),rgba(10,20,34,0.38),rgba(10,20,34,0.9))]" />
-                                                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 p-4">
+                                                    <div className="absolute inset-0 hidden bg-[linear-gradient(180deg,rgba(10,20,34,0.02),rgba(10,20,34,0.06),rgba(10,20,34,0.14))] transition-all duration-300 md:block xl:bg-[linear-gradient(180deg,rgba(10,20,34,0.01),rgba(10,20,34,0.03),rgba(10,20,34,0.08))] xl:group-hover:bg-[linear-gradient(180deg,rgba(10,20,34,0.18),rgba(10,20,34,0.38),rgba(10,20,34,0.9))]" />
+                                                <div className="absolute inset-x-0 bottom-0 hidden items-end justify-between gap-3 p-4 md:flex">
                                                     <div className="space-y-1">
                                                         <p className="max-w-[16ch] font-heading text-[1.02rem] leading-[1.02] text-white transition-all duration-300 xl:translate-y-3 xl:opacity-0 xl:group-hover:-translate-y-1 xl:group-hover:opacity-100 xl:group-hover:text-[rgba(255,255,255,0.98)]">
                                                             {item.title}
@@ -229,45 +333,8 @@ export function HeroSection({
                         </div>
                     </MotionItem>
 
-                    <MotionItem preset="fade-left" className="min-w-0">
-                        <motion.figure
-                            whileHover={shouldReduceMotion ? undefined : { y: -4 }}
-                            transition={publicMotionTokens.hoverSpring}
-                            className="relative min-w-0 overflow-hidden rounded-[1.8rem] border border-[rgba(16,40,70,0.1)] bg-[rgba(252,254,255,0.38)] shadow-[var(--shadow-sm)]"
-                        >
-                            <div className="relative aspect-[4/5] min-h-[420px] w-full md:min-h-[540px]">
-                                {featuredMedia?.thumbnailUrl ? (
-                                    <Image
-                                        src={featuredMedia.thumbnailUrl}
-                                        alt={featuredMedia.title || resolvedTitle}
-                                        fill
-                                        className="object-cover"
-                                        priority
-                                        sizes="(max-width: 1280px) 100vw, 48vw"
-                                    />
-                                ) : (
-                                    <div className="absolute inset-0 bg-[linear-gradient(160deg,#deebf6_0%,#cedeed_42%,#eaf1f5_100%)]" />
-                                )}
-                                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,34,53,0.02),rgba(20,34,53,0.12),rgba(20,34,53,0.34))]" />
-                                <div className="absolute left-5 top-5 inline-flex items-center gap-3 rounded-full border border-white/32 bg-white/62 px-3 py-1.5 backdrop-blur-sm">
-                                    <span className="h-2 w-2 rounded-full bg-[var(--accent)]" />
-                                    <span className="editorial-caption text-[var(--accent-strong)]">{copy.labels.visual}</span>
-                                </div>
-                                <figcaption className="absolute inset-x-0 bottom-0 border-t border-white/18 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(14,28,46,0.6))] px-5 py-4 md:px-6">
-                                    <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-                                        <p className="max-w-[30rem] text-sm leading-7 text-white/84 md:text-[0.96rem]">
-                                            {featuredMedia?.description || copy.labels.imageCaption}
-                                        </p>
-                                        {filmHref ? (
-                                            <Link href={filmHref} className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-white/76 transition-colors hover:text-white">
-                                                <Play className="h-3.5 w-3.5" weight="fill" />
-                                                <span>{copy.labels.film}</span>
-                                            </Link>
-                                        ) : null}
-                                    </div>
-                                </figcaption>
-                            </div>
-                        </motion.figure>
+                    <MotionItem preset="fade-left" className="hidden min-w-0 xl:block">
+                        {heroMediaFigure}
                     </MotionItem>
                 </MotionGroup>
             </Container>

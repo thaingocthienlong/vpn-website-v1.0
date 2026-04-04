@@ -1,0 +1,156 @@
+{
+    "slug": "tccd-gvdh",
+    "name": "TIÊU CHUẨN CHỨC DANH GIẢNG VIÊN",
+    "shortName": "Bồi dưỡng TCCD GVĐH",
+    "heritage": "phối hợp Trường Đại học Đồng Tháp",
+    "defaultProgram": "gvdh",
+    "seo": {
+        "title": "Bồi dưỡng theo tiêu chuẩn chức danh nghề nghiệp giảng viên đại học – Viện Phương Nam",
+        "description": "Khoá học Bồi dưỡng theo tiêu chuẩn chức danh nghề nghiệp giảng viên đại học. Phối hợp Trường Đại học Đồng Tháp & Viện Phương Nam. Trực tuyến 100%.",
+        "keywords": "bồi dưỡng giảng viên đại học, tiêu chuẩn chức danh, TCCD GVĐH, viện phương nam, Đại học Đồng Tháp, chứng chỉ giảng viên"
+    },
+    "programs": {
+        "gvdh": {
+            "title": "<span class=\"lp-hero-title-gold\">BỒI DƯỠNG THEO TIÊU CHUẨN CHỨC DANH NGHỀ NGHIỆP GIẢNG VIÊN ĐẠI HỌC</span>",
+            "titlePlain": "Bồi dưỡng theo tiêu chuẩn chức danh nghề nghiệp giảng viên đại học",
+            "subtitle": "Dự kiến khai giảng: tháng 03/2026",
+            "courseId": "Bồi dưỡng theo tiêu chuẩn chức danh nghề nghiệp giảng viên đại học",
+            "curriculumTitle": "Bồi dưỡng theo tiêu chuẩn chức danh nghề nghiệp giảng viên đại học",
+            "curriculumDesc": "Khoá học Bồi dưỡng theo tiêu chuẩn chức danh nghề nghiệp giảng viên đại học – Viện Phương Nam phối hợp Trường Đại học Đồng Tháp.",
+            "meta": [
+                {
+                    "icon": "fa-certificate",
+                    "label": "Chứng chỉ Tiêu chuẩn chức danh nghề nghiệp giảng viên đại học"
+                },
+                {
+                    "icon": "fa-calendar-check",
+                    "label": "Khai giảng: Tháng 03/2026"
+                },
+                {
+                    "icon": "fa-laptop",
+                    "label": "Trực tuyến 100%"
+                },
+                {
+                    "icon": "fa-money-bill-wave",
+                    "label": "Học phí: 2.500.000 đồng"
+                }
+            ],
+            "curriculum": [
+                {
+                    "num": "1",
+                    "title": "Đối tượng tham gia",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li>Cán bộ giảng dạy hiện đang công tác tại các cơ sở giáo dục đại học và đang làm việc ở vị trí công tác phù hợp với chức trách, nhiệm vụ của chức danh nghề nghiệp giảng viên đại học.</li>",
+                        "<li>Các cá nhân khác có nhu cầu bồi dưỡng, cấp chứng chỉ bồi dưỡng, theo tiêu chuẩn chức danh nghề nghiệp giảng viên đại học.</li>"
+                    ]
+                },
+                {
+                    "num": "2",
+                    "title": "Thông tin chung về khóa học",
+                    "items": [
+                        "<li>Dự kiến khai giảng: <strong><span style=\"color: var(--lp-gold-light); font-weight: 600;\">Tháng 03/2026</span></strong></li>",
+                        "<li>Thời gian học: <strong><span style=\"color: var(--lp-gold-light); font-weight: 600;\">thứ Bảy, Chủ nhật</span> và các buổi tối trong tuần</strong></li>",
+                        "<li>Hình thức: <strong><span style=\"color: var(--lp-gold-light); font-weight: 600;\">Trực tuyến 100%</span></strong></li>",
+                        "<li>Học phí: <strong><span style=\"color: var(--lp-gold-light); font-weight: 600;\">2.500.000 đồng/học viên</span></strong></li>"
+                    ]
+                },
+                {
+                    "num": "3",
+                    "title": "Nội dung khóa học",
+                    "items": [
+                        "<li>Theo nội dung chương trình được ban hành tại <u><a href=\"https://thuvienphapluat.vn/van-ban/Bo-may-hanh-chinh/Quyet-dinh-1079-QD-BGDDT-2022-boi-duong-theo-tieu-chuan-nghe-nghiep-giang-vien-dai-hoc-510811.aspx\" target=\"_blank\">Quyết định số 1079/QĐ-BGDĐT ngày 20/4/2022 của Bộ Giáo dục và Đào tạo</a></u>.</li>"
+                    ]
+                },
+                {
+                    "num": "4",
+                    "title": "Hồ sơ đăng ký",
+                    "items": [
+                        "<li>01 phiếu đăng ký học <em>(<u><a href=\"https://docs.google.com/document/d/13UuB_vC6iqX_c0yAIPuRqkaZ8WoyAEct/edit?usp=sharing&ouid=106748162711236376801&rtpof=true&sd=true\" target=\"_blank\">theo mẫu</a></u>)</em>;</li>",
+                        "<li>01 bản sao công chứng bằng cấp cao nhất;</li>",
+                        "<li>01 bản sao Căn cước công dân;</li>",
+                        "<li>02 ảnh thẻ (4x6).</li>"
+                    ]
+                },
+                {
+                    "num": "5",
+                    "title": "Cách thức đăng ký",
+                    "items": [
+                        "<li><strong>Bước 1:</strong> Đăng ký trực tuyến <a href=\"#lp-form\" style=\"color: var(--lp-gold-light); font-weight: 600;\">tại đây</a></li>",
+                        "<li><strong>Bước 2:</strong> Nộp hồ sơ trực tiếp hoặc qua đường bưu điện theo thông tin:<div style=\"margin-top: 15px;\"><strong>VĂN PHÒNG VIỆN PHƯƠNG NAM</strong><br>Địa chỉ: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. Hồ Chí Minh</span><br>Điện thoại: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(028) 2242 6789 - 0767 013 324 (Cô Hà)</span></div></li>",
+                        "<li><strong>Bước 3:</strong> Thanh toán học phí bằng tiền mặt hoặc chuyển khoản theo thông tin sau:<div style=\"background-color: rgba(212, 175, 55, 0.05); padding: 15px; border-left: 4px solid var(--lp-gold-light); border-radius: 4px; margin-top: 15px;\">Tên tài khoản: <strong style=\"color: var(--lp-gold-light);\">VIEN PHAT TRIEN NGUON LUC XA HOI PHUONG NAM</strong><br>Số tài khoản: <strong style=\"color: var(--lp-gold-light); font-size: 1.1em; letter-spacing: 1px;\"><em>2242 6789</em></strong> – tại Ngân hàng Phương Đông (OCB), chi nhánh Tân Thuận<br>Nội dung chuyển khoản: <strong style=\"color: var(--lp-gold-light);\"><em>Họ tên– Số điện thoại – TCCD01.26</em></strong></div></li>"
+                    ]
+                },
+                {
+                    "num": "6",
+                    "title": "Thông tin liên hệ",
+                    "items": [
+                        "<li class=\"lp-no-bullet\"><strong>Liên hệ tư vấn, hỗ trợ:</strong><ul style=\"padding-left: 15px; margin: 5px 0;\"><li>Cô Nguyễn Thị Như Hà - Chuyên viên tư vấn đào tạo<br>Điện thoại: 0767 013 324<br>Email: hanguyen.vpn@vienphuongnam.com.vn</li><li>Cô Nguyễn Thị Hiếu Thảo - Chuyên viên tư vấn đào tạo<br>Điện thoại: 0912 114 511<br>Email: thaonguyen.vpn@vienphuongnam.com.vn</li></ul></li>"
+                    ]
+                },
+                {
+                    "num": "7",
+                    "title": "Thông báo chính thức",
+                    "items": [
+                        "<li><strong>Xem thông báo chính thức tại đây: </strong><u><strong><a href=\"https://drive.google.com/file/d/1OYvktYVRZivfWXMdt_BtBTQj4vpLpL5o/view?usp=sharing\" target=\"_blank\">Thông báo</a></strong></u></li>"
+                    ]
+                },
+                {
+                    "num": "8",
+                    "title": "Thông tin liên quan",
+                    "items": [
+                        "<li class=\"lp-no-bullet\"><div style=\"margin-bottom: 5px;\"><a href=\"https://tuoitre.vn/giang-vien-dai-hoc-phai-co-bang-thac-si-ngoai-ngu-va-biet-nghien-cuu-20251004183252975.htm\" target=\"_blank\" style=\"color: var(--lp-gold-light); font-weight: 600; text-decoration: none;\"><i class=\"fa-regular fa-newspaper\" style=\"margin-right: 8px; width: 16px; text-align: center;\"></i>Giảng viên đại học phải có bằng thạc sĩ, ngoại ngữ và biết nghiên cứu</a></div><div style=\"margin-left: 28px; font-size: 0.9em; opacity: 0.8;\"><strong><em>Nguồn:</em></strong><em> Báo Tuổi trẻ</em></div></li>",
+                        "<li class=\"lp-no-bullet\"><div style=\"margin-bottom: 5px;\"><a href=\"https://thuvienphapluat.vn/chinh-sach-phap-luat-moi/vn/ho-tro-phap-luat/chinh-sach-moi/95893/da-co-du-thao-thong-tu-quy-dinh-chuan-nghe-nghiep-giang-vien-giang-day-trong-co-so-giao-duc-dai-hoc\" target=\"_blank\" style=\"color: var(--lp-gold-light); font-weight: 600; text-decoration: none;\"><i class=\"fa-solid fa-gavel\" style=\"margin-right: 8px; width: 16px; text-align: center;\"></i>Đã có dự thảo Thông tư quy định chuẩn nghề nghiệp giảng viên giảng dạy trong cơ sở giáo dục đại học</a></div><div style=\"margin-left: 28px; font-size: 0.9em; opacity: 0.8;\"><strong><em>Nguồn:</em></strong><em> Thư viện pháp luật</em></div></li>"
+                    ]
+                }
+            ],
+            "faq": [],
+            "contact": {
+                "phones": [
+                    {
+                        "number": "0767013324",
+                        "display": "0767 013 324",
+                        "name": "cô Hà"
+                    },
+                    {
+                        "number": "0912114511",
+                        "display": "0912 114 511",
+                        "name": "cô Thảo"
+                    }
+                ]
+            }
+        }
+    },
+    "benefits": [
+        {
+            "icon": "fa-certificate",
+            "title": "Chứng chỉ chính quy",
+            "desc": "Chứng chỉ bồi dưỡng TCCD giảng viên ĐH do Trường ĐH Đồng Tháp cấp theo QĐ 1079/QĐ-BGDĐT."
+        },
+        {
+            "icon": "fa-laptop",
+            "title": "Học online linh hoạt",
+            "desc": "100% trực tuyến, học vào cuối tuần và buổi tối, phù hợp cho người đi làm."
+        },
+        {
+            "icon": "fa-hand-holding-dollar",
+            "title": "Học phí hợp lý",
+            "desc": "Chỉ 2.500.000 đồng/học viên cho toàn bộ chương trình bồi dưỡng."
+        },
+        {
+            "icon": "fa-user-tie",
+            "title": "Giảng viên chất lượng",
+            "desc": "Đội ngũ giảng viên giàu kinh nghiệm từ Trường ĐH Đồng Tháp."
+        },
+        {
+            "icon": "fa-shield-halved",
+            "title": "Theo đúng quy định",
+            "desc": "Chương trình theo QĐ 1079/QĐ-BGDĐT ngày 20/4/2022 của Bộ GD&ĐT."
+        },
+        {
+            "icon": "fa-headset",
+            "title": "Hỗ trợ tận tâm",
+            "desc": "Tư vấn và hỗ trợ hồ sơ đăng ký nhiệt tình từ đội ngũ Viện Phương Nam."
+        }
+    ]
+}

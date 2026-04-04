@@ -37,7 +37,7 @@ export function NewsPageShell({
     return (
         <div className="min-h-screen public-shell">
             <Header />
-            <main id="main-content" className="flex-1 pb-20 pt-24 md:pt-28">
+            <main id="main-content" className="public-main-offset flex-1 pb-20">
                 <Container className="space-y-6 md:space-y-8">
                     {breadcrumbs.length > 0 && <PublicBreadcrumbBar items={breadcrumbs} />}
                     {hasHero && (

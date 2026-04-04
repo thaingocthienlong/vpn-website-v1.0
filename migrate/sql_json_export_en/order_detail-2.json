@@ -1,0 +1,26 @@
+[
+  {
+    "id": 351,
+    "ma_donhang": "1639048933",
+    "id_sanpham": "526",
+    "soluong": 2,
+    "thuoctinhcobansp": "",
+    "thuoctinhnangcaosp": ""
+  },
+  {
+    "id": 352,
+    "ma_donhang": "1639048933",
+    "id_sanpham": "524",
+    "soluong": 2,
+    "thuoctinhcobansp": "",
+    "thuoctinhnangcaosp": ""
+  },
+  {
+    "id": 353,
+    "ma_donhang": "1639048933",
+    "id_sanpham": "525",
+    "soluong": 2,
+    "thuoctinhcobansp": "",
+    "thuoctinhnangcaosp": ""
+  }
+]

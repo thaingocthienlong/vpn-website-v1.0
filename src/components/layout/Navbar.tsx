@@ -22,6 +22,23 @@ export interface NavbarProps {
     className?: string;
 }
 
+const HEADER_MENU_BLUEPRINT = {
+    vi: {
+        about: { label: "Giới thiệu", url: "/gioi-thieu" },
+        council: { label: "Hội đồng", url: "/gioi-thieu/hoi-dong-co-van" },
+        training: { label: "Đào tạo", url: "/dao-tao" },
+        services: { label: "Dịch vụ", url: "/dich-vu" },
+        news: { label: "Tin tức", url: "/tin-tuc" },
+    },
+    en: {
+        about: { label: "About", url: "/en/about" },
+        council: { label: "Council", url: "/en/about/advisory-board" },
+        training: { label: "Training", url: "/en/training" },
+        services: { label: "Services", url: "/en/services" },
+        news: { label: "News", url: "/en/news" },
+    },
+} as const;
+
 const baseMenuItems: MenuItem[] = [
     {
         label: "Giới thiệu",
@@ -29,7 +46,7 @@ const baseMenuItems: MenuItem[] = [
         children: [
             { label: "Tầm nhìn & Sứ mệnh", url: "/gioi-thieu/tam-nhin-su-menh" },
             { label: "Cơ cấu tổ chức", url: "/gioi-thieu/co-cau-to-chuc" },
-            { label: "Hội đồng cố vấn", url: "/gioi-thieu/hoi-dong-co-van-khoa-hoc" },
+            { label: "Hội đồng cố vấn", url: "/gioi-thieu/hoi-dong-co-van" },
             { label: "Đối tác", url: "/gioi-thieu/doi-tac" },
         ],
     },
@@ -52,7 +69,7 @@ const baseMenuItems: MenuItem[] = [
         ],
     },
     { label: "Tin tức", url: "/tin-tuc" },
-    { label: "Liên hệ", url: "/lien-he" },
+    { label: "Hội đồng", url: "/gioi-thieu/hoi-dong-co-van" },
 ];
 
 function localizeHref(path: string, locale: "vi" | "en") {
@@ -65,8 +82,96 @@ function localizeHref(path: string, locale: "vi" | "en") {
     return query ? `${localizedPath}?${query}` : localizedPath;
 }
 
+function stripTrailingSlash(path: string) {
+    if (path.length > 1 && path.endsWith("/")) {
+        return path.slice(0, -1);
+    }
+
+    return path;
+}
+
+function matchesMenuUrl(candidate: string | undefined, target: string) {
+    if (!candidate) return false;
+
+    const [candidatePath] = candidate.split("?");
+    const [targetPath] = target.split("?");
+
+    return stripTrailingSlash(candidatePath) === stripTrailingSlash(targetPath);
+}
+
+function createMenuFallback(
+    locale: "vi" | "en",
+    key: keyof typeof HEADER_MENU_BLUEPRINT.vi,
+): MenuItem {
+    const blueprint = HEADER_MENU_BLUEPRINT[locale][key];
+
+    return {
+        label: blueprint.label,
+        url: blueprint.url,
+        target: "_self",
+        children: [],
+    };
+}
+
+function cloneMenuItems(items: MenuItem[]): MenuItem[] {
+    return items.map((item) => ({
+        ...item,
+        children: item.children?.map((child) => ({ ...child })),
+    }));
+}
+
+function applyHeaderBlueprint(
+    items: MenuItem[],
+    locale: "vi" | "en",
+): MenuItem[] {
+    const blueprint = HEADER_MENU_BLUEPRINT[locale];
+    const clonedItems = cloneMenuItems(items);
+
+    const aboutItem = clonedItems.find((item) => matchesMenuUrl(item.url, blueprint.about.url));
+    const trainingItem = clonedItems.find((item) => matchesMenuUrl(item.url, blueprint.training.url));
+    const servicesItem = clonedItems.find((item) => matchesMenuUrl(item.url, blueprint.services.url));
+    const newsItem = clonedItems.find((item) => matchesMenuUrl(item.url, blueprint.news.url));
+    const councilItem = clonedItems.find((item) => matchesMenuUrl(item.url, blueprint.council.url));
+
+    const normalizedAboutItem = aboutItem
+        ? {
+            ...aboutItem,
+            label: blueprint.about.label,
+            children: aboutItem.children?.filter((child) => !matchesMenuUrl(child.url, blueprint.council.url)),
+        }
+        : createMenuFallback(locale, "about");
+
+    const normalizedCouncilItem = councilItem
+        ? { ...councilItem, label: blueprint.council.label, children: [] }
+        : createMenuFallback(locale, "council");
+
+    const normalizedTrainingItem = trainingItem
+        ? { ...trainingItem, label: blueprint.training.label }
+        : createMenuFallback(locale, "training");
+
+    const normalizedServicesItem = servicesItem
+        ? { ...servicesItem, label: blueprint.services.label }
+        : createMenuFallback(locale, "services");
+
+    const normalizedNewsItem = newsItem
+        ? { ...newsItem, label: blueprint.news.label }
+        : createMenuFallback(locale, "news");
+
+    return [
+        normalizedAboutItem,
+        normalizedCouncilItem,
+        normalizedTrainingItem,
+        normalizedServicesItem,
+        normalizedNewsItem,
+    ];
+}
+
+export function normalizeHeaderMenuItems(items: MenuItem[]): MenuItem[] {
+    return cloneMenuItems(items);
+}
+
 export function getDefaultMenuItems(locale: "vi" | "en"): MenuItem[] {
-    return baseMenuItems.map((item) => ({
+    const localizedItems = baseMenuItems.map((item) => ({
         ...item,
         url: localizeHref(item.url, locale),
         children: item.children?.map((child) => ({
@@ -74,12 +179,17 @@ export function getDefaultMenuItems(locale: "vi" | "en"): MenuItem[] {
             url: localizeHref(child.url, locale),
         })),
     }));
+
+    return applyHeaderBlueprint(localizedItems, locale);
 }
 
 export function Navbar({ items, className }: NavbarProps) {
     const pathname = usePathname();
     const locale = detectLocaleFromPath(pathname);
-    const resolvedItems = items ?? getDefaultMenuItems(locale);
+    const resolvedItems = React.useMemo(
+        () => normalizeHeaderMenuItems(items ?? getDefaultMenuItems(locale)),
+        [items, locale],
+    );
     const [hoveredItem, setHoveredItem] = React.useState<string | null>(null);
     const [openItem, setOpenItem] = React.useState<string | null>(null);
 

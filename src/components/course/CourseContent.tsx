@@ -68,7 +68,7 @@ export default function CourseContent({ sections, toc, tocTitle = "Nội dung" }
     return (
         <>
             <div className="lg:col-span-1">
-                <div className="public-panel sticky top-28 rounded-[2rem] p-5 md:p-6">
+                <div className="public-panel public-sticky-offset sticky rounded-[2rem] p-5 md:p-6">
                     <div className="mb-5 flex items-center justify-between gap-3 border-b border-[rgba(26,72,164,0.1)] pb-4">
                         <h3 className="font-heading text-xl font-bold text-[var(--ink)]">
                             {tocTitle}

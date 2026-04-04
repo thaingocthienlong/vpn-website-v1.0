@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "gioihan": 4,
+    "tieude": "Bài viết nổi bật",
+    "mieutangan": "",
+    "hinhnen": "/saigoncms/files/images/color_white.png",
+    "mauchu": "",
+    "thuoctinhbgd": "repeat",
+    "limitbgd": 0
+  },
+  {
+    "id": 4,
+    "name": "Bật module",
+    "trangthai": 0,
+    "duongvien": 1,
+    "fullmanhinh": 0,
+    "gioihan": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "hinhnen": "",
+    "mauchu": "",
+    "thuoctinhbgd": "",
+    "limitbgd": 0
+  }
+]

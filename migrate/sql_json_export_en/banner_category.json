@@ -1,0 +1,51 @@
+[
+  {
+    "id": 2,
+    "id_category": 107,
+    "name": "banner category 2",
+    "anhdaidien": "/saigoncms/files/images/doi-ngu-chuyen-nghiep.jpeg",
+    "link": "#"
+  },
+  {
+    "id": 4,
+    "id_category": 107,
+    "name": "banner 2",
+    "anhdaidien": "/saigoncms/files/images/8.jpg",
+    "link": "#"
+  },
+  {
+    "id": 5,
+    "id_category": 130,
+    "name": "banner 1.1",
+    "anhdaidien": "/saigoncms/files/images/iphone-11-red-600x600.jpg",
+    "link": "#"
+  },
+  {
+    "id": 6,
+    "id_category": 117,
+    "name": "banner 2",
+    "anhdaidien": "/saigoncms/files/images/phuonganh3.jpg",
+    "link": "#"
+  },
+  {
+    "id": 7,
+    "id_category": 130,
+    "name": "banner 1.2",
+    "anhdaidien": "/saigoncms/files/images/noi-that-banner-0002.jpg",
+    "link": ""
+  },
+  {
+    "id": 8,
+    "id_category": 127,
+    "name": "banner 3",
+    "anhdaidien": "/saigoncms/files/images/san-pham-noi-that-1.jpg",
+    "link": "#"
+  },
+  {
+    "id": 9,
+    "id_category": 127,
+    "name": "banner 3.1",
+    "anhdaidien": "/saigoncms/files/images/san-pham-noi-that-7.jpg",
+    "link": "#"
+  }
+]

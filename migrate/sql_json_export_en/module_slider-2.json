@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "nameslider": "Tắt module",
+    "trangthai": 0,
+    "duongvien": 0,
+    "fullmanhinh": 1,
+    "hinhnen": "https://i.ibb.co/20wGcNnf/migr-e6d4f8de78b46904.png",
+    "thuoctinhbgd": "repeat"
+  },
+  {
+    "id": 2,
+    "nameslider": "Bật module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "hinhnen": "",
+    "thuoctinhbgd": ""
+  }
+]

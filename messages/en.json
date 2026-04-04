@@ -93,7 +93,29 @@
     },
     "timeline": {
       "title": "Development Journey",
-      "description": "From establishment to the present, we have been committed to the mission of developing social resources."
+      "description": "From establishment to the present, we have been committed to the mission of developing social resources.",
+      "items": [
+        {
+          "title": "Establishment",
+          "description": "Beginning the journey with a mission to develop human resources for society."
+        },
+        {
+          "title": "Expansion",
+          "description": "Expanding research, training, and technology transfer services."
+        },
+        {
+          "title": "ISO 9001 Certification",
+          "description": "Strengthening quality management under internationally recognized standards."
+        },
+        {
+          "title": "International Cooperation",
+          "description": "Extending partnerships with international organizations and experts."
+        },
+        {
+          "title": "Digital Transformation",
+          "description": "Applying new technology across training, research, and operations."
+        }
+      ]
     },
     "cta": {
       "title": "Partner with Us",

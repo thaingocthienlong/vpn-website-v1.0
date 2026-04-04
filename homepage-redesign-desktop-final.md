@@ -379,7 +379,7 @@
           - generic [ref=e539]:
             - generic [ref=e540]: Vien Phuong Nam
             - heading "Vien Phuong Nam" [level=2] [ref=e541]
-            - paragraph [ref=e542]: VIỆN PHÁT TRIỂN NGUỒN LỰC XÃ HỘI PHƯƠNG NAM. Đào Tạo Bằng Tiếng Anh
+            - paragraph [ref=e542]: VIỆN PHÁT TRIỂN NGUỒN LỰC XÃ HỘI PHƯƠNG NAM
           - generic [ref=e543]:
             - paragraph [ref=e544]: Institutional profile
             - paragraph [ref=e545]: Training, research, and service programs designed to connect academic depth with practical community development.

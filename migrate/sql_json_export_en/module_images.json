@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 0,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "gioihan": 100,
+    "tieude": "Featured <span>Images</span>",
+    "mieutangan": "",
+    "hinhnen": "",
+    "mauchu": "",
+    "thuoctinhbgd": "repeat",
+    "limitbgd": 0,
+    "gallery_image": "https://i.ibb.co/MDq4yGH2/migr-5bc1a1a29bbcfd48.jpg,https://i.ibb.co/1fGRv8dP/migr-8a78d8ebf189c4bd.jpg,https://i.ibb.co/p6g04rdy/migr-be9395173e880c6a.jpg,https://i.ibb.co/7t2c091R/migr-6b9a5407a9752c33.jpg,/uploads/files/z7467487354041_4ff2194c996fb3ef54ec9a48c320ae5d.jpg,/uploads/files/z7467487325411_39aa6c4aa974813b89235461cd1f1398.jpg,/uploads/files/z7467487309193_209676567012295f1d0810cbaf53f1d6.jpg,/uploads/files/z7466215604283d6c0f713fe36dee325f9452667cd5967-176932931499170309913.jpg,/uploads/files/z7467437843653_621cc963608ec536a4474d76921c670b.jpg,/uploads/files/z7467437813794_cdc8a71929f15abd7c859b563aa05439.jpg,https://i.ibb.co/qFYy32z9/migr-c06cb6928006d036.png,https://i.ibb.co/PZc51xzk/migr-e756a92fa8cf2e4b.png,https://i.ibb.co/TDkJjRTR/migr-738f14464e2fafa0.png,https://i.ibb.co/v66Wx3mr/migr-763e1d0817193153.png,https://i.ibb.co/B5cdNk7r/migr-a5d0d5ed01f79b17.png,https://i.ibb.co/pvd8JPL1/migr-88e6689bf8ecffd8.png,https://i.ibb.co/Z62tzM2D/migr-3f783acaa6f2f7e6.png,https://i.ibb.co/FkQLzv1g/migr-72833d4cacb6be7b.png,https://i.ibb.co/3KSP6Z2/migr-b1b0359fdf806526.png,https://i.ibb.co/Rp9CBCjD/migr-8e988aef977f7633.png,https://i.ibb.co/XkV6y6Zp/migr-70211ddcca620724.png,https://i.ibb.co/ksXgKnk4/migr-9fd3a297f83f28b3.png,https://i.ibb.co/5htgdTJT/migr-53ad000b48f6a9b1.png,https://i.ibb.co/q3kjTM1D/migr-411cda063c6f17ba.png,https://i.ibb.co/q3xhHd19/migr-2e6f6d1e297d7dce.png,https://i.ibb.co/7NGY7Qvz/migr-0ea413afa7310068.png,https://i.ibb.co/sdTn6B1j/migr-8176602bbe4b2e23.png,https://i.ibb.co/NgZphRBM/migr-08df55c96a838e1c.png,https://i.ibb.co/sdC9hcD7/migr-6cccff1220b39ffe.png,https://i.ibb.co/pBdBmJyk/migr-f03afe011e44e4ee.png,https://i.ibb.co/q32F5wdH/migr-cf45629d7890a059.png,https://i.ibb.co/vxz37q2L/migr-a0ef9aeef50e5150.png,https://i.ibb.co/YFMqjFfM/migr-151e8477434483e2.png,https://i.ibb.co/pvG7Wkm2/migr-149c2918d620102b.png,https://i.ibb.co/ZpXg3gqT/migr-e07d245ad9c22e03.png,https://i.ibb.co/7x3wvKxg/migr-013955cad0afe1c4.png,https://i.ibb.co/zVHb1PfY/migr-3b1a0b28c3417197.png,https://i.ibb.co/Nh8sNw0/migr-9bb954e42ef1546f.png,https://i.ibb.co/mrGDxQvm/migr-6c8b26337f5f4a47.jpg,https://i.ibb.co/twQzW1JQ/migr-43602bbb14c97f4a.jpg,https://i.ibb.co/0p8qSkHV/migr-1e72d81c8779cbc3.jpg,https://i.ibb.co/MDmdSvCm/migr-767342724ad20770.jpg,https://i.ibb.co/bGLwNLN/migr-d29054f1c211ea08.jpg,https://i.ibb.co/KzWSbNDB/migr-73f1449fd1dceb56.jpg,https://i.ibb.co/9mP6vtXR/migr-fcb7883ce497b1e7.jpg,https://i.ibb.co/Gv2FH6bv/migr-fb48d22c363d8f05.jpg,https://i.ibb.co/JTkCyZ7/migr-c20e3bb41dbaa6cd.jpg,https://i.ibb.co/hxNpxcCD/migr-1e349dba7b8aacf1.jpg,https://i.ibb.co/4wNzj03d/migr-2688328e647a4d07.jpg,https://i.ibb.co/G3NhfwFy/migr-7b214898c5b96452.jpg,https://i.ibb.co/Tx2YP5YM/migr-2de0e0c7dbe7ac21.jpg,https://i.ibb.co/mVj73YzL/migr-ee68009727f7b33d.jpg,https://i.ibb.co/4wS10gWb/migr-003c24940e3f227a.jpg,https://i.ibb.co/Pz3H1YWC/migr-bbb0d3e18fc66c08.png,https://i.ibb.co/jvhBMgK9/migr-40bea92d37b16bb9.png,https://i.ibb.co/fdHSm5R5/migr-8665f19f01cb8b19.png,https://i.ibb.co/tMFz2MFK/migr-6da58193299edfe5.jpg,https://i.ibb.co/fdtfcfJ0/migr-b4d522b80ce08e15.jpg,https://i.ibb.co/ymgxDJZt/migr-c5d5c7dd07cacbeb.jpg,https://i.ibb.co/wNQPtkhH/migr-95a7d0f8f253d548.jpg,https://i.ibb.co/GQ1ZfQJ9/migr-6e03ae760aee8a15.jpg,https://i.ibb.co/j9rzcSwX/migr-eed7d13c3695d5d5.jpg,https://i.ibb.co/01HhV15/migr-eef70bf5daf479f4.jpg,https://i.ibb.co/Hfk0QT2j/migr-065a609aa1b8f429.jpg,https://i.ibb.co/5WHG3Q93/migr-2f6d16f10c16b9d3.jpg,https://i.ibb.co/J0Y9kQw/migr-67fcf7b619ed50dd.png,https://i.ibb.co/zV1XWgqf/migr-d65a89255f028cc1.png,https://i.ibb.co/7NCXMyBz/migr-6dc889bd9a3d37fc.png,https://i.ibb.co/M5NWXdKJ/migr-4c0c250517078acf.jpg,https://i.ibb.co/DDFN16qF/migr-4e547b7724ae041b.jpg,https://i.ibb.co/pjLN6g57/migr-d2c1924ad906ed8c.png",
+    "tieudephu": ""
+  },
+  {
+    "id": 3,
+    "name": "Bật module",
+    "trangthai": 1,
+    "duongvien": 0,
+    "fullmanhinh": 0,
+    "gioihan": 0,
+    "tieude": "",
+    "mieutangan": "",
+    "hinhnen": "",
+    "mauchu": "",
+    "thuoctinhbgd": "",
+    "limitbgd": 0,
+    "gallery_image": "",
+    "tieudephu": ""
+  }
+]

@@ -13,7 +13,7 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
     id,
     className,
     background = "white",
-    padding = "md",
+    padding = "sm",
     containerClassName,
     children,
     ...props

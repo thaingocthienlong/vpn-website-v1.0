@@ -278,5 +278,13 @@
     "name": "Trường Đại học Đồng Tháp",
     "chucvu": "https://www.dthu.edu.vn/default.aspx",
     "mieutangan": ""
+  },
+  {
+    "id": 41,
+    "stt_hienthi": 36,
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1774583193/vienphuongnam/z9szadsrgvt93qj8trlj.png",
+    "name": "Trường Du lịch – Đại học Huế",
+    "chucvu": "http://huht.hueuni.edu.vn/",
+    "mieutangan": ""
   }
 ]

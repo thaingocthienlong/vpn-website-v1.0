@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "tukhoa": "Về chúng tôi",
+    "duongdan": "/gioi-thieu/"
+  },
+  {
+    "id": 2,
+    "tukhoa": "Hồ sơ năng lực",
+    "duongdan": "/ho-so-nang-luc/"
+  },
+  {
+    "id": 3,
+    "tukhoa": "Bài viết",
+    "duongdan": "/bai-viet/"
+  },
+  {
+    "id": 4,
+    "tukhoa": "Hỗ trợ",
+    "duongdan": "/ho-tro/"
+  }
+]

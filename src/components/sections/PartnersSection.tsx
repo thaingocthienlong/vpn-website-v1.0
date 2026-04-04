@@ -34,47 +34,59 @@ export function PartnersSection({
         return null;
     }
 
-    const visiblePartners = partners.slice(0, 8);
-
     return (
         <SectionWrapper padding="sm">
-            <div className="border-y border-[rgba(16,40,70,0.12)] py-6">
-                <div className="grid gap-8 xl:grid-cols-[minmax(0,0.72fr)_minmax(0,1.28fr)] xl:items-start">
-                    <motion.div
-                        whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-                        transition={publicMotionTokens.hoverSpring}
-                        className="space-y-4"
-                    >
-                        <div className="inline-flex items-center gap-3">
-                            <span className="h-px w-10 bg-[rgba(16,40,70,0.18)]" />
-                            <span className="editorial-caption text-[var(--ink-muted)]">
-                                {isEn ? "Institutional proof" : "Bằng chứng tổ chức"}
-                            </span>
-                        </div>
-                        <h2 className="max-w-[12ch] font-heading text-[2.15rem] text-[var(--ink)] md:text-[2.8rem]">
-                            {title || (isEn ? "Partnerships that signal institutional trust" : "Các đối tác khẳng định độ tin cậy của tổ chức")}
-                        </h2>
-                        <p className="max-w-[30rem] text-sm leading-8 text-[var(--ink-soft)]">
-                            {subtitle || (isEn
-                                ? "A short trust block anchored by partner institutions instead of a dense logo wall."
-                                : "Một khối tin cậy ngắn, đặt trọng tâm vào mạng lưới đối tác thay vì một bức tường logo dày đặc.")}
-                        </p>
-                    </motion.div>
+            <div className="border-y border-[rgba(16,40,70,0.12)] py-7 md:py-9">
+                <MotionGroup className="space-y-7 md:space-y-8" stagger={0.06}>
+                    <MotionItem>
+                        <motion.div
+                            whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+                            transition={publicMotionTokens.hoverSpring}
+                            className="space-y-4"
+                        >
+                            <div className="inline-flex items-center gap-3">
+                                <span className="h-px w-10 bg-[rgba(16,40,70,0.18)]" />
+                                <span className="editorial-caption text-[var(--ink-muted)]">
+                                    {isEn ? "Institutional proof" : "Bằng chứng tổ chức"}
+                                </span>
+                            </div>
+                            <div className="grid gap-4 xl:grid-cols-[minmax(0,1.05fr)_auto] xl:items-end xl:justify-between">
+                                <div className="space-y-3">
+                                    <h2 className="max-w-[18ch] font-heading text-[2.15rem] text-[var(--ink)] md:text-[2.8rem]">
+                                        {title || (isEn ? "Partnerships that signal institutional trust" : "Đối tác liên kết")}
+                                    </h2>
+                                    <p className="max-w-[42rem] text-sm leading-8 text-[var(--ink-soft)]">
+                                        {subtitle || (isEn
+                                            ? "A full institutional partner wall designed to keep every mark legible, calm, and credible."
+                                            : "Mạng lưới đối tác được trình bày như một bức tường nhận diện gọn gàng, đủ rộng để mọi logo hiển thị rõ ràng và chuyên nghiệp.")}
+                                    </p>
+                                </div>
+                                <p className="editorial-caption text-[var(--ink-muted)] xl:justify-self-end">
+                                    {partners.length} {isEn ? "active partners" : "đối tác đang hiển thị"}
+                                </p>
+                            </div>
+                        </motion.div>
+                    </MotionItem>
 
-                    <MotionGroup className="grid gap-x-8 gap-y-5 border-t border-[rgba(16,40,70,0.08)] pt-4 sm:grid-cols-2 xl:grid-cols-4" stagger={0.05}>
-                        {visiblePartners.map((partner, index) => (
-                            <MotionItem key={`${partner.id}-${index}`}>
-                                <motion.div
-                                    whileHover={shouldReduceMotion ? undefined : { y: -2 }}
-                                    transition={publicMotionTokens.hoverSpring}
-                                    className="flex min-h-[72px] items-center"
-                                >
-                                    <PartnerLogo name={partner.name} logo={partner.logo} website={partner.website} />
-                                </motion.div>
-                            </MotionItem>
-                        ))}
-                    </MotionGroup>
-                </div>
+                    <MotionItem>
+                        <MotionGroup
+                            className="grid grid-cols-2 gap-3 border-t border-[rgba(16,40,70,0.08)] pt-5 md:grid-cols-3 md:gap-4 xl:grid-cols-6 xl:gap-4"
+                            stagger={0.03}
+                        >
+                            {partners.map((partner, index) => (
+                                <MotionItem key={`${partner.id}-${index}`}>
+                                    <motion.div
+                                        whileHover={shouldReduceMotion ? undefined : { y: -2 }}
+                                        transition={publicMotionTokens.hoverSpring}
+                                        className="flex h-full min-h-[104px] items-stretch"
+                                    >
+                                        <PartnerLogo name={partner.name} logo={partner.logo} website={partner.website} />
+                                    </motion.div>
+                                </MotionItem>
+                            ))}
+                        </MotionGroup>
+                    </MotionItem>
+                </MotionGroup>
             </div>
         </SectionWrapper>
     );

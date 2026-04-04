@@ -208,5 +208,11 @@
     "name": "Trường Đại học Đồng Tháp",
     "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1772616334/vienphuongnam/restored/r53vocbtjpyzugnt8gj3.png",
     "duongdan": "https://www.dthu.edu.vn/default.aspx"
+  },
+  {
+    "id": 40,
+    "name": "Trường Du lịch – Đại học Huế",
+    "anhdaidien": "https://res.cloudinary.com/dbsfapxvh/image/upload/v1774583193/vienphuongnam/z9szadsrgvt93qj8trlj.png",
+    "duongdan": "http://huht.hueuni.edu.vn/"
   }
 ]

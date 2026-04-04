@@ -93,7 +93,29 @@
     },
     "timeline": {
       "title": "Hành trình phát triển",
-      "description": "Từ khi thành lập đến nay, chúng tôi luôn kiên trì với sứ mệnh phát triển nguồn lực xã hội."
+      "description": "Từ khi thành lập đến nay, chúng tôi luôn kiên trì với sứ mệnh phát triển nguồn lực xã hội.",
+      "items": [
+        {
+          "title": "Thành lập",
+          "description": "Khởi đầu hành trình với sứ mệnh phát triển nguồn lực xã hội."
+        },
+        {
+          "title": "Mở rộng hoạt động",
+          "description": "Phát triển các dịch vụ nghiên cứu, đào tạo và chuyển giao công nghệ."
+        },
+        {
+          "title": "Chứng nhận ISO 9001",
+          "description": "Hoàn thiện hệ thống quản lý chất lượng theo tiêu chuẩn quốc tế."
+        },
+        {
+          "title": "Hợp tác quốc tế",
+          "description": "Mở rộng mạng lưới hợp tác với các tổ chức và chuyên gia quốc tế."
+        },
+        {
+          "title": "Chuyển đổi số",
+          "description": "Đẩy mạnh ứng dụng công nghệ trong đào tạo, nghiên cứu và vận hành."
+        }
+      ]
     },
     "cta": {
       "title": "Hợp tác cùng chúng tôi",

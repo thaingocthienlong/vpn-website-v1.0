@@ -1,0 +1,163 @@
+{
+    "slug": "qlkt-mo-diachat",
+    "name": "QUẢN LÝ KINH TẾ",
+    "shortName": "Trường Đại học Mỏ - Địa chất",
+    "heritage": "Trường Đại học Mỏ - Địa chất & Viện Phương Nam",
+    "defaultProgram": "qlkt",
+    "seo": {
+        "title": "Tuyển sinh Thạc Sĩ Quản lý kinh tế – Trường Đại học Mỏ - Địa chất & Viện Phương Nam",
+        "description": "Tuyển sinh chương trình Thạc sĩ Quản lý kinh tế – Trường Đại học Mỏ - Địa chất & Viện Phương Nam. Thời gian đào tạo 1,5 – 2 năm, hình thức chính quy.",
+        "keywords": "thạc sĩ quản lý kinh tế, Đại học Mỏ Địa chất, Viện Phương Nam, tuyển sinh thạc sĩ, quản lý kinh tế"
+    },
+    "programs": {
+        "qlkt": {
+            "title": "<span class=\"lp-hero-title-gold\">THẠC SĨ QUẢN LÝ KINH TẾ</span>",
+            "titlePlain": "Thạc Sĩ Quản Lý Kinh Tế",
+            "subtitle": "Tuyển sinh năm 2026 – Xét tuyển hồ sơ",
+            "courseId": "Thạc Sĩ Quản Lý Kinh Tế (Đại học Mỏ - Địa chất)",
+            "curriculumTitle": "Thạc Sĩ Quản Lý Kinh Tế",
+            "curriculumDesc": "Tuyển sinh chương trình đào tạo thạc sĩ ngành Quản lý kinh tế – Trường Đại học Mỏ - Địa chất & Viện Phương Nam.",
+            "meta": [
+                {
+                    "icon": "fa-university",
+                    "label": "Bằng Thạc sĩ – Trường Đại học Mỏ - Địa chất"
+                },
+                {
+                    "icon": "fa-clock",
+                    "label": "Thời gian đào tạo 1,5 – 2 năm"
+                },
+                {
+                    "icon": "fa-file-signature",
+                    "label": "Xét tuyển hồ sơ"
+                },
+                {
+                    "icon": "fa-graduation-cap",
+                    "label": "Hình thức chính quy"
+                }
+            ],
+            "curriculum": [
+                {
+                    "num": "I",
+                    "title": "THÔNG TIN CHUNG",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li class=\"lp-no-bullet\"><strong>Chuyên ngành tuyển sinh:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Quản lý kinh tế.</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>Đơn vị đào tạo và cấp bằng:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Trường Đại học Mỏ - Địa chất.</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>Thời gian đào tạo:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">1,5 – 2 năm</span>, tùy theo chương trình của ngành đào tạo.</li>",
+                        "<li class=\"lp-no-bullet\"><strong>Hình thức đào tạo:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Chính quy.</span></li>"
+                    ]
+                },
+                {
+                    "num": "II",
+                    "title": "ĐỐI TƯỢNG VÀ ĐIỀU KIỆN DỰ TUYỂN",
+                    "items": [
+                        "<li>Đã tốt nghiệp hoặc đã đủ điều kiện công nhận tốt nghiệp đại học (hoặc trình độ tương đương trở lên) thuộc ngành phù hợp;</li>",
+                        "<li>Có năng lực ngoại ngữ chuẩn đầu vào từ <span style=\"color: var(--lp-gold-light); font-weight: 600;\">Bậc 3 trở lên</span> theo Khung năng lực ngoại ngữ 6 bậc dùng cho Việt Nam được minh chứng bằng một trong các văn bằng, chứng chỉ;</li>",
+                        "<li>Thí sinh học bổ sung kiến thức thì các học phần học bổ sung phải đạt từ điểm C (hoặc quy đổi tương đương) trở lên;</li>",
+                        "<li>Có đủ sức khỏe để học tập;</li>",
+                        "<li>Nộp hồ sơ đầy đủ, đúng thời hạn theo quy định.</li>"
+                    ]
+                },
+                {
+                    "num": "III",
+                    "title": "THÔNG TIN HỌC BỔ SUNG KIẾN THỨC",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">Chương trình Thạc sĩ Quản lý kinh tế tuyển sinh theo 02 nhóm ngành:<ul style=\"padding-left: 15px; margin: 5px 0;\"><li><strong>Nhóm 01 – Ngành/chuyên ngành đúng:</strong> Quản lý kinh tế, Kinh tế học, các ngành ở trình độ đại học khác nhau dưới 10% tổng số tiết học hoặc đơn vị học trình hoặc tín chỉ của khối kiến thức ngành. Thí sinh thuộc nhóm 01 không phải học bổ sung kiến thức.</li><li><strong>Nhóm 02 – Ngành/chuyên ngành phù hợp:</strong> Kinh tế đầu tư, Kinh tế chính trị, Kinh tế phát triển, Kinh tế quốc tế, Thống kê kinh tế, Toán kinh tế, nhóm ngành Kinh doanh và Quản lý, nhóm ngành Quản trị - Quản lý, các ngành ở trình độ đại học khác nhau từ 10% đến 40% tổng số tiết học hoặc đơn vị học trình hoặc tín chỉ của khối kiến thức ngành. Thí sinh thuộc nhóm 02 sẽ được căn cứ vào bảng điểm tốt nghiệp đại học để xem xét học phần bổ sung kiến thức thuộc CTĐT trình độ đại học của ngành tương ứng với ngành đào tạo trình độ thạc sĩ.</li></ul></li>"
+                    ]
+                },
+                {
+                    "num": "★",
+                    "title": "DANH MỤC HỌC BỔ SUNG KIẾN THỨC",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">1. Kinh tế học <span style=\"color: var(--lp-gold-light); font-weight: 600;\">03</span></li>",
+                        "<li class=\"lp-no-bullet\">2. Marketing căn bản <span style=\"color: var(--lp-gold-light); font-weight: 600;\">02</span></li>",
+                        "<li class=\"lp-no-bullet\">3. Quản trị tài chính <span style=\"color: var(--lp-gold-light); font-weight: 600;\">02</span></li>",
+                        "<li class=\"lp-no-bullet\">4. Kinh tế quản trị doanh nghiệp <span style=\"color: var(--lp-gold-light); font-weight: 600;\">02</span></li>",
+                        "<li class=\"lp-no-bullet\">5. Phân tích kinh tế hoạt động kinh doanh <span style=\"color: var(--lp-gold-light); font-weight: 600;\">02</span></li>",
+                        "<li class=\"lp-no-bullet\">6. Nguyên lý kế toán <span style=\"color: var(--lp-gold-light); font-weight: 600;\">02</span></li>",
+                        "<li class=\"lp-no-bullet\">7. Quản trị dự án đầu tư <span style=\"color: var(--lp-gold-light); font-weight: 600;\">02</span></li>",
+                        "<li class=\"lp-no-bullet\">8. Quản trị nhân lực <span style=\"color: var(--lp-gold-light); font-weight: 600;\">02</span></li>",
+                        "<li class=\"lp-no-bullet\"><strong>Tổng số</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">17</span></li>"
+                    ]
+                },
+                {
+                    "num": "IV",
+                    "title": "HỒ SƠ DỰ TUYỂN",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">1. Đơn xin dự tuyển <strong>(<a href=\"https://docs.google.com/document/d/1fS9TnzNEJ16P4498wQgK41TbHnrUmSgu/edit?usp=sharing&ouid=111434989687655318902&rtpof=true&sd=true\" target=\"_blank\">theo mẫu</a>)</strong></li>",
+                        "<li class=\"lp-no-bullet\">2. Sơ yếu lý lịch <strong>có xác nhận</strong> của cơ quan hoặc chính quyền địa phương <strong>(theo mẫu)</strong></li>",
+                        "<li class=\"lp-no-bullet\">3. Giấy chứng nhận đủ sức khoẻ học tập của bệnh viện đa khoa cấp Quận, Huyện</li>",
+                        "<li class=\"lp-no-bullet\">4. <strong>Bản sao</strong> bằng tốt nghiệp đại học và <strong>Bản sao</strong> bảng điểm (tất cả đều phải công chứng)</li>",
+                        "<li class=\"lp-no-bullet\">5. Bản sao công chứng các bài báo, công trình khoa học (nếu có)</li>",
+                        "<li class=\"lp-no-bullet\">6. Văn bằng, chứng chỉ minh chứng về năng lực ngoại ngữ (Công chứng)</li>",
+                        "<li class=\"lp-no-bullet\">7. 03 ảnh 3x4 và 02 phong bì dán tem ghi rõ họ tên, địa chỉ, điện thoại liên hệ</li>",
+                        "<li class=\"lp-no-bullet\">8. CMT/CCCD/Căn cước bản photo.</li>",
+                        "<li class=\"lp-no-bullet\">9. Bản sao các quyết định về nhiệm vụ, kinh nghiệm công tác, công bố khoa học liên quan đến ngành dự tuyển, nếu có (có chứng thực).</li>"
+                    ]
+                },
+                {
+                    "num": "V",
+                    "title": "CÁCH THỨC ĐĂNG KÝ",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">1. Đăng ký trực tuyến: <strong><a href=\"#lp-form\" style=\"color: var(--lp-gold-light);\">tại đây</a></strong></li>",
+                        "<li class=\"lp-no-bullet\">2. Nộp hồ sơ trực tiếp hoặc gửi bưu điện theo địa chỉ:<div style=\"margin-top: 15px;\"><strong>Văn phòng Viện phát triển nguồn lực xã hội Phương Nam</strong><br>Địa chỉ: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. Hồ Chí Minh (Quận 1)</span><br>Điện thoại: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">0932 123 062 (cô Trân)</span></div></li>"
+                    ]
+                },
+                {
+                    "num": "VI",
+                    "title": "THÔNG TIN LIÊN HỆ VÀ TƯ VẤN",
+                    "items": [
+                        "<li class=\"lp-no-bullet\">Mọi thắc mắc về khóa học, xin vui lòng liên hệ:<ul style=\"padding-left: 15px; margin: 5px 0;\"><li>SĐT: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">0932 123 062 (cô Trân) - 0949 761 636 (cô Vy)</span></li><li>Email: <a href=\"mailto:vanphong@vienphuongnam.com.vn\" style=\"color: var(--lp-gold-light);\">vanphong@vienphuongnam.com.vn</a></li></ul></li>"
+                    ]
+                }
+            ],
+            "faq": [],
+            "contact": {
+                "phones": [
+                    {
+                        "number": "0932123062",
+                        "display": "0932 123 062",
+                        "name": "cô Trân"
+                    },
+                    {
+                        "number": "0949761636",
+                        "display": "0949 761 636",
+                        "name": "cô Vy"
+                    }
+                ]
+            }
+        }
+    },
+    "benefits": [
+        {
+            "icon": "fa-university",
+            "title": "Bằng Thạc sĩ chính quy",
+            "desc": "Bằng Thạc sĩ do Trường Đại học Mỏ - Địa chất cấp, được Bộ GD&ĐT công nhận toàn quốc."
+        },
+        {
+            "icon": "fa-chart-line",
+            "title": "Chuyên ngành nổi bật",
+            "desc": "Chương trình đào tạo chuyên sâu về quản lý kinh tế, phù hợp nhiều ngành nghề."
+        },
+        {
+            "icon": "fa-users",
+            "title": "Đối tượng đa dạng",
+            "desc": "Nhận nhiều ngành đầu vào khác nhau, có chương trình bổ sung kiến thức phù hợp."
+        },
+        {
+            "icon": "fa-book-open",
+            "title": "Bổ sung kiến thức linh hoạt",
+            "desc": "Xem xét bổ sung theo bảng điểm đại học, tối ưu lộ trình học tập cho từng học viên."
+        },
+        {
+            "icon": "fa-file-signature",
+            "title": "Xét tuyển hồ sơ",
+            "desc": "Không thi tuyển đầu vào, chỉ xét tuyển hồ sơ."
+        },
+        {
+            "icon": "fa-headset",
+            "title": "Tư vấn tận tâm",
+            "desc": "Đội ngũ tư vấn hỗ trợ nhiệt tình, giải đáp thắc mắc và hướng dẫn đăng ký."
+        }
+    ]
+}

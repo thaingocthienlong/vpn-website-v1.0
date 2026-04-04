@@ -23,15 +23,69 @@ interface NewsCardProps {
         viewCount: number;
         isFeatured: boolean;
     };
-    variant?: "default" | "featured";
+    variant?: "default" | "featured" | "row";
     locale?: "vi" | "en";
 }
 
 export function NewsCard({ post, variant = "default", locale = "vi" }: NewsCardProps) {
     const isFeatured = variant === "featured";
+    const isRow = variant === "row";
     const isEn = locale === "en";
     const newsBasePath = isEn ? "/en/news" : "/tin-tuc";
     const cardLink = `${newsBasePath}/${post.category.slug}/${post.slug}`;
+
+    if (isRow) {
+        return (
+            <Link href={cardLink} className="group block py-8 first:pt-0 last:pb-0">
+                <article className="grid gap-6 transition-colors duration-300 md:grid-cols-[minmax(0,1fr)_16rem] md:items-start lg:grid-cols-[minmax(0,1fr)_21rem] lg:gap-10">
+                    <div className="order-2 flex min-w-0 flex-col md:order-1">
+                        <div className="mb-4 flex flex-wrap items-center gap-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-[var(--ink-muted)]">
+                            <span>{post.category.name}</span>
+                            {post.publishedAt && (
+                                <span>
+                                    {formatDistanceToNow(new Date(post.publishedAt), {
+                                        addSuffix: true,
+                                        locale: isEn ? enUS : vi,
+                                    })}
+                                </span>
+                            )}
+                            <span>
+                                {post.viewCount.toLocaleString(isEn ? "en-US" : "vi-VN")} {isEn ? "views" : "lượt xem"}
+                            </span>
+                        </div>
+
+                        <h3 className="mb-3 line-clamp-2 font-heading text-[1.4rem] leading-[1.24] text-[var(--ink)] transition-colors duration-300 group-hover:text-[var(--accent-strong)] md:text-[1.55rem] lg:text-[1.7rem]">
+                            {post.title}
+                        </h3>
+
+                        {post.excerpt && (
+                            <p className="line-clamp-3 max-w-3xl text-[0.98rem] leading-7 text-[var(--ink-soft)] md:text-[1.02rem]">
+                                {post.excerpt}
+                            </p>
+                        )}
+                    </div>
+
+                    <div className="order-1 md:order-2">
+                        <div className="relative aspect-[16/10] overflow-hidden rounded-[1.4rem] bg-[linear-gradient(160deg,rgba(23,88,216,0.12),rgba(234,243,255,0.35))]">
+                            {post.featuredImage ? (
+                                <Image
+                                    src={post.featuredImage}
+                                    alt={post.title}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1280px) 16rem, 21rem"
+                                />
+                            ) : (
+                                <div className="absolute inset-0 flex items-center justify-center border border-white/5">
+                                    <NewspaperClipping className="h-12 w-12 text-[rgba(23,88,216,0.32)]" weight="duotone" />
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </article>
+            </Link>
+        );
+    }
 
     return (
         <Link href={cardLink} className="block h-full">

@@ -1,0 +1,12 @@
+[
+  {
+    "id": 1,
+    "smtp": "smtp.gmail.com",
+    "port": 465,
+    "sendemail": "vienphuongnam.hcm@gmail.com",
+    "passemail": "tuat ihwa klir vbut",
+    "receiveremail": "vanphong@vienphuongnam.com.vn",
+    "ccemail": "",
+    "giaothucguimail": "ssl"
+  }
+]

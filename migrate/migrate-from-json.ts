@@ -17,8 +17,31 @@ const prisma = new PrismaClient({ adapter });
 const CURRENT_FILE = fileURLToPath(import.meta.url);
 const CURRENT_DIR = path.dirname(CURRENT_FILE);
 const PROJECT_ROOT = path.resolve(CURRENT_DIR, "..");
-const JSON_DIR = path.resolve(CURRENT_DIR, "sql_json_export");
+const JSON_DIR_VI = path.resolve(CURRENT_DIR, "sql_json_export");
+const JSON_DIR_EN = path.resolve(CURRENT_DIR, "sql_json_export_en");
 const REPORT_DIR = path.resolve(PROJECT_ROOT, "reports");
+
+type ContentLocale = "vi" | "en";
+
+const args = process.argv.slice(2);
+const contentLocaleArg = (() => {
+  const idx = args.indexOf("--content-locale");
+  const value = idx !== -1 ? args[idx + 1] : "vi";
+  return String(value || "vi").toLowerCase();
+})();
+const CONTENT_LOCALE: ContentLocale = contentLocaleArg === "en" ? "en" : "vi";
+const IS_EN_CONTENT = CONTENT_LOCALE === "en";
+const JSON_DIR = IS_EN_CONTENT ? JSON_DIR_EN : JSON_DIR_VI;
+const REPORT_SUFFIX = IS_EN_CONTENT ? "-en" : "";
+const DRY_RUN = args.includes("--dry-run");
+const WIPE = args.includes("--wipe");
+const CONFIRM_WIPE = args.includes("--confirm-wipe");
+const AUDIT_ONLY = args.includes("--audit-only");
+const phaseArg = (() => {
+  const idx = args.indexOf("--phase");
+  return idx !== -1 ? args[idx + 1] : "all";
+})();
+const runPhase = (name: string) => phaseArg === "all" || phaseArg === name;
 
 type SupportedPhase =
   | "users"
@@ -50,7 +73,9 @@ interface AuditEntry {
 
 interface PreflightReport {
   generatedAt: string;
+  contentLocale: ContentLocale;
   jsonDir: string;
+  baseJsonDir: string;
   selectedPhase: string;
   activePhases: string[];
   supportedPhases: string[];
@@ -62,11 +87,13 @@ interface PreflightReport {
 interface RunReport {
   generatedAt: string;
   mode: "dry-run" | "apply" | "audit-only";
+  contentLocale: ContentLocale;
   selectedPhase: string;
   jsonDir: string;
   activePhases: string[];
   unresolvedAssetPaths: string[];
   warnings: {
+    localization: string[];
     menus: string[];
     reviews: string[];
     homepage: string[];
@@ -75,7 +102,30 @@ interface RunReport {
     importedKeys: string[];
     deferredModuleIds: number[];
   };
+  unmatchedReportPath?: string;
   phaseSummaries: Record<string, { created: number; skipped: number; errors: number; notes?: string[] }>;
+}
+
+interface EnUnmatchedRecord {
+  dataset: string;
+  legacyId: string;
+  reason: string;
+  title?: string | null;
+  slug?: string | null;
+  sourceUrl?: string | null;
+  viLegacyId?: string | null;
+  viTitle?: string | null;
+  viSlug?: string | null;
+  note?: string | null;
+}
+
+interface EnUnmatchedReport {
+  generatedAt: string;
+  contentLocale: ContentLocale;
+  jsonDir: string;
+  totalRecords: number;
+  countsByDataset: Record<string, number>;
+  records: EnUnmatchedRecord[];
 }
 
 type JsonRecord = Record<string, unknown>;
@@ -114,7 +164,7 @@ const PHASE_REQUIREMENTS: Record<SupportedPhase, string[]> = {
   menus: ["menu.json", "menufooter.json", "menufooter2.json", "menufooter3.json", "menufooter4.json"],
   services: ["service.json"],
   reviews: ["feel.json"],
-  homepage: ["space_module_home.json", "module_video_home.json", "module_images.json"],
+  homepage: ["space_module_home.json", "module_video_home.json", "module_images.json", "module_doitac.json", "module_introduce.json"],
   gallery: ["module_images.json"],
 };
 
@@ -141,6 +191,8 @@ const SUPPORTED_DATASET_AUDIT: Record<string, Omit<AuditEntry, "dataset" | "exis
   "space_module_home.json": { bucket: "import_with_repair", phase: "homepage", targetModels: ["HomepageSection"], reason: "Canonical homepage section mapping is required for d7a8 runtime." },
   "module_video_home.json": { bucket: "import_with_repair", phase: "homepage", targetModels: ["HomepageSection"], reason: "Provides video section configuration." },
   "module_images.json": { bucket: "import_with_repair", phase: "homepage", targetModels: ["HomepageSection", "Media"], reason: "Provides gallery config and remote gallery media URLs." },
+  "module_doitac.json": { bucket: "import_with_repair", phase: "homepage", targetModels: ["HomepageSection"], reason: "Provides partner module copy." },
+  "module_introduce.json": { bucket: "import_with_repair", phase: "homepage", targetModels: ["HomepageSection"], reason: "Provides training module copy." },
   "customers.json": { bucket: "defer_out_of_scope", phase: null, targetModels: ["ContactForm"], reason: "Deferred from v1." },
   "video.json": { bucket: "defer_out_of_scope", phase: null, targetModels: [], reason: "No standalone Video model exists in d7a8." },
 };
@@ -222,6 +274,74 @@ const HOMEPAGE_DEFAULTS: Record<string, { title: string; subtitle: string; confi
   },
 };
 
+const HOMEPAGE_DEFAULTS_EN: Record<string, { title: string; subtitle: string; config: Record<string, unknown> }> = {
+  hero: {
+    title: "Phuong Nam Institute",
+    subtitle: "Training, research, and social resource development for the community.",
+    config: {
+      ctaPrimary: { text: "Explore Training", href: "/dao-tao" },
+      ctaSecondary: { text: "Contact Us", href: "/lien-he" },
+      featuredVideo: {
+        eyebrow: "Featured Video",
+        title: "Featured Video",
+        description: "Training, research, and social resource development for the community.",
+        thumbnailUrl: "",
+        href: "/#video",
+      },
+    },
+  },
+  reviews: {
+    title: "Feedback from Learners and Partners",
+    subtitle: "Real feedback from learners, experts, and partner organizations working with Phuong Nam Institute.",
+    config: {},
+  },
+  partners: {
+    title: "Partners",
+    subtitle: "A network of partners supporting training, research, and social resource development.",
+    config: {},
+  },
+  services: {
+    title: "Services and Focus Areas",
+    subtitle: "Consulting, training, and expert support programs aligned with real-world needs.",
+    config: {},
+  },
+  video: {
+    title: "Featured Video",
+    subtitle: "Highlights, events, and stories from the development journey of Phuong Nam Institute.",
+    config: { videos: [] },
+  },
+  training: {
+    title: "Training Programs",
+    subtitle: "Courses, topics, and capability-building programs designed for practical impact.",
+    config: {},
+  },
+  news: {
+    title: "News and Events",
+    subtitle: "Updates on training, research, partnerships, and major activities of the Institute.",
+    config: {},
+  },
+  gallery: {
+    title: "Featured Images",
+    subtitle: "Moments from training programs, seminars, and community initiatives.",
+    config: { images: [] },
+  },
+  cta: {
+    title: "Connect with Phuong Nam Institute",
+    subtitle: "Contact us about training programs, professional cooperation, and community initiatives.",
+    config: {
+      primaryCTA: { text: "Contact Us", href: "/lien-he" },
+      secondaryCTA: { text: "Explore Services", href: "/dich-vu" },
+    },
+  },
+  contact: {
+    title: "Contact Information",
+    subtitle: "We are ready to support training, cooperation, and specialized activities.",
+    config: {
+      hours: "Please contact us in advance so we can arrange a suitable meeting schedule.",
+    },
+  },
+};
+
 const ROUTE_EQUIVALENTS = [
   { vi: "/gioi-thieu/tam-nhin-su-menh", en: "/en/about/vision-mission" },
   { vi: "/gioi-thieu/co-cau-to-chuc", en: "/en/about/structure" },
@@ -265,13 +385,31 @@ const MENU_LABEL_OVERRIDES: Record<string, { vi: string; en: string }> = {
   "/lien-he": { vi: "Liên hệ", en: "Contact" },
 };
 
+const EN_SERVICE_PAGE_SLUG_BY_LEGACY_ID: Record<string, string> = {
+  "31": "nghien-cuu-khoa-hoc",
+  "32": "dich-vu-khoa-hoc-va-cong-nghe",
+  "33": "hop-tac-trong-va-ngoai-nuoc",
+  "39": "gioi-thieu-ve-nuoc-uc",
+  "40": "du-hoc-va-dinh-cu",
+  "41": "he-thong-giao-duc-tai-uc",
+  "42": "gioi-thieu-truong-va-nganh-hoc-noi-bat-o-uc",
+  "43": "dich-vu-tu-van-visa-cua-leading-edge-migration-lem-chia-khoa-vang-chinh-phuc-giac-mo-uc",
+  "44": "pte-academic-2025-nhung-thay-doi-quan-trong-tu-782025",
+};
+
+const EN_COURSE_CATEGORY_SLUG_BY_LEGACY_ID: Record<string, string> = {
+  "32": "du-hoc-dinh-cu",
+};
+
 const phaseSummaries: RunReport["phaseSummaries"] = {};
 const unresolvedAssetPaths = new Set<string>();
+const localizationWarnings: string[] = [];
 const menuWarnings: string[] = [];
 const reviewWarnings: string[] = [];
 const homepageWarnings: string[] = [];
 const importedHomepageSectionKeys = new Set<string>();
 const deferredHomepageModuleIds = new Set<number>();
+const enUnmatchedRecords: EnUnmatchedRecord[] = [];
 
 const idMaps = {
   users: new Map<string, string>(),
@@ -288,17 +426,6 @@ const idMaps = {
   services: new Map<string, string>(),
 };
 
-const args = process.argv.slice(2);
-const DRY_RUN = args.includes("--dry-run");
-const WIPE = args.includes("--wipe");
-const CONFIRM_WIPE = args.includes("--confirm-wipe");
-const AUDIT_ONLY = args.includes("--audit-only");
-const phaseArg = (() => {
-  const idx = args.indexOf("--phase");
-  return idx !== -1 ? args[idx + 1] : "all";
-})();
-const runPhase = (name: string) => phaseArg === "all" || phaseArg === name;
-
 let adminUserId = "";
 
 function ensureReportDir() {
@@ -312,13 +439,20 @@ function writeJsonReport<T>(filename: string, data: T): string {
   return reportPath;
 }
 
+function reportFilename(filename: string): string {
+  return REPORT_SUFFIX ? filename.replace(/\.json$/i, `${REPORT_SUFFIX}.json`) : filename;
+}
+
 function setPhaseSummary(phase: string, created: number, skipped: number, errors = 0, notes?: string[]) {
   phaseSummaries[phase] = { created, skipped, errors, notes };
 }
 
 function getJsonFiles(): string[] {
   if (!fs.existsSync(JSON_DIR)) return [];
-  return fs.readdirSync(JSON_DIR).filter((file) => file.endsWith(".json")).sort();
+  return fs.readdirSync(JSON_DIR)
+    .filter((file) => file.endsWith(".json"))
+    .filter((file) => !IS_EN_CONTENT || !/-2\.json$/i.test(file))
+    .sort();
 }
 
 function buildAuditEntries(): AuditEntry[] {
@@ -372,7 +506,9 @@ function buildPreflightReport(selectedPhase: string): PreflightReport {
 
   return {
     generatedAt: new Date().toISOString(),
+    contentLocale: CONTENT_LOCALE,
     jsonDir: JSON_DIR,
+    baseJsonDir: JSON_DIR_VI,
     selectedPhase,
     activePhases,
     supportedPhases: SUPPORTED_PHASES,
@@ -386,6 +522,14 @@ function readJson<T>(filename: string): T {
   const filePath = path.join(JSON_DIR, filename);
   if (!fs.existsSync(filePath)) {
     throw new Error(`JSON source file not found: ${filePath}`);
+  }
+  return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
+}
+
+function readBaseJson<T>(filename: string): T {
+  const filePath = path.join(JSON_DIR_VI, filename);
+  if (!fs.existsSync(filePath)) {
+    throw new Error(`Base JSON source file not found: ${filePath}`);
   }
   return JSON.parse(fs.readFileSync(filePath, "utf-8")) as T;
 }
@@ -428,6 +572,36 @@ function normalizeWhitespace(value: string): string {
   return value.replace(/\s+/g, " ").trim();
 }
 
+function normalizeComparableText(value: string): string {
+  return normalizeWhitespace(stripHtml(value))
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/đ/g, "d");
+}
+
+function isLocalizedPlaceholder(value: string): boolean {
+  const normalized = normalizeComparableText(value);
+  if (!normalized) return true;
+  if (normalized === "chua phan loai") return true;
+  if (/^tieu de tuy chinh \d+$/.test(normalized)) return true;
+  return false;
+}
+
+function resolveLocalizedPlainText(value: unknown, options?: { allowPlaceholder?: boolean }): string | null {
+  const normalized = normalizeWhitespace(nonEmptyString(value));
+  if (!normalized) return null;
+  if (!options?.allowPlaceholder && isLocalizedPlaceholder(normalized)) return null;
+  return normalized;
+}
+
+function resolveLocalizedHtml(value: unknown, options?: { allowPlaceholder?: boolean }): string | null {
+  const normalized = cleanContent(nonEmptyString(value));
+  if (!normalizeWhitespace(stripHtml(normalized))) return null;
+  if (!options?.allowPlaceholder && isLocalizedPlaceholder(normalized)) return null;
+  return normalized;
+}
+
 function cleanContent(html: string): string {
   return (html || "")
     .replace(/<div class="eJOY__extension_root_class"[^>]*>.*?<\/div>/gis, "")
@@ -461,6 +635,27 @@ function uniqueSlug(base: string, existing: Set<string>): string {
 
 function pushUnique(target: string[], value: string) {
   if (!target.includes(value)) target.push(value);
+}
+
+function addEnUnmatched(record: EnUnmatchedRecord) {
+  if (!IS_EN_CONTENT) return;
+  enUnmatchedRecords.push(record);
+}
+
+function buildEnUnmatchedReport(): EnUnmatchedReport {
+  const countsByDataset: Record<string, number> = {};
+  for (const record of enUnmatchedRecords) {
+    countsByDataset[record.dataset] = (countsByDataset[record.dataset] || 0) + 1;
+  }
+
+  return {
+    generatedAt: new Date().toISOString(),
+    contentLocale: CONTENT_LOCALE,
+    jsonDir: JSON_DIR,
+    totalRecords: enUnmatchedRecords.length,
+    countsByDataset,
+    records: enUnmatchedRecords,
+  };
 }
 
 function isPlaceholderMenuLabel(label: string): boolean {
@@ -615,6 +810,36 @@ function buildNormalizedConfigurationSeeds() {
   ].filter((entry) => entry.value);
 }
 
+function buildLocalizedConfigurationSeedsEn() {
+  const legacyConfig = toArray(readJson<JsonRecord[] | JsonRecord>("configurations.json"))[0] || {};
+  const legacySite = toArray(readJson<JsonRecord[] | JsonRecord>("info_website.json"))[0] || {};
+
+  const siteName = normalizeWhitespace(
+    [nonEmptyString(legacySite.name), nonEmptyString(legacySite.slogan)].filter(Boolean).join(" ")
+  ) || "Phuong Nam Institute";
+  const organizationName = firstNonEmpty(
+    legacyConfig.tencongty,
+    "Phuong Nam Institute of Social Resource Development",
+  );
+  const footerDescription = firstNonEmpty(
+    `${organizationName}. ${siteName}`.replace(/\.\s+\./g, "."),
+    organizationName,
+    siteName,
+  );
+
+  return [
+    { key: "general.site_name_en", value: siteName, group: "general" },
+    { key: "general.organization_name_en", value: organizationName, group: "general" },
+    { key: "general.header_cta_text_en", value: "Contact Us", group: "general" },
+    { key: "header.cta_text_en", value: "Contact Us", group: "header" },
+    { key: "footer.description_en", value: footerDescription, group: "footer" },
+    { key: "footer.privacy_label_en", value: "Privacy Policy", group: "footer" },
+    { key: "footer.privacy_url_en", value: "/en/privacy-policy", group: "footer" },
+    { key: "footer.terms_label_en", value: "Terms of Service", group: "footer" },
+    { key: "footer.terms_url_en", value: "/en/terms", group: "footer" },
+  ].filter((entry) => entry.value);
+}
+
 function normalizeMenuLabel(value: string): string {
   return normalizeWhitespace(stripHtml(value));
 }
@@ -653,6 +878,13 @@ function normalizeLegacyInternalPath(rawUrl: string): string {
   return value;
 }
 
+function normalizeLegacyPageSlug(rawSlug: string): string {
+  if (!rawSlug.trim()) return "";
+
+  const normalizedPath = normalizeLegacyInternalPath(rawSlug.startsWith("/") ? rawSlug : `/${rawSlug}`);
+  return normalizedPath.replace(/^\/+/, "").replace(/\/+$/, "");
+}
+
 function resolveMenuUrls(rawUrl: string) {
   const trimmed = rawUrl.trim();
   const normalizedHostAlias = LEGACY_HOST_ALIASES[trimmed.toLowerCase()];
@@ -686,6 +918,99 @@ function resolveMenuLabels(label: string, url: string) {
     label: override?.vi || label,
     label_en: override?.en || null,
   };
+}
+
+function splitUrlParts(url: string) {
+  const hashIndex = url.indexOf("#");
+  const hash = hashIndex >= 0 ? url.slice(hashIndex) : "";
+  const withoutHash = hashIndex >= 0 ? url.slice(0, hashIndex) : url;
+  const queryIndex = withoutHash.indexOf("?");
+  const query = queryIndex >= 0 ? withoutHash.slice(queryIndex) : "";
+  const pathname = queryIndex >= 0 ? withoutHash.slice(0, queryIndex) : withoutHash;
+  return { pathname, query, hash };
+}
+
+function localizeInternalUrl(url: string): string {
+  const trimmed = nonEmptyString(url);
+  if (!trimmed || trimmed === "#") return trimmed;
+
+  if (trimmed.startsWith("//")) {
+    const absolute = `https:${trimmed}`;
+    if (!absolute.includes("vienphuongnam.com")) return absolute;
+    try {
+      const parsed = new URL(absolute);
+      const localized = localizeInternalUrl(`${parsed.pathname}${parsed.search}${parsed.hash}`);
+      return localized || absolute;
+    } catch {
+      return absolute;
+    }
+  }
+
+  if (/^https?:\/\//i.test(trimmed)) {
+    if (!trimmed.includes("vienphuongnam.com")) return trimmed;
+    try {
+      const parsed = new URL(trimmed);
+      const localized = localizeInternalUrl(`${parsed.pathname}${parsed.search}${parsed.hash}`);
+      return localized || trimmed;
+    } catch {
+      return trimmed;
+    }
+  }
+
+  if (!trimmed.startsWith("/")) return trimmed;
+
+  const { pathname, query, hash } = splitUrlParts(trimmed);
+  const normalizedPath = normalizeLegacyInternalPath(pathname || "/");
+  let localizedPath = resolveEquivalentEnPath(normalizedPath);
+
+  if (!localizedPath) {
+    localizedPath = normalizedPath === "/" ? "/en" : normalizedPath.startsWith("/en") ? normalizedPath : `/en${normalizedPath}`;
+  }
+
+  return `${localizedPath}${query}${hash}`;
+}
+
+function localizeConfigUrls(value: unknown): unknown {
+  if (Array.isArray(value)) {
+    return value.map((entry) => localizeConfigUrls(entry));
+  }
+
+  if (value && typeof value === "object") {
+    const next: Record<string, unknown> = {};
+    for (const [key, entry] of Object.entries(value as Record<string, unknown>)) {
+      if (typeof entry === "string" && /(url|href|link|path)$/i.test(key)) {
+        next[key] = localizeInternalUrl(entry);
+      } else {
+        next[key] = localizeConfigUrls(entry);
+      }
+    }
+    return next;
+  }
+
+  return value;
+}
+
+async function resolveLocalizedMediaId(
+  rawUrl: string,
+  altText: string,
+  currentMediaId: string | null | undefined,
+  warningContext: string,
+  warningBucket: string[] = homepageWarnings,
+): Promise<string | null> {
+  const normalized = nonEmptyString(rawUrl);
+  if (!normalized) return currentMediaId || null;
+
+  if (normalized.startsWith("/uploads/") || normalized.startsWith("/fontend/")) {
+    unresolvedAssetPaths.add(normalized);
+    pushUnique(
+      warningBucket,
+      `${warningContext}: skipped local localized asset "${normalized}" and kept the existing EN media reference.`,
+    );
+    return currentMediaId || null;
+  }
+
+  const mediaId = await ensureMedia(normalized, altText);
+  return mediaId || currentMediaId || null;
 }
 
 function inferLegacyEnabled(value: unknown): boolean {
@@ -826,6 +1151,12 @@ async function migrateUsers() {
   if (!runPhase("users")) return;
   console.log("\n── Phase 1: Users ──");
 
+  if (IS_EN_CONTENT) {
+    console.log("  EN mode: user migration is not applicable.");
+    setPhaseSummary("users", 0, 0, 0, ["EN localization mode does not create or update User rows."]);
+    return;
+  }
+
   interface OldUser {
     id: string | number;
     username?: string;
@@ -898,6 +1229,11 @@ async function migrateUsers() {
 async function migrateCategories() {
   if (!runPhase("categories")) return;
   console.log("\n── Phase 2: Categories ──");
+
+  if (IS_EN_CONTENT) {
+    await migrateCategoriesEn();
+    return;
+  }
 
   interface OldCategory {
     id: string | number;
@@ -972,6 +1308,12 @@ async function migrateCategories() {
 async function migrateTags() {
   if (!runPhase("tags")) return;
   console.log("\n── Phase 3: Tags ──");
+
+  if (IS_EN_CONTENT) {
+    console.log("  EN mode: tag migration skipped because detail_tags.json is identical.");
+    setPhaseSummary("tags", 0, 0, 0, ["EN localization mode does not update Tag rows."]);
+    return;
+  }
 
   interface OldTag {
     id: string | number;
@@ -1103,14 +1445,54 @@ function resolveStaffTypeKey(title: string): string {
   const normalized = title.toLowerCase();
   if (normalized.includes("viện trưởng") && !normalized.includes("phó")) return "vientruong";
   if (normalized.includes("phó viện trưởng") || normalized.includes("pho vien truong")) return "phovientruong";
+  if (normalized.includes("phó giám đốc") || normalized.includes("pho giam doc")) return "phovientruong";
   if (normalized.includes("cố vấn") || normalized.includes("co van")) return "covan";
   if (normalized.includes("ủy viên") || normalized.includes("uy vien") || normalized.includes("thành viên")) return "uyvien";
   return "nhanvien";
 }
 
+function isUppercaseHeadingText(value: string): boolean {
+  const compact = normalizeWhitespace(value).replace(/[^\p{L}\p{N}]+/gu, "");
+  if (!compact) return false;
+  return compact === compact.toUpperCase();
+}
+
+function isLegacyStaffHeading(staff: {
+  name?: string;
+  chucvu?: string;
+  mieutangan?: string;
+  anhdaidien?: string;
+}): boolean {
+  const name = normalizeWhitespace(nonEmptyString(staff.name));
+  if (!name || !isUppercaseHeadingText(name)) return false;
+
+  const title = normalizeWhitespace(nonEmptyString(staff.chucvu));
+  const bio = cleanContent(nonEmptyString(staff.mieutangan));
+  const avatar = nonEmptyString(staff.anhdaidien);
+
+  return !title && !bio && !avatar;
+}
+
+function resolveMigratedStaffTypeKey(title: string, options?: { departmentKey?: string; isHeading?: boolean }): string {
+  const resolved = resolveStaffTypeKey(title);
+  if (resolved !== "nhanvien") return resolved;
+
+  if (options?.departmentKey === "bancovan" && !options.isHeading) {
+    return "covan";
+  }
+
+  return resolved;
+}
+
 async function migrateStaff() {
   if (!runPhase("staff")) return;
   console.log("\n── Phase 4: Staff ──");
+
+  if (IS_EN_CONTENT) {
+    await migrateStaffEn();
+    return;
+  }
+
   await migrateStaffFoundation();
 
   interface OldStaff {
@@ -1144,9 +1526,23 @@ async function migrateStaff() {
         continue;
       }
 
-      const existing = await prisma.staff.findFirst({ where: { name } });
+      const existing = await prisma.staff.findFirst({
+        where: departmentId
+          ? {
+              name,
+              departmentId,
+            }
+          : { name },
+      });
       const avatarId = await ensureMedia(nonEmptyString(staff.anhdaidien), `${name} avatar`);
-      const staffTypeId = idMaps.staffTypes.get(resolveStaffTypeKey(nonEmptyString(staff.chucvu))) || idMaps.staffTypes.get("nhanvien");
+      const isHeading = isLegacyStaffHeading(staff);
+      const staffTypeId =
+        idMaps.staffTypes.get(
+          resolveMigratedStaffTypeKey(nonEmptyString(staff.chucvu), {
+            departmentKey: source.departmentKey,
+            isHeading,
+          })
+        ) || idMaps.staffTypes.get("nhanvien");
       const payload = {
         name,
         title: nonEmptyString(staff.chucvu) || null,
@@ -1157,7 +1553,7 @@ async function migrateStaff() {
         departmentId,
         staffTypeId,
         sortOrder: Number(staff.stt_hienthi ?? 0) || 0,
-        isActive: String(staff.xuongdong ?? "1") !== "0",
+        isActive: source.departmentKey === "banlanhdao" ? true : String(staff.xuongdong ?? "1") !== "0",
       };
 
       if (!DRY_RUN) {
@@ -1190,6 +1586,11 @@ async function migrateStaff() {
 async function migratePartners() {
   if (!runPhase("partners")) return;
   console.log("\n── Phase 5: Partners ──");
+
+  if (IS_EN_CONTENT) {
+    await migratePartnersEn();
+    return;
+  }
 
   interface OldPartner {
     id: string | number;
@@ -1251,6 +1652,11 @@ async function migratePartners() {
 async function migratePosts() {
   if (!runPhase("posts")) return;
   console.log("\n── Phase 6: Posts ──");
+
+  if (IS_EN_CONTENT) {
+    await migratePostsEn();
+    return;
+  }
 
   interface OldPost {
     id: string | number;
@@ -1398,6 +1804,11 @@ async function migrateCourses() {
   if (!runPhase("courses")) return;
   console.log("\n── Phase 7: Courses ──");
 
+  if (IS_EN_CONTENT) {
+    await migrateCoursesEn();
+    return;
+  }
+
   interface OldCourse {
     id: string | number;
     id_chuyenmuc?: string | number;
@@ -1534,6 +1945,11 @@ async function migratePages() {
   if (!runPhase("pages")) return;
   console.log("\n── Phase 8: Pages ──");
 
+  if (IS_EN_CONTENT) {
+    await migratePagesEn();
+    return;
+  }
+
   interface OldPage {
     id: string | number;
     tieude?: string;
@@ -1543,6 +1959,7 @@ async function migratePages() {
     duongdan?: string;
     noidung?: string;
     content?: string;
+    mieutachitiet?: string;
     anhdaidien?: string;
     stt_hienthi?: string | number;
     trangthai?: string | number;
@@ -1564,17 +1981,22 @@ async function migratePages() {
     }
 
     const rawSlug = firstNonEmpty(page.slug, page.duongdan, slugify(title));
+    const canonicalSlug = normalizeLegacyPageSlug(rawSlug || slugify(title));
     const existing = await prisma.page.findFirst({
       where: {
-        slug: rawSlug,
+        template: "default",
+        OR: [
+          { slug: canonicalSlug },
+          { title },
+        ],
       },
     });
-    const slug = existing ? existing.slug : uniqueSlug(rawSlug || slugify(title), slugPool);
+    const slug = existing ? existing.slug : uniqueSlug(canonicalSlug || slugify(title), slugPool);
     const featuredImageId = await ensureMedia(nonEmptyString(page.anhdaidien), title);
     const payload = {
       title,
       slug,
-      content: cleanContent(firstNonEmpty(page.noidung, page.content)),
+      content: cleanContent(firstNonEmpty(page.noidung, page.content, page.mieutachitiet)),
       featuredImageId,
       template: existing?.template || "default",
       authorId: adminUserId,
@@ -1613,6 +2035,11 @@ async function migratePages() {
 async function migrateConfigurations() {
   if (!runPhase("config")) return;
   console.log("\n── Phase 9: Configurations ──");
+
+  if (IS_EN_CONTENT) {
+    await migrateConfigurationsEn();
+    return;
+  }
 
   const rawConfigs = toArray(readJson<JsonRecord[] | JsonRecord>("configurations.json"));
   const rawSiteInfo = toArray(readJson<JsonRecord[] | JsonRecord>("info_website.json"));
@@ -1693,6 +2120,11 @@ async function migrateConfigurations() {
 async function migrateMenuItems() {
   if (!runPhase("menus")) return;
   console.log("\n── Phase 10: Menu Items ──");
+
+  if (IS_EN_CONTENT) {
+    await migrateMenuItemsEn();
+    return;
+  }
 
   interface OldMenuItem {
     id: string | number;
@@ -1869,6 +2301,11 @@ async function migrateServices() {
   if (!runPhase("services")) return;
   console.log("\n── Phase 11: Services ──");
 
+  if (IS_EN_CONTENT) {
+    await migrateServicesEn();
+    return;
+  }
+
   interface OldService {
     id: string | number;
     tieude?: string;
@@ -2000,6 +2437,12 @@ async function migrateReviews() {
   if (!runPhase("reviews")) return;
   console.log("\n── Phase 12: Reviews ──");
 
+  if (IS_EN_CONTENT) {
+    console.log("  EN mode: review localization skipped because feel.json is effectively untranslated.");
+    setPhaseSummary("reviews", 0, 0, 0, ["EN localization mode leaves Review EN fields untouched."]);
+    return;
+  }
+
   interface OldReview {
     id: string | number;
     name?: string;
@@ -2102,6 +2545,11 @@ async function migrateReviews() {
 async function migrateHomepageSections() {
   if (!runPhase("homepage")) return;
   console.log("\n── Phase 13: Homepage Sections ──");
+
+  if (IS_EN_CONTENT) {
+    await migrateHomepageSectionsEn();
+    return;
+  }
 
   interface LegacyHomepageToggle {
     id: string | number;
@@ -2281,6 +2729,12 @@ async function migrateGalleryMedia() {
   if (!runPhase("gallery")) return;
   console.log("\n── Phase 14: Gallery Media ──");
 
+  if (IS_EN_CONTENT) {
+    console.log("  EN mode: gallery media import skipped.");
+    setPhaseSummary("gallery", 0, 0, 0, ["EN localization mode does not create gallery-only media rows."]);
+    return;
+  }
+
   interface ModuleImageRecord {
     id: string | number;
     gallery_image?: string;
@@ -2322,9 +2776,877 @@ async function migrateGalleryMedia() {
   setPhaseSummary("gallery", created, skipped, 0, [`${unresolvedAssetPaths.size} unresolved local asset paths recorded.`]);
 }
 
+function tryParseJsonObject(value: string | null | undefined): Record<string, unknown> | null {
+  const normalized = nonEmptyString(value);
+  if (!normalized) return null;
+  try {
+    const parsed = JSON.parse(normalized);
+    return parsed && typeof parsed === "object" && !Array.isArray(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+async function migrateCategoriesEn() {
+  interface OldCategory {
+    id: string | number;
+    tenchuyenmuc?: string;
+    duongdan?: string;
+  }
+
+  const sources = [
+    { filename: "category_post.json", type: "POST" as const },
+    { filename: "category_service.json", type: "COURSE" as const },
+  ];
+
+  let refreshed = 0;
+  let skipped = 0;
+  let unmatched = 0;
+
+  for (const source of sources) {
+    const enRows = toArray(readJson<OldCategory[] | OldCategory>(source.filename));
+    const viRows = toArray(readBaseJson<OldCategory[] | OldCategory>(source.filename));
+    const viById = new Map(viRows.map((row) => [String(row.id), row]));
+
+    for (const row of enRows) {
+      const legacyId = String(row.id);
+      const mapKey = `${source.type.toLowerCase()}_${legacyId}`;
+      const explicitSlug = source.type === "COURSE" ? EN_COURSE_CATEGORY_SLUG_BY_LEGACY_ID[legacyId] : null;
+      const viCounterpart = viById.get(legacyId) || null;
+      const viName = normalizeWhitespace(nonEmptyString(viCounterpart?.tenchuyenmuc));
+      const viSlug = nonEmptyString(viCounterpart?.duongdan);
+
+      const slugCandidates = [explicitSlug, viSlug, source.type === "POST" && viSlug ? `${viSlug}-1` : ""].filter(Boolean);
+      const existing = await prisma.category.findFirst({
+        where: {
+          type: source.type,
+          OR: [
+            ...(viName ? [{ name: viName }] : []),
+            ...slugCandidates.map((slug) => ({ slug })),
+          ],
+        },
+      });
+
+      if (!existing) {
+        unmatched += 1;
+        addEnUnmatched({
+          dataset: source.filename,
+          legacyId,
+          reason: explicitSlug ? "missing_crosswalk_target" : "no_safe_category_anchor",
+          title: nonEmptyString(row.tenchuyenmuc) || null,
+          slug: nonEmptyString(row.duongdan) || null,
+          viLegacyId: viCounterpart ? legacyId : null,
+          viTitle: viName || null,
+          viSlug: viSlug || explicitSlug || null,
+        });
+        continue;
+      }
+
+      const nameEn = resolveLocalizedPlainText(row.tenchuyenmuc);
+      if (!DRY_RUN) {
+        await prisma.category.update({
+          where: { id: existing.id },
+          data: { name_en: nameEn },
+        });
+      }
+
+      idMaps.categories.set(mapKey, existing.id);
+      refreshed += 1;
+      skipped += 1;
+    }
+  }
+
+  console.log(`  Categories: 0 created, ${refreshed} localized, ${skipped} matched`);
+  setPhaseSummary("categories", 0, skipped, 0, [
+    `${refreshed} existing categories updated with English labels.`,
+    `${unmatched} EN category rows were skipped and reported.`,
+  ]);
+}
+
+async function migrateStaffEn() {
+  interface OldStaff {
+    id: string | number;
+    name?: string;
+    chucvu?: string;
+    mieutangan?: string;
+    anhdaidien?: string;
+  }
+
+  const departmentSlugByKey: Record<string, string> = {
+    banlanhdao: "ban-lanh-dao-vien",
+    bancovan: "ban-co-van",
+  };
+
+  const sources = [
+    { filename: "banlanhdao.json", departmentKey: "banlanhdao" },
+    { filename: "bancovan.json", departmentKey: "bancovan" },
+  ];
+
+  let refreshed = 0;
+  let skipped = 0;
+  let unmatched = 0;
+
+  for (const source of sources) {
+    const department = await prisma.department.findFirst({
+      where: { slug: departmentSlugByKey[source.departmentKey] },
+      select: { id: true },
+    });
+    const departmentId = department?.id || null;
+    const enRows = toArray(readJson<OldStaff[] | OldStaff>(source.filename));
+    const viRows = toArray(readBaseJson<OldStaff[] | OldStaff>(source.filename));
+    const viById = new Map(viRows.map((row) => [String(row.id), row]));
+
+    for (const row of enRows) {
+      const legacyId = String(row.id);
+      const viCounterpart = viById.get(legacyId) || null;
+      const viName = normalizeWhitespace(nonEmptyString(viCounterpart?.name));
+
+      if (!viCounterpart || !viName) {
+        unmatched += 1;
+        addEnUnmatched({
+          dataset: source.filename,
+          legacyId,
+          reason: "no_vi_counterpart",
+          title: nonEmptyString(row.name) || null,
+          slug: nonEmptyString((row as JsonRecord).duongdan) || null,
+        });
+        continue;
+      }
+
+      const existing = await prisma.staff.findFirst({
+        where: departmentId ? { name: viName, departmentId } : { name: viName },
+        select: { id: true, name: true, avatarId_en: true },
+      });
+
+      if (!existing) {
+        unmatched += 1;
+        addEnUnmatched({
+          dataset: source.filename,
+          legacyId,
+          reason: "no_safe_staff_anchor",
+          title: nonEmptyString(row.name) || null,
+          slug: nonEmptyString((row as JsonRecord).duongdan) || null,
+          viLegacyId: legacyId,
+          viTitle: viName || null,
+          viSlug: nonEmptyString((viCounterpart as JsonRecord).duongdan) || null,
+        });
+        continue;
+      }
+
+      const avatarIdEn = await resolveLocalizedMediaId(
+        nonEmptyString(row.anhdaidien),
+        resolveLocalizedPlainText(row.name, { allowPlaceholder: true }) || existing.name,
+        existing.avatarId_en,
+        `Staff ${existing.name}`,
+        localizationWarnings,
+      );
+
+      if (!DRY_RUN) {
+        await prisma.staff.update({
+          where: { id: existing.id },
+          data: {
+            name_en: resolveLocalizedPlainText(row.name, { allowPlaceholder: true }),
+            title_en: resolveLocalizedPlainText(row.chucvu, { allowPlaceholder: true }),
+            bio_en: resolveLocalizedHtml(row.mieutangan, { allowPlaceholder: true }),
+            avatarId_en: avatarIdEn,
+          },
+        });
+      }
+
+      refreshed += 1;
+      skipped += 1;
+    }
+  }
+
+  console.log(`  Staff: 0 created, ${refreshed} localized, ${skipped} matched`);
+  setPhaseSummary("staff", 0, skipped, 0, [
+    `${refreshed} existing staff rows updated with English fields.`,
+    `${unmatched} EN staff rows were skipped and reported.`,
+  ]);
+}
+
+async function migratePartnersEn() {
+  interface OldPartner {
+    id: string | number;
+    name?: string;
+    anhdaidien?: string;
+    duongdan?: string;
+    mieutangan?: string;
+  }
+
+  const enRows = toArray(readJson<OldPartner[] | OldPartner>("doitac.json"));
+  const viRows = toArray(readBaseJson<OldPartner[] | OldPartner>("doitac.json"));
+  const viById = new Map(viRows.map((row) => [String(row.id), row]));
+
+  let refreshed = 0;
+  let skipped = 0;
+  let unmatched = 0;
+
+  for (const row of enRows) {
+    const legacyId = String(row.id);
+    const viCounterpart = viById.get(legacyId) || null;
+    const viName = normalizeWhitespace(nonEmptyString(viCounterpart?.name));
+    const websiteCandidates = Array.from(new Set([
+      normalizeWebsiteUrl(nonEmptyString(viCounterpart?.duongdan)),
+      normalizeWebsiteUrl(nonEmptyString(row.duongdan)),
+    ].filter(Boolean)));
+
+    const existing = viCounterpart
+      ? await prisma.partner.findFirst({
+          where: {
+            OR: [
+              ...(viName ? [{ name: viName }] : []),
+              ...websiteCandidates.map((website) => ({ website })),
+            ],
+          },
+          select: { id: true, name: true, logoId_en: true },
+        })
+      : null;
+
+    if (!existing) {
+      unmatched += 1;
+      addEnUnmatched({
+        dataset: "doitac.json",
+        legacyId,
+        reason: viCounterpart ? "no_safe_partner_anchor" : "no_vi_counterpart",
+        title: nonEmptyString(row.name) || null,
+        sourceUrl: normalizeWebsiteUrl(nonEmptyString(row.duongdan)) || null,
+        viLegacyId: viCounterpart ? legacyId : null,
+        viTitle: viName || null,
+        viSlug: normalizeWebsiteUrl(nonEmptyString(viCounterpart?.duongdan)) || null,
+      });
+      continue;
+    }
+
+    const logoIdEn = await resolveLocalizedMediaId(
+      nonEmptyString(row.anhdaidien),
+      resolveLocalizedPlainText(row.name, { allowPlaceholder: true }) || existing.name,
+      existing.logoId_en,
+      `Partner ${existing.name}`,
+      localizationWarnings,
+    );
+
+    if (!DRY_RUN) {
+      await prisma.partner.update({
+        where: { id: existing.id },
+        data: {
+          name_en: resolveLocalizedPlainText(row.name, { allowPlaceholder: true }),
+          description_en: normalizeWhitespace(stripHtml(nonEmptyString(row.mieutangan))) || null,
+          logoId_en: logoIdEn,
+        },
+      });
+    }
+
+    refreshed += 1;
+    skipped += 1;
+  }
+
+  console.log(`  Partners: 0 created, ${refreshed} localized, ${skipped} matched`);
+  setPhaseSummary("partners", 0, skipped, 0, [
+    `${refreshed} existing partners updated with English fields.`,
+    `${unmatched} EN partner rows were skipped and reported.`,
+  ]);
+}
+
+async function migratePostsEn() {
+  interface OldPost {
+    id: string | number;
+    tieude?: string;
+    duongdan?: string;
+  }
+
+  const enRows = toArray(readJson<OldPost[] | OldPost>("post.json"));
+  const viRows = toArray(readBaseJson<OldPost[] | OldPost>("post.json"));
+  const viById = new Map(viRows.map((row) => [String(row.id), row]));
+
+  for (const row of enRows) {
+    const legacyId = String(row.id);
+    const viCounterpart = viById.get(legacyId) || null;
+    addEnUnmatched({
+      dataset: "post.json",
+      legacyId,
+      reason: viCounterpart ? "id_reused_different_content" : "unsupported_en_post_migration_v1",
+      title: nonEmptyString(row.tieude) || null,
+      slug: nonEmptyString(row.duongdan) || null,
+      viLegacyId: viCounterpart ? legacyId : null,
+      viTitle: nonEmptyString((viCounterpart as JsonRecord)?.tieude) || null,
+      viSlug: nonEmptyString((viCounterpart as JsonRecord)?.duongdan) || null,
+    });
+  }
+
+  console.log(`  Posts: 0 created, 0 localized, ${enRows.length} reported`);
+  setPhaseSummary("posts", 0, enRows.length, 0, [
+    "EN post import is intentionally report-only in v1.",
+    `${enRows.length} EN post rows were added to the unmatched report.`,
+  ]);
+}
+
+async function migrateCoursesEn() {
+  interface OldCourse {
+    id: string | number;
+    tieude?: string;
+    duongdan?: string;
+  }
+
+  const enRows = toArray(readJson<OldCourse[] | OldCourse>("hosomoitruong.json"));
+  const viRows = toArray(readBaseJson<OldCourse[] | OldCourse>("hosomoitruong.json"));
+  const viById = new Map(viRows.map((row) => [String(row.id), row]));
+
+  for (const row of enRows) {
+    const legacyId = String(row.id);
+    const viCounterpart = viById.get(legacyId) || null;
+    addEnUnmatched({
+      dataset: "hosomoitruong.json",
+      legacyId,
+      reason: viCounterpart ? "id_reused_different_content" : "unsupported_en_course_migration_v1",
+      title: nonEmptyString(row.tieude) || null,
+      slug: nonEmptyString(row.duongdan) || null,
+      viLegacyId: viCounterpart ? legacyId : null,
+      viTitle: nonEmptyString((viCounterpart as JsonRecord)?.tieude) || null,
+      viSlug: nonEmptyString((viCounterpart as JsonRecord)?.duongdan) || null,
+    });
+  }
+
+  console.log(`  Courses: 0 created, 0 localized, ${enRows.length} reported`);
+  setPhaseSummary("courses", 0, enRows.length, 0, [
+    "EN course import is intentionally report-only in v1.",
+    `${enRows.length} EN course rows were added to the unmatched report.`,
+  ]);
+}
+
+async function migratePagesEn() {
+  interface OldPage {
+    id: string | number;
+    tieude?: string;
+    ten?: string;
+    name_page?: string;
+    slug?: string;
+    duongdan?: string;
+    noidung?: string;
+    content?: string;
+    mieutachitiet?: string;
+    anhdaidien?: string;
+    tieudeseo?: string;
+    mieutaseo?: string;
+  }
+
+  const enRows = toArray(readJson<OldPage[] | OldPage>("page_all.json"));
+  const viRows = toArray(readBaseJson<OldPage[] | OldPage>("page_all.json"));
+  const viById = new Map(viRows.map((row) => [String(row.id), row]));
+
+  let refreshed = 0;
+  let skipped = 0;
+  let unmatched = 0;
+
+  for (const row of enRows) {
+    const legacyId = String(row.id);
+    const viCounterpart = viById.get(legacyId) || null;
+    const viTitle = normalizeWhitespace(firstNonEmpty(viCounterpart?.tieude, viCounterpart?.ten, viCounterpart?.name_page));
+    const viRawSlug = firstNonEmpty(viCounterpart?.slug, viCounterpart?.duongdan, slugify(viTitle));
+    const canonicalSlug = normalizeLegacyPageSlug(viRawSlug || slugify(viTitle));
+    const existing = viCounterpart
+      ? await prisma.page.findFirst({
+          where: {
+            template: "default",
+            OR: [{ slug: canonicalSlug }, { title: viTitle }],
+          },
+          select: { id: true, slug: true, title: true, featuredImageId_en: true },
+        })
+      : null;
+
+    if (!existing) {
+      unmatched += 1;
+      addEnUnmatched({
+        dataset: "page_all.json",
+        legacyId,
+        reason: viCounterpart ? "no_safe_page_anchor" : "no_vi_counterpart",
+        title: firstNonEmpty(row.tieude, row.ten, row.name_page) || null,
+        slug: firstNonEmpty(row.slug, row.duongdan) || null,
+        viLegacyId: viCounterpart ? legacyId : null,
+        viTitle: viTitle || null,
+        viSlug: canonicalSlug || null,
+      });
+      continue;
+    }
+
+    const featuredImageIdEn = await resolveLocalizedMediaId(
+      nonEmptyString(row.anhdaidien),
+      resolveLocalizedPlainText(firstNonEmpty(row.tieude, row.ten, row.name_page), { allowPlaceholder: true }) || existing.title,
+      existing.featuredImageId_en,
+      `Page ${existing.slug}`,
+      localizationWarnings,
+    );
+
+    if (!DRY_RUN) {
+      await prisma.page.update({
+        where: { id: existing.id },
+        data: {
+          title_en: resolveLocalizedPlainText(firstNonEmpty(row.tieude, row.ten, row.name_page), { allowPlaceholder: true }),
+          content_en: resolveLocalizedHtml(firstNonEmpty(row.noidung, row.content, row.mieutachitiet), { allowPlaceholder: true }),
+          metaTitle_en: resolveLocalizedPlainText(row.tieudeseo, { allowPlaceholder: true }),
+          metaDescription_en: resolveLocalizedPlainText(row.mieutaseo, { allowPlaceholder: true }),
+          featuredImageId_en: featuredImageIdEn,
+        },
+      });
+    }
+
+    refreshed += 1;
+    skipped += 1;
+  }
+
+  console.log(`  Pages: 0 created, ${refreshed} localized, ${skipped} matched`);
+  setPhaseSummary("pages", 0, skipped, 0, [
+    `${refreshed} existing default pages updated with English fields.`,
+    `${unmatched} EN page rows were skipped and reported.`,
+  ]);
+}
+
+async function migrateConfigurationsEn() {
+  const seeds = buildLocalizedConfigurationSeedsEn();
+  let created = 0;
+  let refreshed = 0;
+  let skipped = 0;
+
+  for (const seed of seeds) {
+    const existing = await prisma.configuration.findFirst({ where: { key: seed.key } });
+    if (!DRY_RUN) {
+      await prisma.configuration.upsert({
+        where: { key: seed.key },
+        update: {
+          value: seed.value,
+          type: "STRING",
+          group: seed.group,
+        },
+        create: {
+          key: seed.key,
+          value: seed.value,
+          type: "STRING",
+          group: seed.group,
+        },
+      });
+    }
+
+    if (existing) {
+      refreshed += 1;
+      skipped += 1;
+    } else {
+      created += 1;
+    }
+  }
+
+  console.log(`  Configurations: ${created} created, ${refreshed} localized, ${skipped} matched`);
+  setPhaseSummary("config", created, skipped, 0, [
+    `${refreshed} existing English configuration keys refreshed.`,
+  ]);
+}
+
+async function migrateMenuItemsEn() {
+  interface OldMenuItem {
+    id: string | number;
+    tenmenu?: string;
+    label?: string;
+    tukhoa?: string;
+    url?: string;
+    duongdan?: string;
+  }
+
+  const sources = [
+    { filename: "menu.json", group: "main" },
+    { filename: "menufooter.json", group: "footer1" },
+    { filename: "menufooter2.json", group: "footer2" },
+    { filename: "menufooter3.json", group: "footer3" },
+    { filename: "menufooter4.json", group: "footer4" },
+  ];
+
+  let refreshed = 0;
+  let skipped = 0;
+
+  for (const source of sources) {
+    const viRows = toArray(readBaseJson<OldMenuItem[] | OldMenuItem>(source.filename));
+    const enRows = toArray(readJson<OldMenuItem[] | OldMenuItem>(source.filename));
+    const enById = new Map(enRows.map((row) => [String(row.id), row]));
+
+    for (const viRow of viRows) {
+      const rawLabel = normalizeMenuLabel(firstNonEmpty(viRow.tenmenu, viRow.label, viRow.tukhoa));
+      if (!rawLabel || isPlaceholderMenuLabel(rawLabel)) continue;
+
+      const enRow = enById.get(String(viRow.id));
+      if (!enRow) continue;
+
+      const resolved = resolveMenuUrls(firstNonEmpty(viRow.url, viRow.duongdan, "#"));
+      const labels = resolveMenuLabels(rawLabel, resolved.url);
+      const lookupUrls = Array.from(new Set([
+        firstNonEmpty(viRow.url, viRow.duongdan, "#"),
+        normalizePath(firstNonEmpty(viRow.url, viRow.duongdan, "#")),
+        normalizeLegacyInternalPath(firstNonEmpty(viRow.url, viRow.duongdan, "#")),
+        resolved.url,
+      ].filter(Boolean)));
+      const existing = await prisma.menuItem.findFirst({
+        where: {
+          locale: "VI",
+          OR: [
+            { label: labels.label, url: { in: lookupUrls } },
+            { url: { in: lookupUrls } },
+          ],
+        },
+        select: { id: true, label_en: true },
+      });
+      if (!existing) continue;
+
+      const enLabelRaw = normalizeMenuLabel(firstNonEmpty(enRow.tenmenu, enRow.label, enRow.tukhoa));
+      const localizedLabel = MENU_LABEL_OVERRIDES[resolved.url]?.en
+        || (enLabelRaw && normalizeComparableText(enLabelRaw) !== normalizeComparableText(labels.label) ? enLabelRaw : null);
+
+      if (!localizedLabel || localizedLabel === existing.label_en) continue;
+
+      if (!DRY_RUN) {
+        await prisma.menuItem.update({
+          where: { id: existing.id },
+          data: { label_en: localizedLabel },
+        });
+      }
+
+      refreshed += 1;
+      skipped += 1;
+    }
+  }
+
+  console.log(`  Menu items: 0 created, ${refreshed} localized, ${skipped} matched`);
+  setPhaseSummary("menus", 0, skipped, 0, [
+    `${refreshed} existing menu items updated with English labels.`,
+  ]);
+}
+
+async function migrateServicesEn() {
+  interface OldService {
+    id: string | number;
+    tieude?: string;
+    tieudeseo?: string;
+    duongdan?: string;
+    mieutangan?: string;
+    mieutachitiet?: string;
+    mieutaseo?: string;
+    anhdaidien?: string;
+    [key: string]: unknown;
+  }
+
+  const enRows = toArray(readJson<OldService[] | OldService>("service.json"));
+  let refreshed = 0;
+  let skipped = 0;
+  let unmatched = 0;
+  let localizedSections = 0;
+
+  for (const row of enRows) {
+    const legacyId = String(row.id);
+    const targetSlug = EN_SERVICE_PAGE_SLUG_BY_LEGACY_ID[legacyId];
+    if (!targetSlug) {
+      unmatched += 1;
+      addEnUnmatched({
+        dataset: "service.json",
+        legacyId,
+        reason: "missing_service_crosswalk",
+        title: nonEmptyString(row.tieude) || null,
+        slug: nonEmptyString(row.duongdan) || null,
+      });
+      continue;
+    }
+
+    const existingPage = await prisma.page.findFirst({
+      where: { template: "service", slug: targetSlug },
+      select: { id: true, slug: true, title: true, featuredImageId_en: true },
+    });
+
+    if (!existingPage) {
+      unmatched += 1;
+      addEnUnmatched({
+        dataset: "service.json",
+        legacyId,
+        reason: "missing_crosswalk_target",
+        title: nonEmptyString(row.tieude) || null,
+        slug: targetSlug,
+      });
+      continue;
+    }
+
+    const featuredImageIdEn = await resolveLocalizedMediaId(
+      nonEmptyString(row.anhdaidien),
+      resolveLocalizedPlainText(row.tieude, { allowPlaceholder: true }) || existingPage.title,
+      existingPage.featuredImageId_en,
+      `Service ${existingPage.slug}`,
+      localizationWarnings,
+    );
+
+    if (!DRY_RUN) {
+      await prisma.page.update({
+        where: { id: existingPage.id },
+        data: {
+          title_en: resolveLocalizedPlainText(row.tieude, { allowPlaceholder: true }),
+          content_en: resolveLocalizedHtml(firstNonEmpty(row.mieutachitiet, row.mieutangan), { allowPlaceholder: true }),
+          metaTitle_en: resolveLocalizedPlainText(row.tieudeseo, { allowPlaceholder: true }),
+          metaDescription_en: resolveLocalizedPlainText(row.mieutaseo, { allowPlaceholder: true }),
+          featuredImageId_en: featuredImageIdEn,
+        },
+      });
+    }
+
+    const sections = buildTabbedSections(row);
+    for (const section of sections) {
+      const existingSection = await prisma.contentSection.findUnique({
+        where: {
+          entityType_entityId_sectionKey: {
+            entityType: "SERVICE",
+            entityId: existingPage.id,
+            sectionKey: section.sectionKey,
+          },
+        },
+        select: { id: true },
+      });
+
+      if (!existingSection) {
+        pushUnique(
+          localizationWarnings,
+          `Service ${existingPage.slug}: skipped missing shared section "${section.sectionKey}" during EN localization.`,
+        );
+        continue;
+      }
+
+      if (!DRY_RUN) {
+        await prisma.contentSection.update({
+          where: { id: existingSection.id },
+          data: {
+            title_en: resolveLocalizedPlainText(section.title, { allowPlaceholder: true }),
+            content_en: resolveLocalizedHtml(section.content, { allowPlaceholder: true }),
+          },
+        });
+      }
+
+      localizedSections += 1;
+    }
+
+    refreshed += 1;
+    skipped += 1;
+  }
+
+  console.log(`  Services: 0 created, ${refreshed} localized, ${skipped} matched`);
+  setPhaseSummary("services", 0, skipped, 0, [
+    `${refreshed} existing service pages updated with English fields.`,
+    `${localizedSections} existing service content sections updated with English fields.`,
+    `${unmatched} EN service rows were skipped and reported.`,
+  ]);
+}
+
+async function migrateHomepageSectionsEn() {
+  interface LegacyHomepageToggle {
+    id: string | number;
+    status?: string | number;
+    statusmb?: string | number;
+  }
+
+  interface LegacyVideoRecord {
+    id: string | number;
+    tieude?: string;
+    anhdaidien?: string;
+    video_youtube?: string;
+    video_home?: string;
+  }
+
+  interface LegacyGalleryRecord {
+    id: string | number;
+    tieude?: string;
+    tieudephu?: string;
+    gallery_image?: string;
+  }
+
+  const toggleRows = toArray(readJson<LegacyHomepageToggle[] | LegacyHomepageToggle>("space_module_home.json"));
+  const toggleById = new Map(toggleRows.map((row) => [Number(row.id), row]));
+  const videoRows = toArray(readJson<LegacyVideoRecord[] | LegacyVideoRecord>("module_video_home.json"));
+  const galleryRows = toArray(readJson<LegacyGalleryRecord[] | LegacyGalleryRecord>("module_images.json"));
+  const partnerModules = toArray(readJson<JsonRecord[] | JsonRecord>("module_doitac.json"));
+  const trainingModules = toArray(readJson<JsonRecord[] | JsonRecord>("module_introduce.json"));
+  const profile = {
+    address: firstNonEmpty(
+      toArray(readJson<JsonRecord[] | JsonRecord>("configurations.json"))[0]?.diachi1,
+      "45 Dinh Tien Hoang Street, Saigon Ward, Ho Chi Minh City, Vietnam",
+    ),
+    phone: firstNonEmpty(
+      toArray(readJson<JsonRecord[] | JsonRecord>("configurations.json"))[0]?.hotline0,
+      "(+84) 912 114 511",
+    ),
+    email: firstNonEmpty(
+      toArray(readJson<JsonRecord[] | JsonRecord>("configurations.json"))[0]?.email1,
+      "vanphong@vienphuongnam.com.vn",
+    ),
+  };
+
+  const viSections = await prisma.homepageSection.findMany({
+    where: { locale: "VI" },
+    select: { id: true, sectionKey: true, config: true, isEnabled: true, sortOrder: true },
+  });
+  const viByKey = new Map(viSections.map((row) => [row.sectionKey, row]));
+  const enSections = await prisma.homepageSection.findMany({
+    where: { locale: "EN" },
+    select: { id: true, sectionKey: true, config: true, isEnabled: true, sortOrder: true },
+  });
+  const enByKey = new Map(enSections.map((row) => [row.sectionKey, row]));
+
+  const galleryModule = galleryRows.find((row) => String(row.id) === "1") || galleryRows[0] || null;
+  const galleryImages = (galleryModule?.gallery_image || "")
+    .split(",")
+    .map((value) => value.trim())
+    .filter(Boolean)
+    .filter((url) => {
+      if (url.startsWith("/uploads/")) {
+        unresolvedAssetPaths.add(url);
+        pushUnique(
+          localizationWarnings,
+          `Homepage gallery: skipped local EN gallery asset "${url}" and kept only remote URLs in EN config.`,
+        );
+        return false;
+      }
+      return url.startsWith("http");
+    })
+    .map((url, index) => ({
+      id: `gallery-${index + 1}`,
+      url,
+      alt: `Phuong Nam Institute activity ${index + 1}`,
+    }));
+
+  const videos = videoRows
+    .map((row, index) => {
+      const source = firstNonEmpty(row.video_home, row.video_youtube);
+      if (!source) return null;
+
+      const youtubeUrl = source.startsWith("http") ? source : `https://www.youtube.com/watch?v=${source}`;
+      const thumbnailUrl = nonEmptyString(row.anhdaidien).startsWith("/uploads/")
+        ? ""
+        : nonEmptyString(row.anhdaidien)
+          || (nonEmptyString(row.video_youtube) ? `https://img.youtube.com/vi/${nonEmptyString(row.video_youtube)}/hqdefault.jpg` : "");
+
+      return {
+        id: `video-${row.id}`,
+        title: normalizeWhitespace(stripHtml(nonEmptyString(row.tieude))) || `Video ${index + 1}`,
+        thumbnailUrl,
+        videoUrl: youtubeToEmbed(youtubeUrl),
+      };
+    })
+    .filter((row): row is NonNullable<typeof row> => Boolean(row));
+
+  let refreshed = 0;
+  let skipped = 0;
+  let missingEnRows = 0;
+
+  for (const section of CANONICAL_HOMEPAGE_SECTIONS) {
+    const defaults = HOMEPAGE_DEFAULTS_EN[section.key];
+    const existingEn = enByKey.get(section.key) || null;
+    const currentVi = viByKey.get(section.key) || null;
+    if (!defaults || !existingEn) {
+      missingEnRows += 1;
+      pushUnique(homepageWarnings, `Missing EN homepage row for canonical section "${section.key}".`);
+      continue;
+    }
+
+    const toggle = toggleById.get(section.legacyId);
+    const existingConfig = localizeConfigUrls(tryParseJsonObject(currentVi?.config) || { ...defaults.config }) as Record<string, unknown>;
+    const config: Record<string, unknown> = { ...existingConfig, ...defaults.config };
+
+    if (section.key === "hero" && videos.length > 0) {
+      config.featuredVideo = {
+        ...(typeof config.featuredVideo === "object" && config.featuredVideo ? config.featuredVideo as Record<string, unknown> : {}),
+        eyebrow: "Featured Video",
+        title: videos[0].title,
+        description: defaults.subtitle,
+        thumbnailUrl: videos[0].thumbnailUrl,
+        href: localizeInternalUrl("/#video"),
+      };
+      config.ctaPrimary = { text: "Explore Training", href: localizeInternalUrl("/dao-tao") };
+      config.ctaSecondary = { text: "Contact Us", href: localizeInternalUrl("/lien-he") };
+    }
+
+    if (section.key === "video") {
+      config.videos = videos;
+    }
+
+    if (section.key === "gallery") {
+      config.images = galleryImages;
+    }
+
+    if (section.key === "contact") {
+      config.address = profile.address;
+      config.phone = profile.phone;
+      config.email = profile.email;
+      config.hours = defaults.config.hours;
+    }
+
+    if (section.key === "cta") {
+      config.primaryCTA = { text: "Contact Us", href: localizeInternalUrl("/lien-he") };
+      config.secondaryCTA = { text: "Explore Services", href: localizeInternalUrl("/dich-vu") };
+      config.phone = profile.phone;
+      config.email = profile.email;
+    }
+
+    if (section.key === "training") {
+      const trainingModule = trainingModules.find((row) => String(row.id) === "1") || trainingModules[0] || null;
+      const ctaText = normalizeWhitespace(stripHtml(nonEmptyString(trainingModule?.txtbtn)));
+      const ctaUrl = nonEmptyString(trainingModule?.linkbtn);
+      if (ctaText) config.ctaText = ctaText;
+      if (ctaUrl) config.ctaUrl = localizeInternalUrl(ctaUrl);
+    }
+
+    let title = defaults.title;
+    let subtitle = defaults.subtitle;
+
+    const partnerModule = partnerModules.find((row) => String(row.id) === "1") || partnerModules[0] || null;
+    const trainingModule = trainingModules.find((row) => String(row.id) === "1") || trainingModules[0] || null;
+
+    if (section.key === "partners") {
+      title = normalizeWhitespace(stripHtml(nonEmptyString(partnerModule?.tieude))) || title;
+    }
+    if (section.key === "training") {
+      title = normalizeWhitespace(stripHtml(nonEmptyString(trainingModule?.tieude))) || title;
+      subtitle = normalizeWhitespace(stripHtml(nonEmptyString(trainingModule?.mieutangan))) || subtitle;
+    }
+    if (section.key === "gallery") {
+      title = normalizeWhitespace(stripHtml(nonEmptyString(galleryModule?.tieude))) || title;
+      subtitle = normalizeWhitespace(stripHtml(nonEmptyString(galleryModule?.tieudephu))) || subtitle;
+    }
+
+    const isEnabled = toggle
+      ? inferLegacyEnabled(toggle.status) || inferLegacyEnabled(toggle.statusmb)
+      : currentVi?.isEnabled ?? existingEn.isEnabled;
+
+    if (!DRY_RUN) {
+      await prisma.homepageSection.update({
+        where: { id: existingEn.id },
+        data: {
+          title,
+          subtitle,
+          title_en: null,
+          subtitle_en: null,
+          isEnabled,
+          sortOrder: currentVi?.sortOrder ?? existingEn.sortOrder ?? (section.legacyId - 1) * 10,
+          config: Object.keys(config).length > 0 ? JSON.stringify(config) : null,
+        },
+      });
+    }
+
+    importedHomepageSectionKeys.add(section.key);
+    refreshed += 1;
+    skipped += 1;
+  }
+
+  console.log(`  Homepage sections: 0 created, ${refreshed} localized, ${skipped} matched`);
+  setPhaseSummary("homepage", 0, skipped, 0, [
+    `${refreshed} existing EN homepage sections refreshed.`,
+    `${videos.length} EN video entries mapped into homepage config.`,
+    `${galleryImages.length} EN gallery images mapped into homepage config.`,
+    `${missingEnRows} canonical EN homepage rows were missing and left unchanged.`,
+  ]);
+}
+
 async function main() {
   console.log("╔══════════════════════════════════════════════╗");
   console.log("║  JSON → Prisma DB Migration (d7a8)          ║");
+  console.log(`║  CONTENT LOCALE: ${CONTENT_LOCALE.toUpperCase().padEnd(27, " ")}║`);
   if (DRY_RUN) console.log("║  MODE: DRY RUN (no writes)                  ║");
   if (WIPE) console.log("║  MODE: WIPE ENABLED                         ║");
   if (AUDIT_ONLY) console.log("║  MODE: AUDIT ONLY                           ║");
@@ -2332,8 +3654,16 @@ async function main() {
 
   validatePhaseSelection(phaseArg);
 
+  if (IS_EN_CONTENT && WIPE) {
+    throw new Error("EN localization mode refuses --wipe.");
+  }
+
+  if (IS_EN_CONTENT && phaseArg === "clear-categories") {
+    throw new Error("EN localization mode refuses the clear-categories phase.");
+  }
+
   const preflightReport = buildPreflightReport(phaseArg);
-  const auditReportPath = writeJsonReport("migration-audit.json", preflightReport);
+  const auditReportPath = writeJsonReport(reportFilename("migration-audit.json"), preflightReport);
   console.log(`Audit report written to: ${auditReportPath}`);
 
   if (!fs.existsSync(JSON_DIR)) {
@@ -2383,11 +3713,13 @@ async function main() {
   const runReport: RunReport = {
     generatedAt: new Date().toISOString(),
     mode: AUDIT_ONLY ? "audit-only" : DRY_RUN ? "dry-run" : "apply",
+    contentLocale: CONTENT_LOCALE,
     selectedPhase: phaseArg,
     jsonDir: JSON_DIR,
     activePhases: getActivePhases(phaseArg),
     unresolvedAssetPaths: Array.from(unresolvedAssetPaths).sort(),
     warnings: {
+      localization: [...localizationWarnings].sort(),
       menus: [...menuWarnings].sort(),
       reviews: [...reviewWarnings].sort(),
       homepage: [...homepageWarnings].sort(),
@@ -2396,10 +3728,17 @@ async function main() {
       importedKeys: Array.from(importedHomepageSectionKeys).sort(),
       deferredModuleIds: Array.from(deferredHomepageModuleIds).sort((a, b) => a - b),
     },
+    unmatchedReportPath: IS_EN_CONTENT ? path.join(REPORT_DIR, "migration-en-unmatched.json") : undefined,
     phaseSummaries,
   };
 
-  const runReportPath = writeJsonReport("migration-run-report.json", runReport);
+  if (IS_EN_CONTENT) {
+    const unmatchedReportPath = writeJsonReport("migration-en-unmatched.json", buildEnUnmatchedReport());
+    runReport.unmatchedReportPath = unmatchedReportPath;
+    console.log(`EN unmatched report written to: ${unmatchedReportPath}`);
+  }
+
+  const runReportPath = writeJsonReport(reportFilename("migration-run-report.json"), runReport);
   console.log(`Run report written to: ${runReportPath}`);
 }
 

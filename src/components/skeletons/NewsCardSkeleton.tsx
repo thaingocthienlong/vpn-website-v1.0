@@ -5,6 +5,8 @@ import { Skeleton } from "@/components/ui/Skeleton";
 interface NewsCardSkeletonProps {
     variant?: "default" | "featured";
     count?: number;
+    columns?: 2 | 3;
+    layout?: "grid" | "rows";
 }
 
 /**
@@ -57,12 +59,54 @@ function SingleCard({ variant = "default" }: { variant?: "default" | "featured" 
     );
 }
 
+function SingleRow() {
+    return (
+        <div className="grid gap-6 py-8 first:pt-0 last:pb-0 md:grid-cols-[minmax(0,1fr)_16rem] md:items-start lg:grid-cols-[minmax(0,1fr)_21rem] lg:gap-10">
+            <div className="order-2 md:order-1">
+                <div className="mb-4 flex flex-wrap gap-3">
+                    <Skeleton variant="text" className="h-3 w-20" animation="wave" />
+                    <Skeleton variant="text" className="h-3 w-24" animation="wave" />
+                    <Skeleton variant="text" className="h-3 w-16" animation="wave" />
+                </div>
+                <Skeleton variant="text" className="mb-3 h-8 w-full max-w-3xl" animation="wave" />
+                <Skeleton variant="text" className="mb-3 h-8 w-11/12 max-w-2xl" animation="wave" />
+                <Skeleton variant="text" className="mb-2 h-6 w-full max-w-3xl" animation="wave" />
+                <Skeleton variant="text" className="h-6 w-5/6 max-w-2xl" animation="wave" />
+            </div>
+            <div className="order-1 md:order-2">
+                <Skeleton variant="rectangular" className="aspect-[16/10] w-full rounded-[1.4rem]" animation="wave" height="auto" />
+            </div>
+        </div>
+    );
+}
+
 /**
  * News listing skeleton matching NewsList layout:
  * - Featured section (2 large cards)
  * - Regular grid (3 columns, count cards)
  */
-export function NewsCardSkeleton({ variant = "default", count = 9 }: NewsCardSkeletonProps) {
+export function NewsCardSkeleton({
+    variant = "default",
+    count = 9,
+    columns = 3,
+    layout = "grid",
+}: NewsCardSkeletonProps) {
+    const regularGridClass = columns === 2
+        ? "grid grid-cols-1 gap-6 md:grid-cols-2"
+        : "grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3";
+
+    if (layout === "rows") {
+        return (
+            <div className="public-panel rounded-[2.2rem] px-5 py-6 sm:px-7 sm:py-8 lg:px-9">
+                <div className="divide-y divide-[rgba(26,72,164,0.14)]">
+                    {Array.from({ length: count }).map((_, i) => (
+                        <SingleRow key={i} />
+                    ))}
+                </div>
+            </div>
+        );
+    }
+
     if (variant === "featured") {
         return (
             <div className="space-y-10">
@@ -78,7 +122,7 @@ export function NewsCardSkeleton({ variant = "default", count = 9 }: NewsCardSke
                 {/* Regular grid */}
                 <section>
                     <Skeleton variant="text" className="w-40 h-7 mb-6" animation="wave" />
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className={regularGridClass}>
                         {Array.from({ length: Math.max(count - 2, 3) }).map((_, i) => (
                             <SingleCard key={i} />
                         ))}
@@ -89,7 +133,7 @@ export function NewsCardSkeleton({ variant = "default", count = 9 }: NewsCardSke
     }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className={regularGridClass}>
             {Array.from({ length: count }).map((_, i) => (
                 <SingleCard key={i} />
             ))}

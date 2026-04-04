@@ -1,0 +1,211 @@
+{
+    "slug": "AICBQT05-26",
+    "name": "ỨNG DỤNG AI TRONG PHÂN TÍCH DỮ LIỆU VÀ CÔNG BỐ QUỐC TẾ",
+    "shortName": "Ứng dụng AI trong phân tích dữ liệu và công bố quốc tế",
+    "heritage": "Viện Phương Nam tổ chức",
+    "defaultProgram": "AICBQT05.26",
+    "seo": {
+        "title": "Ứng dụng AI trong phân tích dữ liệu và công bố quốc tế",
+        "description": "Khoá học chuyên gia do GS.TS. Nguyễn Văn Tuấn và TS. Trần Sơn Thạch trực tiếp giảng dạy. 19 bài giảng, 6 ngày, khai giảng 20/5/2026. Trang bị năng lực nghiên cứu khoa học, ứng dụng AI phân tích dữ liệu, và công bố quốc tế.",
+        "keywords": "ứng dụng AI, phân tích dữ liệu, công bố quốc tế, nghiên cứu khoa học, Viện Phương Nam, Nguyễn Văn Tuấn, khoá học chuyên gia"
+    },
+    "programs": {
+        "AICBQT05.26": {
+            "title": "<span class=\"lp-hero-title-gold\">ỨNG DỤNG AI TRONG PHÂN TÍCH DỮ LIỆU VÀ CÔNG BỐ QUỐC TẾ</span>",
+            "titlePlain": "Ứng dụng AI trong phân tích dữ liệu và công bố quốc tế",
+            "subtitle": "Khai giảng: 20/5/2026 (thứ Tư)",
+            "courseId": "Ứng dụng AI trong phân tích dữ liệu và công bố quốc tế",
+            "curriculumTitle": "ỨNG DỤNG AI TRONG PHÂN TÍCH DỮ LIỆU VÀ CÔNG BỐ QUỐC TẾ",
+            "curriculumDesc": "Khoá học được sự dẫn dắt trực tiếp của GS.TS. Nguyễn Văn Tuấn, Giáo sư thuộc top 0,05% các nhà khoa học trên thế giới trong chuyên ngành loãng xương, mật độ và khoáng chất xương (theo xếp hạng của trang ScholarGPS năm 2025).",
+            "meta": [
+                {
+                    "icon": "fa-calendar-check",
+                    "label": "Khai giảng: 07 giờ 30, ngày 20/5/2026 (thứ Tư)"
+                },
+                {
+                    "icon": "fa-clock",
+                    "label": "Thời lượng: 6 ngày (từ 20/5/2026 đến 26/5/2026, nghỉ ngày 23/5/2026)"
+                },
+                {
+                    "icon": "fa-money-bill-wave",
+                    "label": "Học phí: 7.500.000 đồng/học viên"
+                }
+            ],
+            "curriculum": [
+                {
+                    "num": "1",
+                    "title": "Thông tin chung",
+                    "defaultOpen": true,
+                    "items": [
+                        "<li><strong>Hình thức:</strong> Học trực tiếp tại Viện Phương Nam hoặc trực tuyến qua nền tảng Zoom.</li>",
+                        "<li><strong>Địa điểm:</strong> Viện Phương Nam – Số 45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. Hồ Chí Minh.</li>"
+                    ]
+                },
+                {
+                    "num": "2",
+                    "title": "Mục tiêu khoá học",
+                    "items": [
+                        "<li>Khoá học nhằm trang bị cho học viên năng lực toàn diện trong nghiên cứu khoa học, từ khả năng tự thiết kế nghiên cứu đúng chuẩn và chất lượng cao ngay từ đầu, kết hợp ứng dụng AI và các phương pháp thống kê để phân tích dữ liệu, cho đến kỹ năng hoàn thiện và công bố bài báo trên các tạp chí quốc tế uy tín, đồng thời hình thành ý thức đạo đức khoa học bền vững.</li>",
+                        "<li>Viện Phương Nam kỳ vọng rằng sau khi hoàn tất khoá học, học viên sẽ:<ul style=\"padding-left: 15px; margin: 5px 0;\"><li>Thiết kế một quy trình nghiên cứu logic, chặt chẽ và khả thi.</li><li>Biết cách sử dụng các công cụ AI hỗ trợ phân tích dữ liệu nghiên cứu.</li><li>Soạn thảo một bài báo khoa học hoàn chỉnh bằng tiếng Anh đạt chuẩn công bố trên các tập san quốc tế.</li><li>Tránh được những sai lầm phổ biến khiến bài báo bị từ chối, bị thu hồi hoặc vi phạm đạo đức khoa học.</li></ul></li>"
+                    ]
+                },
+                {
+                    "num": "3",
+                    "title": "Đối tượng",
+                    "items": [
+                        "<li>Học viên sau đại học, thạc sĩ, tiến sĩ (ngành khoa học sức khỏe, khoa học tự nhiên, khoa học xã hội, kinh tế, kỹ thuật…);</li>",
+                        "<li>Giảng viên trẻ, nhà nghiên cứu, cán bộ quản lý khoa học tại các cơ sở giáo dục, cơ sở y tế, viện nghiên cứu;</li>",
+                        "<li>Bác sĩ, dược sĩ, điều dưỡng muốn làm nghiên cứu lâm sàng hoặc dịch tễ học…;</li>",
+                        "<li>Các cá nhân có nhu cầu tìm hiểu và đam mê nghiên cứu khoa học.</li>"
+                    ]
+                },
+                {
+                    "num": "4",
+                    "title": "Giảng viên",
+                    "items": [
+                        "<li class=\"lp-no-bullet\"><strong>1. GS.TS. Nguyễn Văn Tuấn</strong></li>",
+                        "<li>GS.TS. Nguyễn Văn Tuấn là Leadership Fellow của Hội đồng Quốc gia về Y tế và Y khoa Úc; Giáo sư xuất sắc và Giám đốc Trung tâm Công nghệ Y tế UTS, Đại học Công nghệ Sydney Australia; Giáo sư y khoa (kiêm nhiệm), Đại học New South Wales. Giáo sư thỉnh giảng, Viện Nghiên cứu Khoa học Y Dược Lâm sàng 108 (Hà Nội); Cố vấn khoa học, Bệnh viện Thống Nhất (TP. Hồ Chí Minh).</li>",
+                        "<li>Giáo sư Tuấn đã công bố hơn 350 bài báo khoa học, các bài tổng quan, chương sách, và các bài bình luận hoặc xã luận, chủ yếu từ các lĩnh vực nghiên cứu hiện tại của thầy. Công trình của thầy đã được xuất bản trên các tập san có tầm ảnh hưởng cao nhất, đáng chú ý là Journal of Bone and Mineral Research và Journal of Clinical Endocrinology and Metabolism. Nhiều bài báo quan trọng khác đã được công bố trên các tập san chung uy tín hơn, bao gồm New England Journal of Medicine, Lancet, JAMA, BMJ, Nature, Nature Genetics, PNAS, eLife. Một số bài báo được coi là tiên phong và nhận được những bài bình luận đánh giá cao. Thầy còn là chuyên gia bình duyệt cho hơn 20 tập san y khoa trên thế giới, kể cả Nature, Lancet, BMJ, JAMA, New England Journal of Medicine, Annals of Internal Medicine; chuyên tư vấn cho các tập đoàn dược trên thế giới; chuyên gia bình duyệt luận án tiến sĩ cho các đại học Mỹ, Phần Lan, Hà Lan, Pháp, Anh, Canada, và Úc…</li>",
+                        "<li>Ngày 23/3/2026, GS.TS. Nguyễn Văn Tuấn được Đại học Công nghệ Sydney Australia trao tặng Huy chương \"Medal for Reseaerch Impact\" cho cá nhân có nghiên cứu gây tác động đến chuyên ngành hoặc xã hội nói chung.</li>",
+                        "<li>Tham khảo thêm thông tin của GS.TS. Nguyễn Văn Tuấn tại UTS: <a href=\"https://profiles.uts.edu.au/TuanVan.Nguyen\" target=\"_blank\" style=\"color: var(--lp-gold-light);\">tại đây</a></li>",
+                        "<li class=\"lp-no-bullet\"><strong>2. TS. Trần Sơn Thạch</strong></li>",
+                        "<li>TS. Trần Sơn Thạch hiện là Nghiên cứu viên cao cấp (Senior Research Officer) của Viện Nghiên cứu Y khoa Garvan (Úc), với hơn 20 năm kinh nghiệm trong thiết kế nghiên cứu và phân tích dữ liệu, bao gồm mô hình hóa dữ liệu phức tạp từ các thử nghiệm đối chứng ngẫu nhiên đa trung tâm, phát triển mô hình dự báo, phân tích dữ liệu liên kết trong y tế và quản lý các bộ dữ liệu lớn và phức tạp. Thầy đã có hơn 80 công bố gốc đã được bình duyệt, 3 bài đánh giá hệ thống và 1 bài bình luận trên các tập san bình duyệt hàng đầu, như The New England Journal of Medicine, Lancet, Lancet Child Adolescent Health, JAMA, JAMA Network Open, PLoS Medicine, European Respiratory Journal, Journal of Bone and Mineral Research, Journal of Clinical Endocrinology and Metabolism, Clinical Chemistry, và Diabetes Care. Thầy còn là thành viên trong ban biên tập của tập san JBMR và đồng thời là thành viên trong ban đánh giá thống kê của tập san JCEM. Trong 5 năm qua, thầy đã công bố hơn 50 bài báo khoa học.</li>"
+                    ]
+                },
+                {
+                    "num": "5",
+                    "title": "Chương trình khoá học",
+                    "items": [
+                        "<p>Nội dung gồm <span style=\"color: var(--lp-gold-light); font-weight: 600;\">19 bài giảng</span> và được chia thành 2 phần như sau:</p>",
+                        "<li class=\"lp-no-bullet\"><strong>Phần 1: Ứng dụng AI trong thiết kế nghiên cứu và phân tích dữ liệu</strong></li>",
+                        "<li>Bài 1: Câu hỏi và giả thuyết nghiên cứu</li>",
+                        "<li>Bài 2: Thiết kế nghiên cứu</li>",
+                        "<li>Bài 3: Thiết kế bộ câu hỏi</li>",
+                        "<li>Bài 4: Phương pháp ước tính cỡ mẫu</li>",
+                        "<li>Bài 5: Yếu tố nhiễu</li>",
+                        "<li>Bài 6: Thiên lệch (biases)</li>",
+                        "<li>Bài 7: Ứng dụng AI trong phân tích dữ liệu</li>",
+                        "<li>Bài 8: Phân tích mô tả và kiểm định thống kê</li>",
+                        "<li>Bài 9: Phân tích liên quan 1: mô hình hồi quy tuyến tính</li>",
+                        "<li>Bài 10: Phân tích liên quan 2: mô hình hồi quy logistic</li>",
+                        "<li class=\"lp-no-bullet\"><strong>Phần 2: Công bố quốc tế</strong></li>",
+                        "<li>Bài 11: Cách viết phần Dẫn nhập</li>",
+                        "<li>Bài 12: Cách viết phần Phương pháp</li>",
+                        "<li>Bài 13: Cách soạn biểu đồ và bảng số liệu</li>",
+                        "<li>Bài 14: Cách viết phần Kết quả</li>",
+                        "<li>Bài 15: Cách viết phần Bàn luận</li>",
+                        "<li>Bài 16: Cách viết phần Tóm tắt (abstract)</li>",
+                        "<li>Bài 17: Ứng dụng AI trong việc soạn bài báo khoa học</li>",
+                        "<li>Bài 18: Cách trả lời bình duyệt</li>",
+                        "<li>Bài 19: Đạo đức công bố (publication ethics)</li>"
+                    ]
+                },
+                {
+                    "num": "6",
+                    "title": "Học phí, Ưu đãi & Thanh toán",
+                    "items": [
+                        "<li><strong>Học phí trọn gói:</strong> <span style=\"color: var(--lp-gold-light); font-weight: 600;\">7.500.000 đồng/học viên.</span></li>",
+                        "<li><strong>Ưu đãi học phí:</strong><ul style=\"padding-left: 15px; margin: 5px 0;\"><li>Đăng ký và hoàn tất học phí <strong>trước 21/4/2026</strong>: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">giảm 10%.</span></li><li>Nếu đăng ký và hoàn tất học phí theo nhóm <strong>từ 03 người</strong> trở lên: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">giảm 5%.</span></li></ul></li>",
+                        "<li><strong>*** Riêng học viên cũ</strong> – đã tham gia các khoá học do GS. Nguyễn Văn Tuấn phụ trách, được Viện Phương Nam tổ chức trước đây (<em>Ưu đãi này không cộng gộp với 02 ưu đãi phía trên</em>): giảm <strong>10%</strong> và giảm <strong>thêm 5%</strong> nếu đóng học phí <strong>trước 21/4/2026</strong>.</li>",
+                        "<li><strong>Thanh toán:</strong> Chuyển khoản<div style=\"background-color: rgba(212, 175, 55, 0.05); padding: 15px; border-left: 4px solid var(--lp-gold-light); border-radius: 4px; margin-top: 10px;\">Tên tài khoản: <strong style=\"color: var(--lp-gold-light);\">VIEN PHAT TRIEN NGUON LUC XA HOI PHUONG NAM</strong><br>Số tài khoản: <strong style=\"color: var(--lp-gold-light); font-size: 1.1em; letter-spacing: 1px;\">2242 6789</strong> - Ngân hàng TMCP Phương Đông (OCB), CN Tân Thuận<br>Nội dung chuyển khoản: <strong style=\"color: var(--lp-gold-light);\"><em>Họ tên – Số điện thoại – AICBQT05.26</em></strong></div></li>",
+                        "<li><em style=\"opacity: 0.8; font-size: 0.85rem;\">*** Hạn chót đăng ký và hoàn tất học phí ngày 06/5/2026.</em></li>"
+                    ]
+                },
+                {
+                    "num": "7",
+                    "title": "Đăng ký tham gia",
+                    "items": [
+                        "<li>Học viên đăng ký tham gia: <a href=\"#lp-form\" style=\"color: var(--lp-gold-light);\">Tại đây</a></li>",
+                        "<li>Hoặc đăng ký trực tiếp tại:</li>",
+                        "<li><strong>Văn phòng Viện phát triển nguồn lực xã hội Phương Nam</strong><br>Số 45 Đinh Tiên Hoàng, Phường Sài Gòn, TP. Hồ Chí Minh</li>",
+                        "<li>Điện thoại: <span style=\"color: var(--lp-gold-light); font-weight: 600;\">(028) 2242 6789</span> – <span style=\"color: var(--lp-gold-light); font-weight: 600;\">0949 761 636</span> (Ms. Vy) – <span style=\"color: var(--lp-gold-light); font-weight: 600;\">0912 114 511</span> (Ms. Thảo).</li>"
+                    ]
+                },
+                {
+                    "num": "8",
+                    "title": "Thông báo chính thức",
+                    "items": [
+                        "<li><strong>Xem thông báo chính thức tại đây:</strong> <a href=\"https://drive.google.com/file/d/1O0MzNvO07Mzx0PlciXIS-cyuNLWG1l9u/view?usp=sharing\" target=\"_blank\" style=\"color: var(--lp-gold-light);\">Thông báo</a></li>"
+                    ]
+                }
+            ],
+            "faq": [
+                {
+                    "q": "Khoá học này dành cho ai?",
+                    "a": "Dành cho học viên sau đại học, thạc sĩ, tiến sĩ; giảng viên trẻ, nhà nghiên cứu, cán bộ quản lý khoa học; bác sĩ, dược sĩ, điều dưỡng muốn làm nghiên cứu lâm sàng hoặc dịch tễ học; và các cá nhân có đam mê nghiên cứu khoa học."
+                },
+                {
+                    "q": "Thời gian và hình thức học?",
+                    "a": "6 ngày, từ 20/5/2026 đến 26/5/2026 (nghỉ ngày 23/5/2026). Học trực tiếp tại Viện Phương Nam hoặc trực tuyến qua Zoom."
+                },
+                {
+                    "q": "Học phí và ưu đãi?",
+                    "a": "7.500.000 đồng/học viên. Giảm 10% nếu hoàn tất trước 21/4/2026. Giảm 5% cho nhóm từ 03 người. Học viên cũ: giảm 10% + thêm 5% nếu đóng trước 21/4/2026."
+                },
+                {
+                    "q": "Giảng viên là ai?",
+                    "a": "GS.TS. Nguyễn Văn Tuấn – Giáo sư thuộc top 0,05% các nhà khoa học thế giới, Đại học Công nghệ Sydney Australia. TS. Trần Sơn Thạch – Nghiên cứu viên cao cấp, Viện Nghiên cứu Y khoa Garvan (Úc), hơn 80 công bố quốc tế."
+                },
+                {
+                    "q": "Nội dung khoá học gồm gì?",
+                    "a": "19 bài giảng chia thành 2 phần: Phần 1 – Ứng dụng AI trong thiết kế nghiên cứu và phân tích dữ liệu (10 bài). Phần 2 – Công bố quốc tế (9 bài)."
+                },
+                {
+                    "q": "Hạn chót đăng ký?",
+                    "a": "Hạn chót đăng ký và hoàn tất học phí ngày 06/5/2026."
+                }
+            ],
+            "contact": {
+                "phones": [
+                    {
+                        "number": "02822426789",
+                        "display": "(028) 2242 6789",
+                        "name": "Hotline"
+                    },
+                    {
+                        "number": "0949761636",
+                        "display": "0949 761 636",
+                        "name": "Ms. Vy"
+                    },
+                    {
+                        "number": "0912114511",
+                        "display": "0912 114 511",
+                        "name": "Ms. Thảo"
+                    }
+                ]
+            }
+        }
+    },
+    "benefits": [
+        {
+            "icon": "fa-award",
+            "title": "Giáo sư top 0,05% thế giới",
+            "desc": "GS.TS. Nguyễn Văn Tuấn – Giáo sư thuộc top 0,05% các nhà khoa học thế giới về loãng xương, hơn 350 công bố quốc tế."
+        },
+        {
+            "icon": "fa-user-tie",
+            "title": "Lộ trình đào tạo toàn diện",
+            "desc": "TS. Trần Sơn Thạch – Nghiên cứu viên cao cấp tại Viện Garvan (Úc), hơn 80 công bố trên các tập san hàng đầu như NEJM, Lancet, JAMA."
+        },
+        {
+            "icon": "fa-robot",
+            "title": "Ứng dụng AI thực tiễn",
+            "desc": "Trang bị kỹ năng sử dụng công cụ AI hỗ trợ phân tích dữ liệu và soạn bài báo khoa học."
+        },
+        {
+            "icon": "fa-globe",
+            "title": "Công bố quốc tế",
+            "desc": "Hướng dẫn soạn thảo bài báo khoa học hoàn chỉnh bằng tiếng Anh đạt chuẩn công bố trên các tạp chí quốc tế uy tín."
+        },
+        {
+            "icon": "fa-laptop",
+            "title": "Linh hoạt hình thức",
+            "desc": "Học trực tiếp tại Viện Phương Nam hoặc trực tuyến qua nền tảng Zoom trong 6 ngày."
+        },
+        {
+            "icon": "fa-hand-holding-dollar",
+            "title": "Ưu đãi hấp dẫn",
+            "desc": "Giảm 10% khi đóng sớm trước 21/4/2026. Giảm 5% cho nhóm từ 03 người. Học viên cũ được ưu đãi riêng."
+        }
+    ]
+}

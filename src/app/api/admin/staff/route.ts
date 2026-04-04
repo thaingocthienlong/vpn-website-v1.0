@@ -18,9 +18,9 @@ export async function GET(request: NextRequest) {
     if (search) where.name = { contains: search };
     if (departmentId) where.departmentId = departmentId;
     if (type === "advisory") {
-        where.staffType = { name: "Hội đồng Cố vấn Khoa học" };
+        where.staffType = { isAdvisory: true };
     } else if (type === "staff") {
-        where.staffType = { name: { not: "Hội đồng Cố vấn Khoa học" } };
+        where.staffType = { isAdvisory: false };
     }
 
     const staff = await prisma.staff.findMany({

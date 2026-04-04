@@ -37,6 +37,7 @@ interface VerificationReport {
     modelsPassed: number;
     modelsFailed: number;
     verificationTimestamp: string;
+    contentLocale: "vi" | "en";
     jsonDir: string;
     currentDatabase: string;
   };
@@ -98,7 +99,10 @@ const MENU_LABEL_OVERRIDES: Record<string, { vi: string; en: string }> = {
 class JsonDatabaseVerifier {
   private results: VerificationResult[] = [];
 
-  constructor(private readonly jsonDir: string) {}
+  constructor(
+    private readonly jsonDir: string,
+    private readonly contentLocale: "vi" | "en" = "vi",
+  ) {}
 
   private readJson<T>(filename: string): T {
     const filePath = path.join(this.jsonDir, filename);
@@ -664,7 +668,200 @@ class JsonDatabaseVerifier {
     return MENU_LABEL_OVERRIDES[url]?.vi || label;
   }
 
+  private nonEmptyLocalizedValue(value: string | null | undefined): boolean {
+    return this.nonEmptyString(value).length > 0;
+  }
+
+  private requiredEnConfigKeys() {
+    return [
+      "general.site_name_en",
+      "general.organization_name_en",
+      "general.header_cta_text_en",
+      "header.cta_text_en",
+      "footer.description_en",
+      "footer.privacy_label_en",
+      "footer.privacy_url_en",
+      "footer.terms_label_en",
+      "footer.terms_url_en",
+    ];
+  }
+
+  private async runEn() {
+    console.log(`Verifying database against EN JSON source: ${this.jsonDir}`);
+
+    const [
+      postCount,
+      courseCount,
+      defaultPageCount,
+      servicePageCount,
+      partnerCount,
+      staffCount,
+      categoryCount,
+      menuItemCount,
+      homepageEnRows,
+      defaultPages,
+      servicePages,
+      configRows,
+    ] = await Promise.all([
+      prisma.post.count(),
+      prisma.course.count(),
+      prisma.page.count({ where: { template: "default" } }),
+      prisma.page.count({ where: { template: "service" } }),
+      prisma.partner.count(),
+      prisma.staff.count(),
+      prisma.category.count(),
+      prisma.menuItem.count(),
+      prisma.homepageSection.findMany({
+        where: { locale: "EN" },
+        select: { sectionKey: true, title: true, subtitle: true },
+      }),
+      prisma.page.findMany({
+        where: { template: "default" },
+        select: {
+          slug: true,
+          title_en: true,
+          content_en: true,
+          metaTitle_en: true,
+          metaDescription_en: true,
+        },
+      }),
+      prisma.page.findMany({
+        where: { template: "service" },
+        select: {
+          slug: true,
+          title_en: true,
+          content_en: true,
+          metaTitle_en: true,
+          metaDescription_en: true,
+        },
+      }),
+      prisma.configuration.findMany({
+        where: { key: { in: this.requiredEnConfigKeys() } },
+        select: { key: true, value: true },
+      }),
+    ]);
+
+    this.addCountResult("Post", 117, postCount, ["EN localization must not change shared Post row counts."]);
+    this.addCountResult("Course", 23, courseCount, ["EN localization must not change shared Course row counts."]);
+    this.addCountResult("Page (default)", 16, defaultPageCount, ["EN localization must not change default Page row counts."]);
+    this.addCountResult("Page (service)", 9, servicePageCount, ["EN localization must not change service Page row counts."]);
+    this.addCountResult("Partner", 36, partnerCount, ["EN localization must not change Partner row counts."]);
+    this.addCountResult("Staff", 95, staffCount, ["EN localization must not change Staff row counts."]);
+    this.addCountResult("Category", 10, categoryCount, ["EN localization must not change Category row counts."]);
+    this.addCountResult("MenuItem", 18, menuItemCount, ["EN localization must not change MenuItem row counts."]);
+    this.addCountResult("HomepageSection (EN)", 10, homepageEnRows.length, ["EN localization updates the existing EN homepage rows only."]);
+
+    const localizedDefaultPages = defaultPages
+      .filter((row) => this.nonEmptyLocalizedValue(row.title_en)
+        || this.nonEmptyLocalizedValue(row.content_en)
+        || this.nonEmptyLocalizedValue(row.metaTitle_en)
+        || this.nonEmptyLocalizedValue(row.metaDescription_en))
+      .map((row) => row.slug);
+    const localizedServicePages = servicePages
+      .filter((row) => this.nonEmptyLocalizedValue(row.title_en)
+        || this.nonEmptyLocalizedValue(row.content_en)
+        || this.nonEmptyLocalizedValue(row.metaTitle_en)
+        || this.nonEmptyLocalizedValue(row.metaDescription_en))
+      .map((row) => row.slug);
+
+    this.addCustomCoverageResult(
+      "Page EN Coverage (default)",
+      16,
+      localizedDefaultPages.length,
+      defaultPages
+        .filter((row) => !localizedDefaultPages.includes(row.slug))
+        .map((row) => row.slug),
+      [],
+      ["Every default page row should have at least one localized EN field populated after EN migration."],
+    );
+    this.addCustomCoverageResult(
+      "Page EN Coverage (service)",
+      9,
+      localizedServicePages.length,
+      servicePages
+        .filter((row) => !localizedServicePages.includes(row.slug))
+        .map((row) => row.slug),
+      [],
+      ["Every service page row should have at least one localized EN field populated after EN migration."],
+    );
+
+    const homepageLocalizedKeys = homepageEnRows
+      .filter((row) => this.nonEmptyLocalizedValue(row.title) && this.nonEmptyLocalizedValue(row.subtitle))
+      .map((row) => row.sectionKey);
+    this.addCustomCoverageResult(
+      "HomepageSection EN Title/Subtitle Coverage",
+      10,
+      homepageLocalizedKeys.length,
+      homepageEnRows
+        .filter((row) => !homepageLocalizedKeys.includes(row.sectionKey))
+        .map((row) => row.sectionKey),
+      [],
+      ["Every EN homepage section should have a non-empty title and subtitle."],
+    );
+
+    const populatedEnConfigKeys = configRows
+      .filter((row) => this.nonEmptyString(row.value).length > 0)
+      .map((row) => row.key);
+    this.addCoverageResult(
+      "Configuration EN Keys",
+      this.requiredEnConfigKeys(),
+      populatedEnConfigKeys,
+      ["Required EN runtime configuration keys must exist and be non-empty."],
+    );
+
+    const discrepancies = this.results
+      .filter((result) => result.status === "FAIL")
+      .map((result) => ({
+        model: result.model,
+        expectedCount: result.expectedCount,
+        actualCount: result.actualCount,
+        difference: result.actualCount - result.expectedCount,
+        mode: result.mode,
+        missingCount: result.missingCount,
+        extraCount: result.extraCount,
+      }));
+
+    const report: VerificationReport = {
+      summary: {
+        totalModelsVerified: this.results.length,
+        modelsPassed: this.results.filter((result) => result.status === "PASS").length,
+        modelsFailed: discrepancies.length,
+        verificationTimestamp: new Date().toISOString(),
+        contentLocale: "en",
+        jsonDir: this.jsonDir,
+        currentDatabase: process.env.DATABASE_URL || "file:./prisma/dev.db",
+      },
+      discrepancies,
+      results: this.results,
+    };
+
+    const timestamp = new Date().toISOString().replace(/[:.]/g, "-");
+    const reportPath = path.join(process.cwd(), "reports", `database_verification_report_en_${timestamp}.json`);
+    fs.mkdirSync(path.dirname(reportPath), { recursive: true });
+    fs.writeFileSync(reportPath, JSON.stringify(report, null, 2), "utf-8");
+
+    console.log(`Verification report saved to: ${reportPath}`);
+    console.log(`Models passed: ${report.summary.modelsPassed}/${report.summary.totalModelsVerified}`);
+
+    if (discrepancies.length > 0) {
+      console.log("Discrepancies:");
+      for (const discrepancy of discrepancies) {
+        console.log(
+          `  - ${discrepancy.model}: expected ${discrepancy.expectedCount}, actual ${discrepancy.actualCount}, diff ${discrepancy.difference}`,
+        );
+      }
+    } else {
+      console.log("All EN localization checks satisfy the expected database state.");
+    }
+
+    return report;
+  }
+
   async run() {
+    if (this.contentLocale === "en") {
+      return this.runEn();
+    }
+
     console.log(`Verifying database against JSON source: ${this.jsonDir}`);
 
     const [userRows, tagRows, staffRows, pageRows, configRows, menuRows, mediaRows] = await Promise.all([
@@ -814,6 +1011,7 @@ class JsonDatabaseVerifier {
         modelsPassed: this.results.filter((result) => result.status === "PASS").length,
         modelsFailed: discrepancies.length,
         verificationTimestamp: new Date().toISOString(),
+        contentLocale: "vi",
         jsonDir: this.jsonDir,
         currentDatabase: process.env.DATABASE_URL || "file:./prisma/dev.db",
       },
@@ -847,15 +1045,19 @@ class JsonDatabaseVerifier {
 async function main() {
   const args = process.argv.slice(2);
   const jsonDirArgIndex = args.indexOf("--json-dir");
+  const localeArgIndex = args.indexOf("--content-locale");
+  const contentLocale = localeArgIndex >= 0 && String(args[localeArgIndex + 1] || "").toLowerCase() === "en"
+    ? "en"
+    : "vi";
   const jsonDir = jsonDirArgIndex >= 0
     ? path.resolve(process.cwd(), args[jsonDirArgIndex + 1])
-    : path.resolve(process.cwd(), "migrate", "sql_json_export");
+    : path.resolve(process.cwd(), "migrate", contentLocale === "en" ? "sql_json_export_en" : "sql_json_export");
 
   if (!fs.existsSync(jsonDir)) {
     throw new Error(`JSON directory not found: ${jsonDir}`);
   }
 
-  const verifier = new JsonDatabaseVerifier(jsonDir);
+  const verifier = new JsonDatabaseVerifier(jsonDir, contentLocale);
   await verifier.run();
 }
 

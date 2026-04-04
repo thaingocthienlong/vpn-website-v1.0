@@ -1,5 +1,945 @@
-⚠ Cross origin request detected from 192.168.1.9 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[Email] Failed to send to: admin@sisrd.org.vn Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2b2749a3a1asm67917565ad.62 - gsmtp
+    at ignore-listed frames {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2b2749a3a1asm67917565ad.62 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[Email] Failed to send to: landing.test@example.com Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2b2749a34a6sm70091455ad.60 - gsmtp
+    at ignore-listed frames {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2b2749a34a6sm70091455ad.60 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⨯ ./src/lib/services/landing-pages.ts
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\lib\services\landing-pages.ts
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/lib/services/landing-pages.ts
+./src/app/landing-page/[campaignSlug]/page.tsx
+⨯ ./src/components/landing-page/LandingSelectorPage.tsx
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\LandingSelectorPage.tsx
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/LandingSelectorPage.tsx
+./src/app/landing-page/page.tsx
+⨯ ./src/components/landing-page/LandingRegistrationForm.tsx
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\LandingRegistrationForm.tsx
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/LandingRegistrationForm.tsx
+./src/components/landing-page/LandingCampaignClient.tsx
+⨯ ./src/components/landing-page/LandingCampaignClient.tsx
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\LandingCampaignClient.tsx
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/LandingCampaignClient.tsx
+./src/app/landing-page/[campaignSlug]/page.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+⨯ ./src/components/landing-page/landing-page-legacy.js
+Error: 
+
+Caused by:
+    0: Failed to read source code from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\components\landing-page\landing-page-legacy.js
+    1: The system cannot find the file specified. (os error 2)
+
+Import trace for requested module:
+./src/components/landing-page/landing-page-legacy.js
+./src/components/landing-page/LandingSelectorPage.tsx
+[Email] Failed to send to: admin@sisrd.org.vn Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-35dd35fa93asm8054781a91.8 - gsmtp
+    at ignore-listed frames {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-35dd35fa93asm8054781a91.8 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[Email] Failed to send to: codex-landing@example.com Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2b274f8867csm71389615ad.54 - gsmtp
+    at ignore-listed frames {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials d9443c01a7336-2b274f8867csm71389615ad.54 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[Email] Failed to send to: admin@sisrd.org.vn Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-35dbe5e5127sm15403405a91.1 - gsmtp
+    at ignore-listed frames {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials 98e67ed59e1d1-35dbe5e5127sm15403405a91.1 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+[Email] Failed to send to: codex-landing-4620@example.com Error: Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-82cf9b3dcb3sm7004310b3a.16 - gsmtp
+    at ignore-listed frames {
+  code: 'EAUTH',
+  response: '535-5.7.8 Username and Password not accepted. For more information, go to\n' +
+    '535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-82cf9b3dcb3sm7004310b3a.16 - gsmtp',
+  responseCode: 535,
+  command: 'AUTH PLAIN'
+}
+⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⨯ ./src/app/landing-page/page.tsx
+Error:   x "metadata" and "generateMetadata" cannot be exported at the same time, please keep one of them. Read more: https://nextjs.org/docs/app/api-reference/file-conventions/metadata
+  |
+
+    ,-[C:\Users\Vien Phuong Nam\Desktop\d7a8\web\src\app\landing-page\page.tsx:16:1]
+ 13 |     parseLandingPageSelection,
+ 14 | } from "@/lib/landing-page/selection";
+ 15 | 
+ 16 | export const metadata: Metadata = {
+    :              ^^^^^^^^
+ 17 |     title: "Landing Page | Viện Phương Nam",
+ 18 |     description: "Chọn landing campaign phù hợp với chương trình đào tạo và tư vấn của Viện Phương Nam.",
+ 19 | };
+ 20 | 
+ 21 | export async function generateMetadata(): Promise<Metadata> {
+    :                       ^^^^^^^^^^^^^^^^
+ 22 |     const cookieStore = await cookies();
+ 23 |     const selection = parseLandingPageSelection(cookieStore.get(LANDING_SELECTION_COOKIE)?.value);
+    `----
+
+Import trace for requested module:
+./src/app/landing-page/page.tsx
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack failed from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback.pack.gz: Error: invalid code lengths set
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack failed from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback.pack.gz: Error: invalid code lengths set
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack failed from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback.pack.gz: Error: invalid code lengths set
+<w> [webpack.cache.PackFileCacheStrategy] Restoring pack failed from C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback.pack.gz: Error: invalid code lengths set
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz_' -> 'C:\Users\Vien Phuong Nam\Desktop\d7a8\web\.next\dev\cache\webpack\client-development-fallback\0.pack.gz'
+⚠ Server is approaching the used memory threshold, restarting...
+⚠ Server is approaching the used memory threshold, restarting...
+⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>) {
+  page: '/admin/site/navigation'
+}
+⚠ ./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+Error fetching post: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at GET$1 (src\app\api\posts\[slug]\route.ts:79:20)
+  77 |         const transformedPost = {
+  78 |             id: post.id,
+> 79 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  80 |             slug: post.slug,
+  81 |             content: locale === "en" && post.content_en ? post.content_en : post.content,
+  82 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+⚠ ./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+⚠ ./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+⚠ ./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+Error fetching posts: TypeError: (0 , _lib_utils__WEBPACK_IMPORTED_MODULE_3__.normalizePreviewText) is not a function
+    at eval (src\app\api\posts\route.ts:69:20)
+    at Array.map (<anonymous>)
+    at GET$1 (src\app\api\posts\route.ts:67:40)
+  67 |         const transformedPosts = posts.map((post) => ({
+  68 |             id: post.id,
+> 69 |             title: normalizePreviewText(locale === "en" && post.title_en ? post.title_en : post.title) || post.title,
+     |                    ^
+  70 |             slug: post.slug,
+  71 |             excerpt: normalizePreviewText(locale === "en" && post.excerpt_en ? post.excerpt_en : post.excerpt),
+  72 |             featuredImage: post.featuredImage?.url || null,
+⚠ ./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/[slug]/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/[slug]/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+
+./src/app/api/posts/route.ts
+Attempted import error: 'normalizePreviewText' is not exported from '@/lib/utils' (imported as 'normalizePreviewText').
+
+Import trace for requested module:
+./src/app/api/posts/route.ts
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Found a change in next.config.ts. Restarting the server to apply the changes...
 ⚠ Cross origin request detected from 127.0.0.1 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
 Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
 ⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>) {
+  page: '/api/categories'
+}
+⨯ SyntaxError: Unexpected end of JSON input
+    at JSON.parse (<anonymous>) {
+  page: '/api/posts'
+}
+⚠ Fast Refresh had to perform a full reload. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+⨯ Error: aborted
+    at ignore-listed frames {
+  code: 'ECONNRESET'
+}
+⨯ Error: aborted
+    at ignore-listed frames {
+  code: 'ECONNRESET',
+  digest: '1074079976'
+}
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⨯ ReferenceError: showFramedShell is not defined
+    at Header (src\components\layout\Header.tsx:246:42)
+  244 |                             <Button
+  245 |                                 asChild
+> 246 |                                 variant={showFramedShell ? "primary" : "outline"}
+      |                                          ^
+  247 |                                 variant="primary"
+  248 |                                 size="md"
+  249 |                                 motion="magnetic" {
+  digest: '952987463'
+}
+⨯ ReferenceError: showFramedShell is not defined
+    at Header (src\components\layout\Header.tsx:246:42)
+  244 |                             <Button
+  245 |                                 asChild
+> 246 |                                 variant={showFramedShell ? "primary" : "outline"}
+      |                                          ^
+  247 |                                 variant="primary"
+  248 |                                 size="md"
+  249 |                                 motion="magnetic" {
+  digest: '4042912294'
+}
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.
+⚠ Fast Refresh had to perform a full reload due to a runtime error.

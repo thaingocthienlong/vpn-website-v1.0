@@ -1,0 +1,41 @@
+[
+  {
+    "id": 1,
+    "id_service": 16,
+    "id_admin": 5,
+    "name": "Lương Trọng Hiền",
+    "phone": "0974250568",
+    "sao": 5,
+    "danhgia": "Dịch vụ bạn rất tốt và chuyên nghiệp!",
+    "traloi": "Cảm ơn bạn đã đánh giá dich vụ bên mình nha!",
+    "date": "2021-01-23 11:42:22",
+    "date_traloi": "2021-01-23 20:01:16",
+    "trangthai": 0
+  },
+  {
+    "id": 2,
+    "id_service": 16,
+    "id_admin": 0,
+    "name": "Nguyễn Văn An",
+    "phone": "0974250568",
+    "sao": 4,
+    "danhgia": "Good",
+    "traloi": "",
+    "date": "2021-01-23 20:49:54",
+    "date_traloi": "0000-00-00 00:00:00",
+    "trangthai": 1
+  },
+  {
+    "id": 3,
+    "id_service": 15,
+    "id_admin": 0,
+    "name": "Lê Thị Quỳnh Ly",
+    "phone": "0969562558",
+    "sao": 5,
+    "danhgia": "ádasasasa",
+    "traloi": "",
+    "date": "2021-03-25 15:44:59",
+    "date_traloi": "2021-03-25 15:44:59",
+    "trangthai": 0
+  }
+]

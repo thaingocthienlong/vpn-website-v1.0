@@ -52,12 +52,11 @@ export function StaffDirectoryPage({
                         </h2>
                     </div>
                     <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {featuredMembers.map((member, index) => (
+                        {featuredMembers.map((member) => (
                             <StaffCard
                                 key={member.id}
                                 person={member}
                                 variant="large"
-                                className={featuredMembers.length > 1 && index % 3 === 1 ? "xl:translate-y-6" : undefined}
                             />
                         ))}
                     </div>
@@ -73,11 +72,10 @@ export function StaffDirectoryPage({
                         </h2>
                     </div>
                     <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                        {group.members.map((member, index) => (
+                        {group.members.map((member) => (
                             <StaffCard
                                 key={member.id}
                                 person={member}
-                                className={group.members.length > 2 && index % 3 === 1 ? "xl:translate-y-6" : undefined}
                             />
                         ))}
                     </div>

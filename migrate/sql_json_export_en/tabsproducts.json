@@ -1,0 +1,22 @@
+[
+  {
+    "id": 1,
+    "name": "Hiện sản phẩm khuyến mãi",
+    "trangthai": 0
+  },
+  {
+    "id": 2,
+    "name": "Hiện sản phẩm nổi bật",
+    "trangthai": 0
+  },
+  {
+    "id": 3,
+    "name": "Hiện sản phẩm mới nhất",
+    "trangthai": 0
+  },
+  {
+    "id": 4,
+    "name": "Ẩn sản phẩm hiển thị theo danh mục",
+    "trangthai": 1
+  }
+]

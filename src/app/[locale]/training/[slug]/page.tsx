@@ -253,13 +253,11 @@ export default function CourseDetailPage() {
                     </h2>
                 </div>
                 <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-                    {relatedCourses.map((related, index) => (
+                    {relatedCourses.map((related) => (
                         <Link
                             key={related.slug}
                             href={`/en/training/${related.slug}`}
-                            className={`public-panel interactive-card group rounded-[2rem] p-5 md:p-6 ${
-                                index % 3 === 1 ? "xl:translate-y-6" : ""
-                            }`}
+                            className="public-panel interactive-card group rounded-[2rem] p-5 md:p-6"
                         >
                             <div className="mb-4 flex aspect-[16/10] items-center justify-center rounded-[1.4rem] bg-[rgba(23,88,216,0.08)] text-[var(--accent-strong)]">
                                 <GraduationCap className="h-10 w-10" weight="duotone" />

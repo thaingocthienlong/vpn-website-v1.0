@@ -1,0 +1,28 @@
+[
+  {
+    "id": 1,
+    "name": "Tắt module",
+    "trangthai": 1,
+    "hinhnen": "https://i.ibb.co/39bDw9Kx/migr-f53c39f4ebec49e9.jpg",
+    "mauchu": "",
+    "tieude": "CẢM NHẬN TUYỆT VỜI TỪ HỌC VIÊN",
+    "fullmanhinh": 0,
+    "duongvien": 0,
+    "mieutangan": "",
+    "thuoctinhbgd": "cover",
+    "limitbgd": 0
+  },
+  {
+    "id": 2,
+    "name": "Bật module",
+    "trangthai": 0,
+    "hinhnen": "",
+    "mauchu": "",
+    "tieude": "",
+    "fullmanhinh": 0,
+    "duongvien": 0,
+    "mieutangan": "",
+    "thuoctinhbgd": "",
+    "limitbgd": 0
+  }
+]
