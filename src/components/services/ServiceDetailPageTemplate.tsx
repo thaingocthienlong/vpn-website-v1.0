@@ -18,7 +18,7 @@ import {
 import { Button } from "@/components/ui/Button";
 import type { ServiceDetailContent } from "@/lib/content/service-pages";
 import { serviceIconMap } from "./service-icons";
-import type { HeaderProps, FooterProps } from "@/components/layout";
+import type { FooterProps } from "@/components/layout";
 
 interface ServiceDetailLabels {
     allServicesLabel: string;
@@ -38,7 +38,6 @@ interface ServiceDetailPageTemplateProps {
     service: ServiceDetailContent | null;
     otherServices: ServiceDetailContent[];
     labels: ServiceDetailLabels;
-    headerProps?: HeaderProps;
     footerProps?: FooterProps;
 }
 
@@ -85,13 +84,12 @@ export function ServiceDetailPageTemplate({
     service,
     otherServices,
     labels,
-    headerProps,
     footerProps,
 }: ServiceDetailPageTemplateProps) {
     if (!service) {
         return (
             <div className="min-h-screen public-shell">
-                <Header {...headerProps} />
+                <Header />
                 <main id="main-content" className="public-main-offset flex-1 px-4 pb-20">
                     <Container size="md">
                         <PublicStatePanel
@@ -128,7 +126,7 @@ export function ServiceDetailPageTemplate({
 
     return (
         <div className="min-h-screen public-shell">
-            <Header {...headerProps} />
+            <Header />
             <main id="main-content" className="public-main-offset flex-1 pb-20">
                 <Container className="space-y-8 md:space-y-10">
                     <PublicBreadcrumbBar

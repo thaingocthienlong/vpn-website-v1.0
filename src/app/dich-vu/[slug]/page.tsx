@@ -18,14 +18,6 @@ export default async function ServiceDetailPage({
             contactHref="/lien-he"
             service={payload.service}
             otherServices={payload.otherServices}
-            headerProps={{
-                logo: layout.logo,
-                siteName: layout.siteName,
-                hotline: layout.hotline,
-                ctaText: layout.ctaText,
-                ctaUrl: layout.ctaUrl,
-                menuItems: layout.menuItems,
-            }}
             footerProps={{
                 description: layout.footer.description,
                 contactInfo: layout.footer.contactInfo,

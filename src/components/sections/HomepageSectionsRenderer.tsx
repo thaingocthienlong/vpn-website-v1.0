@@ -210,19 +210,7 @@ export function HomepageSectionsRenderer({
 
     return (
         <div className="public-shell min-h-screen flex flex-col">
-            <Header
-                logo={layout.logo}
-                siteName={layout.siteName}
-                hotline={layout.hotline}
-                quickContact={{
-                    phone: layout.footer.contactInfo.phone,
-                    email: layout.footer.contactInfo.email,
-                    contactHref: layout.ctaUrl,
-                }}
-                ctaText={layout.ctaText}
-                ctaUrl={layout.ctaUrl}
-                menuItems={layout.menuItems}
-            />
+            <Header />
             <main id="main-content" className="flex-1">
                 {orderedSections.map((section) => {
                     switch (section.sectionKey) {

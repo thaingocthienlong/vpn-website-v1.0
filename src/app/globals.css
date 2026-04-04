@@ -281,15 +281,15 @@ a,
 .public-island-nav {
   position: relative;
   overflow: visible;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.16);
   border-radius: calc(var(--radius-lg) + 2px);
   background:
-    linear-gradient(180deg, rgba(248, 251, 253, 0.18), rgba(236, 243, 248, 0.1));
+    linear-gradient(180deg, rgba(248, 251, 253, 0.28), rgba(236, 243, 248, 0.16));
   box-shadow:
-    0 26px 64px -44px rgba(8, 20, 33, 0.42),
-    inset 0 1px 0 rgba(255, 255, 255, 0.18);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
+    0 24px 56px -42px rgba(8, 20, 33, 0.34),
+    inset 0 1px 0 rgba(255, 255, 255, 0.24);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
 }
 
 .public-island-nav::before {
@@ -299,18 +299,8 @@ a,
   pointer-events: none;
   border-radius: inherit;
   background:
-    linear-gradient(130deg, rgba(255, 255, 255, 0.16), transparent 34%),
-    radial-gradient(circle at top right, rgba(77, 111, 147, 0.12), transparent 28%);
-}
-
-.public-island-nav::after {
-  content: "";
-  position: absolute;
-  inset: 0.7rem;
-  pointer-events: none;
-  border-radius: calc(var(--radius-lg) - 8px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  opacity: 0.72;
+    linear-gradient(180deg, rgba(255, 255, 255, 0.14), transparent 46%),
+    radial-gradient(circle at 82% 0%, rgba(94, 130, 166, 0.1), transparent 26%);
 }
 
 .editorial-caption {

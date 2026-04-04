@@ -12,7 +12,7 @@ import { Navbar, getDefaultMenuItems, normalizeHeaderMenuItems, type MenuItem } 
 import { useSiteLayouts } from "@/components/providers/SiteLayoutProvider";
 import { detectLocaleFromPath, getEquivalentRoute } from "@/lib/routes";
 import { cn } from "@/lib/utils";
-import { FloatingAccent, publicMotionTokens } from "@/components/motion/PublicMotion";
+import { publicMotionTokens } from "@/components/motion/PublicMotion";
 
 export interface HeaderProps {
     logo?: string;
@@ -57,16 +57,16 @@ function LocaleToggle({
     }, [locale, pathname, router, searchParams]);
 
     const shellTone = transparent
-        ? "border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.14)]"
-        : "border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.3)]";
+        ? "border-white/16 bg-white/10"
+        : "border-[rgba(16,36,56,0.06)] bg-[rgba(255,255,255,0.14)]";
     const idleTone = transparent
-        ? "text-[var(--ink)] hover:bg-[rgba(248,251,253,0.34)]"
-        : "text-[var(--ink)] hover:bg-[rgba(248,251,253,0.5)]";
+        ? "text-[var(--ink)] hover:bg-white/16"
+        : "text-[var(--ink)] hover:bg-[rgba(16,36,56,0.06)]";
 
     return (
         <div
             className={cn(
-                "inline-flex items-center rounded-[0.98rem] border p-1 shadow-[0_14px_30px_-28px_rgba(8,20,33,0.22)]",
+                "inline-flex items-center rounded-[1rem] border p-[3px]",
                 compact ? "gap-0.5" : "gap-1",
                 shellTone,
                 className
@@ -83,7 +83,7 @@ function LocaleToggle({
                         onClick={() => navigateToLocale(targetLocale)}
                         aria-pressed={isActive}
                         className={cn(
-                            "rounded-[0.78rem] font-semibold uppercase tracking-[0.14em] transition-colors",
+                            "rounded-[0.8rem] font-semibold uppercase tracking-[0.14em] transition-colors",
                             compact ? "px-2.5 py-2 text-[10px]" : "px-3 py-2 text-[10px]",
                             isActive
                                 ? "bg-[var(--accent-strong)] text-white"
@@ -196,20 +196,11 @@ export function Header({
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={publicMotionTokens.sectionSpring}
                     className={cn(
-                        "public-island-nav relative grid grid-cols-[auto_1fr_auto] items-center gap-2.5 px-4 py-3 transition-all duration-300 md:gap-4 md:px-5 md:py-3.5"
+                        "public-island-nav relative grid grid-cols-[auto_1fr_auto] items-center gap-3 px-4 py-3 transition-all duration-300 md:gap-5 md:px-5 md:py-3.5"
                     )}
                 >
-                    <div className="pointer-events-none absolute inset-px overflow-hidden rounded-[calc(2.25rem-1px)]">
-                        <FloatingAccent className="right-8 top-0 h-20 w-20 rounded-full bg-[radial-gradient(circle,rgba(94,130,166,0.12),transparent_72%)]" variant="halo" />
-                    </div>
-
                     <Link href={homeUrl} className="relative z-[1] flex min-w-0 items-center" title={displaySiteName}>
-                        <div
-                            className={cn(
-                                "relative flex min-w-0 items-center gap-2 px-1.5 py-1 transition-all duration-300 md:gap-2.5 md:px-3 md:py-1.5",
-                                "rounded-[1.15rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.42)]"
-                            )}
-                        >
+                        <div className="relative flex min-w-0 items-center gap-3 px-1.5 py-1 md:gap-3.5">
                             <div className="relative flex h-[42px] w-auto max-w-[112px] shrink-0 items-center md:h-[54px] md:max-w-[138px] lg:max-w-[146px]">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
@@ -229,7 +220,7 @@ export function Header({
                     <div className="relative z-[1] flex min-w-0 items-center justify-center gap-3">
                         <Navbar
                             items={items}
-                            className="min-w-0 justify-center rounded-[1.1rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.32)] px-2 py-1 transition-all duration-300"
+                            className="min-w-0 justify-center px-1 py-1"
                         />
                     </div>
 
@@ -246,7 +237,7 @@ export function Header({
                                 variant="primary"
                                 size="md"
                                 motion="magnetic"
-                                className="min-w-[158px] rounded-[1.02rem] border-[rgba(77,111,147,0.16)] bg-[linear-gradient(135deg,#132c47,#244666_62%,#56718b)] text-white shadow-[var(--shadow-xs)] hover:bg-[linear-gradient(135deg,#10263d,#1f3f5c_62%,#4c657f)]"
+                                className="min-w-[158px] rounded-[1.02rem] border-[rgba(77,111,147,0.16)] bg-[linear-gradient(135deg,#132c47,#244666_62%,#56718b)] text-white shadow-[0_18px_34px_-28px_rgba(8,20,33,0.36)] hover:bg-[linear-gradient(135deg,#10263d,#1f3f5c_62%,#4c657f)]"
                             >
                                 <Link href={resolvedCtaUrl} className="inline-flex items-center gap-3 whitespace-nowrap text-white">
                                     <span>{resolvedCtaText}</span>
@@ -269,7 +260,7 @@ export function Header({
                             <button
                                 type="button"
                                 onClick={() => setIsOpen((value) => !value)}
-                                className="inline-flex rounded-[0.92rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.36)] p-2 text-[var(--ink)] transition-colors hover:bg-[rgba(248,251,253,0.52)]"
+                                className="inline-flex rounded-[0.92rem] bg-[rgba(255,255,255,0.16)] p-2 text-[var(--ink)] ring-1 ring-[rgba(255,255,255,0.16)] transition-colors hover:bg-[rgba(255,255,255,0.22)]"
                                 aria-label={isOpen ? "Close navigation" : "Open navigation"}
                             >
                                 {isOpen ? <X className="h-5 w-5" weight="bold" /> : <List className="h-5 w-5" weight="bold" />}
@@ -285,7 +276,7 @@ export function Header({
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={publicMotionTokens.hoverSpring}
-                            className="public-panel mt-3 overflow-hidden rounded-[1.45rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(252,254,255,0.9)] px-4 py-4 text-[var(--ink)] shadow-[var(--shadow-sm)] xl:hidden"
+                            className="mt-3 overflow-hidden rounded-[1.4rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(250,252,254,0.9)] px-3.5 py-3.5 text-[var(--ink)] shadow-[0_26px_44px_-34px_rgba(8,20,33,0.34)] backdrop-blur-[16px] xl:hidden"
                         >
                             <motion.nav
                                 className="space-y-2"
@@ -317,7 +308,7 @@ export function Header({
                                             >
                                                 <Link
                                                     href={item.url}
-                                                    className="block rounded-[0.95rem] px-4 py-3 text-sm font-medium text-[var(--ink)] transition-colors hover:bg-[rgba(77,111,147,0.06)]"
+                                                    className="block rounded-[0.95rem] px-4 py-3 text-sm font-medium text-[var(--ink)] transition-colors hover:bg-[rgba(16,36,56,0.05)]"
                                                 >
                                                     {item.label}
                                                 </Link>
@@ -332,7 +323,7 @@ export function Header({
                                                 hidden: { opacity: 0, x: -12 },
                                                 visible: { opacity: 1, x: 0 },
                                             }}
-                                            className="overflow-hidden rounded-[1rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(248,251,253,0.64)]"
+                                            className="overflow-hidden rounded-[1rem] bg-[rgba(16,36,56,0.03)] ring-1 ring-[rgba(16,36,56,0.08)]"
                                         >
                                             <button
                                                 type="button"
@@ -361,7 +352,7 @@ export function Header({
                                                                 <Link
                                                                     key={child.url}
                                                                     href={child.url}
-                                                                    className="block rounded-[0.9rem] px-3 py-2.5 text-sm text-[var(--ink-soft)] transition-colors hover:bg-[rgba(77,111,147,0.06)] hover:text-[var(--ink)]"
+                                                                    className="block rounded-[0.9rem] px-3 py-2.5 text-sm text-[var(--ink-soft)] transition-colors hover:bg-[rgba(16,36,56,0.05)] hover:text-[var(--ink)]"
                                                                 >
                                                                     {child.label}
                                                                 </Link>
@@ -381,10 +372,10 @@ export function Header({
                                     variant="primary"
                                     size="md"
                                     motion="magnetic"
-                                    className="w-full border-transparent bg-[linear-gradient(135deg,#132c47,#244666_62%,#56718b)] text-white shadow-[var(--shadow-xs)] hover:bg-[linear-gradient(135deg,#10263d,#1f3f5c_62%,#4c657f)]"
+                                    className="w-full border-transparent bg-[linear-gradient(135deg,#132c47,#244666_62%,#56718b)] text-white shadow-[0_18px_34px_-28px_rgba(8,20,33,0.36)] hover:bg-[linear-gradient(135deg,#10263d,#1f3f5c_62%,#4c657f)]"
                                 >
                                     <Link href={resolvedCtaUrl} className="inline-flex items-center justify-center gap-3 text-white">
-                                        <span>{ctaText}</span>
+                                        <span>{resolvedCtaText}</span>
                                         <span className="inline-flex h-7 w-7 items-center justify-center rounded-full bg-white/14">
                                             <ArrowUpRight className="h-4 w-4" weight="bold" />
                                         </span>

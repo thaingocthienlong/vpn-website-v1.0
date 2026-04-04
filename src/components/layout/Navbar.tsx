@@ -195,7 +195,7 @@ export function Navbar({ items, className }: NavbarProps) {
 
     return (
         <nav
-            className={cn("hidden items-center gap-1.5 overflow-visible xl:flex", className)}
+            className={cn("hidden items-center gap-1 overflow-visible xl:flex", className)}
             aria-label="Primary navigation"
             onMouseLeave={() => {
                 setHoveredItem(null);
@@ -225,20 +225,20 @@ export function Navbar({ items, className }: NavbarProps) {
                                 setOpenItem(item.url);
                             }}
                         >
-                            <Link
-                                href={item.url}
-                                className={cn(
-                                    "relative inline-flex items-center gap-2 rounded-[0.95rem] px-3.5 py-2.5 text-[13px] font-medium transition-all duration-300",
-                                    isActive ? "text-[var(--accent-strong)]" : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
-                                )}
-                            >
-                                {isHighlighted ? (
-                                    <motion.span
-                                        layoutId="navbar-active-pill"
-                                        className="absolute inset-0 -z-10 rounded-[0.95rem] border border-white/28 bg-[linear-gradient(180deg,rgba(252,254,255,0.22),rgba(241,247,251,0.12))] shadow-[0_14px_30px_-28px_rgba(8,20,33,0.42)]"
-                                        transition={publicMotionTokens.hoverSpring}
-                                    />
-                                ) : null}
+                                <Link
+                                    href={item.url}
+                                    className={cn(
+                                        "relative inline-flex items-center gap-2 rounded-[0.95rem] px-3.5 py-2.5 text-[13px] font-medium transition-all duration-300",
+                                        isActive ? "text-[var(--accent-strong)]" : "text-[var(--ink-soft)] hover:text-[var(--ink)]"
+                                    )}
+                                >
+                                    {isHighlighted ? (
+                                        <motion.span
+                                            layoutId="navbar-active-pill"
+                                            className="absolute inset-0 -z-10 rounded-[0.95rem] bg-[rgba(255,255,255,0.16)] ring-1 ring-[rgba(255,255,255,0.18)]"
+                                            transition={publicMotionTokens.hoverSpring}
+                                        />
+                                    ) : null}
                                 <span>{item.label}</span>
                                 <CaretDown
                                     className={cn("h-4 w-4 transition-transform duration-300", isOpen && "translate-y-0.5 rotate-180")}
@@ -255,7 +255,7 @@ export function Navbar({ items, className }: NavbarProps) {
                                         transition={publicMotionTokens.hoverSpring}
                                         className="absolute left-0 top-[calc(100%+0.6rem)] z-40 w-max max-w-[min(24rem,calc(100vw-4rem))]"
                                     >
-                                        <div className="public-panel min-w-[316px] overflow-hidden rounded-[1.45rem] p-2.5 shadow-[var(--shadow-sm)]">
+                                        <div className="min-w-[316px] overflow-hidden rounded-[1.35rem] border border-[rgba(16,36,56,0.08)] bg-[rgba(250,252,254,0.94)] p-2.5 shadow-[0_24px_42px_-32px_rgba(8,20,33,0.34)] backdrop-blur-[16px]">
                                             <div className="grid gap-1.5">
                                                 {item.children?.map((child, index) => {
                                                     const childActive = pathname === child.url || pathname.startsWith(`${child.url}/`);
@@ -273,8 +273,8 @@ export function Navbar({ items, className }: NavbarProps) {
                                                                 className={cn(
                                                                     "block rounded-[0.95rem] px-3.5 py-2.5 text-sm whitespace-nowrap transition-all duration-300",
                                                                     childActive
-                                                                        ? "bg-[rgba(77,111,147,0.08)] text-[var(--accent-strong)]"
-                                                                        : "text-[var(--ink-soft)] hover:bg-[rgba(77,111,147,0.06)] hover:text-[var(--ink)]"
+                                                                        ? "bg-[rgba(16,36,56,0.06)] text-[var(--accent-strong)]"
+                                                                        : "text-[var(--ink-soft)] hover:bg-[rgba(16,36,56,0.05)] hover:text-[var(--ink)]"
                                                                 )}
                                                             >
                                                                 {child.label}
@@ -308,7 +308,7 @@ export function Navbar({ items, className }: NavbarProps) {
                             {isHighlighted ? (
                                 <motion.span
                                     layoutId="navbar-active-pill"
-                                    className="absolute inset-0 -z-10 rounded-[0.95rem] border border-white/28 bg-[linear-gradient(180deg,rgba(252,254,255,0.22),rgba(241,247,251,0.12))] shadow-[0_14px_30px_-28px_rgba(8,20,33,0.42)]"
+                                    className="absolute inset-0 -z-10 rounded-[0.95rem] bg-[rgba(255,255,255,0.16)] ring-1 ring-[rgba(255,255,255,0.18)]"
                                     transition={publicMotionTokens.hoverSpring}
                                 />
                             ) : null}
