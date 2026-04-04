@@ -206,10 +206,7 @@ export function HeroSection({
     }, [resolvedTitle]);
 
     return (
-        <section className="relative isolate overflow-hidden bg-[linear-gradient(180deg,#f7fbfd_0%,#eef4f8_58%,#e7eef4_100%)] text-[var(--ink)]">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_10%_18%,rgba(77,111,147,0.12),transparent_22%),radial-gradient(circle_at_88%_16%,rgba(255,255,255,0.62),transparent_20%),linear-gradient(90deg,rgba(16,40,70,0.04)_1px,transparent_1px),linear-gradient(rgba(16,40,70,0.04)_1px,transparent_1px)] [background-size:auto,auto,32px_32px,32px_32px] opacity-80" />
-            <div className="absolute inset-x-0 top-0 h-[16rem] bg-[linear-gradient(180deg,rgba(13,27,44,0.24),transparent)]" />
-
+        <section className="relative isolate overflow-hidden text-[var(--ink)]">
             <Container className="relative">
                 <MotionGroup
                     className="grid min-h-[100svh] grid-cols-[minmax(0,1fr)] items-start gap-9 pb-12 pt-[7.25rem] md:pb-16 md:pt-[8.8rem] xl:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] xl:items-end xl:gap-12"

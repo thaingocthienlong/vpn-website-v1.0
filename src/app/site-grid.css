@@ -1,0 +1,29 @@
+:root {
+  --site-page-gradient: linear-gradient(180deg, #f7fbfd 0%, #eef4f8 58%, #e7eef4 100%);
+  --site-grid-overlay:
+    radial-gradient(circle at 10% 18%, rgba(77, 111, 147, 0.12), transparent 22%),
+    radial-gradient(circle at 88% 16%, rgba(255, 255, 255, 0.62), transparent 20%),
+    linear-gradient(90deg, rgba(16, 40, 70, 0.04) 1px, transparent 1px),
+    linear-gradient(rgba(16, 40, 70, 0.04) 1px, transparent 1px);
+  --site-grid-overlay-size: auto, auto, 32px 32px, 32px 32px;
+}
+
+body {
+  background: var(--site-page-gradient);
+}
+
+body::before {
+  opacity: 0.8;
+  background-image: var(--site-grid-overlay);
+  background-size: var(--site-grid-overlay-size);
+  mask-image: none;
+}
+
+body::after {
+  background: linear-gradient(180deg, rgba(13, 27, 44, 0.12), transparent 16rem);
+  opacity: 1;
+}
+
+.site-grid-surface {
+  background: var(--site-page-gradient);
+}

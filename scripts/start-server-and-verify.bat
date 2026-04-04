@@ -91,8 +91,8 @@ pushd "%WORKDIR%"
 start "next-dev-webpack" /b cmd /c "npx next dev --webpack --hostname %HOST% --port %PORT% > dev-server.log 2> dev-server.err"
 popd
 
-echo [4/4] Confirming browser access with Playwright (auto-retry until ready)...
-node -e "const { chromium } = require('playwright'); const url = process.argv[1]; (async () => { const deadline = Date.now() + 180000; let lastError = 'unknown'; while (Date.now() < deadline) { let browser; try { browser = await chromium.launch({ headless: true }); const page = await browser.newPage(); const response = await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 15000 }); const title = await page.title(); if (response && response.status() < 400) { console.log('Playwright OK:', response.status(), '-', title); await browser.close(); process.exit(0); } lastError = 'HTTP status ' + (response ? response.status() : 'no response'); } catch (err) { lastError = err && err.message ? err.message : String(err); } finally { if (browser) await browser.close().catch(() => {}); } await new Promise((resolve) => setTimeout(resolve, 2000)); } throw new Error(lastError); })().catch((err) => { console.error('Playwright verification failed:', err.message); process.exit(1); });" "%URL%"
+echo [4/4] Confirming local HTTP access (auto-retry until ready)...
+node scripts/verify-url.js "%URL%"
 if errorlevel 1 (
   echo     --- Last 40 lines of dev-server.log ---
   powershell -NoProfile -Command "if(Test-Path '%LOG_FILE%'){Get-Content '%LOG_FILE%' -Tail 40}"
@@ -102,7 +102,7 @@ if errorlevel 1 (
 )
 
 echo.
-echo Done. Server is running and Playwright confirmed access at %URL%
+echo Done. Server is running and HTTP verification succeeded at %URL%
 if defined LAN_IP (
   echo LAN access URL: http://%LAN_IP%:%PORT%/
   echo If other devices still cannot connect, make sure they are on the same Wi-Fi and AP isolation is disabled.

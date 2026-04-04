@@ -4,6 +4,7 @@ import { OptionalClerkProvider } from "@/components/providers/OptionalClerkProvi
 import { SiteLayoutProvider } from "@/components/providers/SiteLayoutProvider";
 import { getSiteLayout } from "@/lib/services/site-content";
 import "./globals.css";
+import "./site-grid.css";
 
 // Momo Trust Sans — body text (variable font)
 const momoTrustSans = localFont({
