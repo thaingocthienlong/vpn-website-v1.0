@@ -101,7 +101,7 @@ export function GallerySection({
     }
 
     return (
-        <SectionWrapper padding="sm">
+        <SectionWrapper padding="sm" appearanceTargetId="homepage.section.gallery.surface">
             <MotionSection>
                 <SectionHeader
                     badge={isEn ? "Image essay" : "Hình ảnh"}
@@ -109,6 +109,7 @@ export function GallerySection({
                     subtitle={subtitle || (isEn
                         ? "Use the thumbnail grid to move the main preview without leaving the homepage context."
                         : "Sử dụng lưới ảnh nhỏ để thay đổi hình chính mà không rời khỏi nhịp xem của trang chủ.")}
+                    appearanceTargetId="homepage.section.gallery.header"
                 />
             </MotionSection>
 

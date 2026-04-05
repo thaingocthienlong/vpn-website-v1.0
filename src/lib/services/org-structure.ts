@@ -1,5 +1,6 @@
 import type { StaffDirectoryGroup } from "@/components/about/StaffDirectoryPage";
 import type { StaffCardPerson } from "@/components/cards/StaffCard";
+import { decodeHtmlEntities, normalizePlainText } from "@/lib/preview-text";
 import { prisma } from "@/lib/prisma";
 
 const ORG_STRUCTURE_DEPARTMENT_SLUG = "ban-lanh-dao-vien";
@@ -9,13 +10,13 @@ export type OrgStructureLocale = "vi" | "en";
 type OrgStructureStaffRow = Awaited<ReturnType<typeof loadOrgStructureStaff>>[number];
 
 function normalizeWhitespace(value: string | null | undefined): string {
-    return String(value || "").replace(/\s+/g, " ").trim();
+    return normalizePlainText(value) || "";
 }
 
 function stripHtml(value: string | null | undefined): string {
-    return String(value || "")
+    return decodeHtmlEntities(String(value || ""))
         .replace(/<[^>]*>/g, " ")
-        .replace(/&nbsp;/gi, " ")
+        .replace(/\u00A0/g, " ")
         .replace(/\s+/g, " ")
         .trim();
 }
@@ -70,8 +71,8 @@ function isFeaturedLeadership(member: OrgStructureStaffRow): boolean {
 function toStaffCardPerson(member: OrgStructureStaffRow, locale: OrgStructureLocale): StaffCardPerson {
     return {
         id: member.id,
-        name: getLocalizedValue(member.name, member.name_en, locale) || member.name,
-        title: getLocalizedValue(member.title, member.title_en, locale),
+        name: normalizePlainText(getLocalizedValue(member.name, member.name_en, locale)) || member.name,
+        title: normalizePlainText(getLocalizedValue(member.title, member.title_en, locale)),
         position: null,
         bio: getLocalizedValue(member.bio, member.bio_en, locale),
         avatar: getLocalizedAvatar(member, locale),
@@ -111,7 +112,7 @@ export function buildOrgStructureDirectoryModel(
     for (const member of staffList) {
         if (isHeadingMarker(member)) {
             currentGroup = {
-                title: getLocalizedValue(member.name, member.name_en, locale) || member.name,
+                title: normalizePlainText(getLocalizedValue(member.name, member.name_en, locale)) || member.name,
                 members: [],
             };
             groups.push(currentGroup);

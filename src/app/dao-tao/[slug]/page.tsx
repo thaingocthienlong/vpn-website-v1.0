@@ -166,6 +166,7 @@ export default async function CourseDetailPage({ params }: PageProps) {
             secondaryPanel={heroPanel}
             main={main}
             asideSticky={false}
+            heroAppearanceTargetId="page.hero.course-detail"
         />
     );
 }

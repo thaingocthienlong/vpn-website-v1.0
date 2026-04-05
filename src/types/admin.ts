@@ -1,13 +1,17 @@
 export interface AdminHomepageSectionLocalePayload {
+    id?: string | null;
     title: string;
     subtitle: string;
+    config?: Record<string, unknown>;
 }
 
 export interface AdminHomepageSectionPayload {
     sectionKey: string;
-    isEnabled: boolean;
+    label?: string;
+    rendered?: boolean;
+    supported?: boolean;
+    enabled: boolean;
     sortOrder: number;
-    config: Record<string, unknown> | null;
     vi: AdminHomepageSectionLocalePayload;
     en: AdminHomepageSectionLocalePayload;
 }

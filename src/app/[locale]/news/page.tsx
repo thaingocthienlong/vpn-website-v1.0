@@ -31,6 +31,7 @@ export default async function NewsPage({
                     errorTitle={tCommon("error")}
                     errorDescription={tCommon("updateSoon")}
                     filterMode="state"
+                    showHeroPanel={false}
                 />
             </Suspense>
         );
@@ -52,6 +53,7 @@ export default async function NewsPage({
                 filterMode="links"
                 postsPerPage={10}
                 showFeatured={false}
+                showHeroPanel={false}
                 gridColumns={2}
             />
         </Suspense>

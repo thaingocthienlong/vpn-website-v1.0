@@ -16,6 +16,17 @@ export function decodeHtmlEntities(text: string): string {
     });
 }
 
+export function normalizePlainText(text: string | null | undefined): string | null {
+    if (!text) return null;
+
+    const normalized = decodeHtmlEntities(text)
+        .replace(/\u00A0/g, " ")
+        .replace(/\s+/g, " ")
+        .trim();
+
+    return normalized || null;
+}
+
 export function normalizePreviewText(text: string | null | undefined): string | null {
     if (!text) return null;
 

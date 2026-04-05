@@ -46,6 +46,7 @@ export function NewsPageShell({
                             title={title}
                             description={description}
                             secondaryPanel={secondaryPanel}
+                            appearanceTargetId="page.hero.news-listing"
                         />
                     )}
                     {controls}

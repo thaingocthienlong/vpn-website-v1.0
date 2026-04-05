@@ -24,12 +24,19 @@ export function truncateText(text, maxLength) {
 }
 // Utility function to format date
 export function formatDate(date, options) {
+    if (date === null || date === undefined || date === "") {
+        return "-";
+    }
+    const normalizedDate = date instanceof Date ? date : new Date(date);
+    if (Number.isNaN(normalizedDate.getTime())) {
+        return "-";
+    }
     return new Intl.DateTimeFormat("en-US", {
         day: "numeric",
         month: "short",
         year: "numeric",
         ...options,
-    }).format(date);
+    }).format(normalizedDate);
 }
 // Utility function to debounce function calls
 export function debounce(func, wait) {

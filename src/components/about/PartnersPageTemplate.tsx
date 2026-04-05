@@ -4,6 +4,11 @@
 import * as React from "react";
 import { Buildings } from "@phosphor-icons/react";
 import { PublicPageShell, PublicStatePanel } from "@/components/route-shell";
+import {
+    getAppearanceSurfaceStyle,
+    getAppearanceTargetProps,
+    getAppearanceTextStyle,
+} from "@/lib/appearance/runtime";
 
 export interface PartnerCardItem {
     id: string;
@@ -49,6 +54,8 @@ export function PartnersPageTemplate({
                     className={`public-panel interactive-card flex rounded-[1.9rem] p-6 ${
                         index % 3 === 1 ? "xl:translate-y-8" : ""
                     }`}
+                    style={getAppearanceSurfaceStyle("linear-gradient(180deg,rgba(252,254,255,0.92),rgba(241,247,251,0.86))")}
+                    {...getAppearanceTargetProps("card.partner.grid")}
                 >
                     <div className="flex w-full flex-col">
                         <div className="mb-6 flex h-24 w-24 items-center justify-center overflow-hidden rounded-[1.4rem] border border-[rgba(26,72,164,0.1)] bg-[rgba(23,88,216,0.06)] text-[var(--accent-strong)]">
@@ -58,9 +65,27 @@ export function PartnersPageTemplate({
                                 <Buildings className="h-10 w-10" weight="duotone" />
                             )}
                         </div>
-                        <h2 className="text-xl leading-tight text-[var(--ink)]">{partner.name}</h2>
+                        <h2
+                            className="text-xl leading-tight text-[var(--ink)]"
+                            style={getAppearanceTextStyle({
+                                colorRole: "title",
+                                colorFallback: "var(--ink)",
+                                sizeRole: "title",
+                                sizeFallback: "1.25rem",
+                            })}
+                        >
+                            {partner.name}
+                        </h2>
                         {partner.description && (
-                            <p className="mt-3 text-sm leading-7 text-[var(--ink-soft)]">
+                            <p
+                                className="mt-3 text-sm leading-7 text-[var(--ink-soft)]"
+                                style={getAppearanceTextStyle({
+                                    colorRole: "body",
+                                    colorFallback: "var(--ink-soft)",
+                                    sizeRole: "body",
+                                    sizeFallback: "0.875rem",
+                                })}
+                            >
                                 {partner.description}
                             </p>
                         )}
@@ -70,7 +95,16 @@ export function PartnersPageTemplate({
         </div>
     );
 
-    return <PublicPageShell badge={badge} title={title} description={description} main={main} asideSticky={false} />;
+    return (
+        <PublicPageShell
+            badge={badge}
+            title={title}
+            description={description}
+            main={main}
+            asideSticky={false}
+            heroAppearanceTargetId="page.hero.partners"
+        />
+    );
 }
 
 export default PartnersPageTemplate;

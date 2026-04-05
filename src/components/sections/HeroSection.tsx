@@ -11,6 +11,11 @@ import { Container } from "@/components/layout";
 import { detectLocaleFromPath } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import {
+    getAppearanceCssValue,
+    getAppearanceTargetProps,
+    getAppearanceTextStyle,
+} from "@/lib/appearance/runtime";
+import {
     MotionGroup,
     MotionItem,
     publicMotionTokens,
@@ -206,7 +211,10 @@ export function HeroSection({
     }, [resolvedTitle]);
 
     return (
-        <section className="relative isolate overflow-hidden text-[var(--ink)]">
+        <section
+            className="relative isolate overflow-hidden text-[var(--ink)]"
+            {...getAppearanceTargetProps("homepage.section.hero.surface")}
+        >
             <Container className="relative">
                 <MotionGroup
                     className="grid min-h-[100svh] grid-cols-[minmax(0,1fr)] items-start gap-9 pb-12 pt-[7.25rem] md:pb-16 md:pt-[8.8rem] xl:grid-cols-[minmax(0,3fr)_minmax(0,2fr)] xl:items-end xl:gap-12"
@@ -219,10 +227,19 @@ export function HeroSection({
                                 animate={shouldReduceMotion ? undefined : { opacity: 1, y: 0 }}
                                 transition={publicMotionTokens.sectionSpring}
                                 className="space-y-7"
+                                {...getAppearanceTargetProps("homepage.section.hero.content")}
                             >
                                 <div className="inline-flex items-center gap-3">
                                     <span className="h-px w-12 bg-[rgba(16,40,70,0.14)]" />
-                                    <span className="editorial-caption text-[var(--ink-muted)]">{copy.labels.eyebrow}</span>
+                                    <span
+                                        className="editorial-caption text-[var(--ink-muted)]"
+                                        style={getAppearanceTextStyle({
+                                            colorRole: "badge",
+                                            colorFallback: "var(--ink-muted)",
+                                        })}
+                                    >
+                                        {copy.labels.eyebrow}
+                                    </span>
                                 </div>
 
                                 <div className="space-y-4">
@@ -231,6 +248,8 @@ export function HeroSection({
                                             ref={titleRef}
                                             className="inline-block max-w-full font-heading text-[clamp(3.15rem,10vw,4.9rem)] leading-[0.86] tracking-[-0.064em] text-[var(--ink)] md:text-[clamp(3.8rem,8vw,5.9rem)] xl:text-[clamp(4.6rem,6vw,5.85rem)]"
                                             style={{
+                                                color: getAppearanceCssValue("titleColor", "var(--ink)"),
+                                                fontSize: getAppearanceCssValue("titleSize", "clamp(3.15rem,10vw,4.9rem)"),
                                                 textWrap: "balance",
                                                 wordBreak: "keep-all",
                                                 overflowWrap: "normal",
@@ -239,7 +258,15 @@ export function HeroSection({
                                             {resolvedTitle}
                                         </h1>
                                     </div>
-                                    <p className="max-w-[34rem] text-[0.98rem] leading-[1.95rem] text-[var(--ink-soft)] md:text-[1.02rem]">
+                                    <p
+                                        className="max-w-[34rem] text-[0.98rem] leading-[1.95rem] text-[var(--ink-soft)] md:text-[1.02rem]"
+                                        style={getAppearanceTextStyle({
+                                            colorRole: "body",
+                                            colorFallback: "var(--ink-soft)",
+                                            sizeRole: "body",
+                                            sizeFallback: "clamp(0.98rem,1vw,1.02rem)",
+                                        })}
+                                    >
                                         {resolvedSubtitle}
                                     </p>
                                 </div>

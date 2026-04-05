@@ -4,6 +4,12 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 import { motion, useReducedMotion } from "framer-motion";
 import { publicMotionTokens } from "@/components/motion/PublicMotion";
+import type { AppearanceTargetId } from "@/lib/appearance/schema";
+import {
+    getAppearanceTargetProps,
+    getAppearanceTextStyle,
+    mergeAppearanceStyles,
+} from "@/lib/appearance/runtime";
 
 export interface SectionHeaderProps {
     badge?: string;
@@ -14,6 +20,7 @@ export interface SectionHeaderProps {
     variant?: "light" | "dark";
     motionPreset?: "none" | "section" | "contrast";
     className?: string;
+    appearanceTargetId?: AppearanceTargetId;
 }
 
 const SectionHeader: React.FC<SectionHeaderProps> = ({
@@ -25,6 +32,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     variant = "light",
     motionPreset = "section",
     className,
+    appearanceTargetId,
 }) => {
     const actualAlignment = centered ? "center" : (alignment || "left");
     const isDark = variant === "dark";
@@ -39,6 +47,7 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
     return (
         <motion.div
             className={cn("mb-8 md:mb-10", alignmentMap[actualAlignment], className)}
+            {...getAppearanceTargetProps(appearanceTargetId)}
             initial={
                 shouldReduceMotion || motionPreset === "none"
                     ? false
@@ -83,7 +92,13 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                     {badge ? (
                         <div className={cn("inline-flex items-center gap-3", actualAlignment === "right" && "ml-auto", actualAlignment === "center" && "mx-auto")}>
                             <span className={cn("h-px w-10", isDark ? "bg-white/14" : "bg-[rgba(16,40,70,0.18)]")} />
-                            <span className={cn("editorial-caption", isDark ? "text-[var(--on-dark-meta)]" : "text-[var(--ink-muted)]")}>
+                            <span
+                                className={cn("editorial-caption", isDark ? "text-[var(--on-dark-meta)]" : "text-[var(--ink-muted)]")}
+                                style={getAppearanceTextStyle({
+                                    colorRole: "badge",
+                                    colorFallback: isDark ? "var(--on-dark-meta)" : "var(--ink-muted)",
+                                })}
+                            >
                                 {badge}
                             </span>
                         </div>
@@ -94,6 +109,14 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                             isDark ? "!text-[var(--on-dark-heading)]" : "text-[var(--ink)]",
                             actualAlignment === "center" && "mx-auto",
                             actualAlignment === "right" && "ml-auto"
+                        )}
+                        style={mergeAppearanceStyles(
+                            getAppearanceTextStyle({
+                                colorRole: "title",
+                                colorFallback: isDark ? "var(--on-dark-heading)" : "var(--ink)",
+                                sizeRole: "title",
+                                sizeFallback: "clamp(2rem,4vw,3.05rem)",
+                            }),
                         )}
                     >
                         {title}
@@ -116,6 +139,12 @@ const SectionHeader: React.FC<SectionHeaderProps> = ({
                                 isDark ? "text-[var(--on-dark-body)]" : "text-[var(--ink-soft)]",
                                 actualAlignment === "right" && "text-left"
                             )}
+                            style={getAppearanceTextStyle({
+                                colorRole: "body",
+                                colorFallback: isDark ? "var(--on-dark-body)" : "var(--ink-soft)",
+                                sizeRole: "body",
+                                sizeFallback: "clamp(0.96rem,1vw,1rem)",
+                            })}
                         >
                             {subtitle}
                         </p>

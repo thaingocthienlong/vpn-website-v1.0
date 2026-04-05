@@ -1,12 +1,19 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Container } from "@/components/layout/Container";
+import type { AppearanceTargetId } from "@/lib/appearance/schema";
+import {
+    getAppearanceSurfaceStyle,
+    getAppearanceTargetProps,
+    mergeAppearanceStyles,
+} from "@/lib/appearance/runtime";
 
 export interface SectionWrapperProps extends React.HTMLAttributes<HTMLElement> {
     id?: string;
     background?: "white" | "gradient-blue" | "gradient-dark";
     padding?: "sm" | "md" | "lg";
     containerClassName?: string;
+    appearanceTargetId?: AppearanceTargetId;
 }
 
 const SectionWrapper: React.FC<SectionWrapperProps> = ({
@@ -15,13 +22,21 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
     background = "white",
     padding = "sm",
     containerClassName,
+    appearanceTargetId,
     children,
+    style,
     ...props
 }) => {
     const backgrounds = {
-        white: "",
+        white: "transparent",
         "gradient-blue": "bg-[linear-gradient(180deg,rgba(245,249,252,0.32),rgba(229,238,245,0.14))]",
         "gradient-dark": "overflow-hidden bg-[linear-gradient(180deg,#163049_0%,#0f2135_100%)] text-[var(--on-dark-heading)]",
+    } as const;
+
+    const backgroundFallbacks = {
+        white: "transparent",
+        "gradient-blue": "linear-gradient(180deg,rgba(245,249,252,0.32),rgba(229,238,245,0.14))",
+        "gradient-dark": "linear-gradient(180deg,#163049 0%,#0f2135 100%)",
     } as const;
 
     const paddings = {
@@ -31,7 +46,16 @@ const SectionWrapper: React.FC<SectionWrapperProps> = ({
     } as const;
 
     return (
-        <section id={id} className={cn("relative", backgrounds[background], paddings[padding], className)} {...props}>
+        <section
+            id={id}
+            className={cn("relative", backgrounds[background], paddings[padding], className)}
+            style={mergeAppearanceStyles(
+                getAppearanceSurfaceStyle(backgroundFallbacks[background]),
+                style,
+            )}
+            {...getAppearanceTargetProps(appearanceTargetId)}
+            {...props}
+        >
             <Container className={containerClassName}>
                 {children}
             </Container>

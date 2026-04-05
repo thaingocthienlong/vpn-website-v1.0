@@ -8,6 +8,7 @@ import {
     PublicRouteHero,
     type BreadcrumbItem,
 } from "@/components/route-shell";
+import type { AppearanceTargetId } from "@/lib/appearance/schema";
 
 export interface PublicPageShellProps {
     breadcrumbs?: BreadcrumbItem[];
@@ -17,6 +18,7 @@ export interface PublicPageShellProps {
     actions?: React.ReactNode;
     secondaryPanel?: React.ReactNode;
     heroVariant?: "light" | "dark";
+    heroAppearanceTargetId?: AppearanceTargetId;
     controls?: React.ReactNode;
     main: React.ReactNode;
     aside?: React.ReactNode;
@@ -33,6 +35,7 @@ export function PublicPageShell({
     actions,
     secondaryPanel,
     heroVariant = "light",
+    heroAppearanceTargetId = "page.hero.default",
     controls,
     main,
     aside,
@@ -56,6 +59,7 @@ export function PublicPageShell({
                             actions={actions}
                             secondaryPanel={secondaryPanel}
                             variant={heroVariant}
+                            appearanceTargetId={heroAppearanceTargetId}
                         />
                     )}
                     {controls}

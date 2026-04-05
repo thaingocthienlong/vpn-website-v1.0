@@ -4,7 +4,7 @@ import { optimizeCloudinaryUrl, ImageSizes } from "@/lib/cloudinary";
 import { reportServerException } from "@/lib/monitoring/report-server-exception";
 import { unstable_cache } from "next/cache";
 import { getServiceSummaries } from "@/lib/services/site-content";
-import { normalizePreviewText } from "@/lib/preview-text";
+import { normalizePlainText, normalizePreviewText } from "@/lib/preview-text";
 
 type CourseType = "ADMISSION" | "SHORT_COURSE" | "STUDY_ABROAD";
 type HomepageSectionConfig = Record<string, unknown>;
@@ -244,18 +244,20 @@ export async function getFeaturedCourses(locale: Locale = 'vi', limit: number = 
 
         return courses.map((course) => ({
             id: course.id,
-            title: locale === "en" && course.title_en ? course.title_en : course.title,
+            title: normalizePlainText(locale === "en" && course.title_en ? course.title_en : course.title) || course.title,
             slug: course.slug,
-            excerpt: locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt,
+            excerpt: normalizePreviewText(locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt),
             hasEnglishContent: hasLocalizedText(course.title_en, course.excerpt_en),
             featuredImage: optimizeCloudinaryUrl(course.featuredImage?.url || null, ImageSizes.CARD_THUMBNAIL),
             type: course.type as CourseType,
             isFeatured: course.isFeatured,
             isRegistrationOpen: course.isRegistrationOpen,
             category: course.category ? {
-                name: locale === "en" && course.category.name_en
-                    ? course.category.name_en
-                    : course.category.name,
+                name: normalizePlainText(
+                    locale === "en" && course.category.name_en
+                        ? course.category.name_en
+                        : course.category.name
+                ) || course.category.name,
                 slug: course.category.slug,
             } : null,
         }));
@@ -293,12 +295,14 @@ export async function getActivePartners(locale: Locale = 'vi') {
 
         return partners.map((partner) => ({
             id: partner.id,
-            name: locale === "en" && partner.name_en ? partner.name_en : partner.name,
+            name: normalizePlainText(locale === "en" && partner.name_en ? partner.name_en : partner.name) || partner.name,
             logo: optimizeCloudinaryUrl(partner.logo?.url || null, ImageSizes.PARTNER_LOGO),
             website: partner.website,
-            description: locale === "en" && partner.description_en
-                ? partner.description_en
-                : partner.description,
+            description: normalizePreviewText(
+                locale === "en" && partner.description_en
+                    ? partner.description_en
+                    : partner.description
+            ),
         }));
     } catch (error) {
         if (!isMissingSqliteTableError(error)) {
@@ -333,10 +337,10 @@ export async function getActiveReviews(locale: Locale = "vi", limit = 6) {
 
         return reviews.map((review) => ({
             id: review.id,
-            name: review.name,
-            role: resolvedLocale === "en" ? review.role_en || review.role : review.role,
-            company: resolvedLocale === "en" ? review.company_en || review.company : review.company,
-            content: resolvedLocale === "en" ? review.content_en || review.content : review.content,
+            name: normalizePlainText(review.name) || review.name,
+            role: normalizePlainText(resolvedLocale === "en" ? review.role_en || review.role : review.role),
+            company: normalizePlainText(resolvedLocale === "en" ? review.company_en || review.company : review.company),
+            content: normalizePlainText(resolvedLocale === "en" ? review.content_en || review.content : review.content),
             hasEnglishContent: hasLocalizedText(review.content_en, review.role_en, review.company_en),
             avatar: review.avatar?.url || null,
             rating: review.rating,
@@ -371,10 +375,10 @@ export async function getReviewsByIds(ids: string[], locale: Locale = "vi") {
 
         return reviews.map((review) => ({
             id: review.id,
-            name: review.name,
-            role: resolvedLocale === "en" ? review.role_en || review.role : review.role,
-            company: resolvedLocale === "en" ? review.company_en || review.company : review.company,
-            content: resolvedLocale === "en" ? review.content_en || review.content : review.content,
+            name: normalizePlainText(review.name) || review.name,
+            role: normalizePlainText(resolvedLocale === "en" ? review.role_en || review.role : review.role),
+            company: normalizePlainText(resolvedLocale === "en" ? review.company_en || review.company : review.company),
+            content: normalizePlainText(resolvedLocale === "en" ? review.content_en || review.content : review.content),
             avatar: review.avatar?.url || null,
             rating: review.rating,
         }));
@@ -464,45 +468,49 @@ export async function getCourseBySlug(slug: string, locale: Locale = 'vi') {
         // Build Table of Contents
         const toc = sections.map((section) => ({
             key: section.sectionKey,
-            title: locale === "en" && section.title_en ? section.title_en : section.title,
+            title: normalizePlainText(locale === "en" && section.title_en ? section.title_en : section.title) || section.title,
         }));
 
         // Transform sections based on locale
         const transformedSections = sections.map((section) => ({
             id: section.id,
             key: section.sectionKey,
-            title: locale === "en" && section.title_en ? section.title_en : section.title,
+            title: normalizePlainText(locale === "en" && section.title_en ? section.title_en : section.title) || section.title,
             content: locale === "en" && section.content_en ? section.content_en : section.content,
         }));
 
         return {
             id: course.id,
-            title: locale === "en" && course.title_en ? course.title_en : course.title,
+            title: normalizePlainText(locale === "en" && course.title_en ? course.title_en : course.title) || course.title,
             slug: course.slug,
-            excerpt: locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt,
+            excerpt: normalizePreviewText(locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt),
             featuredImage: optimizeCloudinaryUrl(course.featuredImage?.url || null, ImageSizes.HERO),
             type: course.type as CourseType,
             isFeatured: course.isFeatured,
             isRegistrationOpen: course.isRegistrationOpen,
             category: course.category ? {
-                name: locale === "en" && course.category.name_en
-                    ? course.category.name_en
-                    : course.category.name,
+                name: normalizePlainText(
+                    locale === "en" && course.category.name_en
+                        ? course.category.name_en
+                        : course.category.name
+                ) || course.category.name,
                 slug: course.category.slug,
             } : null,
             author: { name: course.author.name },
             partners: course.partners.map((cp) => ({
                 id: cp.partner.id,
-                name: locale === "en" && cp.partner.name_en
-                    ? cp.partner.name_en
-                    : cp.partner.name,
+                name: normalizePlainText(
+                    locale === "en" && cp.partner.name_en
+                        ? cp.partner.name_en
+                        : cp.partner.name
+                ) || cp.partner.name,
                 website: cp.partner.website,
             })),
             toc,
             sections: transformedSections,
             seo: {
-                metaTitle: course.metaTitle || course.title,
-                metaDescription: course.metaDescription || course.excerpt,
+                metaTitle: normalizePlainText(course.metaTitle) || normalizePlainText(course.title) || course.title,
+                metaDescription: normalizePreviewText(course.metaDescription) || normalizePreviewText(course.excerpt),
             },
         };
     } catch (error) {
@@ -540,9 +548,9 @@ export async function getRelatedCourses(type: string, excludeSlug: string, local
 
         return courses.map((course) => ({
             id: course.id,
-            title: locale === "en" && course.title_en ? course.title_en : course.title,
+            title: normalizePlainText(locale === "en" && course.title_en ? course.title_en : course.title) || course.title,
             slug: course.slug,
-            excerpt: locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt,
+            excerpt: normalizePreviewText(locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt),
             featuredImage: optimizeCloudinaryUrl(course.featuredImage?.url || null, ImageSizes.RELATED_THUMBNAIL),
             type: course.type as CourseType,
         }));
@@ -590,8 +598,8 @@ export async function getHomepageSections(locale: Locale = 'vi') {
                     .map<HomepageSectionView>((section) => ({
                         id: section.id,
                         sectionKey: section.sectionKey,
-                        title: resolvedLocale === "en" ? section.title_en || section.title : section.title,
-                        subtitle: resolvedLocale === "en" ? section.subtitle_en || section.subtitle : section.subtitle,
+                        title: normalizePlainText(resolvedLocale === "en" ? section.title_en || section.title : section.title),
+                        subtitle: normalizePlainText(resolvedLocale === "en" ? section.subtitle_en || section.subtitle : section.subtitle),
                         hasEnglishTitle: hasLocalizedText(section.title_en),
                         hasEnglishSubtitle: hasLocalizedText(section.subtitle_en),
                         isEnabled: section.isEnabled,

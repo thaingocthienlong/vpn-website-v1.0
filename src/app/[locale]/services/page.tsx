@@ -46,10 +46,6 @@ export default async function ServicesPage({
             heroBadge="Dịch vụ của chúng tôi"
             heroTitle="Giải pháp toàn diện"
             heroDescription="Chúng tôi cung cấp đa dạng các dịch vụ nghiên cứu, tư vấn và đào tạo đáp ứng nhu cầu phát triển của doanh nghiệp và tổ chức."
-            heroCards={viServiceListSummaries.slice(0, 2).map((service) => ({
-                title: service.title,
-                description: service.excerpt,
-            }))}
             services={viServiceListSummaries}
             detailLabel="Xem chi tiết"
             emptyTitle="Không tìm thấy kết quả"

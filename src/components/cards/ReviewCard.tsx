@@ -1,10 +1,16 @@
 "use client";
 
 import Image from "next/image";
+import type { CSSProperties } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { Quotes, Star } from "@phosphor-icons/react";
 import { cn } from "@/lib/utils";
 import { publicMotionTokens } from "@/components/motion/PublicMotion";
+import {
+    getAppearanceSurfaceStyle,
+    getAppearanceTargetProps,
+    getAppearanceTextStyle,
+} from "@/lib/appearance/runtime";
 
 interface ReviewCardProps {
     name: string;
@@ -29,6 +35,11 @@ export function ReviewCard({
 }: ReviewCardProps) {
     const isFeature = variant === "feature";
     const shouldReduceMotion = useReducedMotion();
+    const appearanceTargetId = isFeature ? "card.review.feature" : "card.review.default";
+    const articleStyle: CSSProperties & { transformPerspective?: number } = {
+        ...getAppearanceSurfaceStyle("linear-gradient(180deg,rgba(255,255,255,0.92),rgba(234,243,255,0.86))"),
+        ...(shouldReduceMotion ? {} : { transformPerspective: 1200 }),
+    };
 
     return (
         <motion.article
@@ -37,9 +48,10 @@ export function ReviewCard({
                 isFeature ? "p-6 md:p-7" : "p-5 md:p-6",
                 className
             )}
+            style={articleStyle}
+            {...getAppearanceTargetProps(appearanceTargetId)}
             whileHover={shouldReduceMotion ? undefined : { y: -8, rotateX: 2.5, rotateY: -2 }}
             transition={publicMotionTokens.hoverSpring}
-            style={shouldReduceMotion ? undefined : { transformPerspective: 1200 }}
         >
             <div className="mb-5 flex items-center justify-between">
                 <motion.div
@@ -66,7 +78,15 @@ export function ReviewCard({
                 )}
             </div>
 
-            <p className={cn("mb-6 flex-1 text-[var(--ink-soft)]", isFeature ? "text-base leading-8" : "text-[15px] leading-[1.95rem]")}>
+            <p
+                className={cn("mb-6 flex-1 text-[var(--ink-soft)]", isFeature ? "text-base leading-8" : "text-[15px] leading-[1.95rem]")}
+                style={getAppearanceTextStyle({
+                    colorRole: "body",
+                    colorFallback: "var(--ink-soft)",
+                    sizeRole: "body",
+                    sizeFallback: "0.96rem",
+                })}
+            >
                 &ldquo;{content}&rdquo;
             </p>
 
@@ -85,9 +105,25 @@ export function ReviewCard({
                     </div>
                 )}
                 <div>
-                    <p className="font-semibold text-[var(--ink)]">{name}</p>
+                    <p
+                        className="font-semibold text-[var(--ink)]"
+                        style={getAppearanceTextStyle({
+                            colorRole: "title",
+                            colorFallback: "var(--ink)",
+                            sizeRole: "title",
+                            sizeFallback: isFeature ? "2.15rem" : "1.8rem",
+                        })}
+                    >
+                        {name}
+                    </p>
                     {(role || company) && (
-                        <p className="text-sm text-[var(--ink-soft)]">
+                        <p
+                            className="text-sm text-[var(--ink-soft)]"
+                            style={getAppearanceTextStyle({
+                                colorRole: "body",
+                                colorFallback: "var(--ink-soft)",
+                            })}
+                        >
                             {role}
                             {role && company && " - "}
                             {company}

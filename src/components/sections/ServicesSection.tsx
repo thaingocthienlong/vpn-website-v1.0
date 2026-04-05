@@ -153,6 +153,7 @@ export function ServicesSection({
             background="gradient-dark"
             padding="md"
             className="public-band [--on-dark-heading:#ffffff] [&_h2]:!text-white"
+            appearanceTargetId="homepage.section.services.surface"
         >
             <MotionSection>
                 <SectionHeader
@@ -162,6 +163,7 @@ export function ServicesSection({
                         ? "A concise service map with direct pathways into each capability area."
                         : "Bố cục dạng thẻ giúp người xem đi thẳng vào từng nhóm dịch vụ và nội dung chi tiết bên trong.")}
                     variant="dark"
+                    appearanceTargetId="homepage.section.services.header"
                 />
             </MotionSection>
 

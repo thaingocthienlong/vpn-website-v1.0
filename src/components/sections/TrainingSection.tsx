@@ -77,7 +77,7 @@ export function TrainingSection({
     ] as const;
 
     return (
-        <SectionWrapper padding="lg">
+        <SectionWrapper padding="lg" appearanceTargetId="homepage.section.training.surface">
             <MotionSection>
                 <SectionHeader
                     badge={isEn ? "Programs" : "Chương trình"}
@@ -86,6 +86,7 @@ export function TrainingSection({
                         ? "A lead banner cluster with supporting placements, arranged to fit the native programme banner format without aggressive cropping."
                         : "Một cụm banner dẫn hướng đi cùng các vị trí bổ trợ, được sắp để giữ đúng định dạng banner gốc của từng chương trình mà không cắt ảnh gắt.")}
                     className="[&_h2]:max-w-none [&_h2]:whitespace-nowrap [&_h2]:text-[clamp(1.75rem,5.6vw,2.9rem)] [&_h2]:leading-[0.96] [&_h2]:tracking-[-0.05em]"
+                    appearanceTargetId="homepage.section.training.header"
                 />
             </MotionSection>
 

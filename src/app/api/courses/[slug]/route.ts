@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { successResponse, errors, getLocale } from "@/lib/api-response";
+import { normalizePlainText, normalizePreviewText } from "@/lib/preview-text";
 
 interface RouteParams {
     params: Promise<{ slug: string }>;
@@ -58,47 +59,51 @@ export async function GET(request: NextRequest, { params }: RouteParams) {
         // Build Table of Contents
         const toc = sections.map((section) => ({
             key: section.sectionKey,
-            title: locale === "en" && section.title_en ? section.title_en : section.title,
+            title: normalizePlainText(locale === "en" && section.title_en ? section.title_en : section.title) || section.title,
         }));
 
         // Transform sections based on locale
         const transformedSections = sections.map((section) => ({
             id: section.id,
             key: section.sectionKey,
-            title: locale === "en" && section.title_en ? section.title_en : section.title,
+            title: normalizePlainText(locale === "en" && section.title_en ? section.title_en : section.title) || section.title,
             content: locale === "en" && section.content_en ? section.content_en : section.content,
         }));
 
         // Transform course based on locale
         const transformedCourse = {
             id: course.id,
-            title: locale === "en" && course.title_en ? course.title_en : course.title,
+            title: normalizePlainText(locale === "en" && course.title_en ? course.title_en : course.title) || course.title,
             slug: course.slug,
-            excerpt: locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt,
+            excerpt: normalizePreviewText(locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt),
             featuredImage: course.featuredImage?.url || null,
             type: course.type,
             isFeatured: course.isFeatured,
             isRegistrationOpen: course.isRegistrationOpen,
             category: course.category ? {
-                name: locale === "en" && course.category.name_en
-                    ? course.category.name_en
-                    : course.category.name,
+                name: normalizePlainText(
+                    locale === "en" && course.category.name_en
+                        ? course.category.name_en
+                        : course.category.name
+                ) || course.category.name,
                 slug: course.category.slug,
             } : null,
             author: { name: course.author.name },
             partners: course.partners.map((cp) => ({
                 id: cp.partner.id,
-                name: locale === "en" && cp.partner.name_en
-                    ? cp.partner.name_en
-                    : cp.partner.name,
+                name: normalizePlainText(
+                    locale === "en" && cp.partner.name_en
+                        ? cp.partner.name_en
+                        : cp.partner.name
+                ) || cp.partner.name,
                 logo: cp.partner.logo,
                 website: cp.partner.website,
             })),
             toc,
             sections: transformedSections,
             seo: {
-                metaTitle: course.metaTitle || course.title,
-                metaDescription: course.metaDescription || course.excerpt,
+                metaTitle: normalizePlainText(course.metaTitle) || normalizePlainText(course.title) || course.title,
+                metaDescription: normalizePreviewText(course.metaDescription) || normalizePreviewText(course.excerpt),
             },
         };
 

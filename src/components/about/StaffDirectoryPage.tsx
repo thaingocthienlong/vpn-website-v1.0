@@ -84,7 +84,16 @@ export function StaffDirectoryPage({
         </div>
     );
 
-    return <PublicPageShell badge={badge} title={title} description={description} main={main} asideSticky={false} />;
+    return (
+        <PublicPageShell
+            badge={badge}
+            title={title}
+            description={description}
+            main={main}
+            asideSticky={false}
+            heroAppearanceTargetId="page.hero.staff-directory"
+        />
+    );
 }
 
 export default StaffDirectoryPage;

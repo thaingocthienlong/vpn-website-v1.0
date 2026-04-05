@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Globe2, Home, Settings2 } from "lucide-react";
+import { Globe2, Home, Palette, Settings2 } from "lucide-react";
 
 const siteCards = [
     {
@@ -20,6 +20,12 @@ const siteCards = [
         href: "/admin/site/settings",
         icon: Settings2,
     },
+    {
+        title: "Appearance",
+        description: "Manage semantic tokens, presets, and target assignments for the public site.",
+        href: "/admin/site/appearance",
+        icon: Palette,
+    },
 ];
 
 export default function AdminSiteHubPage() {
@@ -32,7 +38,7 @@ export default function AdminSiteHubPage() {
                 </p>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-3">
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
                 {siteCards.map((card) => (
                     <Link
                         key={card.href}

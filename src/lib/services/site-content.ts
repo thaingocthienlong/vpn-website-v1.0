@@ -1,6 +1,7 @@
 import { unstable_cache } from "next/cache";
 import type { Locale } from "@/i18n/config";
 import { prisma } from "@/lib/prisma";
+import { decodeHtmlEntities, normalizePlainText } from "@/lib/preview-text";
 import { getEquivalentRoute } from "@/lib/routes";
 import {
     type ServiceContentSection,
@@ -73,18 +74,13 @@ function nonEmptyString(value: string | null | undefined): string {
 
 function stripHtml(html: string | null | undefined): string {
     if (!html) return "";
-    return html
+    return decodeHtmlEntities(html)
         .replace(/<li[^>]*>/gi, "\n")
         .replace(/<\/li>/gi, "\n")
         .replace(/<br\s*\/?>/gi, "\n")
         .replace(/<\/p>/gi, "\n")
         .replace(/<[^>]*>/g, "")
-        .replace(/&nbsp;/g, " ")
-        .replace(/&amp;/g, "&")
-        .replace(/&lt;/g, "<")
-        .replace(/&gt;/g, ">")
-        .replace(/&quot;/g, "\"")
-        .replace(/&#39;/g, "'")
+        .replace(/\u00A0/g, " ")
         .replace(/\s+\n/g, "\n")
         .replace(/\n{3,}/g, "\n\n")
         .replace(/[ \t]{2,}/g, " ")
@@ -140,10 +136,10 @@ function localizeText(
     value: string | null | undefined,
     fallback?: string | null | undefined,
 ): string {
-    if (locale === "en" && nonEmptyString(value)) {
-        return value!.trim();
+    if (locale === "en") {
+        return normalizePlainText(value) || normalizePlainText(fallback) || "";
     }
-    return nonEmptyString(fallback) || "";
+    return normalizePlainText(fallback) || normalizePlainText(value) || "";
 }
 
 function resolveServiceIconKey(slug: string): ServiceIconKey {

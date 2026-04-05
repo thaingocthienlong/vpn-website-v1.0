@@ -17,6 +17,12 @@ export function revalidateSiteConfig() {
     safeRevalidatePath("/en", "layout");
 }
 
+export function revalidateAppearanceConfig() {
+    expireTag("appearance-config");
+    safeRevalidatePath("/", "layout");
+    safeRevalidatePath("/en", "layout");
+}
+
 export function revalidateHomepage() {
     expireTag("homepage_sections");
     safeRevalidatePath("/", "layout");

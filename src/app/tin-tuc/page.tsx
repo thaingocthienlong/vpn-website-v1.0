@@ -18,6 +18,7 @@ export default function NewsListingPage() {
                 filterMode="links"
                 postsPerPage={10}
                 showFeatured={false}
+                showHeroPanel={false}
                 gridColumns={2}
                 listLayout="rows"
             />

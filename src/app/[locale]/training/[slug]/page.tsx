@@ -278,6 +278,7 @@ export default function CourseDetailPage() {
             secondaryPanel={heroPanel}
             main={main}
             asideSticky={false}
+            heroAppearanceTargetId="page.hero.course-detail"
         />
     );
 }

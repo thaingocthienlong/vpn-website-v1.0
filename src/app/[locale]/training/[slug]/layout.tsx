@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
+import { normalizePlainText, normalizePreviewText } from "@/lib/preview-text";
 
 const BASE_URL = "https://vienphuongnam.com";
 
@@ -34,11 +35,11 @@ export async function generateMetadata({ params }: MetadataParams): Promise<Meta
             return { title: isEn ? "Course Not Found" : "Không tìm thấy khóa học" };
         }
 
-        const title = isEn && course.title_en ? course.title_en : course.title;
-        const description = course.metaDescription
-            || (isEn && course.excerpt_en ? course.excerpt_en : course.excerpt)
+        const title = normalizePlainText(isEn && course.title_en ? course.title_en : course.title) || course.title;
+        const description = normalizePreviewText(course.metaDescription)
+            || normalizePreviewText(isEn && course.excerpt_en ? course.excerpt_en : course.excerpt)
             || "";
-        const metaTitle = course.metaTitle || `${title} | SISRD`;
+        const metaTitle = normalizePlainText(course.metaTitle) || `${title} | SISRD`;
         const imageUrl = course.featuredImage?.url
             ? `${BASE_URL}${course.featuredImage.url}`
             : `${BASE_URL}/images/og-default.jpg`;
@@ -99,8 +100,8 @@ export default async function TrainingSlugLayout({
 
     let jsonLd = null;
     if (course) {
-        const title = isEn && course.title_en ? course.title_en : course.title;
-        const description = (isEn && course.excerpt_en ? course.excerpt_en : course.excerpt) || "";
+        const title = normalizePlainText(isEn && course.title_en ? course.title_en : course.title) || course.title;
+        const description = normalizePreviewText(isEn && course.excerpt_en ? course.excerpt_en : course.excerpt) || "";
         const imageUrl = course.featuredImage?.url
             ? `${BASE_URL}${course.featuredImage.url}`
             : `${BASE_URL}/images/logo.png`;

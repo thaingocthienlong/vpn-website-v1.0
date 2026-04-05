@@ -1,4 +1,5 @@
 import { prisma } from "@/lib/prisma";
+import { decodeHtmlEntities } from "@/lib/preview-text";
 
 const ABOUT_PRIMARY_SLUG = "gioi-thieu";
 const ABOUT_LEGACY_SLUG = "gioi-thieu-chung";
@@ -24,18 +25,6 @@ export interface VietnameseAboutLandingContent {
     rawContent: string;
     metaTitle: string | null;
     metaDescription: string | null;
-}
-
-function decodeHtmlEntities(value: string): string {
-    return value
-        .replace(/&nbsp;/gi, " ")
-        .replace(/&amp;/gi, "&")
-        .replace(/&lt;/gi, "<")
-        .replace(/&gt;/gi, ">")
-        .replace(/&quot;/gi, "\"")
-        .replace(/&#39;/gi, "'")
-        .replace(/&#8211;/gi, "–")
-        .replace(/&#8220;|&#8221;/gi, "\"");
 }
 
 function stripHtml(html: string): string {

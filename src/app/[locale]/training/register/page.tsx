@@ -178,6 +178,7 @@ export default function RegistrationPage() {
                     />
                 }
                 asideSticky={false}
+                heroAppearanceTargetId="page.hero.course-registration"
             />
         );
     }
@@ -383,6 +384,7 @@ export default function RegistrationPage() {
             secondaryPanel={secondaryPanel}
             main={main}
             asideSticky={false}
+            heroAppearanceTargetId="page.hero.course-registration"
         />
     );
 }

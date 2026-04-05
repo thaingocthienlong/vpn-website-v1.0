@@ -55,7 +55,7 @@ export function NewsSection({
     }
 
     return (
-        <SectionWrapper>
+        <SectionWrapper appearanceTargetId="homepage.section.news.surface">
             <MotionSection>
                 <SectionHeader
                     badge={isEn ? "Newsroom" : "Bản tin"}
@@ -63,6 +63,7 @@ export function NewsSection({
                     subtitle={subtitle || (isEn
                         ? "Editorial headlines curated from featured stories and the latest institutional updates."
                         : "Cụm biên tập gồm tin nổi bật và các cập nhật mới nhất theo nhịp hoạt động của viện.")}
+                    appearanceTargetId="homepage.section.news.header"
                 />
             </MotionSection>
 

@@ -6,6 +6,10 @@ import { PartnerLogo } from "@/components/cards";
 import { SectionWrapper } from "./SectionWrapper";
 import { detectLocaleFromPath } from "@/lib/routes";
 import { MotionGroup, MotionItem, publicMotionTokens } from "@/components/motion/PublicMotion";
+import {
+    getAppearanceTargetProps,
+    getAppearanceTextStyle,
+} from "@/lib/appearance/runtime";
 
 interface Partner {
     id: string;
@@ -35,7 +39,7 @@ export function PartnersSection({
     }
 
     return (
-        <SectionWrapper padding="sm">
+        <SectionWrapper padding="sm" appearanceTargetId="homepage.section.partners.surface">
             <div className="border-y border-[rgba(16,40,70,0.12)] py-7 md:py-9">
                 <MotionGroup className="space-y-7 md:space-y-8" stagger={0.06}>
                     <MotionItem>
@@ -43,6 +47,7 @@ export function PartnersSection({
                             whileHover={shouldReduceMotion ? undefined : { y: -2 }}
                             transition={publicMotionTokens.hoverSpring}
                             className="space-y-4"
+                            {...getAppearanceTargetProps("homepage.section.partners.header")}
                         >
                             <div className="inline-flex items-center gap-3">
                                 <span className="h-px w-10 bg-[rgba(16,40,70,0.18)]" />
@@ -52,16 +57,38 @@ export function PartnersSection({
                             </div>
                             <div className="grid gap-4 xl:grid-cols-[minmax(0,1.05fr)_auto] xl:items-end xl:justify-between">
                                 <div className="space-y-3">
-                                    <h2 className="max-w-[18ch] font-heading text-[2.15rem] text-[var(--ink)] md:text-[2.8rem]">
+                                    <h2
+                                        className="max-w-[18ch] font-heading text-[2.15rem] text-[var(--ink)] md:text-[2.8rem]"
+                                        style={getAppearanceTextStyle({
+                                            colorRole: "title",
+                                            colorFallback: "var(--ink)",
+                                            sizeRole: "title",
+                                            sizeFallback: "clamp(2rem,4vw,3.05rem)",
+                                        })}
+                                    >
                                         {title || (isEn ? "Partnerships that signal institutional trust" : "Đối tác liên kết")}
                                     </h2>
-                                    <p className="max-w-[42rem] text-sm leading-8 text-[var(--ink-soft)]">
+                                    <p
+                                        className="max-w-[42rem] text-sm leading-8 text-[var(--ink-soft)]"
+                                        style={getAppearanceTextStyle({
+                                            colorRole: "body",
+                                            colorFallback: "var(--ink-soft)",
+                                            sizeRole: "body",
+                                            sizeFallback: "0.96rem",
+                                        })}
+                                    >
                                         {subtitle || (isEn
                                             ? "A full institutional partner wall designed to keep every mark legible, calm, and credible."
                                             : "Mạng lưới đối tác được trình bày như một bức tường nhận diện gọn gàng, đủ rộng để mọi logo hiển thị rõ ràng và chuyên nghiệp.")}
                                     </p>
                                 </div>
-                                <p className="editorial-caption text-[var(--ink-muted)] xl:justify-self-end">
+                                <p
+                                    className="editorial-caption text-[var(--ink-muted)] xl:justify-self-end"
+                                    style={getAppearanceTextStyle({
+                                        colorRole: "badge",
+                                        colorFallback: "var(--ink-muted)",
+                                    })}
+                                >
                                     {partners.length} {isEn ? "active partners" : "đối tác đang hiển thị"}
                                 </p>
                             </div>

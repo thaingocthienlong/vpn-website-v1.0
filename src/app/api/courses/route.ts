@@ -7,6 +7,7 @@ import {
     getLocale,
     buildPaginationMeta,
 } from "@/lib/api-response";
+import { normalizePlainText, normalizePreviewText } from "@/lib/preview-text";
 
 /**
  * GET /api/courses
@@ -69,17 +70,19 @@ export async function GET(request: NextRequest) {
         // Transform courses based on locale
         const transformedCourses = courses.map((course) => ({
             id: course.id,
-            title: locale === "en" && course.title_en ? course.title_en : course.title,
+            title: normalizePlainText(locale === "en" && course.title_en ? course.title_en : course.title) || course.title,
             slug: course.slug,
-            excerpt: locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt,
+            excerpt: normalizePreviewText(locale === "en" && course.excerpt_en ? course.excerpt_en : course.excerpt),
             featuredImage: course.featuredImage?.url || null,
             type: course.type,
             isFeatured: course.isFeatured,
             isRegistrationOpen: course.isRegistrationOpen,
             category: course.category ? {
-                name: locale === "en" && course.category.name_en
-                    ? course.category.name_en
-                    : course.category.name,
+                name: normalizePlainText(
+                    locale === "en" && course.category.name_en
+                        ? course.category.name_en
+                        : course.category.name
+                ) || course.category.name,
                 slug: course.category.slug,
             } : null,
         }));

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { OptionalClerkProvider } from "@/components/providers/OptionalClerkProvider";
 import { SiteLayoutProvider } from "@/components/providers/SiteLayoutProvider";
+import { getAppearanceStylesheet } from "@/lib/services/appearance-config";
 import { getSiteLayout } from "@/lib/services/site-content";
 import "./globals.css";
 import "./site-grid.css";
@@ -44,9 +45,10 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const [viSiteLayout, enSiteLayout] = await Promise.all([
+  const [viSiteLayout, enSiteLayout, appearanceStylesheet] = await Promise.all([
     getSiteLayout("vi"),
     getSiteLayout("en"),
+    getAppearanceStylesheet(),
   ]);
 
   const jsonLd = {
@@ -87,6 +89,12 @@ export default async function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        {appearanceStylesheet ? (
+          <style
+            id="public-appearance-styles"
+            dangerouslySetInnerHTML={{ __html: appearanceStylesheet }}
+          />
+        ) : null}
         <OptionalClerkProvider>
           <SiteLayoutProvider value={{ vi: viSiteLayout, en: enSiteLayout }}>
             <div className="public-shell relative z-10">

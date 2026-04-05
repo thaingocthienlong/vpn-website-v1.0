@@ -5,6 +5,12 @@ import Image from "next/image";
 import { ArrowRight, Clock, GraduationCap } from "@phosphor-icons/react";
 import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import {
+    getAppearanceCssValue,
+    getAppearanceSurfaceStyle,
+    getAppearanceTargetProps,
+    getAppearanceTextStyle,
+} from "@/lib/appearance/runtime";
 
 interface CourseCardProps {
     id: string;
@@ -58,6 +64,11 @@ export function CourseCard({
     const href = isEn ? `/en/training/${slug}` : `/dao-tao/${slug}`;
     const isFeature = variant === "feature";
     const isCompact = variant === "compact";
+    const appearanceTargetId = isFeature
+        ? "card.course.feature"
+        : isCompact
+          ? "card.course.compact"
+          : "card.course.default";
 
     const formattedPrice = price
         ? new Intl.NumberFormat(isEn ? "en-US" : "vi-VN", {
@@ -75,6 +86,8 @@ export function CourseCard({
                     isCompact ? "p-5" : "",
                     className
                 )}
+                style={getAppearanceSurfaceStyle("linear-gradient(180deg,rgba(255,255,255,0.92),rgba(234,243,255,0.84))")}
+                {...getAppearanceTargetProps(appearanceTargetId)}
             >
                 {!isCompact && (
                     <div className={cn("relative w-full overflow-hidden", isFeature ? "aspect-[16/11]" : "aspect-[16/10]")}>
@@ -123,12 +136,28 @@ export function CourseCard({
                         </div>
                     )}
 
-                    <h3 className={cn("font-heading text-[var(--ink)]", isFeature ? "mb-4 text-[2.15rem]" : isCompact ? "mb-3 text-[1.35rem]" : "mb-4 text-[1.8rem]")}>
+                    <h3
+                        className={cn("font-heading text-[var(--ink)]", isFeature ? "mb-4 text-[2.15rem]" : isCompact ? "mb-3 text-[1.35rem]" : "mb-4 text-[1.8rem]")}
+                        style={getAppearanceTextStyle({
+                            colorRole: "title",
+                            colorFallback: "var(--ink)",
+                            sizeRole: "title",
+                            sizeFallback: isFeature ? "2.15rem" : isCompact ? "1.35rem" : "1.8rem",
+                        })}
+                    >
                         {title}
                     </h3>
 
                     {excerpt && (
-                        <p className={cn("text-[var(--ink-soft)]", isCompact ? "mb-5 line-clamp-2 text-sm leading-7" : "mb-6 line-clamp-3 text-sm leading-7")}>
+                        <p
+                            className={cn("text-[var(--ink-soft)]", isCompact ? "mb-5 line-clamp-2 text-sm leading-7" : "mb-6 line-clamp-3 text-sm leading-7")}
+                            style={getAppearanceTextStyle({
+                                colorRole: "body",
+                                colorFallback: "var(--ink-soft)",
+                                sizeRole: "body",
+                                sizeFallback: isCompact ? "0.875rem" : "0.96rem",
+                            })}
+                        >
                             {excerpt}
                         </p>
                     )}
@@ -141,13 +170,19 @@ export function CourseCard({
                             </span>
                         )}
                         {formattedPrice && (
-                            <span className="font-semibold text-[var(--accent-strong)]">
+                            <span
+                                className="font-semibold text-[var(--accent-strong)]"
+                                style={{ color: getAppearanceCssValue("accentColor", "var(--accent-strong)") }}
+                            >
                                 {formattedPrice}
                             </span>
                         )}
                     </div>
 
-                    <span className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium uppercase tracking-[0.14em] text-[var(--accent-strong)]">
+                    <span
+                        className="mt-auto inline-flex items-center gap-1.5 text-sm font-medium uppercase tracking-[0.14em] text-[var(--accent-strong)]"
+                        style={{ color: getAppearanceCssValue("accentColor", "var(--accent-strong)") }}
+                    >
                         {isEn ? "Learn more" : "Xem chi tiết"}
                         <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" weight="bold" />
                     </span>

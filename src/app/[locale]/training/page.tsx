@@ -143,6 +143,7 @@ export default function TrainingPage() {
             controls={controls}
             main={main}
             asideSticky={false}
+            heroAppearanceTargetId="page.hero.training-listing"
         />
     );
 }

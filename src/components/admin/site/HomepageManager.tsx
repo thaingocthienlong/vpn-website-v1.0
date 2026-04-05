@@ -34,12 +34,12 @@ function normalizeConfig(config: Record<string, unknown> | null | undefined) {
 }
 
 function getStringConfig(section: AdminHomepageSectionPayload, key: string) {
-    const value = normalizeConfig(section.config)[key];
+    const value = normalizeConfig(section.vi.config)[key];
     return typeof value === "string" ? value : "";
 }
 
 function getStringArrayConfig(section: AdminHomepageSectionPayload, key: string) {
-    const value = normalizeConfig(section.config)[key];
+    const value = normalizeConfig(section.vi.config)[key];
     return Array.isArray(value) ? value.filter((item): item is string => typeof item === "string") : [];
 }
 
@@ -99,9 +99,19 @@ export default function HomepageManager() {
     const updateConfigField = (sectionKey: string, key: string, value: string | string[]) => {
         updateSection(sectionKey, (section) => ({
             ...section,
-            config: {
-                ...normalizeConfig(section.config),
-                [key]: value,
+            vi: {
+                ...section.vi,
+                config: {
+                    ...normalizeConfig(section.vi.config),
+                    [key]: value,
+                },
+            },
+            en: {
+                ...section.en,
+                config: {
+                    ...normalizeConfig(section.en.config ?? section.vi.config),
+                    [key]: value,
+                },
             },
         }));
     };
@@ -109,7 +119,7 @@ export default function HomepageManager() {
     const toggleSection = (sectionKey: string) => {
         updateSection(sectionKey, (section) => ({
             ...section,
-            isEnabled: !section.isEnabled,
+            enabled: !section.enabled,
         }));
     };
 
@@ -180,8 +190,8 @@ export default function HomepageManager() {
                                     <h2 className="text-lg font-semibold text-slate-800">
                                         {SECTION_LABELS[section.sectionKey] || section.sectionKey}
                                     </h2>
-                                    <Badge variant={section.isEnabled ? "success" : "secondary"}>
-                                        {section.isEnabled ? "Live" : "Hidden"}
+                                    <Badge variant={section.enabled ? "success" : "secondary"}>
+                                        {section.enabled ? "Live" : "Hidden"}
                                     </Badge>
                                     <Badge variant="secondary">Order {section.sortOrder}</Badge>
                                 </div>
@@ -195,8 +205,8 @@ export default function HomepageManager() {
                                 className="gap-2"
                                 onClick={() => toggleSection(section.sectionKey)}
                             >
-                                {section.isEnabled ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
-                                {section.isEnabled ? "Hide section" : "Show section"}
+                                {section.enabled ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
+                                {section.enabled ? "Hide section" : "Show section"}
                             </Button>
                         </div>
 

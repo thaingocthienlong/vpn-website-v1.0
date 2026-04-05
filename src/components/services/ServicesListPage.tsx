@@ -9,6 +9,12 @@ import { PublicRouteHero, PublicStatePanel } from "@/components/route-shell";
 import { Button, type ButtonProps } from "@/components/ui/Button";
 import { cn } from "@/lib/utils";
 import {
+    getAppearanceCssValue,
+    getAppearanceSurfaceStyle,
+    getAppearanceTargetProps,
+    getAppearanceTextStyle,
+} from "@/lib/appearance/runtime";
+import {
     getServiceIconKeyBySlug,
     type ServiceListSummary,
 } from "@/lib/content/service-pages";
@@ -106,9 +112,16 @@ function ServiceCard({
 
     return (
         <Link href={href} className={cn("group block", spanClass)}>
-            <article className="interactive-card public-panel flex h-full flex-col overflow-hidden rounded-[2.2rem] p-6 md:p-7">
+            <article
+                className="interactive-card public-panel flex h-full flex-col overflow-hidden rounded-[2.2rem] p-6 md:p-7"
+                style={getAppearanceSurfaceStyle("linear-gradient(180deg,rgba(255,255,255,0.92),rgba(234,243,255,0.84))")}
+                {...getAppearanceTargetProps("card.service.listing")}
+            >
                 <div className="flex items-start justify-between gap-4">
-                    <div className="flex h-15 w-15 items-center justify-center rounded-[1.2rem] bg-[linear-gradient(145deg,rgba(23,88,216,0.12),rgba(90,151,255,0.08))] text-[var(--accent-strong)] shadow-[var(--shadow-xs)]">
+                    <div
+                        className="flex h-15 w-15 items-center justify-center rounded-[1.2rem] bg-[linear-gradient(145deg,rgba(23,88,216,0.12),rgba(90,151,255,0.08))] text-[var(--accent-strong)] shadow-[var(--shadow-xs)]"
+                        style={{ color: getAppearanceCssValue("accentColor", "var(--accent-strong)") }}
+                    >
                         {icon}
                     </div>
                     <span className="rounded-full border border-[rgba(26,72,164,0.1)] bg-white/80 px-3 py-1 text-xs font-semibold tracking-[0.14em] text-[var(--ink-muted)] uppercase">
@@ -117,8 +130,26 @@ function ServiceCard({
                 </div>
 
                 <div className="mt-6 space-y-4">
-                    <h2 className="font-heading text-[2rem] text-[var(--ink)]">{service.title}</h2>
-                    <p className="max-w-[52ch] text-sm leading-8 text-[var(--ink-soft)] md:text-[15px]">
+                    <h2
+                        className="font-heading text-[2rem] text-[var(--ink)]"
+                        style={getAppearanceTextStyle({
+                            colorRole: "title",
+                            colorFallback: "var(--ink)",
+                            sizeRole: "title",
+                            sizeFallback: "2rem",
+                        })}
+                    >
+                        {service.title}
+                    </h2>
+                    <p
+                        className="max-w-[52ch] text-sm leading-8 text-[var(--ink-soft)] md:text-[15px]"
+                        style={getAppearanceTextStyle({
+                            colorRole: "body",
+                            colorFallback: "var(--ink-soft)",
+                            sizeRole: "body",
+                            sizeFallback: "0.96rem",
+                        })}
+                    >
                         {service.excerpt}
                     </p>
                 </div>
@@ -138,7 +169,10 @@ function ServiceCard({
 
                 <div className="mt-8 flex items-center justify-between border-t border-[rgba(26,72,164,0.1)] pt-4">
                     {detailLabel ? (
-                        <span className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]">
+                        <span
+                            className="inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent-strong)]"
+                            style={{ color: getAppearanceCssValue("accentColor", "var(--accent-strong)") }}
+                        >
                             {detailLabel}
                             <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" weight="bold" />
                         </span>
@@ -262,6 +296,7 @@ export function ServicesListPage({
                         title={heroTitle}
                         description={heroDescription}
                         secondaryPanel={secondaryPanel}
+                        appearanceTargetId="page.hero.services-listing"
                     />
 
                     <section aria-live="polite">

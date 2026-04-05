@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { successResponse, errors, getLocale } from "@/lib/api-response";
+import { normalizePlainText } from "@/lib/preview-text";
 
 function isMissingSqliteTableError(error: unknown) {
     return error instanceof Error && error.message.includes("SQLITE_ERROR: no such table");
@@ -43,7 +44,7 @@ export async function GET(request: NextRequest) {
         // Transform categories based on locale
         const transformedCategories = categories.map((cat) => ({
             id: cat.id,
-            name: locale === "en" && cat.name_en ? cat.name_en : cat.name,
+            name: normalizePlainText(locale === "en" && cat.name_en ? cat.name_en : cat.name) || cat.name,
             slug: cat.slug,
             type: cat.type,
             postCount: cat._count.posts,

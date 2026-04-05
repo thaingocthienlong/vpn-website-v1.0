@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { successResponse, errors, getLocale } from "@/lib/api-response";
+import { normalizePlainText, normalizePreviewText } from "@/lib/preview-text";
 
 /**
  * GET /api/partners
@@ -26,12 +27,14 @@ export async function GET(request: NextRequest) {
         // Transform partners based on locale
         const transformedPartners = partners.map((partner) => ({
             id: partner.id,
-            name: locale === "en" && partner.name_en ? partner.name_en : partner.name,
+            name: normalizePlainText(locale === "en" && partner.name_en ? partner.name_en : partner.name) || partner.name,
             logo: partner.logo?.url || null,
             website: partner.website,
-            description: locale === "en" && partner.description_en
-                ? partner.description_en
-                : partner.description,
+            description: normalizePreviewText(
+                locale === "en" && partner.description_en
+                    ? partner.description_en
+                    : partner.description
+            ),
         }));
 
         return successResponse(transformedPartners);

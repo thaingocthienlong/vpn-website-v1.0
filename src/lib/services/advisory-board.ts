@@ -1,5 +1,6 @@
 import type { StaffDirectoryGroup } from "@/components/about/StaffDirectoryPage";
 import type { StaffCardPerson } from "@/components/cards/StaffCard";
+import { decodeHtmlEntities, normalizePlainText } from "@/lib/preview-text";
 import { prisma } from "@/lib/prisma";
 
 const ADVISORY_DEPARTMENT_SLUG = "ban-co-van";
@@ -16,13 +17,13 @@ const FALLBACK_GROUP_TITLE = "Thành viên hội đồng";
 type AdvisoryStaffRow = Awaited<ReturnType<typeof loadAdvisoryBoardStaff>>[number];
 
 function normalizeWhitespace(value: string | null | undefined): string {
-    return String(value || "").replace(/\s+/g, " ").trim();
+    return normalizePlainText(value) || "";
 }
 
 function stripHtml(value: string | null | undefined): string {
-    return String(value || "")
+    return decodeHtmlEntities(String(value || ""))
         .replace(/<[^>]*>/g, " ")
-        .replace(/&nbsp;/gi, " ")
+        .replace(/\u00A0/g, " ")
         .replace(/\s+/g, " ")
         .trim();
 }
@@ -49,8 +50,8 @@ function isFeaturedLeadership(member: AdvisoryStaffRow): boolean {
 function toStaffCardPerson(member: AdvisoryStaffRow): StaffCardPerson {
     return {
         id: member.id,
-        name: member.name,
-        title: member.title,
+        name: normalizePlainText(member.name) || member.name,
+        title: normalizePlainText(member.title),
         position: null,
         bio: member.bio,
         avatar: member.avatar
@@ -96,7 +97,7 @@ export function buildAdvisoryBoardDirectoryModel(staffList: AdvisoryStaffRow[]):
             }
 
             currentGroup = {
-                title: headingName,
+                title: normalizePlainText(headingName) || headingName,
                 members: [],
             };
             groups.push(currentGroup);

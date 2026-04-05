@@ -1,6 +1,7 @@
 import { NextRequest } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { successResponse, errors, getLocale } from "@/lib/api-response";
+import { normalizePlainText } from "@/lib/preview-text";
 
 /**
  * GET /api/staff
@@ -48,23 +49,27 @@ export async function GET(request: NextRequest) {
         // Transform staff based on locale
         const transformedStaff = staff.map((member) => ({
             id: member.id,
-            name: member.name,
-            title: locale === "en" && member.title_en ? member.title_en : member.title,
+            name: normalizePlainText(member.name) || member.name,
+            title: normalizePlainText(locale === "en" && member.title_en ? member.title_en : member.title),
             bio: locale === "en" && member.bio_en ? member.bio_en : member.bio,
             avatar: member.avatar?.url || null,
             email: member.email,
             department: member.department ? {
                 id: member.department.id,
-                name: locale === "en" && member.department.name_en
-                    ? member.department.name_en
-                    : member.department.name,
+                name: normalizePlainText(
+                    locale === "en" && member.department.name_en
+                        ? member.department.name_en
+                        : member.department.name
+                ) || member.department.name,
                 slug: member.department.slug,
             } : null,
             staffType: {
                 id: member.staffType.id,
-                name: locale === "en" && member.staffType.name_en
-                    ? member.staffType.name_en
-                    : member.staffType.name,
+                name: normalizePlainText(
+                    locale === "en" && member.staffType.name_en
+                        ? member.staffType.name_en
+                        : member.staffType.name
+                ) || member.staffType.name,
                 level: member.staffType.level,
                 isAdvisory: member.staffType.isAdvisory,
             },

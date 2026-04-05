@@ -140,6 +140,7 @@ export function ServiceDetailPageTemplate({
                         badge={service.id}
                         title={service.title}
                         description={service.description}
+                        appearanceTargetId="page.hero.default"
                         secondaryPanel={heroSecondaryPanel}
                         actions={(
                             <div className="flex items-center gap-3 rounded-[1.3rem] border border-[rgba(26,72,164,0.1)] bg-white/72 px-4 py-3 text-[var(--ink)] shadow-[var(--shadow-xs)]">

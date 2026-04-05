@@ -22,6 +22,10 @@ import {
     MotionSection,
     publicMotionTokens,
 } from "@/components/motion/PublicMotion";
+import {
+    getAppearanceTargetProps,
+    getAppearanceTextStyle,
+} from "@/lib/appearance/runtime";
 
 interface HomepageEndcapSectionProps {
     title?: string;
@@ -192,24 +196,49 @@ export function HomepageEndcapSection({
             };
 
     return (
-        <section className="public-band relative overflow-hidden bg-[linear-gradient(180deg,#163049_0%,#0f2135_100%)] py-[4.5rem] text-[var(--on-dark-heading)] md:py-24">
+        <section
+            className="public-band relative overflow-hidden bg-[linear-gradient(180deg,#163049_0%,#0f2135_100%)] py-[4.5rem] text-[var(--on-dark-heading)] md:py-24"
+            {...getAppearanceTargetProps("homepage.endcap.surface")}
+        >
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_18%,rgba(255,255,255,0.08),transparent_20%),radial-gradient(circle_at_86%_74%,rgba(77,111,147,0.26),transparent_22%)]" />
             <Container className="relative">
                 <MotionSection>
                     <MotionGroup className="grid gap-8 xl:grid-cols-[minmax(0,0.98fr)_minmax(360px,0.9fr)] xl:items-start" stagger={0.1}>
                         <MotionItem>
-                            <div className="border-t border-white/10 pt-6">
+                            <div className="border-t border-white/10 pt-6" {...getAppearanceTargetProps("homepage.endcap.header")}>
                                 <div className="space-y-5">
                                     <div className="inline-flex items-center gap-3">
                                         <span className="h-px w-10 bg-white/14" />
-                                        <span className="editorial-caption text-[var(--on-dark-body)]">
+                                        <span
+                                            className="editorial-caption text-[var(--on-dark-body)]"
+                                            style={getAppearanceTextStyle({
+                                                colorRole: "badge",
+                                                colorFallback: "var(--on-dark-body)",
+                                            })}
+                                        >
                                             {isEn ? "Consultation desk" : "Bàn tư vấn"}
                                         </span>
                                     </div>
-                                    <h2 className="max-w-[10.5ch] font-heading text-[2.65rem] !text-[var(--on-dark-heading)] md:text-[3.5rem]">
+                                    <h2
+                                        className="max-w-[10.5ch] font-heading text-[2.65rem] !text-[var(--on-dark-heading)] md:text-[3.5rem]"
+                                        style={getAppearanceTextStyle({
+                                            colorRole: "title",
+                                            colorFallback: "var(--on-dark-heading)",
+                                            sizeRole: "title",
+                                            sizeFallback: "clamp(2.65rem,6vw,3.5rem)",
+                                        })}
+                                    >
                                         {resolvedTitle}
                                     </h2>
-                                    <p className="max-w-[38rem] text-sm leading-[1.9rem] text-[color:rgba(244,248,252,0.86)] md:text-base">
+                                    <p
+                                        className="max-w-[38rem] text-sm leading-[1.9rem] text-[color:rgba(244,248,252,0.86)] md:text-base"
+                                        style={getAppearanceTextStyle({
+                                            colorRole: "body",
+                                            colorFallback: "rgba(244,248,252,0.86)",
+                                            sizeRole: "body",
+                                            sizeFallback: "1rem",
+                                        })}
+                                    >
                                         {resolvedSubtitle}
                                     </p>
                                 </div>

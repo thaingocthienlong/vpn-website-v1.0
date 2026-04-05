@@ -11,8 +11,19 @@ export function cn(...inputs: ClassValue[]) {
 /**
  * Format date for Vietnamese locale
  */
-export function formatDate(date: Date | string, options?: Intl.DateTimeFormatOptions) {
-    const d = typeof date === "string" ? new Date(date) : date;
+export function formatDate(
+    date: Date | string | number | null | undefined,
+    options?: Intl.DateTimeFormatOptions
+) {
+    if (date === null || date === undefined || date === "") {
+        return "-";
+    }
+
+    const d = date instanceof Date ? date : new Date(date);
+    if (Number.isNaN(d.getTime())) {
+        return "-";
+    }
+
     return d.toLocaleDateString("vi-VN", {
         day: "2-digit",
         month: "2-digit",

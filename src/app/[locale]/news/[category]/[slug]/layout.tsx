@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { prisma } from "@/lib/prisma";
+import { normalizePlainText, normalizePreviewText } from "@/lib/preview-text";
 
 const BASE_URL = "https://vienphuongnam.com";
 
@@ -36,11 +37,11 @@ export async function generateMetadata({ params }: MetadataParams): Promise<Meta
             return { title: isEn ? "Article Not Found" : "Không tìm thấy bài viết" };
         }
 
-        const title = isEn && post.title_en ? post.title_en : post.title;
-        const description = post.metaDescription
-            || (isEn && post.excerpt_en ? post.excerpt_en : post.excerpt)
+        const title = normalizePlainText(isEn && post.title_en ? post.title_en : post.title) || post.title;
+        const description = normalizePreviewText(post.metaDescription)
+            || normalizePreviewText(isEn && post.excerpt_en ? post.excerpt_en : post.excerpt)
             || "";
-        const metaTitle = post.metaTitle || `${title} | SISRD`;
+        const metaTitle = normalizePlainText(post.metaTitle) || `${title} | SISRD`;
         const imageUrl = post.featuredImage?.url
             ? `${BASE_URL}${post.featuredImage.url}`
             : `${BASE_URL}/images/og-default.jpg`;

@@ -5,6 +5,12 @@ import Image from "next/image";
 import { ArrowUpRight, CalendarBlank, Eye, NewspaperClipping } from "@phosphor-icons/react";
 import { Badge } from "@/components/ui";
 import { cn } from "@/lib/utils";
+import {
+    getAppearanceCssValue,
+    getAppearanceSurfaceStyle,
+    getAppearanceTargetProps,
+    getAppearanceTextStyle,
+} from "@/lib/appearance/runtime";
 
 interface NewsCardProps {
     id: string;
@@ -41,6 +47,7 @@ export function NewsCard({
     const href = isEn ? `/en/news/${category.slug}/${slug}` : `/tin-tuc/${category.slug}/${slug}`;
     const isFeature = variant === "feature";
     const isCompact = variant === "compact";
+    const appearanceTargetId = isFeature ? "card.news.feature" : "card.news.default";
 
     const formattedDate = publishedAt
         ? new Date(publishedAt).toLocaleDateString(isEn ? "en-US" : "vi-VN", {
@@ -57,6 +64,8 @@ export function NewsCard({
                     "interactive-card flex h-full flex-col overflow-hidden rounded-[2rem] border border-[rgba(26,72,164,0.12)] bg-[linear-gradient(180deg,rgba(255,255,255,0.92),rgba(234,243,255,0.84))] shadow-[var(--shadow-xs)]",
                     className
                 )}
+                style={getAppearanceSurfaceStyle("linear-gradient(180deg,rgba(255,255,255,0.92),rgba(234,243,255,0.84))")}
+                {...getAppearanceTargetProps(appearanceTargetId)}
             >
                 {!isCompact && (
                     <div className={cn("relative overflow-hidden", isFeature ? "aspect-[16/11]" : "aspect-[16/10]")}>
@@ -100,17 +109,39 @@ export function NewsCard({
                         </div>
                     )}
 
-                    <h3 className={cn("font-heading text-[var(--ink)]", isFeature ? "mb-4 text-[2.1rem]" : isCompact ? "mb-3 text-[1.35rem]" : "mb-4 text-[1.65rem]")}>
+                    <h3
+                        className={cn("font-heading text-[var(--ink)]", isFeature ? "mb-4 text-[2.1rem]" : isCompact ? "mb-3 text-[1.35rem]" : "mb-4 text-[1.65rem]")}
+                        style={getAppearanceTextStyle({
+                            colorRole: "title",
+                            colorFallback: "var(--ink)",
+                            sizeRole: "title",
+                            sizeFallback: isFeature ? "2.15rem" : isCompact ? "1.35rem" : "1.8rem",
+                        })}
+                    >
                         {title}
                     </h3>
 
                     {excerpt && (
-                        <p className={cn("text-[var(--ink-soft)]", isFeature ? "mb-6 text-[15px] leading-8" : "mb-5 text-sm leading-7", isCompact && "line-clamp-2")}>
+                        <p
+                            className={cn("text-[var(--ink-soft)]", isFeature ? "mb-6 text-[15px] leading-8" : "mb-5 text-sm leading-7", isCompact && "line-clamp-2")}
+                            style={getAppearanceTextStyle({
+                                colorRole: "body",
+                                colorFallback: "var(--ink-soft)",
+                                sizeRole: "body",
+                                sizeFallback: isCompact ? "0.875rem" : "0.96rem",
+                            })}
+                        >
                             {excerpt}
                         </p>
                     )}
 
-                    <div className="mt-auto flex flex-wrap items-center gap-4 border-t border-[rgba(26,72,164,0.1)] pt-4 text-xs uppercase tracking-[0.1em] text-[var(--ink-muted)]">
+                    <div
+                        className="mt-auto flex flex-wrap items-center gap-4 border-t border-[rgba(26,72,164,0.1)] pt-4 text-xs uppercase tracking-[0.1em] text-[var(--ink-muted)]"
+                        style={getAppearanceTextStyle({
+                            colorRole: "badge",
+                            colorFallback: "var(--ink-muted)",
+                        })}
+                    >
                         {formattedDate && (
                             <span className="flex items-center gap-1.5">
                                 <CalendarBlank className="h-3.5 w-3.5" weight="bold" />
@@ -123,7 +154,10 @@ export function NewsCard({
                                 {viewCount.toLocaleString()}
                             </span>
                         )}
-                        <span className="inline-flex items-center gap-1.5 text-[var(--accent-strong)]">
+                        <span
+                            className="inline-flex items-center gap-1.5 text-[var(--accent-strong)]"
+                            style={{ color: getAppearanceCssValue("accentColor", "var(--accent-strong)") }}
+                        >
                             <ArrowUpRight className="h-3.5 w-3.5" weight="bold" />
                         </span>
                     </div>

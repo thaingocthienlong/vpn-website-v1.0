@@ -53,6 +53,7 @@ interface NewsListingPageClientProps {
     filterMode?: "links" | "state";
     postsPerPage?: number;
     showFeatured?: boolean;
+    showHeroPanel?: boolean;
     gridColumns?: 2 | 3;
     listLayout?: "grid" | "rows";
 }
@@ -76,6 +77,7 @@ export function NewsListingPageClient({
     filterMode = "links",
     postsPerPage: postsPerPageProp,
     showFeatured: showFeaturedProp,
+    showHeroPanel = true,
     gridColumns = 3,
     listLayout = "grid",
 }: NewsListingPageClientProps) {
@@ -184,6 +186,10 @@ export function NewsListingPageClient({
     }, [filterMode, locale, page, postsPerPage, selectedCategory]);
 
     const heroPanel = useMemo(() => {
+        if (!showHeroPanel) {
+            return undefined;
+        }
+
         const panelData = [
             {
                 key: categoriesLabel,
@@ -214,7 +220,7 @@ export function NewsListingPageClient({
                 </div>
             );
         });
-    }, [categories.length, categoriesLabel, latestLabel, posts.length]);
+    }, [categories.length, categoriesLabel, latestLabel, posts.length, showHeroPanel]);
 
     const controls = (
         <section className="public-panel rounded-[2rem] p-3">
