@@ -6,6 +6,7 @@ import {
     Globe2,
     GraduationCap,
     MessageSquare,
+    Palette,
     Settings2,
     Sparkles,
     Tags,
@@ -46,6 +47,7 @@ interface DashboardData {
 const quickActions = [
     { label: "Site homepage", href: "/admin/site/homepage", icon: Sparkles },
     { label: "Site navigation", href: "/admin/site/navigation", icon: Globe2 },
+    { label: "Site appearance", href: "/admin/site/appearance", icon: Palette },
     { label: "Create post", href: "/admin/vi/posts/create", icon: FileText },
     { label: "Create service", href: "/admin/vi/services/create", icon: Wrench },
     { label: "Review inbox", href: "/admin/contacts", icon: MessageSquare },

@@ -48,6 +48,7 @@ const sidebarItems: SidebarItemType[] = [
             { label: "Workspace", labelEn: "Workspace", href: "/admin/site" },
             { label: "Homepage", labelEn: "Homepage", href: "/admin/site/homepage" },
             { label: "Navigation", labelEn: "Navigation", href: "/admin/site/navigation" },
+            { label: "Appearance", labelEn: "Appearance", href: "/admin/site/appearance" },
             { label: "Settings", labelEn: "Settings", href: "/admin/site/settings" },
         ],
     },
