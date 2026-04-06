@@ -1,0 +1,570 @@
+# Instincts generated from https://github.com/thaingocthienlong/vpn-website-v1.0
+# Generated: 2026-04-06T03:21:59.463Z
+# Version: 2.0
+# NOTE: This file supplements (does not replace) any existing curated instincts.
+# High-confidence manually curated instincts should be preserved alongside these.
+
+---
+id: vpn-website-v1.0-commit-conventional
+trigger: "when writing a commit message"
+confidence: 0.85
+domain: git
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Commit Conventional
+
+## Action
+
+Use conventional commit format with prefixes: fix, feat, chore, deploy
+
+## Evidence
+
+- 19 commits analyzed
+- Detected conventional commit pattern
+- Examples: feat: data migration refactoring - Service model, Course remapping, Media gallery, dich-vu page, fix(homepage): use vi locale as source of truth for section ordering and config
+
+---
+id: vpn-website-v1.0-commit-length
+trigger: "when writing a commit message"
+confidence: 0.6
+domain: git
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Commit Length
+
+## Action
+
+Write detailed commit messages (~108 characters for first line)
+
+## Evidence
+
+- Average commit message length: 108 chars
+- Based on 19 commits
+
+---
+id: vpn-website-v1.0-naming-files
+trigger: "when creating a new file"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Naming Files
+
+## Action
+
+Use camelCase naming convention
+
+## Evidence
+
+- Analyzed file naming patterns in repository
+- Dominant pattern: camelCase
+
+---
+id: vpn-website-v1.0-import-alias
+trigger: "when importing modules"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Import Alias
+
+## Action
+
+Use path aliases (@/, ~/) instead of relative imports
+
+## Evidence
+
+- Import analysis shows alias pattern
+- Example: import { x } from '@/lib/x'
+
+---
+id: vpn-website-v1.0-export-style
+trigger: "when exporting from a module"
+confidence: 0.7
+domain: code-style
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Export Style
+
+## Action
+
+Prefer default exports
+
+## Evidence
+
+- Export pattern analysis
+- Dominant style: default
+
+---
+id: vpn-website-v1.0-arch-type-based
+trigger: "when adding new code"
+confidence: 0.8
+domain: architecture
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Arch Type Based
+
+## Action
+
+Place code in the appropriate type folder (components/, services/, utils/, etc.)
+
+## Evidence
+
+- Type-based module organization detected
+- Folders: app, components, config, hooks, i18n
+
+---
+id: vpn-website-v1.0-test-separate
+trigger: "when writing tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Test Separate
+
+## Action
+
+Place tests in the tests/ or __tests__/ directory, mirroring src structure
+
+## Evidence
+
+- Separate test directory pattern detected
+- Tests live in dedicated test folders
+
+---
+id: vpn-website-v1.0-workflow-database-migration
+trigger: "when modifying the database schema or adding tables"
+confidence: 0.75
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Workflow Database Migration
+
+## Action
+
+Follow the database-migration workflow:
+1. Create migration file
+2. Update schema definitions
+3. Generate/update types
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~5x per month
+- Files: migrations/*, **/schema.*
+
+---
+id: vpn-website-v1.0-workflow-feature-development
+trigger: "when implementing a new feature"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Workflow Feature Development
+
+## Action
+
+Follow the feature-development workflow:
+1. Add feature implementation
+2. Add tests for feature
+3. Update documentation
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~9x per month
+- Files: /*, scripts/*, src/app/[locale]/gioi-thieu/co-cau-to-chuc/*
+
+---
+id: vpn-website-v1.0-workflow-add-or-update-admin-crud-entity
+trigger: "when doing add or update admin crud entity"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Workflow Add Or Update Admin Crud Entity
+
+## Action
+
+Follow the add-or-update-admin-crud-entity workflow:
+1. Create or update admin pages under src/app/admin/[locale]/<entity>/(create|[id]|page).tsx
+2. Create or update API routes under src/app/api/admin/<entity>/(route.ts|[id]/route.ts)
+3. Update or create related components (e.g., cards, forms) under src/components/cards or similar
+4. Update or create database schema in prisma/schema.prisma if needed
+5. Update types or config files if needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: src/app/admin/[locale]/*/page.tsx, src/app/api/admin/*/route.ts, src/app/api/admin/*/[id]/route.ts
+
+---
+id: vpn-website-v1.0-workflow-add-or-update-api-endpoint
+trigger: "when doing add or update api endpoint"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Workflow Add Or Update Api Endpoint
+
+## Action
+
+Follow the add-or-update-api-endpoint workflow:
+1. Create or update API route file under src/app/api/<entity>/(route.ts|[slug]/route.ts|[id]/route.ts)
+2. Update or create related service/util files (e.g., src/lib/services/api-services.ts)
+3. Update or create related database schema in prisma/schema.prisma if needed
+4. Update types or config files if needed
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: src/app/api/*/route.ts, src/app/api/*/[slug]/route.ts, src/app/api/*/[id]/route.ts
+
+---
+id: vpn-website-v1.0-workflow-deploy-pipeline-optimization-for-shared-hosting
+trigger: "when doing deploy pipeline optimization for shared hosting"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Workflow Deploy Pipeline Optimization For Shared Hosting
+
+## Action
+
+Follow the deploy-pipeline-optimization-for-shared-hosting workflow:
+1. Update build scripts (e.g., scripts/build-standalone.mjs)
+2. Update package.json scripts and dependencies
+3. Update Next.js config (next.config.ts) for build constraints
+4. Update Prisma config or schema if needed
+5. Document changes in docs/PLAN.md or similar
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: scripts/build-standalone.mjs, package.json, next.config.ts
+
+---
+id: vpn-website-v1.0-workflow-data-migration-and-schema-evolution
+trigger: "when doing data migration and schema evolution"
+confidence: 0.6
+domain: workflow
+source: repo-analysis
+source_repo: https://github.com/thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Workflow Data Migration And Schema Evolution
+
+## Action
+
+Follow the data-migration-and-schema-evolution workflow:
+1. Update prisma/schema.prisma with new or changed models
+2. Create or update migration scripts under scripts/
+3. Update backend logic (e.g., src/lib/services/api-services.ts, server.js)
+4. Document migration steps in README or docs
+
+## Evidence
+
+- Workflow detected from commit patterns
+- Frequency: ~2x per month
+- Files: prisma/schema.prisma, scripts/*.ts, scripts/*.mjs
+
+---
+id: vpn-website-v1.0-instinct-camelcase-files
+trigger: "When creating or renaming files in the codebase"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Camelcase Files
+
+## Action
+
+Use camelCase for file names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.files
+- Consistent with TypeScript project conventions
+
+---
+id: vpn-website-v1.0-instinct-camelcase-functions
+trigger: "When defining a function"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Camelcase Functions
+
+## Action
+
+Name the function using camelCase
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.functions
+
+---
+id: vpn-website-v1.0-instinct-pascalcase-classes
+trigger: "When defining a class"
+confidence: 0.9
+domain: code-style
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Pascalcase Classes
+
+## Action
+
+Name the class using PascalCase
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.classes
+
+---
+id: vpn-website-v1.0-instinct-constant-uppercase
+trigger: "When declaring a constant value"
+confidence: 0.85
+domain: code-style
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Constant Uppercase
+
+## Action
+
+Use SCREAMING_SNAKE_CASE for constant names
+
+## Evidence
+
+- Pattern in codeStyle.namingConventions.constants
+
+---
+id: vpn-website-v1.0-instinct-import-alias
+trigger: "When importing modules"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Import Alias
+
+## Action
+
+Use alias import style instead of relative paths
+
+## Evidence
+
+- Pattern in codeStyle.importStyle
+
+---
+id: vpn-website-v1.0-instinct-default-export
+trigger: "When exporting modules or components"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Default Export
+
+## Action
+
+Use default export style
+
+## Evidence
+
+- Pattern in codeStyle.exportStyle
+
+---
+id: vpn-website-v1.0-instinct-try-catch-error-handling
+trigger: "When handling errors in code"
+confidence: 0.8
+domain: code-style
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Try Catch Error Handling
+
+## Action
+
+Wrap error-prone code in try-catch blocks
+
+## Evidence
+
+- Pattern in errorHandling.style
+
+---
+id: vpn-website-v1.0-instinct-test-location-separate
+trigger: "When adding or updating tests"
+confidence: 0.8
+domain: testing
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Test Location Separate
+
+## Action
+
+Place test files in a separate directory from source code
+
+## Evidence
+
+- Pattern in architecture.folderStructure.testLocation
+
+---
+id: vpn-website-v1.0-instinct-conventional-commits
+trigger: "When writing a commit message"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Conventional Commits
+
+## Action
+
+Use Conventional Commits format: <type>(<scope>): <description>
+
+## Evidence
+
+- Pattern in commits.type
+- Examples: 'feat: ...', 'fix(homepage): ...', 'chore(build): ...'
+
+---
+id: vpn-website-v1.0-instinct-commit-prefixes
+trigger: "When choosing a commit type"
+confidence: 0.9
+domain: git
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Commit Prefixes
+
+## Action
+
+Use one of the allowed prefixes: fix, feat, chore, deploy
+
+## Evidence
+
+- Pattern in commits.prefixes
+- Examples in commit history
+
+---
+id: vpn-website-v1.0-instinct-admin-crud-entity
+trigger: "When someone wants to add or update CRUD management for an entity in the admin dashboard"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Admin Crud Entity
+
+## Action
+
+Create or update admin pages, API routes, related components, and update the Prisma schema and types/configs if needed
+
+## Evidence
+
+- Workflow: add-or-update-admin-crud-entity
+- Pattern in files: src/app/admin/[locale]/*/page.tsx, src/app/api/admin/*/route.ts, src/components/cards/*.tsx, prisma/schema.prisma
+
+---
+id: vpn-website-v1.0-instinct-api-endpoint
+trigger: "When someone wants to expose new backend functionality or data via API"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Api Endpoint
+
+## Action
+
+Create or update API route files, related service/util files, update Prisma schema and types/configs if needed
+
+## Evidence
+
+- Workflow: add-or-update-api-endpoint
+- Pattern in files: src/app/api/*/route.ts, src/lib/services/api-services.ts, prisma/schema.prisma
+
+---
+id: vpn-website-v1.0-instinct-deploy-pipeline-optimization
+trigger: "When someone needs to ensure the project builds and deploys reliably on constrained shared hosting environments"
+confidence: 0.9
+domain: workflow
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Deploy Pipeline Optimization
+
+## Action
+
+Update build scripts, package.json, Next.js config, Prisma config/schema, and document changes
+
+## Evidence
+
+- Workflow: deploy-pipeline-optimization-for-shared-hosting
+- Pattern in files: scripts/build-standalone.mjs, package.json, next.config.ts, prisma/schema.prisma, docs/PLAN.md
+
+---
+id: vpn-website-v1.0-instinct-data-migration-schema-evolution
+trigger: "When someone wants to introduce new data models, migrate data, or refactor existing database structures"
+confidence: 0.85
+domain: workflow
+source: repo-analysis
+source_repo: thaingocthienlong/vpn-website-v1.0
+---
+
+# Vpn Website V1.0 Instinct Data Migration Schema Evolution
+
+## Action
+
+Update prisma/schema.prisma, create/update migration scripts, update backend logic, and document migration steps
+
+## Evidence
+
+- Workflow: data-migration-and-schema-evolution
+- Pattern in files: prisma/schema.prisma, scripts/*.ts, src/lib/services/api-services.ts, docs/*.md
+
