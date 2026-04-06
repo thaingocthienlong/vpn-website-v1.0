@@ -800,3 +800,12 @@ export function getAppearanceAdminPayload(config: AppearanceRuntimeConfig): Appe
         targets: APPEARANCE_TARGETS,
     };
 }
+
+export function normalizeAppearanceAdminPayload(candidate: unknown): AppearanceAdminPayload {
+    if (typeof candidate !== "object" || candidate === null) {
+        return getAppearanceAdminPayload(createDefaultAppearanceConfig());
+    }
+
+    const normalized = sanitizeAppearanceConfig(candidate as Partial<AppearanceRuntimeConfig>);
+    return getAppearanceAdminPayload(normalized);
+}

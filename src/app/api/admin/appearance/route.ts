@@ -82,10 +82,7 @@ export async function PUT(request: NextRequest) {
 
         revalidateAppearanceConfig();
 
-        return jsonSuccess({
-            message: "Appearance settings updated.",
-            config: await getAppearanceAdminConfig(),
-        });
+        return jsonSuccess(await getAppearanceAdminConfig());
     } catch (error) {
         console.error("Error updating appearance config:", error);
         return jsonError("Failed to update appearance config", 500);

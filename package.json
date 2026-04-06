@@ -8,6 +8,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
+    "test:e2e": "playwright test",
+    "test:e2e:headed": "playwright test --headed",
     "migrate:json:audit": "ts-node --project scripts/tsconfig.json migrate/migrate-from-json.ts --audit-only",
     "migrate:json:dry-run": "ts-node --project scripts/tsconfig.json migrate/migrate-from-json.ts --dry-run",
     "migrate:json": "ts-node --project scripts/tsconfig.json migrate/migrate-from-json.ts",
@@ -64,6 +66,7 @@
     "zod": "^4.3.6"
   },
   "devDependencies": {
+    "@clerk/testing": "^2.0.8",
     "@types/nodemailer": "^7.0.9",
     "chrome-devtools-mcp": "^0.17.0",
     "eslint": "^9",

@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
 import { Textarea } from "@/components/ui/Textarea";
 import {
+    normalizeAppearanceAdminPayload,
     type AppearanceAdminPayload,
     type AppearancePreset,
     type AppearanceRuntimeConfig,
@@ -19,6 +20,14 @@ type AppearanceApiResponse = {
     data?: AppearanceAdminPayload;
     error?: string;
 };
+
+function resolveAppearancePayloadCandidate(candidate: unknown) {
+    if (typeof candidate === "object" && candidate !== null && "config" in candidate) {
+        return (candidate as { config?: unknown }).config;
+    }
+
+    return candidate;
+}
 
 const PRESET_FIELDS: Array<{
     key: Exclude<keyof AppearancePreset, "id" | "label">;
@@ -72,7 +81,7 @@ export default function AppearanceManager() {
             .then((response) => response.json())
             .then((result: AppearanceApiResponse) => {
                 if (result.success && result.data) {
-                    setPayload(result.data);
+                    setPayload(normalizeAppearanceAdminPayload(result.data));
                     return;
                 }
 
@@ -179,7 +188,7 @@ export default function AppearanceManager() {
 
             const result: AppearanceApiResponse = await response.json();
             if (result.success && result.data) {
-                setPayload(result.data);
+                setPayload(normalizeAppearanceAdminPayload(resolveAppearancePayloadCandidate(result.data)));
                 setMessage("Appearance settings updated.");
                 return;
             }
@@ -209,7 +218,12 @@ export default function AppearanceManager() {
                         Manage semantic tokens, reusable presets, and target assignments for the main public site.
                     </p>
                 </div>
-                <Button className="min-w-[140px] gap-2 bg-blue-600 text-white hover:bg-blue-700" onClick={handleSave} disabled={saving}>
+                <Button
+                    className="min-w-[140px] gap-2 bg-blue-600 text-white hover:bg-blue-700"
+                    onClick={handleSave}
+                    disabled={saving}
+                    data-testid="appearance-save-button"
+                >
                     {saving ? (
                         <>
                             <Loader2 className="h-4 w-4 animate-spin" />
@@ -225,7 +239,10 @@ export default function AppearanceManager() {
             </div>
 
             {message && (
-                <div className="rounded-[1.2rem] border border-[rgba(26,72,164,0.12)] bg-white px-4 py-3 text-sm text-slate-600 shadow-sm">
+                <div
+                    className="rounded-[1.2rem] border border-[rgba(26,72,164,0.12)] bg-white px-4 py-3 text-sm text-slate-600 shadow-sm"
+                    data-testid="appearance-status-message"
+                >
                     {message}
                 </div>
             )}
@@ -238,6 +255,7 @@ export default function AppearanceManager() {
                             : "border-transparent text-slate-500 hover:text-slate-700"
                     }`}
                     onClick={() => setActiveTab("tokens")}
+                    data-testid="appearance-tab-tokens"
                 >
                     <SlidersHorizontal className="h-4 w-4" />
                     Tokens
@@ -249,6 +267,7 @@ export default function AppearanceManager() {
                             : "border-transparent text-slate-500 hover:text-slate-700"
                     }`}
                     onClick={() => setActiveTab("presets")}
+                    data-testid="appearance-tab-presets"
                 >
                     <Palette className="h-4 w-4" />
                     Presets
@@ -260,6 +279,7 @@ export default function AppearanceManager() {
                             : "border-transparent text-slate-500 hover:text-slate-700"
                     }`}
                     onClick={() => setActiveTab("assignments")}
+                    data-testid="appearance-tab-assignments"
                 >
                     <Layers3 className="h-4 w-4" />
                     Assignments
@@ -283,7 +303,11 @@ export default function AppearanceManager() {
 
                                 <div className="mt-5 grid gap-4 xl:grid-cols-2">
                                     {groupEntries.map(([tokenId, tokenValue]) => (
-                                        <div key={tokenId} className="space-y-2 rounded-[1.1rem] border border-slate-100 bg-slate-50/60 p-4">
+                                        <div
+                                            key={tokenId}
+                                            className="space-y-2 rounded-[1.1rem] border border-slate-100 bg-slate-50/60 p-4"
+                                            data-testid={`appearance-token-field-${group.id}-${tokenId}`}
+                                        >
                                             <label className="text-sm font-semibold text-slate-700">{tokenId}</label>
                                             {group.input === "background" ? (
                                                 <Textarea
@@ -291,11 +315,15 @@ export default function AppearanceManager() {
                                                     onChange={(event) => handleTokenChange(group.id, tokenId, event.target.value)}
                                                     rows={3}
                                                     className="min-h-[96px]"
+                                                    aria-label={`${group.label} ${tokenId}`}
+                                                    data-testid={`appearance-token-input-${group.id}-${tokenId}`}
                                                 />
                                             ) : (
                                                 <Input
                                                     value={tokenValue}
                                                     onChange={(event) => handleTokenChange(group.id, tokenId, event.target.value)}
+                                                    aria-label={`${group.label} ${tokenId}`}
+                                                    data-testid={`appearance-token-input-${group.id}-${tokenId}`}
                                                 />
                                             )}
                                         </div>
@@ -310,7 +338,7 @@ export default function AppearanceManager() {
             {activeTab === "presets" && (
                 <div className="space-y-5">
                     <div className="flex justify-end">
-                        <Button variant="outline" onClick={addPreset}>Add preset</Button>
+                        <Button variant="outline" onClick={addPreset} data-testid="appearance-add-preset-button">Add preset</Button>
                     </div>
 
                     <div className="space-y-5">
@@ -325,6 +353,7 @@ export default function AppearanceManager() {
                                         <Input
                                             value={preset.label}
                                             onChange={(event) => handlePresetChange(preset.id, "label", event.target.value)}
+                                            data-testid={`appearance-preset-label-${preset.id}`}
                                         />
                                     </div>
                                     <div className="space-y-2">
@@ -333,6 +362,7 @@ export default function AppearanceManager() {
                                             value={preset.id}
                                             readOnly
                                             onFocus={(event) => event.currentTarget.select()}
+                                            data-testid={`appearance-preset-id-${preset.id}`}
                                         />
                                         <p className="text-xs text-slate-500">
                                             Generated ID: {makePresetId(preset.label, index + 1)}
@@ -348,6 +378,7 @@ export default function AppearanceManager() {
                                                 value={preset[field.key] || ""}
                                                 onChange={(event) => handlePresetChange(preset.id, field.key, event.target.value)}
                                                 className="flex h-11 w-full rounded-[1rem] border border-[rgba(26,72,164,0.12)] bg-white px-3 text-sm text-slate-700 shadow-sm outline-none transition-colors focus:border-blue-500"
+                                                data-testid={`appearance-preset-field-${preset.id}-${String(field.key)}`}
                                             >
                                                 <option value="">Use component default</option>
                                                 {Object.keys(payload.tokens[field.group]).sort().map((tokenId) => (
@@ -397,6 +428,7 @@ export default function AppearanceManager() {
                                                 value={payload.assignments[target.id] || target.defaultPresetId}
                                                 onChange={(event) => handleAssignmentChange(target.id, event.target.value)}
                                                 className="flex h-11 w-full rounded-[1rem] border border-[rgba(26,72,164,0.12)] bg-white px-3 text-sm text-slate-700 shadow-sm outline-none transition-colors focus:border-blue-500"
+                                                data-testid={`appearance-assignment-${target.id}`}
                                             >
                                                 {presetEntries.map((preset) => (
                                                     <option key={`${target.id}-${preset.id}`} value={preset.id}>
